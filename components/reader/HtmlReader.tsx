@@ -1,16 +1,18 @@
 "use client"
 import React from 'react';
 import { useEffect, useState, useMemo, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowLeft, ArrowRight, Settings, Home, Menu, Minimize, Maximize, X, Search, Download, MessageSquare, Printer, FileDown, Plus, Minus, RotateCcw, MoreVertical, ArrowUp, ArrowDown, Heart, MessageCircle } from "lucide-react"
+import { ArrowLeft, ArrowRight, Settings, Home, Menu, Minimize, Maximize, X, Search, Download, MessageSquare, Printer, FileDown, Plus, Minus, RotateCcw, MoreVertical, ArrowUp, ArrowDown, Heart, MessageCircle, Keyboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CustomComments } from "@/components/comments/CustomComments"
 import { UserMenu } from "@/components/auth/UserMenu"
 import { AuthModal } from "@/components/auth/AuthModal"
 import { ProfileModal } from "@/components/auth/ProfileModal"
+import { ShortcutsModal } from "./ShortcutsModal"
 
 interface ReaderProps {
     content: string;
@@ -51,9 +53,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
     const downloadRef = useRef<HTMLDivElement>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
-
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const [searchQuery, setSearchQuery] = useState("");
+
+
+
+
 
     const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
     useEffect(() => {
@@ -91,6 +97,88 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
         setMobileMenuOpen(false);
     };
 
+
+    const [shortcutsOpen, setShortcutsOpen] = useState(false);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+
+            const isHelpShortcut = (e.ctrlKey || e.metaKey) && e.key === '/';
+            if ((e.ctrlKey || e.altKey || e.metaKey) && !isHelpShortcut) return;
+
+            const key = e.key.toLowerCase();
+
+            if (isHelpShortcut) {
+                e.preventDefault();
+                setShortcutsOpen(prev => !prev);
+                return;
+            }
+
+            switch (key) {
+                // Navigation
+                case 'arrowleft':
+                case 'h':
+                    if (prevChapter) router.push(`/read/${prevChapter.volumeId}/${prevChapter.chapter}`);
+                    break;
+                case 'arrowright':
+                case 'l':
+                    if (nextChapter) router.push(`/read/${nextChapter.volumeId}/${nextChapter.chapter}`);
+                    break;
+
+                // Interface Toggles
+                case 'm':
+                    setSidebarOpen(prev => !prev);
+                    break;
+                case 's':
+                    setSettingsOpen(prev => !prev);
+                    break;
+                case 'c':
+                    setCommentsOpen(true);
+                    break;
+                case 'f':
+                    toggleFullscreen();
+                    break;
+                case '/':
+                    e.preventDefault();
+                    if (!sidebarOpen) setSidebarOpen(true);
+                    setTimeout(() => searchInputRef.current?.focus(), 100);
+                    break;
+
+                // Reading Settings
+                case 't': {
+                    const themes: (typeof theme)[] = ['dark', 'light', 'sepia', 'slatedark', 'midnight', 'forest', 'oled', 'espresso', 'gray'];
+                    const currentIndex = themes.indexOf(theme);
+                    const nextIndex = (currentIndex + 1) % themes.length;
+                    setTheme(themes[nextIndex]);
+                    break;
+                }
+                case '=':
+                case '+':
+                    setFontSize(prev => Math.min(32, prev + 1));
+                    break;
+                case '-':
+                    setFontSize(prev => Math.max(12, prev - 1));
+                    break;
+
+                // System
+                case 'escape':
+                    setSidebarOpen(false);
+                    setSettingsOpen(false);
+                    setMobileMenuOpen(false);
+                    setDownloadMenuOpen(false);
+                    setShortcutsOpen(false);
+                    setCommentsOpen(false);
+                    setAuthModalOpen(false);
+                    setProfileModalOpen(false);
+                    break;
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [prevChapter, nextChapter, router, theme, sidebarOpen, settingsOpen, isFullscreen]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -188,18 +276,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     }, []);
 
 
-    const processedContent = useMemo(() => {
-        if (!content) return "";
-        console.time("Image Optimization");
+    const processedContent = content;
 
-        const optimized = content.replace(/<img\s+([^>]*)(?<!loading=["']lazy["'])([^>]*)>/gi, (match, p1, p2) => {
-
-            if (match.includes('loading=')) return match;
-            return `<img ${p1} loading="lazy" decoding="async" ${p2}>`;
-        });
-        console.timeEnd("Image Optimization");
-        return optimized;
-    }, [content]);
+    useEffect(() => {
+        if (nextChapter) {
+            router.prefetch(`/read/${nextChapter.volumeId}/${nextChapter.chapter}`);
+        }
+    }, [nextChapter, router]);
 
 
     useEffect(() => {
@@ -260,7 +343,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
             <header className={cn("sticky top-0 z-50 flex h-14 items-center gap-4 border-b px-4 print:hidden", headerStyle)}>
                 <div className="flex items-center gap-2 flex-1 min-w-0">
-                    <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="flex-shrink-0">
+                    <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="flex-shrink-0" aria-label="Toggle Sidebar">
                         <Menu className="h-5 w-5" />
                     </Button>
                     <div className="flex flex-col min-w-0 flex-1">
@@ -311,6 +394,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             )}
                         </div>
 
+                        <Button variant="ghost" size="icon" onClick={() => setShortcutsOpen(true)} title="Keyboard Shortcuts" aria-label="Keyboard Shortcuts">
+                            <Keyboard className="h-5 w-5" />
+                        </Button>
+
                         <Button variant="ghost" size="icon" onClick={() => setCommentsOpen(true)} title="Open Discussions">
                             <MessageCircle className="h-5 w-5" />
                         </Button>
@@ -344,6 +431,11 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     <UserMenu
                         onSignIn={() => setAuthModalOpen(true)}
                         onProfile={() => setProfileModalOpen(true)}
+                    />
+
+                    <ShortcutsModal
+                        isOpen={shortcutsOpen}
+                        onClose={() => setShortcutsOpen(false)}
                     />
 
                     <div className="relative">
@@ -491,6 +583,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 </div>
             </header>
 
+
+
+
             <div className="flex flex-1 relative overflow-hidden">
                 <aside className={cn(
                     "fixed inset-y-0 left-0 z-40 w-80 transform transition-transform duration-300 ease-in-out border-r shadow-2xl overflow-y-auto pt-16 pb-4 px-4 flex flex-col print:hidden will-change-transform transform-gpu",
@@ -517,8 +612,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         <div className="relative">
                             <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                             <input
+                                ref={searchInputRef}
                                 type="text"
-                                placeholder="Search chapters..."
+                                placeholder="Search chapters... (Press '/')"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className={cn(
@@ -729,7 +825,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         `}</style>
 
 
-                        <ReaderContent content={processedContent} volumeId={volumeId} />
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <ReaderContent content={processedContent} volumeId={volumeId} />
+                        </motion.div>
                     </div>
 
 

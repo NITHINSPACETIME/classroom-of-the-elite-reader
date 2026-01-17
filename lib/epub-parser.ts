@@ -516,7 +516,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             const ext = path.extname(img.fullPath).toLowerCase();
             const mime = ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : ext === '.png' ? 'image/png' : 'image/webp';
             const dataUri = `data:${mime};base64,${base64}`;
-            cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${dataUri}"`);
+            cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${dataUri}" loading="lazy" decoding="async"`);
         }
     }));
 

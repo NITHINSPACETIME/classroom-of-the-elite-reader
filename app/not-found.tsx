@@ -11,7 +11,7 @@ export default function NotFound() {
             <div className="absolute inset-0 bg-gradient-to-br from-red-950/20 via-black to-black pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center text-center max-w-lg space-y-6">
-                <h1 className="text-[150px] font-bold font-serif leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-600 opacity-20 select-none">
+                <h1 className="text-[150px] font-bold font-serif leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500 opacity-90 select-none drop-shadow-2xl">
                     404
                 </h1>
 

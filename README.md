@@ -32,6 +32,7 @@ Whether you're rereading the Island Exam or catching up on Year 2, this website 
 ## ✨ Features
 - **📖 Clean UI**: Glassmorphism design so slick even Koenji would admire it.
 - **📱 Responsive**: Optimized for every device.
+- **⌨️ Keyboard Shortcuts**: Power-user friendly! Press `Ctrl + /` to see them all.
 - **🔖 Progress Sync**: Synced to your account. Never lose your place again (unlike Class D losing points Nevermind). *(Coming Soon)*
 - **🎨 Custom Themes**: Includes Nice themes in the reader for best reading experience.
 - **🔍 Smart Navigation**: Intuitive table of contents and volume selection. With Proper Offical sequence to Read Volumes in order

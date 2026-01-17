@@ -32,6 +32,33 @@ const lora = Lora({
 export const metadata: Metadata = {
   title: "Classroom of the Elite Reader",
   description: "A premium reader experience for Classroom of the Elite light novels.",
+  openGraph: {
+    title: "Classroom of the Elite Reader",
+    description: "Read Classroom of the Elite light novels with a premium, immersive experience.",
+    url: "https://classroom-of-the-elite-reader.vercel.app",
+    siteName: "COTE Reader",
+    images: [
+      {
+        url: "/assets/preview-hero.png",
+        width: 1200,
+        height: 630,
+        alt: "Classroom of the Elite Reader Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Classroom of the Elite Reader",
+    description: "Read Classroom of the Elite light novels with a premium, immersive experience.",
+    images: ["/assets/preview-hero.png"],
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 import { AuthProvider } from "@/context/AuthContext";

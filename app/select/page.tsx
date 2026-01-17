@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -67,12 +68,15 @@ export default function SelectPage() {
 
                                     {item.image ? (
                                         <div className="absolute inset-0">
-
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                            />
+                                            <div className="absolute inset-0 w-full h-full">
+                                                <Image
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                                                />
+                                            </div>
                                         </div>
                                     ) : (
                                         <div className="absolute inset-0 flex items-center justify-center text-white/20 font-serif text-4xl font-bold bg-neutral-900/50">

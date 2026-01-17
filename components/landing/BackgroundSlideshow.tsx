@@ -44,6 +44,7 @@ export function BackgroundSlideshow({ images = backgroundImages, interval = 6000
                         fill
                         className="object-cover opacity-60"
                         priority
+                        quality={60}
                     />
                 </motion.div>
             </AnimatePresence>

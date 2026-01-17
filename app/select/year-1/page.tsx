@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Search, Grid, List, BookOpen, Clock, Calendar, ChevronRight, Smartphone, Book, Download, Image as ImageIcon, FileDown, MoreVertical, ArrowLeft, LayoutGrid } from "lucide-react"
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 import { volumes, VolumeData } from "@/data/year1";
@@ -198,10 +199,12 @@ export default function Year1SelectPage() {
                                                 <Link href={`/select/year-1/${vol.id}`}>
                                                     {vol.coverImage ? (
                                                         <div className="relative w-full max-w-[240px] aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-500 cursor-pointer">
-                                                            <img
+                                                            <Image
                                                                 src={vol.coverImage}
                                                                 alt={vol.title}
-                                                                className="w-full h-full object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                                                                fill
+                                                                className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                                                                sizes="(max-width: 768px) 100vw, 240px"
                                                             />
                                                         </div>
                                                     ) : (
@@ -286,11 +289,15 @@ export default function Year1SelectPage() {
                                 <Link href={`/select/year-1/${vol.id}`} key={vol.id} className="flex flex-col gap-2 group cursor-pointer relative">
                                     <div className="w-full aspect-[2/3] rounded-md overflow-hidden shadow-lg border border-white/10 relative z-0">
                                         {vol.coverImage ? (
-                                            <img
-                                                src={vol.coverImage}
-                                                alt={vol.title}
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-                                            />
+                                            <div className="relative w-full h-full">
+                                                <Image
+                                                    src={vol.coverImage}
+                                                    alt={vol.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                                                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                                                />
+                                            </div>
                                         ) : (
                                             <div className="w-full h-full bg-neutral-800 flex items-center justify-center">
                                                 <span className="text-white/20 font-serif text-4xl font-bold">?</span>
