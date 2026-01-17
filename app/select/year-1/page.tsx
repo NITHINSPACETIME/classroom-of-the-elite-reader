@@ -116,6 +116,7 @@ export default function Year1SelectPage() {
                 <div className="flex items-center">
                     <Link href="/select">
                         <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
+                            <ArrowLeft className="w-6 h-6" />
                         </Button>
                     </Link>
                     <h1 className="ml-4 text-2xl font-serif font-bold text-white tracking-widest hidden sm:block">Year 1 Arc</h1>
