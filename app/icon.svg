@@ -1,0 +1,14 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="128" cy="128" r="128" fill="#0f172a"/>
+  
+  <!-- Stylized Book -->
+  <path d="M64 80C64 80 88 80 112 90C136 100 144 110 144 110V190C144 190 136 180 112 170C88 160 64 160 64 160V80Z" fill="#3b82f6"/>
+  <path d="M192 80C192 80 168 80 144 90C120 100 112 110 112 110V190C112 190 120 180 144 170C168 160 192 160 192 160V80Z" fill="#2563eb"/>
+  
+  <!-- Pages/Details -->
+  <path d="M64 80L56 88V168L64 160V80Z" fill="#1d4ed8"/>
+  <path d="M192 80L200 88V168L192 160V80Z" fill="#1e40af"/>
+  
+  <!-- Letter 'C' on cover (Subtle) -->
+  <path d="M96 115C96 115 85 110 75 120C65 130 65 145 75 155C85 165 96 160 96 160" stroke="#bfdbfe" stroke-width="8" stroke-linecap="round"/>
+</svg>
