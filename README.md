@@ -8,6 +8,12 @@
 ![Last Commit](https://img.shields.io/github/last-commit/NITHINSPACETIME/classroom-of-the-elite-reader?style=for-the-badge)
 ![Stars](https://img.shields.io/github/stars/NITHINSPACETIME/classroom-of-the-elite-reader?style=for-the-badge)
 
+<br />
+
+<p align="center">
+  <img src="public/assets/preview-hero.png" alt="Classroom of the Elite Reader Home" width="100%">
+</p>
+
 ---
 
 ## 📚 About
@@ -17,6 +23,12 @@ Tired of reading PDFs that hurt your eyes or sketchy sites filled with ads? This
 
 Whether you're rereading the Island Exam or catching up on Year 2, this website gives you a distraction-free, premium experience (UI) worthy Reading Experience.
 
+<p align="center">
+  <img src="public/assets/preview-selection.png" alt="Classroom of the Elite Reader Selection" width="100%">
+  <br>
+  <i>Navigate through years and volumes with ease</i>
+</p>
+
 ## ✨ Features
 - **📖 Clean UI**: Glassmorphism design so slick even Koenji would admire it.
 - **📱 Responsive**: Optimized for every device.
@@ -24,6 +36,11 @@ Whether you're rereading the Island Exam or catching up on Year 2, this website 
 - **🎨 Custom Themes**: Includes Nice themes in the reader for best reading experience.
 - **🔍 Smart Navigation**: Intuitive table of contents and volume selection. With Proper Offical sequence to Read Volumes in order
 
+<p align="center">
+  <img src="public/assets/preview-reading.png" alt="Classroom of the Elite Reader Detail" width="100%">
+  <br>
+  <i>Immersive reading interface with progress tracking</i>
+</p>
 
 ## ⚖️ Legal Information
 **Disclaimer**: This is a fan-made project created for educational and entertainment purposes only.
