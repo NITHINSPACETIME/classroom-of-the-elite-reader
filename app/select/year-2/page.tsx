@@ -146,11 +146,12 @@ export default function Year2SelectPage() {
                                             <div className="absolute inset-0 flex items-center justify-center p-4">
                                                 <Link href={`/select/year-2/${vol.id}`} className="block relative z-10 w-full max-w-[240px]">
                                                     {vol.coverImage ? (
-                                                        <div className="relative w-full aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-500 cursor-pointer">
+                                                        <div className="relative w-full aspect-[2/3] shadow-2xl transition-transform duration-500 cursor-pointer">
                                                             <Image
                                                                 src={vol.coverImage}
                                                                 alt={vol.title}
                                                                 fill
+                                                                priority
                                                                 className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                                                                 sizes="(max-width: 768px) 100vw, 240px"
                                                             />

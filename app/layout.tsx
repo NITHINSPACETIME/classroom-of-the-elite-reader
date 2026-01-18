@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display, Merriweather, Roboto, Lora } from "next/font/google";
 import "./globals.css";
 
@@ -54,11 +54,12 @@ export const metadata: Metadata = {
     description: "Read Classroom of the Elite light novels with a premium, immersive experience.",
     images: ["/assets/preview-hero.png"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 import { AuthProvider } from "@/context/AuthContext";
