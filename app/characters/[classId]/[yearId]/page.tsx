@@ -71,6 +71,18 @@ export default function CharacterGridPage({ params }: PageProps) {
                 return 0; // Maintain integrity of original order (Importance)
             });
         }
+
+        if (activeTab === "faculty") {
+            return [...filteredCharacters].sort((a, b) => {
+                const aIsHomeroom = a.homeroomClass === decodedClassId;
+                const bIsHomeroom = b.homeroomClass === decodedClassId;
+
+                if (aIsHomeroom && !bIsHomeroom) return -1;
+                if (!aIsHomeroom && bIsHomeroom) return 1;
+                return 0;
+            });
+        }
+
         return filteredCharacters;
     }, [filteredCharacters, yearId, activeTab]);
 

@@ -447,7 +447,12 @@ export const characters: Character[] = [
         japaneseName: "龍園 翔",
         currentClass: "C",
         description: "The tyrannical leader of Class C. He uses fear, violence, and unconventional tactics to crush his opponents.",
-        image: "",
+        image: "/assets/characters/kakeru-ryuen-y2.png",
+        images: {
+            year1: "/assets/characters/kakeru_ryuen_ln.png",
+            year2: "/assets/characters/kakeru-ryuen-y2.png",
+            year3: "/assets/characters/kakeru_ryuen_year3.png"
+        },
         tags: ["Tyrant", "Strategist"]
     },
     {
@@ -457,6 +462,11 @@ export const characters: Character[] = [
         currentClass: "C",
         description: "A skilled fighter who prefers solitude. She often clashes with Horikita and reluctantly follows Ryuen.",
         image: "/assets/characters/mio-ibuki.jpg",
+        images: {
+            year1: "/assets/characters/mio-ibuki.jpg",
+            year2: "/assets/characters/mio-ibuki-y2.png",
+            year3: "/assets/characters/mio_ibuki_year3.png"
+        },
         tags: ["Fighter", "Loner"]
     },
     {
@@ -466,7 +476,230 @@ export const characters: Character[] = [
         currentClass: "C",
         description: "A quiet bookworm with surprising insight. She is one of the few people who can have a genuine conversation with Ayanokōji.",
         image: "/assets/characters/hiyori-shiina.jpg",
+        images: {
+            year1: "/assets/characters/hiyori-shiina.jpg",
+            year2: "/assets/characters/hiyori-shiina-y2.png",
+            year3: "/assets/characters/hiyori_shiina_year3.png"
+        },
         tags: ["Bookworm", "Insightful"]
+    },
+    {
+        id: "albert-yamada",
+        name: "Albert Yamada",
+        japaneseName: "山田 アルベルト",
+        currentClass: "C",
+        description: "A muscular student of Japanese-African descent. He acts as Ryuen's bodyguard and enforcer.",
+        image: "/assets/characters/albert_yamada.png",
+        images: {
+            year1: "/assets/characters/albert_yamada.png"
+        },
+        tags: ["Bodyguard", "Enforcer"]
+    },
+    {
+        id: "daichi-ishizaki",
+        name: "Daichi Ishizaki",
+        japaneseName: "石崎 大地",
+        currentClass: "C",
+        description: "A delinquent who serves as one of Ryuen's main henchmen. He is skilled in fighting.",
+        image: "/assets/characters/daichi-ishizaki.png",
+        images: {
+            year1: "/assets/characters/daichi_ishizaki_year1.png",
+            year2: "/assets/characters/daichi_ishizaki_year2.png",
+            year3: "/assets/characters/daichi_ishizaki_year3.png"
+        },
+        tags: ["Henchman", "Fighter"]
+    },
+    {
+        id: "kyogo-komiya",
+        name: "Kyogo Komiya",
+        japaneseName: "小宮 叶吾",
+        currentClass: "C",
+        description: "A member of the basketball club and one of Ryuen's followers.",
+        image: "/assets/characters/kyogo_komiya.png",
+        tags: ["Henchman", "Basketball"]
+    },
+    {
+        id: "reo-kondo",
+        name: "Reo Kondo",
+        japaneseName: "近藤 玲音",
+        currentClass: "C",
+        description: "One of Ryuen's followers. He is often seen with Komiya and Ishizaki.",
+        image: "/assets/characters/reo_kondo.png",
+        tags: ["Henchman"]
+    },
+    {
+        id: "satoru-kaneda",
+        name: "Satoru Kaneda",
+        japaneseName: "金田 悟",
+        currentClass: "C",
+        description: "A student who is academically capable but follows Ryuen's orders.",
+        image: "/assets/characters/satoru_kaneda.png",
+        tags: ["Henchman", "Academic"]
+    },
+    {
+        id: "hiroya-tokito",
+        name: "Hiroya Tokito",
+        japaneseName: "時任 裕也",
+        currentClass: "C",
+        description: "A student who often opposes Ryuen's tyranny.",
+        image: "/assets/characters/hiroya_tokito.png",
+        tags: ["Rebel"]
+    },
+    {
+        id: "shiho-manabe",
+        name: "Shiho Manabe",
+        japaneseName: "真鍋 志保",
+        currentClass: "C",
+        description: "A leader of a girls' group in Class C. She has a strong personality.",
+        image: "/assets/characters/shiho_manabe.png",
+        tags: ["Leader"]
+    },
+    {
+        id: "nanami-yabu",
+        name: "Nanami Yabu",
+        japaneseName: "藪 菜々美",
+        currentClass: "C",
+        description: "A member of Manabe's group.",
+        image: "/assets/characters/nanami_yabu_year1.png",
+        images: {
+            year1: "/assets/characters/nanami_yabu_year1.png"
+        },
+        tags: ["Class C"]
+    },
+    {
+        id: "saki-yamashita",
+        name: "Saki Yamashita",
+        japaneseName: "山下 沙希",
+        currentClass: "C",
+        description: "A member of Manabe's group.",
+        image: "/assets/characters/saki_yamashita_year1.png",
+        images: {
+            year1: "/assets/characters/saki_yamashita_year1.png"
+        },
+        tags: ["Class C"]
+    },
+    {
+        id: "takeko-nishino",
+        name: "Takeko Nishino",
+        japaneseName: "西野 武子",
+        currentClass: "C",
+        description: "A student with a strong will who isn't afraid to speak her mind, even against Ryuen.",
+        image: "/assets/characters/takeko_nishino_year1.png",
+        images: {
+            year1: "/assets/characters/takeko_nishino_year1.png"
+        },
+        tags: ["Outspoken"]
+    },
+    {
+        id: "rika-morofuji",
+        name: "Rika Morofuji",
+        japaneseName: "諸藤 リカ",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "/assets/characters/rika_morofuji_year1.png",
+        images: {
+            year1: "/assets/characters/rika_morofuji_year1.png"
+        },
+        tags: ["Class C"]
+    },
+    {
+        id: "hidetoshi-suzuki",
+        name: "Hidetoshi Suzuki",
+        japaneseName: "鈴木 英俊",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "masashi-sonoda",
+        name: "Masashi Sonoda",
+        japaneseName: "園田 正志",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "yuji-nomura",
+        name: "Yuji Nomura",
+        japaneseName: "野村 雄二",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "mariko-yajima",
+        name: "Mariko Yajima",
+        japaneseName: "矢島 麻里子",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "kosetsu-yoshimoto",
+        name: "Kosetsu Yoshimoto",
+        japaneseName: "吉本 功雪",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "takumi-oda",
+        name: "Takumi Oda",
+        japaneseName: "小田 拓海",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "minori-kinoshita",
+        name: "Minori Kinoshita",
+        japaneseName: "木下 美野里",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "nagisa-isoyama",
+        name: "Nagisa Isoyama",
+        japaneseName: "磯山 渚",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "okabe",
+        name: "Okabe",
+        japaneseName: "岡部",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "nakaizumi",
+        name: "Nakaizumi",
+        japaneseName: "中泉",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
+    },
+    {
+        id: "yamawaki",
+        name: "Yamawaki",
+        japaneseName: "山脇",
+        currentClass: "C",
+        description: "A student of Class C.",
+        image: "",
+        tags: ["Class C"]
     },
 
     // Class B 
@@ -522,7 +755,7 @@ export const characters: Character[] = [
         description: "The homeroom teacher of Class D. She appears unmotivated but harbors a strong desire to reach Class A.",
         image: "/assets/characters/sae-chabashira.png",
         homeroomClass: "D",
-        tags: ["Teacher", "Class D", "Year 1", "Year 2", "Year 3"]
+        tags: ["Teacher", "Class D", "Class C", "Year 1", "Year 2", "Year 3"]
     },
     {
         id: "chie-hoshinomiya",
@@ -532,7 +765,7 @@ export const characters: Character[] = [
         description: "The homeroom teacher of Class B. A close friend of Chabashira who enjoys teasing her.",
         image: "/assets/characters/chie-hoshinomiya.png",
         homeroomClass: "B",
-        tags: ["Teacher", "Class B", "Class D", "Year 1", "Year 2", "Year 3"]
+        tags: ["Teacher", "Class B", "Class D", "Class C", "Year 1", "Year 2", "Year 3"]
     },
     {
         id: "tomonari-mashima",
@@ -542,7 +775,7 @@ export const characters: Character[] = [
         description: "The homeroom teacher of Class A. He is strict, fair, and skilled at teaching.",
         image: "/assets/characters/tomonari-mashima.png",
         homeroomClass: "A",
-        tags: ["Teacher", "Class A", "Class D", "Year 1", "Year 2", "Year 3"]
+        tags: ["Teacher", "Class A", "Class D", "Class C", "Year 1", "Year 2", "Year 3"]
     },
     {
         id: "kazuma-sakagami",
