@@ -60,6 +60,11 @@ export function Hero() {
                             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Button>
                     </Link>
+                    <Link href="/characters">
+                        <Button variant="outline" size="lg" className="text-lg px-8 py-6 rounded-full border-white/20 bg-black/30 hover:bg-white/10 hover:border-white/40 text-white backdrop-blur-sm transition-all duration-300">
+                            Characters
+                        </Button>
+                    </Link>
                 </motion.div>
             </motion.div>
 
