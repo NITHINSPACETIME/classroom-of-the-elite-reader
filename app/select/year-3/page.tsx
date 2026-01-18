@@ -143,9 +143,9 @@ export default function Year3SelectPage() {
                                         {/* Image and CTA (Right) */}
                                         <div className="relative group min-h-[400px] h-full w-full flex items-center justify-center p-4">
                                             <div className="absolute inset-0 flex items-center justify-center p-4">
-                                                <Link href={`/select/year-3/${vol.id}`}>
+                                                <Link href={`/select/year-3/${vol.id}`} className="block relative z-10 w-full max-w-[240px]">
                                                     {vol.coverImage ? (
-                                                        <div className="relative w-full max-w-[240px] aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-500 cursor-pointer">
+                                                        <div className="relative w-full aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-500 cursor-pointer">
                                                             <Image
                                                                 src={vol.coverImage}
                                                                 alt={vol.title}
