@@ -39,23 +39,19 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
 
             setActiveIndex(index)
 
-
             isProgrammaticScroll.current = true
             if (programmaticScrollTimeout.current) clearTimeout(programmaticScrollTimeout.current)
             programmaticScrollTimeout.current = setTimeout(() => {
                 isProgrammaticScroll.current = false
-            }, 800)
+            }, 600)
 
             const child = container.children[index] as HTMLElement
             if (!child) return
 
-            const containerWidth = container.offsetWidth
-            const childWidth = child.offsetWidth
-            const scrollLeft = child.offsetLeft - (containerWidth / 2) + (childWidth / 2)
-
-            container.scrollTo({
-                left: scrollLeft,
-                behavior: 'smooth'
+            child.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
             })
         }, [totalItems])
 
@@ -93,10 +89,15 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
             }
 
 
-            let rafId: number;
+            let ticking = false
             const onScroll = () => {
-                cancelAnimationFrame(rafId)
-                rafId = requestAnimationFrame(handleScroll)
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        handleScroll()
+                        ticking = false
+                    })
+                    ticking = true
+                }
             }
 
             container.addEventListener('scroll', onScroll, { passive: true })
@@ -105,7 +106,6 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
 
             return () => {
                 container.removeEventListener('scroll', onScroll)
-                cancelAnimationFrame(rafId)
             }
         }, [activeIndex])
 
