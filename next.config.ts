@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
         '*': [
             'public/books/**/*',
             'public/content/**/*',
+            'public/images/books/**/*',
             '.cache/**/*',
             'node_modules/**/*.map',
             'node_modules/**/*.md',
