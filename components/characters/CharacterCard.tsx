@@ -69,6 +69,7 @@ export function CharacterCard({ character, index, contextClass, contextYear }: C
                             fill
                             className="object-cover object-top transition-all duration-700 will-change-transform group-hover:scale-105 filter saturate-[0.85] brightness-[0.9] group-hover:saturate-100 group-hover:brightness-100"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            priority={index < 2}
                         />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center bg-zinc-900/50 p-6 text-center">

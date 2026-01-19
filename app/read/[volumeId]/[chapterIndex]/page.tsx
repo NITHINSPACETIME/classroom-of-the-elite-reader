@@ -13,11 +13,15 @@ export async function generateStaticParams() {
     const params: { volumeId: string, chapterIndex: string }[] = [];
 
     for (const volume of allVolumes) {
-        for (let i = 1; i <= 5; i++) {
-            params.push({
-                volumeId: volume.id,
-                chapterIndex: i.toString(),
-            });
+        for (const volume of allVolumes) {
+
+            const chapterCount = volume.chapters.length || 50;
+            for (let i = 1; i <= chapterCount; i++) {
+                params.push({
+                    volumeId: volume.id,
+                    chapterIndex: i.toString(),
+                });
+            }
         }
     }
 

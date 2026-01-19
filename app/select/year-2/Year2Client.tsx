@@ -238,7 +238,7 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                                                 fill
                                                                 priority={index < 3}
                                                                 className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                                                                sizes="(max-width: 768px) 100vw, 240px"
+                                                                sizes="(max-width: 768px) 300px, 240px"
                                                             />
                                                         </div>
                                                     ) : (

@@ -14,6 +14,27 @@ interface PageProps {
     params: Promise<{ classId: string; yearId: string }>;
 }
 
+export async function generateStaticParams() {
+    const classes = ["A", "B", "C", "D", "Student Council", "Teacher"];
+    const years = ["1", "2", "3"];
+
+    const params: { classId: string; yearId: string }[] = [];
+
+    for (const yearId of years) {
+
+        const validClasses = [...classes, "All"];
+
+        for (const classId of validClasses) {
+            params.push({
+                classId: classId,
+                yearId: yearId
+            });
+        }
+    }
+
+    return params;
+}
+
 export default function CharacterGridPage({ params }: PageProps) {
     const { classId, yearId } = use(params);
     const decodedClassId = decodeURIComponent(classId);
@@ -251,17 +272,16 @@ export default function CharacterGridPage({ params }: PageProps) {
                                 </span>
                             </div>
                         )}
-                        renderItem={(char, isActive) => (
+                        renderItem={(char, isActive, index) => (
                             <motion.div
                                 key={char.id}
-                                className={`w-[85vw] max-w-[300px] mx-auto transition-all duration-500 ease-out ${isActive ? 'scale-100 opacity-100 z-10' : 'scale-90 opacity-40 blur-[1px] grayscale-[0.5]'}`}
+                                className={`w-[85vw] max-w-[300px] mx-auto transition-all duration-500 ease-out ${isActive ? 'scale-100 opacity-100 z-10' : 'scale-90 opacity-40'}`}
                                 animate={{
                                     scale: isActive ? 1 : 0.9,
                                     opacity: isActive ? 1 : 0.4,
-                                    filter: isActive ? 'blur(0px) grayscale(0)' : 'blur(1px) grayscale(0.5)',
                                 }}
                             >
-                                <CharacterCard character={char} index={0} contextClass={decodedClassId} contextYear={yearId} />
+                                <CharacterCard character={char} index={index} contextClass={decodedClassId} contextYear={yearId} />
                             </motion.div>
                         )}
                     />

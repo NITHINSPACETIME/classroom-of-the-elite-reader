@@ -52,7 +52,7 @@ export default function SelectPage() {
                     scrollContainerClassName="px-[12.5vw] md:px-[30vw]"
                     items={selections}
                     keyExtractor={(item) => item.id}
-                    renderItem={(item, isActive) => (
+                    renderItem={(item, isActive, index) => (
                         <motion.div
                             key={item.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -75,6 +75,7 @@ export default function SelectPage() {
                                                     fill
                                                     className={`object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'scale-100 group-hover:scale-110'}`}
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                                                    priority={index === 0}
                                                 />
                                             </div>
                                         </div>

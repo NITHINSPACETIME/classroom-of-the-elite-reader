@@ -8,7 +8,7 @@ import { useRef, useState, useEffect } from "react"
 
 interface HorizontalCarouselProps<T> {
     items: T[]
-    renderItem: (item: T, isActive: boolean) => React.ReactNode
+    renderItem: (item: T, isActive: boolean, index: number) => React.ReactNode
     keyExtractor: (item: T) => string
     ListFooterComponent?: React.ReactNode
     scrollContainerClassName?: string
@@ -165,7 +165,7 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
                                 className="snap-center flex-shrink-0 transition-all duration-500 ease-out"
                                 onClick={() => scrollTo(index)}
                             >
-                                {renderItem(item, isActive)}
+                                {renderItem(item, isActive, index)}
                             </div>
                         )
                     })}

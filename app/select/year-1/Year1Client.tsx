@@ -269,7 +269,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                                                 alt={vol.title}
                                                                 fill
                                                                 className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                                                                sizes="(max-width: 768px) 100vw, 240px"
+                                                                sizes="(max-width: 768px) 300px, 240px"
                                                                 priority={index < 3}
                                                             />
                                                         </div>

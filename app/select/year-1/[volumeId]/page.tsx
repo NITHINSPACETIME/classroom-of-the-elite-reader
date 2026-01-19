@@ -17,6 +17,12 @@ import dynamic from "next/dynamic";
 const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
 const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
 
+export async function generateStaticParams() {
+    return [...volumes, ...shortStories].map((vol) => ({
+        volumeId: vol.id,
+    }));
+}
+
 export default function VolumePage({ params }: { params: Promise<{ volumeId: string }> }) {
     const { volumeId } = use(params);
     const volume = volumes.find((v) => v.id === volumeId) || shortStories.find((v) => v.id === volumeId);
@@ -197,6 +203,11 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
                                 src={volume.coverImage}
                                 alt={volume.title}
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                style={{ transform: "translateZ(0)" }}
+                                width={600}
+                                height={900}
+                                sizes="(max-width: 1024px) 100vw, 400px"
+                                fetchPriority="high" //
                             />
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 

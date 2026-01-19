@@ -15,6 +15,12 @@ import { UserMenu } from "@/components/auth/UserMenu";
 import { AuthModal } from "@/components/auth/AuthModal";
 import { ProfileModal } from "@/components/auth/ProfileModal";
 
+export async function generateStaticParams() {
+    return [...volumes, ...shortStories].map((vol) => ({
+        volumeId: vol.id,
+    }));
+}
+
 export default function VolumePage({ params }: { params: Promise<{ volumeId: string }> }) {
     const { volumeId } = use(params);
     const volume = volumes.find((v) => v.id === volumeId) || shortStories.find((v) => v.id === volumeId);
@@ -174,6 +180,11 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
                                 src={volume.coverImage}
                                 alt={volume.title}
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                style={{ transform: "translateZ(0)" }}
+                                width={600}
+                                height={900}
+                                sizes="(max-width: 1024px) 100vw, 400px"
+                                fetchPriority="high"
                             />
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
