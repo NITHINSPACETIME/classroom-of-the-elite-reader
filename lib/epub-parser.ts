@@ -422,17 +422,32 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         }
     }
 
+   
+    const preGenPath = path.join(process.cwd(), 'public', 'content', volumeId, `${chapterIndex}.json`);
 
-    // Check for pre-generated content in data/content
-    const preGeneratedDir = path.join(process.cwd(), 'data', 'content', volumeId);
-    const preGeneratedFile = path.join(preGeneratedDir, `${chapterIndex}.json`);
-
-    if (fs.existsSync(preGeneratedFile)) {
+    if (!process.env.VERCEL && fs.existsSync(preGenPath)) {
         try {
-            const cached = JSON.parse(fs.readFileSync(preGeneratedFile, 'utf-8'));
+            const cached = JSON.parse(fs.readFileSync(preGenPath, 'utf-8'));
             return cached;
         } catch (e) {
-            console.error(`Error reading pre-generated file for ${volumeId}:${chapterIndex}`, e);
+            
+        }
+    }
+
+    if (process.env.VERCEL) {
+        const baseUrl = process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : (process.env.NEXT_PUBLIC_APP_URL || '');
+        const contentUrl = `${baseUrl}/content/${volumeId}/${chapterIndex}.json`;
+
+        try {
+            const res = await fetch(contentUrl, { cache: 'force-cache' });
+            if (res.ok) {
+                const cached = await res.json();
+                return cached;
+            }
+        } catch (e) {
+            
         }
     }
 
