@@ -74,7 +74,7 @@ export default function SelectPage() {
                                                     alt={item.title}
                                                     fill
                                                     className={`object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'scale-100 group-hover:scale-110'}`}
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                                                    sizes="(max-width: 768px) 75vw, (max-width: 1200px) 33vw, 33vw"
                                                     priority={index === 0}
                                                 />
                                             </div>

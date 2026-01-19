@@ -68,7 +68,7 @@ export function CharacterCard({ character, index, contextClass, contextYear }: C
                             alt={character.name}
                             fill
                             className="object-cover object-top transition-all duration-700 will-change-transform group-hover:scale-105 filter saturate-[0.85] brightness-[0.9] group-hover:saturate-100 group-hover:brightness-100"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 25vw"
                             priority={index < 2}
                         />
                     ) : (
