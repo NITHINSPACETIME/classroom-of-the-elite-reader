@@ -527,13 +527,33 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     }
 
     await Promise.all(imagesToLoad.map(async (img) => {
-        const imgFile = zip!.file(img.fullPath);
-        if (imgFile) {
-            const base64 = await imgFile.async('base64');
-            const ext = path.extname(img.fullPath).toLowerCase();
-            const mime = ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : ext === '.png' ? 'image/png' : 'image/webp';
-            const dataUri = `data:${mime};base64,${base64}`;
-            cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${dataUri}" loading="lazy" decoding="async"`);
+
+        const publicDir = path.join(process.cwd(), 'public', 'images', 'books', volumeId);
+        const staticPath = path.join(publicDir, img.fullPath);
+
+        let usedStatic = false;
+        try {
+            if (fs.existsSync(staticPath)) {
+                const publicUrl = `/images/books/${volumeId}/${img.fullPath}`;
+
+                const encodedUrl = publicUrl.split('/').map(part => encodeURIComponent(part)).join('/').replace('//', '/');
+
+                cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${encodedUrl}" loading="lazy" decoding="async"`);
+                usedStatic = true;
+            }
+        } catch (e) {
+
+        }
+
+        if (!usedStatic) {
+            const imgFile = zip!.file(img.fullPath);
+            if (imgFile) {
+                const base64 = await imgFile.async('base64');
+                const ext = path.extname(img.fullPath).toLowerCase();
+                const mime = ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : ext === '.png' ? 'image/png' : 'image/webp';
+                const dataUri = `data:${mime};base64,${base64}`;
+                cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${dataUri}" loading="lazy" decoding="async"`);
+            }
         }
     }));
 
