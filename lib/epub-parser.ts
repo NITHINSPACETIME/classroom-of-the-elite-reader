@@ -103,7 +103,8 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
 
     let resultBuffer: ArrayBuffer | null = null;
 
-    if (source.startsWith('/books/')) {
+    
+    if (!process.env.VERCEL && source.startsWith('/books/')) {
         const publicFile = path.join(process.cwd(), 'public', source);
         if (fs.existsSync(publicFile)) {
             try {
@@ -116,7 +117,8 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
         }
     }
 
-    if (!resultBuffer) {
+    
+    if (!process.env.VERCEL && !resultBuffer) {
         for (const dir of validDirs) {
             if (!fs.existsSync(dir)) continue;
             for (const name of searchNames) {
@@ -180,7 +182,8 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
         }
     }
 
-    if (!resultBuffer) {
+    // Fallback to reading from public folder - local dev only
+    if (!process.env.VERCEL && !resultBuffer) {
         const publicPath = path.join(process.cwd(), 'public', source.replace(/^\//, ''));
         if (fs.existsSync(publicPath)) {
             const buffer = fs.readFileSync(publicPath);
@@ -423,7 +426,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     }
 
 
-  
+
     try {
         const baseUrl = process.env.VERCEL_URL
             ? `https://${process.env.VERCEL_URL}`
@@ -436,7 +439,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             return cached;
         }
     } catch (e) {
-        
+
     }
 
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
