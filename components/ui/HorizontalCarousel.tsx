@@ -29,13 +29,15 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
         const isProgrammaticScroll = useRef(false)
         const programmaticScrollTimeout = useRef<NodeJS.Timeout | null>(null)
 
+        const activeIndexRef = useRef(0)
+        useEffect(() => { activeIndexRef.current = activeIndex }, [activeIndex])
+
         const scrollTo = React.useCallback((index: number) => {
             const container = containerRef.current
             if (!container) return
 
             if (index < 0) index = 0
             if (index >= totalItems) index = totalItems - 1
-
 
             setActiveIndex(index)
 
@@ -83,7 +85,7 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
                     }
                 })
 
-                if (closestIndex !== activeIndex) {
+                if (closestIndex !== activeIndexRef.current) {
                     setActiveIndex(closestIndex)
                 }
             }
@@ -101,13 +103,13 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
             }
 
             container.addEventListener('scroll', onScroll, { passive: true })
-
+            // Initial check
             handleScroll()
 
             return () => {
                 container.removeEventListener('scroll', onScroll)
             }
-        }, [activeIndex])
+        }, [])
 
         // Keyboard Nav
         useEffect(() => {
