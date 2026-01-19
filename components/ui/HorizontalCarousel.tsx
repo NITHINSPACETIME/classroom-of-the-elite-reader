@@ -103,7 +103,7 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
             }
 
             container.addEventListener('scroll', onScroll, { passive: true })
-            // Initial check
+          
             handleScroll()
 
             return () => {
