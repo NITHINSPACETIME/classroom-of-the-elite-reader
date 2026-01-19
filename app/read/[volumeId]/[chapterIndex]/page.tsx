@@ -25,7 +25,7 @@ export async function generateStaticParams() {
     return params;
 }
 
-export const revalidate = 31536000;
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 export default async function ReadPage({ params, searchParams }: { params: Promise<{ volumeId: string, chapterIndex: string }>, searchParams: Promise<{ logical?: string }> }) {

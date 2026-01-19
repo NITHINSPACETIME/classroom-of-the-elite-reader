@@ -59,16 +59,16 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
         try {
             const publicPath = path.join(process.cwd(), 'public', source);
             if (fs.existsSync(publicPath)) {
-                console.log(`[EPUB-PARSER] Found local file: ${publicPath}`);
                 const buffer = fs.readFileSync(publicPath);
                 return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
+            } else {
+
             }
         } catch (e) {
-            console.warn(`[EPUB-PARSER] Failed to read local file: ${source}`, e);
         }
     }
 
-   
+
     if (!process.env.VERCEL) {
         if (!fs.existsSync(CACHE_DIR)) {
             try {
@@ -88,7 +88,7 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
 
     let resultBuffer: ArrayBuffer | null = null;
 
-   
+
     if (!resultBuffer && source.startsWith('http')) {
         try {
             const res = await fetch(source, { cache: 'force-cache' });
@@ -106,7 +106,6 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
                 const cleanSource = source.startsWith('/') ? source.substring(1) : source;
                 const pathInRepo = `public/${cleanSource}`;
                 const url = `${githubRawBase}/${pathInRepo}`;
-                console.log(`[EPUB-PARSER] Fetching from GitHub: ${url}`);
                 const res = await fetch(url, { cache: 'force-cache' });
                 if (res.ok) {
                     resultBuffer = await res.arrayBuffer();
@@ -446,34 +445,9 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     }
 
     await Promise.all(imagesToLoad.map(async (img) => {
-
-        const publicDir = path.join(process.cwd(), 'public', 'images', 'books', volumeId);
-        const staticPath = path.join(publicDir, img.fullPath);
-
-        let usedStatic = false;
-        try {
-            if (fs.existsSync(staticPath)) {
-                const publicUrl = `/images/books/${volumeId}/${img.fullPath}`;
-
-                const encodedUrl = publicUrl.split('/').map(part => encodeURIComponent(part)).join('/').replace('//', '/');
-
-                cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${encodedUrl}" loading="lazy" decoding="async"`);
-                usedStatic = true;
-            }
-        } catch (e) {
-
-        }
-
-        if (!usedStatic) {
-            const imgFile = zip!.file(img.fullPath);
-            if (imgFile) {
-                const base64 = await imgFile.async('base64');
-                const ext = path.extname(img.fullPath).toLowerCase();
-                const mime = ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : ext === '.png' ? 'image/png' : 'image/webp';
-                const dataUri = `data:${mime};base64,${base64}`;
-                cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${dataUri}" loading="lazy" decoding="async"`);
-            }
-        }
+        const publicUrl = `/images/books/${volumeId}/${img.fullPath}`;
+        const encodedUrl = publicUrl.split('/').map(part => encodeURIComponent(part)).join('/').replace('//', '/');
+        cleanHtml = cleanHtml.split(`src="${img.original}"`).join(`src="${encodedUrl}" loading="lazy" decoding="async"`);
     }));
 
 
