@@ -1,0 +1,92 @@
+{
+  "title": "Postscript",
+  "content": "\r\n<p class=\"P__STAR__STAR__STAR__page_break\" id=\"auto_bookmark_toc_top\"><span style=\" font-weight: bold; font-size: 1.17em;\">Postscript</span></p>\r\n<p class=\"P_Prose_Formatting\"> </p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-weight: bold; font-size: 3.00em;\">H</span><span style=\" font-size: 1.00em;\">ey, it’s been four months! Kinugasa here. </span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">I sneakily attended a recent party for some game industry people. When I was there, a company president greeted me. He said, “Kinugasa-san, I played your games back when I was a student!” That certainly made me feel the passage of time.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Yeah, let’s not think about that too deeply.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">This book depicts the events that transpired at the end of summer vacation, after the test’s conclusion back in Volume Four. It sort of sets the stage for Volume Five with the appearance of some new characters. I put a swimsuit scene in the main story, and got some amazing fanservice with the illustrations! Unfortunately, as a result, my editor also rebuked me.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">The group of girls surrounding Ayanokouji is becoming more pronounced. Maybe one of them (or even a character to be introduced later) will develop a more romantic relationship with Ayanokouji.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Starting in the next volume, we’ll finally learn something about Ayanokouji’s past. With the emergence of new rivals, and a new special exam, the situation will become more chaotic. There are students who want to reach the top by working with their classmates. There are those who want to win by themselves, relying on their own power. Finally, there are those who use others to get ahead. These three kinds of characters will begin to reveal themselves as the story progresses.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Also, the first volume of the </span><span style=\" font-style: italic; font-size: 1.00em;\">Classroom of the Elite</span><span style=\" font-size: 1.00em;\"> manga is now on sale! My heart is pounding, since Volume 4.5 of the light novel is on sale at the same time. I’m going to buy a minimum of three books! One for reading, one to display on my shelf, and one to preserve! </span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">I am extremely grateful to you, Yuyu-sama and Ichino-sama. There were only men in the manga’s first volume, which must have made it a tough job, but all the illustrations were exceptional. Perhaps you resent me because, with Tomoseshunsaku-sama, I’m putting in more and more beautiful female characters? Please channel that resentment into drawing more attractive, uncouth male characters (blargh). I look forward to continuing our collaboration on the manga!</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Oh, and lastly, there are actually a few bonus stories after this postscript. What’s the true motive behind Ayanokouji’s mysterious actions? The three idiots’ terrifying plan is revealed!</span></p>\r\n",
+  "prevChapter": {
+    "volumeId": "v4.5",
+    "chapter": 13,
+    "title": "Chapter 7 - Epilogue : Ike, Yamauchi, and Sudou’s Summer Vacation (Extra Stories)"
+  },
+  "nextChapter": {
+    "volumeId": "v4.5",
+    "chapter": 15,
+    "title": "About the Author and Illustrator"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Summer Vacation is Nearly Over",
+      "href": "section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: Ibuki Mio has Surprisingly Good Sense",
+      "href": "section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Katsuragi Kouhei is Surprisingly Troubled",
+      "href": "section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Dangers Lurk in Everyday Life",
+      "href": "section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: A Day of Girl Troubles and Disaster: A Devil Smiles Like an Angel",
+      "href": "section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: A Gathering Between Classes",
+      "href": "section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7 - Epilogue : Ike, Yamauchi, and Sudou’s Summer Vacation (Extra Stories)",
+      "href": "section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Postscript",
+      "href": "section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "About the Author and Illustrator",
+      "href": "section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Newsletter",
+      "href": "section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    }
+  ],
+  "currentSpineIndex": 14
+}

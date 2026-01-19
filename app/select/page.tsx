@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { SiteHeader } from "@/components/ui/SiteHeader";
+import { HorizontalCarousel } from "@/components/ui/HorizontalCarousel";
 
 const selections = [
     {
@@ -28,15 +29,17 @@ const selections = [
 
 export default function SelectPage() {
     return (
-        <div className="min-h-screen w-full bg-black text-white overflow-x-hidden overflow-y-auto relative flex flex-col items-center justify-start md:justify-center pt-24 md:pt-0 pb-12">
+        <div className="min-h-screen w-full bg-black text-white overflow-x-hidden overflow-y-auto relative flex flex-col items-center justify-center pb-12">
 
             <div className="absolute inset-0 z-0 select-none pointer-events-none fixed">
                 <div className="absolute inset-0 bg-black/60 z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
-                <img
+                <Image
                     src="/assets/bg-slide-2.jpg"
                     alt="Background"
-                    className="w-full h-full object-cover opacity-40 blur-sm"
+                    fill
+                    className="object-cover opacity-40 blur-sm"
+                    priority
                 />
             </div>
             <div className="absolute inset-0 z-0 opacity-10 bg-[url('/assets/grid.svg')] mix-blend-overlay pointer-events-none fixed" />
@@ -45,26 +48,23 @@ export default function SelectPage() {
             <SiteHeader showBack={true} backLink="/" />
 
             <div className="z-30 container mx-auto px-4 max-w-5xl">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center"
-                >
-                    {selections.map((item, index) => (
+                <HorizontalCarousel
+                    scrollContainerClassName="px-[12.5vw] md:px-[30vw]"
+                    items={selections}
+                    keyExtractor={(item) => item.id}
+                    renderItem={(item, isActive) => (
                         <motion.div
                             key={item.id}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2, duration: 0.6 }}
                             whileHover={{ scale: 1.05, y: -10 }}
-                            className="group relative cursor-pointer w-full max-w-[280px]"
+                            className={`group relative cursor-pointer flex-shrink-0 transition-all duration-500 rounded-xl ${isActive ? 'scale-105 z-10 brightness-110 shadow-2xl shadow-primary/20' : 'scale-90 opacity-60 brightness-75 hover:opacity-100 hover:scale-95'} w-[75vw] md:w-[280px]`}
                         >
-                            <Link href={item.id === "year-1" ? "/select/year-1" : item.id === "year-2" ? "/select/year-2" : item.id === "year-3" ? "/select/year-3" : "/reader"}>
+                            <Link href={item.id === "year-1" ? "/select/year-1" : item.id === "year-2" ? "/select/year-2" : item.id === "year-3" ? "/select/year-3" : "/reader"} className="block w-full h-full">
                                 {/* Card Container */}
-                                <div className="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl backdrop-blur-sm transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-[0_0_30px_rgba(220,38,38,0.2)]">
+                                <div className={`relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-zinc-900/40 border backdrop-blur-md transition-all duration-500 ${isActive ? 'border-red-500/50 shadow-[0_0_50px_rgba(220,38,38,0.3)]' : 'border-white/10 group-hover:border-red-500/30 group-hover:shadow-[0_0_30px_rgba(220,38,38,0.15)]'}`}>
 
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-10 opacity-60" />
 
                                     {item.image ? (
                                         <div className="absolute inset-0">
@@ -73,7 +73,7 @@ export default function SelectPage() {
                                                     src={item.image}
                                                     alt={item.title}
                                                     fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    className={`object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'scale-100 group-hover:scale-110'}`}
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
                                                 />
                                             </div>
@@ -85,17 +85,17 @@ export default function SelectPage() {
                                     )}
 
                                     {/* Content Overlay */}
-                                    <div className="absolute bottom-0 inset-x-0 p-6 z-20 flex flex-col items-center justify-end h-full bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
-                                        <h3 className="font-serif text-2xl font-bold text-white tracking-wider mb-2 drop-shadow-md group-hover:text-primary transition-colors">
+                                    <div className="absolute bottom-0 inset-x-0 p-6 z-20 flex flex-col items-center justify-end h-1/2 bg-gradient-to-t from-black/95 via-black/50 to-transparent pointer-events-none">
+                                        <h3 className={`font-serif text-3xl font-bold tracking-widest mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-500 ${isActive ? 'text-red-500 scale-105' : 'text-white group-hover:text-red-400'}`}>
                                             {item.title}
                                         </h3>
-                                        <div className="h-0.5 w-12 bg-primary/50 group-hover:w-24 transition-all duration-500" />
+                                        <div className={`h-[1px] bg-gradient-to-r from-transparent via-red-500 to-transparent transition-all duration-500 ${isActive ? 'w-3/4 opacity-100 shadow-[0_0_10px_rgba(220,38,38,0.5)]' : 'w-1/3 opacity-30 group-hover:w-1/2 group-hover:opacity-100'}`} />
                                     </div>
                                 </div>
                             </Link>
                         </motion.div>
-                    ))}
-                </motion.div>
+                    )}
+                />
             </div>
         </div>
     );

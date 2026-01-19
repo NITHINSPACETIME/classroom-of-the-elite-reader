@@ -1,0 +1,82 @@
+{
+  "title": "Newsletter",
+  "content": "\r\n<div class=\"p.P_Centre\">\r\n<p></p>\r\n<p class=\"P_TEXTBODY_CENTERALIGN\" id=\"auto_bookmark_toc_top\"><span><img alt=\"\" id=\"sevenseaslogo\" src=\"data:image/jpeg;base64,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0sXUYdX+15zZPNrd3H/eI9/I4W7jFuS/5mnoFOnB62/tH+7Q8ILyNfPq9aD3V/kQ+sr8hf5B////4QT+aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49J++7vycgaWQ9J1c1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCc/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyI+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIvPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj48ZGM6Y3JlYXRvcj48cmRmOlNlcSB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPjxyZGY6bGk+bHVjYXpAY3J5cHRvbGFiLm5ldDwvcmRmOmxpPjwvcmRmOlNlcT4NCgkJCTwvZGM6Y3JlYXRvcj48ZGM6dGl0bGU+PHJkZjpBbHQgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48cmRmOmxpIHhtbDpsYW5nPSJ4LWRlZmF1bHQiPkNsYXNzcm9vbSBvZiB0aGUgRWxpdGUgLSBZZWFyIDIgdjA4IFtTZXZlbiBTZWFzXSBbTHVDYVpdPC9yZGY6bGk+PC9yZGY6QWx0Pg0KCQkJPC9kYzp0aXRsZT48ZGM6ZGVzY3JpcHRpb24+PHJkZjpBbHQgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48cmRmOmxp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\" loading=\"lazy\" decoding=\"async\" style=\" top: 0px; vertical-align: top;\"/></span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-weight: bold; font-size: 1.50em;\">Thank you for reading!</span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.00em;\">Get the latest news about your favorite Seven Seas books and brand-new licenses delivered to your inbox every week:</span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.25em;\"><a href=\"http://www.gomanga.com/newsletter/\">Sign up for our newsletter!</a></span></p>\r\n\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.00em;\">Or visit us online:</span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.25em;\"><a href=\"http://www.gomanga.com/newsletter/\">gomanga.com/newsletter</a></span></p>\r\n</div>\r\n",
+  "prevChapter": {
+    "volumeId": "y2v8",
+    "chapter": 14,
+    "title": "Postscript"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Kanzaki Ryuuji’s Soliloquy",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: Know Your Enemy, Know Yourself, and You Need Not Fear a Hundred Battles",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Self-Explanatory School Trip",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: School Trip Day Two",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: School Trip Day Three",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: School Trip Day Four",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7 - Epilogue : A Light Shining at the End of the Darkness",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    }
+  ],
+  "currentSpineIndex": 15
+}

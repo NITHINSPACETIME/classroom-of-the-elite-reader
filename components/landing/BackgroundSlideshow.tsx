@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 
 const backgroundImages = [
     "/assets/bg-slide-1.jpg",
@@ -42,6 +42,7 @@ export function BackgroundSlideshow({ images = backgroundImages, interval = 6000
                         src={images[currentImageIndex]}
                         alt="Hero Background"
                         fill
+                        sizes="100vw"
                         className="object-cover opacity-60"
                         priority
                         quality={60}

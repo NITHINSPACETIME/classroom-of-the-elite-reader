@@ -1,0 +1,272 @@
+{
+  "title": "Author's Postscript",
+  "content": "<h1 class=\"heading_1\"><a class=\"heading-link\" href=\"/read/v0/2\">Author&apos;s Postscript</a></h1><hr/><p class=\"paragraph\" style=\"text-align: left\">THANK YOU VERY much for reading Volume 0.</p><p class=\"paragraph\" style=\"text-align: left\">I&#x2019;m Shougo Kinugasa, and my favorite food is ochazuke, my favorite drink is black tea, and my hobby is watching baseball.</p><p class=\"paragraph\" style=\"text-align: left\">I&#x2019;ve been itching to get a pet, either a dog or a cat, but every time we take a family vote, it always ends in a two-to-two tie, so we can never make a decision.</p><p class=\"paragraph\" style=\"text-align: left\">My recent struggle has been with microwaving frozen pasta. I want it to be piping hot, so I tend to heat it just a little too long. As a result, the noodles dry out, and I end up eating crunchy pasta, which is a constant source of frustration. Even when I try to fine-tune the timing, the result is the same. Is it my fault for not mastering the microwave, or is it the microwave&#x2019;s fault? It&#x2019;s definitely the microwave.</p><p class=\"paragraph\" style=\"text-align: left\">&#x2026;Well, enough of my rambling&#x2014;let&#x2019;s move on to discussing Volume 0.</p><p class=\"paragraph\" style=\"text-align: left\">This special edition dedicates an entire volume to a forbidden past arc, a somewhat taboo topic within the Classroom of the Elite series. How did you like it?</p><p class=\"paragraph\" style=\"text-align: left\">The White Room setting existed as part of the background material when Classroom of the Elite started in 2015, but I never imagined back then that I would one day delve deeper into it and write an entire volume about it.</p><p class=\"paragraph\" style=\"text-align: left\">As an author, I&#x2019;m incredibly happy that this could be realized, even in this special form. Completing it without disrupting the regular publication schedule was quite a challenge, but I would be delighted if even one more person enjoys it.</p><p class=\"paragraph\" style=\"text-align: left\">Actually, alongside the White Room arc, there&#x2019;s another untold story&#x2014;the &#x201c;Blank Year&#x201d; arc&#x2014;that exists as part of the background material. It covers Ayanokouji Kiyotaka&#x2019;s one-year period between the end of Volume 0 and the beginning of Year 1, Volume 1.</p><p class=\"paragraph\" style=\"text-align: left\">At this point, there are no plans to turn this material into a book. However, I&#x2019;ve started to vaguely think that it might be interesting if it could be shaped into something someday.</p><p class=\"paragraph\" style=\"text-align: left\">Well then, everyone, it&#x2019;s been short, but I&#x2019;ll take my leave here for now. Let&#x2019;s meet again in the afterword of the main series. See you!</p>",
+  "prevChapter": {
+    "volumeId": "v0",
+    "chapter": 51,
+    "title": "Part 3"
+  },
+  "nextChapter": {
+    "volumeId": "v0",
+    "chapter": 53,
+    "title": "LegacyEMTLs Afterword"
+  },
+  "toc": [
+    {
+      "label": "Classroom of the Elite – Volume 0",
+      "href": "cover.xhtml",
+      "index": 1
+    },
+    {
+      "label": "Illustrations",
+      "href": "inner-cover.xhtml",
+      "index": 4
+    },
+    {
+      "label": "Illustration #1",
+      "href": "illustration-0.xhtml",
+      "index": 5
+    },
+    {
+      "label": "Illustration #2",
+      "href": "illustration-1.xhtml",
+      "index": 6
+    },
+    {
+      "label": "Illustration #3",
+      "href": "illustration-2.xhtml",
+      "index": 7
+    },
+    {
+      "label": "Synopsis",
+      "href": "synopsis.xhtml",
+      "index": 9
+    },
+    {
+      "label": "Prologue: Ayanokouji Atsuomi's Monologue",
+      "href": "prologue.xhtml",
+      "index": 10
+    },
+    {
+      "label": "Chapter 1: Project Launch",
+      "href": "chapter-1.xhtml",
+      "index": 11
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-1-part-1.xhtml",
+      "index": 12
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-1-part-2.xhtml",
+      "index": 13
+    },
+    {
+      "label": "Chapter 2: Effort",
+      "href": "chapter-2.xhtml",
+      "index": 14
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-2-part-1.xhtml",
+      "index": 15
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-2-part-2.xhtml",
+      "index": 16
+    },
+    {
+      "label": "Part 3",
+      "href": "chapter-2-part-3.xhtml",
+      "index": 17
+    },
+    {
+      "label": "Part 4",
+      "href": "chapter-2-part-4.xhtml",
+      "index": 18
+    },
+    {
+      "label": "Part 5",
+      "href": "chapter-2-part-5.xhtml",
+      "index": 19
+    },
+    {
+      "label": "Part 6",
+      "href": "chapter-2-part-6.xhtml",
+      "index": 20
+    },
+    {
+      "label": "Part 7",
+      "href": "chapter-2-part-7.xhtml",
+      "index": 21
+    },
+    {
+      "label": "Part 8",
+      "href": "chapter-2-part-8.xhtml",
+      "index": 22
+    },
+    {
+      "label": "Chapter 3: Activation",
+      "href": "chapter-3.xhtml",
+      "index": 23
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-3-part-1.xhtml",
+      "index": 24
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-3-part-2.xhtml",
+      "index": 25
+    },
+    {
+      "label": "Part 3",
+      "href": "chapter-3-part-3.xhtml",
+      "index": 26
+    },
+    {
+      "label": "Part 4",
+      "href": "chapter-3-part-4.xhtml",
+      "index": 27
+    },
+    {
+      "label": "Chapter 4: An Unprecedented Experimental Facility",
+      "href": "chapter-4.xhtml",
+      "index": 28
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-4-part-1.xhtml",
+      "index": 29
+    },
+    {
+      "label": "Chapter 5: Stories of Innocent Children",
+      "href": "chapter-5.xhtml",
+      "index": 30
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-5-part-1.xhtml",
+      "index": 31
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-5-part-2.xhtml",
+      "index": 32
+    },
+    {
+      "label": "Part 3",
+      "href": "chapter-5-part-3.xhtml",
+      "index": 33
+    },
+    {
+      "label": "Part 4",
+      "href": "chapter-5-part-4.xhtml",
+      "index": 34
+    },
+    {
+      "label": "Part 5",
+      "href": "chapter-5-part-5.xhtml",
+      "index": 35
+    },
+    {
+      "label": "Part 6",
+      "href": "chapter-5-part-6.xhtml",
+      "index": 36
+    },
+    {
+      "label": "Part 7",
+      "href": "chapter-5-part-7.xhtml",
+      "index": 37
+    },
+    {
+      "label": "Part 8",
+      "href": "chapter-5-part-8.xhtml",
+      "index": 38
+    },
+    {
+      "label": "Part 9",
+      "href": "chapter-5-part-9.xhtml",
+      "index": 39
+    },
+    {
+      "label": "Part 10",
+      "href": "chapter-5-part-10.xhtml",
+      "index": 40
+    },
+    {
+      "label": "Chapter 6: Hopelessness and a Way of Life",
+      "href": "chapter-6.xhtml",
+      "index": 41
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-6-part-1.xhtml",
+      "index": 42
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-6-part-2.xhtml",
+      "index": 43
+    },
+    {
+      "label": "Part 3",
+      "href": "chapter-6-part-3.xhtml",
+      "index": 44
+    },
+    {
+      "label": "Part 4",
+      "href": "chapter-6-part-4.xhtml",
+      "index": 45
+    },
+    {
+      "label": "Part 5",
+      "href": "chapter-6-part-5.xhtml",
+      "index": 46
+    },
+    {
+      "label": "Part 6",
+      "href": "chapter-6-part-6.xhtml",
+      "index": 47
+    },
+    {
+      "label": "Epilogue: Looking Ahead",
+      "href": "epilogue.xhtml",
+      "index": 48
+    },
+    {
+      "label": "Part 1",
+      "href": "epilogue-part-1.xhtml",
+      "index": 49
+    },
+    {
+      "label": "Part 2",
+      "href": "epilogue-part-2.xhtml",
+      "index": 50
+    },
+    {
+      "label": "Part 3",
+      "href": "epilogue-part-3.xhtml",
+      "index": 51
+    },
+    {
+      "label": "Author's Postscript",
+      "href": "authors-postscript.xhtml",
+      "index": 52
+    },
+    {
+      "label": "LegacyEMTLs Afterword",
+      "href": "afterword.xhtml",
+      "index": 53
+    },
+    {
+      "label": "LegacyEMTLs Credits",
+      "href": "credits.xhtml",
+      "index": 54
+    }
+  ],
+  "currentSpineIndex": 52
+}

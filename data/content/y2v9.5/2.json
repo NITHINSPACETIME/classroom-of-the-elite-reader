@@ -1,0 +1,102 @@
+{
+  "title": "Table of Contents",
+  "content": "<div xmlns=\"http://www.w3.org/1999/xhtml\" id=\"book-columns\"><div xmlns=\"http://www.w3.org/1999/xhtml\" id=\"book-inner\">\n<p id=\"tableofcontents\" class=\"P_TOC_Heading\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.1.1\">Table of Contents</span></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/3\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.2.1\">Character Gallery</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/8\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.3.1\">Title Page</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/9\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.4.1\">Copyrights and Credits</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/10\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.5.1\">Table of Contents Page</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/11\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.6.1\">Chapter 1: Irreplaceable Today</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/12\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.7.1\">Chapter 2: Song of Loneliness</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/15\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.8.1\">Chapter 3: Just A Hunch</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/18\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.9.1\">Chapter 4: Casing Each Other Out</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/21\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.10.1\">Chapter 5: Signs of Quiet</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/28\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.11.1\">Chapter 6: Remaining Time</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/35\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.12.1\">Chapter 7: Changing Relationships</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/38\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.13.1\">Postscript</span></a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v9.5/39\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.14.1\">Newsletter</span></a></p>\n</div></div>",
+  "prevChapter": {
+    "volumeId": "y2v9.5",
+    "chapter": 1,
+    "title": "Chapter 1"
+  },
+  "nextChapter": {
+    "volumeId": "y2v9.5",
+    "chapter": 3,
+    "title": "Character Gallery"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "section-0001.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "section-0002.html",
+      "index": 3
+    },
+    {
+      "label": "Title Page",
+      "href": "section-0007.html",
+      "index": 8
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "section-0008.html",
+      "index": 9
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "section-0009.html",
+      "index": 10
+    },
+    {
+      "label": "Chapter 1 - Prologue : Irreplaceable Today",
+      "href": "section-0010.html#auto_bookmark_toc_10",
+      "index": 11
+    },
+    {
+      "label": "Chapter 2: Song of Loneliness",
+      "href": "section-0011.html#auto_bookmark_toc_11",
+      "index": 12
+    },
+    {
+      "label": "Chapter 3: Just A Hunch",
+      "href": "section-0014.html#auto_bookmark_toc_14",
+      "index": 15
+    },
+    {
+      "label": "Chapter 4: Casing Each Other Out",
+      "href": "section-0017.html#auto_bookmark_toc_17",
+      "index": 18
+    },
+    {
+      "label": "Chapter 5: Signs of Quiet",
+      "href": "section-0020.html#auto_bookmark_toc_20",
+      "index": 21
+    },
+    {
+      "label": "Chapter 6: Remaining Time",
+      "href": "section-0027.html#auto_bookmark_toc_27",
+      "index": 28
+    },
+    {
+      "label": "Chapter 7: Changing Relationships",
+      "href": "section-0034.html#auto_bookmark_toc_34",
+      "index": 35
+    },
+    {
+      "label": "Short Story",
+      "href": "OPS/section-0035.html",
+      "index": 36
+    },
+    {
+      "label": "Epilogue: Short Story",
+      "href": "OPS/section-0036.html",
+      "index": 37
+    },
+    {
+      "label": "Postscript",
+      "href": "section-0037.html#auto_bookmark_toc_37",
+      "index": 38
+    },
+    {
+      "label": "Newsletter",
+      "href": "section-0038.html",
+      "index": 39
+    },
+    {
+      "label": "Newsletter",
+      "href": "OPS/nav.xhtml",
+      "index": 40
+    }
+  ],
+  "currentSpineIndex": 2
+}

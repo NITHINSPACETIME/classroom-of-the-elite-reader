@@ -68,11 +68,13 @@ export function CharacterCard({ character, index, contextClass, contextYear }: C
                             alt={character.name}
                             fill
                             className="object-cover object-top transition-all duration-700 will-change-transform group-hover:scale-105 filter saturate-[0.85] brightness-[0.9] group-hover:saturate-100 group-hover:brightness-100"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-zinc-900/50 text-white/5 text-9xl font-serif">
-                            {initial}
+                        <div className="w-full h-full flex items-center justify-center bg-zinc-900/50 p-6 text-center">
+                            <span className="text-sm font-mono font-bold tracking-[0.2em] text-white/20 uppercase">
+                                No Profile Photo Found
+                            </span>
                         </div>
                     )}
 
@@ -94,7 +96,7 @@ export function CharacterCard({ character, index, contextClass, contextYear }: C
                     {/* Main Text Content -4r mobile mode */}
                     <div className="transform translate-y-0 lg:translate-y-2 lg:group-hover:translate-y-0 transition-transform duration-500">
                         <div className="flex items-center gap-2 mb-2 opacity-100 lg:opacity-60 lg:group-hover:opacity-100 transition-opacity duration-300">
-                            <span className="h-[1px] w-6 bg-white/50" />
+                            <span className="h-[1px] w-12 bg-gradient-to-r from-white/0 via-white/50 to-white/0" />
                             <p className="text-[10px] font-mono tracking-widest uppercase text-white/70">
                                 {character.id.split('-')[0]}
                             </p>

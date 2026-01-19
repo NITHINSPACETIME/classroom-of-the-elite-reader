@@ -11,6 +11,8 @@ export interface VolumeData {
     characters: string[];
     coverImage: string;
     epubSource?: string;
+    customChapters?: Record<number, string>;
+    inProgress?: boolean;
 }
 
 export const volumes: VolumeData[] = [
@@ -375,5 +377,287 @@ export const volumes: VolumeData[] = [
         characters: ["Hiyori Shiina"],
         coverImage: "/assets/y2v12.5.jpg",
         epubSource: "/books/year2/y2v12.5.epub"
+    }
+];
+
+export const shortStories: VolumeData[] = [
+    {
+        id: "ss-y2-v1",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 1",
+        releaseDateJP: "Jan 24, 2020",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Tsubasa Nanase : What is Reflected in Nanase's Eyes",
+            "Kei Karuizawa : A Time for Them Alone",
+            "Suzune Horikita : What's the Fuss About My Hair",
+            "Tsubasa Nanase : Voice of the Heart",
+            "Kiyotaka Ayanokōji : Auction ✕ Seat Change / Year 2 Volume 1.05"
+        ],
+        characters: ["Tsubasa Nanase", "Kei Karuizawa", "Suzune Horikita", "Kiyotaka Ayanokōji"],
+        coverImage: "/assets/y2v1.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v2",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 2",
+        releaseDateJP: "Jun 25, 2020",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Ichika Amasawa : What is Reflected in Ichika Amasawa's Eyes",
+            "Suzune Horikita : He Who Stands Beside Me",
+            "Hiyori Shiina : An Excuse",
+            "Sakurako Tsubaki : What Could Be Seen From That Back",
+            "Kei Karuizawa : Trial Date"
+        ],
+        characters: ["Ichika Amasawa", "Suzune Horikita", "Hiyori Shiina", "Sakurako Tsubaki", "Kei Karuizawa"],
+        coverImage: "/assets/y2v2.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v3",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 3",
+        releaseDateJP: "Oct 24, 2020",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Arisu Sakayanagi : An Enjoyable Moment",
+            "Tsubasa Nanase : Unfathomable",
+            "Suzune Horikita : A Brief Farewell",
+            "Tsubasa Nanase : What Could Be Seen From That Back"
+        ],
+        characters: ["Arisu Sakayanagi", "Tsubasa Nanase", "Suzune Horikita"],
+        coverImage: "/assets/y2v3.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v4",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 4",
+        releaseDateJP: "Feb 25, 2021",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Hiyori Shiina : Beneath a Scarlet Sky",
+            "Fūka Kiryūin : Poker Face",
+            "Mio Ibuki : No Reason to It",
+            "Honami Ichinose : Something I Have to Tell You"
+        ],
+        characters: ["Hiyori Shiina", "Fūka Kiryūin", "Mio Ibuki", "Honami Ichinose"],
+        coverImage: "/assets/y2v4.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v4.5",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 4.5",
+        releaseDateJP: "Jun 25, 2021",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Tsubasa Nanase : A Double-sided Favour Repayment",
+            "Maya Satō : A Slightly Bad Girl",
+            "Fūka Kiryūin : To Be the Older One",
+            "Kei Karuizawa : A Dream I Have Seen Before",
+            "Arisu Sakayanagi : Sakayanagi's Unexpected Assessment"
+        ],
+        characters: ["Tsubasa Nanase", "Maya Satō", "Fūka Kiryūin", "Kei Karuizawa", "Arisu Sakayanagi"],
+        coverImage: "/assets/y2v4.5.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v5",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 5",
+        releaseDateJP: "Oct 25, 2021",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Kei Karuizawa : Reading the Mood",
+            "Haruka Hasebe : Facing Tomorrow",
+            "Sae Chabashira : A Restless Mind",
+            "During Standby"
+        ],
+        characters: ["Kei Karuizawa", "Haruka Hasebe", "Sae Chabashira"],
+        coverImage: "/assets/y2v5.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v6",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 6",
+        releaseDateJP: "Feb 25, 2022",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Sae Chabashira : Something That Can’t be Forgiven",
+            "Arisu Sakayanagi : Complicated Feelings",
+            "Kayano Onodera : That’s What I Believe In",
+            "Ichika Amasawa : The Truth is, I’ve Always"
+        ],
+        characters: ["Sae Chabashira", "Arisu Sakayanagi", "Kayano Onodera", "Ichika Amasawa"],
+        coverImage: "/assets/y2v6.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v7",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 7",
+        releaseDateJP: "Jun 24, 2022",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Hiyori Shiina : Sprouting Feelings",
+            "Kikyō Kushida : Way to Survival",
+            "Suzune Horikita : The Dream I Will Forget After Awakening",
+            "Sae Chabashira : An Experience I Want to Forget",
+            "Kiyotaka Ayanokōji : Behind the Scenes"
+        ],
+        characters: ["Hiyori Shiina", "Kikyō Kushida", "Suzune Horikita", "Sae Chabashira", "Kiyotaka Ayanokōji"],
+        coverImage: "/assets/y2v7.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v8",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 8",
+        releaseDateJP: "Oct 25, 2022",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Miki Yamamura : A Subtle Change",
+            "Kikyō Kushida : A Certain Lapse of Judgment",
+            "Sae Chabashira : Confused but Resolute",
+            "Suzune Horikita : In the Changing Room",
+            "Maya Satō : In a Corner of the Front Stage"
+        ],
+        characters: ["Miki Yamamura", "Kikyō Kushida", "Sae Chabashira", "Suzune Horikita", "Maya Satō"],
+        coverImage: "/assets/y2v8.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v9",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 9",
+        releaseDateJP: "Feb 25, 2023",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Yuki Himeno : A Certain Boy I Don’t Really Understand",
+            "Honami Ichinose : Jealousy",
+            "Kikyō Kushida : Like Hell I Will Join",
+            "Honami Ichinose : I Have to Move Forward"
+        ],
+        characters: ["Yuki Himeno", "Honami Ichinose", "Kikyō Kushida"],
+        coverImage: "/assets/y2v9.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v9.5",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 9.5",
+        releaseDateJP: "Jun 23, 2023",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Masumi Kamuro : Because I Hate It",
+            "Hiyori Shiina : What I Want You To Know",
+            "Miki Yamamura : The Person That Can Find Me",
+            "Arisu Sakayanagi : Emotional Control",
+            "Kiyotaka Ayanokōji : An Adult-ish Special Lesson",
+            "Kiyotaka Ayanokōji : The First Discordant Sounds of the New Year / Year 2 Volume 9.75"
+        ],
+        characters: ["Masumi Kamuro", "Hiyori Shiina", "Miki Yamamura", "Arisu Sakayanagi", "Kiyotaka Ayanokōji"],
+        coverImage: "/assets/y2v9.5.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v10",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 10",
+        releaseDateJP: "Oct 25, 2023",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Suzune Horikita : Unconcious Awakening",
+            "Hiyori Shiina : A Small Spark",
+            "Ai Morishita : Atop the Cold Bench",
+            "Arisu Sakayanagi : Feeling of Melancholy",
+            "Kiyotaka Ayanokōji : Ever Since That Time... / Year 2 Volume 10.25"
+        ],
+        characters: ["Suzune Horikita", "Hiyori Shiina", "Ai Morishita", "Arisu Sakayanagi", "Kiyotaka Ayanokōji"],
+        coverImage: "/assets/y2v10.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v11",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 11",
+        releaseDateJP: "Feb 24, 2024",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Sae Chabashira : The Student Before Me",
+            "Hiyori Shiina : Memories I Don't Want to Forget",
+            "Ai Morishita : Please Listen In My Stead"
+        ],
+        characters: ["Sae Chabashira", "Hiyori Shiina", "Ai Morishita"],
+        coverImage: "/assets/y2v11.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v12",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 12",
+        releaseDateJP: "Jul 25, 2024",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Kakeru Ryūen : True Intentions",
+            "Suzune Horikita : The Everyday I’ve Become Familiar With",
+            "Arisu Sakayanagi : Wavelength",
+            "Honami Ichinose : The Approaching Promise"
+        ],
+        characters: ["Kakeru Ryūen", "Suzune Horikita", "Arisu Sakayanagi", "Honami Ichinose"],
+        coverImage: "/assets/y2v12.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y2-v12.5",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 12.5",
+        releaseDateJP: "Nov 25, 2024",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Hiyori Shiina : Friend?",
+            "Honami Ichinose : The Other Side of the Promise",
+            "What is Really Being Observed",
+            "Sae Chabashira : How Long Has It Been...",
+            "First Contact",
+            "Behind the Scenes"
+        ],
+        characters: ["Hiyori Shiina", "Honami Ichinose", "Sae Chabashira"],
+        coverImage: "/assets/y2v12.5.jpg",
+        inProgress: true,
     }
 ];

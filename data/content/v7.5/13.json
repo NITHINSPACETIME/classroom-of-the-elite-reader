@@ -1,0 +1,82 @@
+{
+  "title": "Postscript",
+  "content": "\r\n<p class=\"P__STAR__STAR__STAR__page_break\" id=\"auto_bookmark_toc_top\"><span><span style=\" font-weight: bold; font-size: 1.17em;\">Postscript</span></span></p>\r\n<p class=\"P_Prose_Formatting\">&#160;</p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-weight: bold; font-size: 3.00em;\">W</span><span style=\" font-size: 1.00em;\">hew! It’s sure cold lately. Have you avoided getting sick?</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Hey, it’s Syougo Kinugasa here. Just when I thought my immune system was improving, bam. Disappointment. I got sick twice at the end of the year alone. I feel like I’m doing much, much better than in previous years though. I’ll achieve my final form in the near future, so please stay&#160;tuned.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">I spent all my time working this past year, but I’m glad I did. Work can be tough, but it’s amazing to have something to do. Still, having my schedule completely packed for the next three years or so is hard. You know, once in a while, I’d like to spend a month relaxing and taking it easy—like, in Hawaii, or Vegas, or something. You know? Go abroad?</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">I’ve actually never traveled abroad. Japan’s the best.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Anyhow, that’s how 2017 went. I greeted 2018 with some really expensive sake called Juyondai during the New Year (I have another bottle of expensive alcohol, but I haven’t opened that one yet). I feel invigorated. I’m looking forward to the coming year.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Volume 7.5 is something of a supplementary story following up on the last volume, and gets into what certain characters thought after the rooftop incident. Also, I only just realized that the entire book takes place over three days. Huh.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">As far as publishing goes, the next volume should be done in the first three months of the year. So, when will I deliver Volume 8 to you all? When </span><span style=\" font-style: italic; font-size: 1.00em;\">exactly</span><span style=\" font-size: 1.00em;\"> am I going to write it, you ask? Well, I can’t tell you exactly, but you’ll know when I do.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Volume 8 will mark the start of the third semester. The brief respite is over, and the students are thrown into another special exam. We’ve been focusing on Class D’s rivalry with Class C so far, but that’s about change. Will Sakayanagi go to war with Class B, like she said? Will Ayanokouji and Nagumo go head-to-head? Keep an eye on Class C, too, even though Ryuuen’s out.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Well, see you all again at the end of April!</span></p>\r\n",
+  "prevChapter": {
+    "volumeId": "v7.5",
+    "chapter": 12,
+    "title": "Chapter 6 - Epilogue : Where the Arrow Landed"
+  },
+  "nextChapter": {
+    "volumeId": "v7.5",
+    "chapter": 14,
+    "title": "Newsletter"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : First Winter",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: Love’s Arrow",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Ibuki Mio’s Disastrous Day",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: How We Spend Our Time",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: The Turbulent Double Date",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6 - Epilogue : Where the Arrow Landed",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    }
+  ],
+  "currentSpineIndex": 13
+}

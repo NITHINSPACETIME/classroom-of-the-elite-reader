@@ -6,6 +6,7 @@ import { characters } from "@/data/characters";
 import { CharacterCard } from "@/components/characters/CharacterCard";
 import { BackgroundSlideshow } from "@/components/landing/BackgroundSlideshow";
 import { SiteHeader } from "@/components/ui/SiteHeader";
+import { HorizontalCarousel, CarouselHandle } from "@/components/ui/HorizontalCarousel";
 
 import { YearToggle } from "@/components/ui/YearToggle";
 
@@ -18,10 +19,14 @@ export default function CharacterGridPage({ params }: PageProps) {
     const decodedClassId = decodeURIComponent(classId);
     const [activeTab, setActiveTab] = React.useState<"students" | "faculty">("students");
     const [displayCount, setDisplayCount] = React.useState(12);
+    const carouselRef = React.useRef<CarouselHandle>(null);
 
 
     React.useEffect(() => {
         setDisplayCount(12);
+        if (carouselRef.current) {
+            carouselRef.current.scrollTo(0);
+        }
     }, [activeTab, classId, yearId]);
 
     const filteredCharacters = characters.filter(char => {
@@ -47,17 +52,17 @@ export default function CharacterGridPage({ params }: PageProps) {
         }
     });
 
-    // Valid Sort Logic for Year 2 and Year 3
+    // Logic for Year1,2
     const sortedCharacters = React.useMemo(() => {
         if (!filteredCharacters) return [];
-        // User requested: characters with changed cover images should be in first
+
         if ((yearId === "2" || yearId === "3") && activeTab === "students") {
             return [...filteredCharacters].sort((a, b) => {
                 let aHasImage = false;
                 let bHasImage = false;
 
                 if (yearId === "3") {
-                    // Prioritize if they have a Year 3 image OR a Year 2 image (which acts as fallback)
+
                     aHasImage = !!a.images?.year3 || !!a.images?.year2;
                     bHasImage = !!b.images?.year3 || !!b.images?.year2;
                 } else {
@@ -68,7 +73,7 @@ export default function CharacterGridPage({ params }: PageProps) {
 
                 if (aHasImage && !bHasImage) return -1;
                 if (!aHasImage && bHasImage) return 1;
-                return 0; // Maintain integrity of original order (Importance)
+                return 0;
             });
         }
 
@@ -99,7 +104,15 @@ export default function CharacterGridPage({ params }: PageProps) {
     const hasMore = activeTab === "students" && sortedCharacters.length > displayCount;
 
     const handleLoadMore = () => {
+        const nextIndex = visibleCharacters.length;
         setDisplayCount(prev => prev + 12);
+
+
+        setTimeout(() => {
+            if (carouselRef.current) {
+                carouselRef.current.scrollTo(nextIndex);
+            }
+        }, 100);
     };
 
     return (
@@ -118,10 +131,10 @@ export default function CharacterGridPage({ params }: PageProps) {
             <div className="absolute inset-0 z-0 opacity-[0.03] bg-[url('/assets/grid.svg')] pointer-events-none fixed scale-150" />
 
             {/* Top Bar */}
-            <SiteHeader showBack={true} backLink={`/characters/${classId}`} title={headerTitle} />
+            <SiteHeader showBack={true} backLink="/characters" title={headerTitle} />
 
             {/* Main Content */}
-            <main className="container mx-auto px-4 z-10 pt-32 pb-20 max-w-7xl flex flex-col items-center justify-start min-h-[80vh]">
+            <main className="container mx-auto px-4 z-10 pt-24 md:pt-32 pb-4 md:pb-20 max-w-7xl flex flex-col items-center justify-start min-h-[80vh]">
 
                 <div className="w-full max-w-7xl px-4 mb-16 flex flex-col items-center justify-center">
 
@@ -171,9 +184,10 @@ export default function CharacterGridPage({ params }: PageProps) {
                 </div>
 
 
+                {/* DESKTOP GRID VIEW */}
                 <motion.div
                     layout
-                    className="flex flex-wrap gap-6 w-full justify-center max-w-[1400px]"
+                    className="hidden md:flex flex-wrap gap-6 w-full justify-center max-w-[1400px]"
                     initial="hidden"
                     animate="visible"
                     variants={{
@@ -206,12 +220,58 @@ export default function CharacterGridPage({ params }: PageProps) {
                     </AnimatePresence>
                 </motion.div>
 
-                {/* Load More Button */}
+                {/* MOBILE  */}
+                <div className="md:hidden w-full">
+                    <HorizontalCarousel
+                        ref={carouselRef}
+                        items={visibleCharacters}
+                        keyExtractor={(char) => char.id}
+                        scrollContainerClassName="px-[max(7.5vw,calc(50vw_-_150px))] md:px-[30vw]"
+                        ListFooterComponent={hasMore ? (
+                            <div className="w-[85vw] max-w-[300px] mx-auto flex items-center justify-center h-[500px]">
+                                <button
+                                    onClick={handleLoadMore}
+                                    className="group relative px-6 py-6 bg-zinc-900/50 hover:bg-zinc-800/50 backdrop-blur-md border border-white/10 hover:border-white/20 rounded-full transition-all duration-500 flex flex-col items-center gap-4"
+                                >
+                                    <div className="p-4 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors">
+                                        <svg className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-white/40 group-hover:text-white/80 transition-colors">
+                                        View More
+                                    </span>
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="w-32 flex flex-col items-center justify-center h-[60vh] opacity-30">
+                                <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-white/50 to-transparent mb-6" />
+                                <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white [writing-mode:vertical-rl] rotate-180">
+                                    End of List
+                                </span>
+                            </div>
+                        )}
+                        renderItem={(char, isActive) => (
+                            <motion.div
+                                key={char.id}
+                                className={`w-[85vw] max-w-[300px] mx-auto transition-all duration-500 ease-out ${isActive ? 'scale-100 opacity-100 z-10' : 'scale-90 opacity-40 blur-[1px] grayscale-[0.5]'}`}
+                                animate={{
+                                    scale: isActive ? 1 : 0.9,
+                                    opacity: isActive ? 1 : 0.4,
+                                    filter: isActive ? 'blur(0px) grayscale(0)' : 'blur(1px) grayscale(0.5)',
+                                }}
+                            >
+                                <CharacterCard character={char} index={0} contextClass={decodedClassId} contextYear={yearId} />
+                            </motion.div>
+                        )}
+                    />
+                </div>
+
                 {hasMore && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="mt-12 mb-8"
+                        className="mt-12 mb-8 hidden md:block"
                     >
                         <button
                             onClick={handleLoadMore}
@@ -225,6 +285,20 @@ export default function CharacterGridPage({ params }: PageProps) {
                                 </svg>
                             </span>
                         </button>
+                    </motion.div>
+                )}
+
+                {!hasMore && sortedCharacters.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="mt-12 mb-20 hidden md:flex flex-col items-center justify-center opacity-30"
+                    >
+                        <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/50 to-transparent mb-6" />
+                        <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white">
+                            End of List
+                        </span>
                     </motion.div>
                 )}
 

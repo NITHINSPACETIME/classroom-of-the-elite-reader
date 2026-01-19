@@ -22,6 +22,7 @@ export function Hero() {
                         src="/assets/logo.png"
                         alt="Classroom of the Elite"
                         fill
+                        sizes="(max-width: 768px) 100vw, 576px"
                         className="object-contain drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]"
                         priority
                     />

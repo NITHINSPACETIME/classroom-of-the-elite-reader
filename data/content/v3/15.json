@@ -1,0 +1,92 @@
+{
+  "title": "About the Author and Illustrator",
+  "content": "\r\n<p class=\"P__STAR__STAR__STAR__page_break\" id=\"auto_bookmark_toc_top\"><span><span style=\" font-weight: bold; font-size: 1.17em;\">Author:<br/></span><span style=\" font-weight: bold; font-size: 1.17em;\">Syougo Kinugasa</span></span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span>&#160;</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Born in November. Blood type: AB. Primarily responsible for scenario and </span><span style=\" font-size: 0.80em;\">PC</span><span style=\" font-size: 1.00em;\"> game planning. Most important works are </span><span style=\" font-style: italic; font-size: 1.00em;\">Guards of Daybreak</span><span style=\" font-size: 1.00em;\"> and </span><span style=\" font-style: italic; font-size: 1.00em;\">Reminiscence</span><span style=\" font-size: 1.00em;\">. He has become health-conscious after the results of a through medical check-up. After reviewing his dietary habits, some have said that his complexion has improved in recent months.</span></p>\r\n<p class=\"P_Prose_Formatting\">&#160;</p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span><span style=\" font-weight: bold; font-size: 1.17em;\">Illustrator:</span><span style=\" font-weight: bold; font-size: 1.17em;\"><br/>Tomoseshunsaku</span></span></p>\r\n<p class=\"P_Prose_Formatting\">&#160;</p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Born in September. Lead animator and illustrator for the Sagittarius games. Lead animator for </span><span style=\" font-style: italic; font-size: 1.00em;\">Guards of Daybreak, Reminiscence</span><span style=\" font-size: 1.00em;\">, etc.</span></p>\r\n",
+  "prevChapter": {
+    "volumeId": "v3",
+    "chapter": 14,
+    "title": "Postscript"
+  },
+  "nextChapter": {
+    "volumeId": "v3",
+    "chapter": 16,
+    "title": "Newsletter"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Chabashira Sae’s Soliloquy",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: The Boundary Between Heaven and Hell",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Rivals on the Move",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: The Meaning of Freedom",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: The Quiet Outbreak of War",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: False Teamwork",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7 - Epilogue : The Curtain Rises",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "About the Author and Illustrator",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    }
+  ],
+  "currentSpineIndex": 15
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Chapter 1",
+  "content": "\n        <div>\n            <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" width=\"100%\" height=\"100%\" viewBox=\"0 0 1159 1651\" preserveAspectRatio=\"none\">\n                <image width=\"1159\" height=\"1651\" xlink:href=\"cover.jpeg\"/>\n            </svg>\n        </div>\n    ",
+  "nextChapter": {
+    "volumeId": "y2v11",
+    "chapter": 2,
+    "title": "Chapter 2"
+  },
+  "toc": [
+    {
+      "label": "Chapter 1 - Prologue :",
+      "href": "index_split_001.html",
+      "index": 3
+    },
+    {
+      "label": "Chapter 2:",
+      "href": "index_split_002.html",
+      "index": 4
+    },
+    {
+      "label": "Chapter 4:",
+      "href": "index_split_003.html",
+      "index": 5
+    },
+    {
+      "label": "Chapter 5:",
+      "href": "index_split_004.html",
+      "index": 6
+    },
+    {
+      "label": "Chapter 6:",
+      "href": "index_split_005.html",
+      "index": 7
+    },
+    {
+      "label": "Chapter 7:",
+      "href": "index_split_006.html",
+      "index": 8
+    },
+    {
+      "label": "Chapter 8 - Epilogue :",
+      "href": "index_split_007.html",
+      "index": 9
+    }
+  ],
+  "currentSpineIndex": 1
+}

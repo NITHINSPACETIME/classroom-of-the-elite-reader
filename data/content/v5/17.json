@@ -1,0 +1,102 @@
+{
+  "title": "About the Author and Illustrator",
+  "content": "\n<p class=\"P__STAR__STAR__STAR__page_break\" id=\"auto_bookmark_toc_top\"><span style=\" font-weight: bold; font-size: 1.17em;\">Author<br/>Syougo Kinugusa</span></p>\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Born in November. Blood type AB. Primarily responsible for the scenario and PC game planning. Most notable works are </span><span style=\" font-style: italic; font-size: 1.00em;\">Guards of Daybreak</span><span style=\" font-size: 1.00em;\"> and </span><span style=\" font-style: italic; font-size: 1.00em;\">Reminiscence</span><span style=\" font-size: 1.00em;\">. Wants a PlayStation 4, but won’t have time to play it at all, so currently resisting the urge. Has a feeling that the PlayStation 5 will be out before he knows it.</span></p>\n<p class=\"P_Prose_Formatting\">&#160;</p>\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\" font-weight: bold; font-size: 1.17em;\">Illustrator<br/>Tomoseshunsaku</span></p>\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Born in September. Lead animator and illustrator for the </span><span style=\" font-style: italic; font-size: 1.00em;\">Sagittarius</span><span style=\" font-size: 1.00em;\"> games. Lead animator for </span><span style=\" font-style: italic; font-size: 1.00em;\">Guards of Daybreak, Reminiscence</span><span style=\" font-size: 1.00em;\">, etc. Recently went out and got a brand-new game that he wanted, but felt as if actually playing it would be delusional. Satisfied with having the game in its packaging on his shelf.</span></p>\n",
+  "prevChapter": {
+    "volumeId": "v5",
+    "chapter": 16,
+    "title": "Postscript"
+  },
+  "nextChapter": {
+    "volumeId": "v5",
+    "chapter": 18,
+    "title": "Newsletter"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Sudou Ken's Soliloquy",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: The School Sports Festival Begins",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Class D's Objective",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Everyone's Calculations",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: There's a Reason for Their Relationship",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: The Curtains Rise",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7: For Whose Sake?",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Chapter 8: What You and I Lack",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Chapter 9 - Epilogue : The Turning Point",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    },
+    {
+      "label": "About the Author and Illustrator",
+      "href": "Text/section-0015.html#auto_bookmark_toc_top",
+      "index": 17
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0016.html#auto_bookmark_toc_top",
+      "index": 18
+    }
+  ],
+  "currentSpineIndex": 17
+}
