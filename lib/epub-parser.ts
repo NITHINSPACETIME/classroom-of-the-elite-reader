@@ -49,138 +49,71 @@ function shouldSkipRenaming(volumeId: string, volumeNumber: string): boolean {
 }
 
 
-const LOCAL_DIRS = [
-    '/home/kamisama/Downloads/cote/year 1',
-    '/home/kamisama/Downloads/cote/year 2',
-    '/home/kamisama/Downloads/cote/year 3'
-];
+
 
 async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuffer | null> {
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
     const CACHE_DIR = path.join(baseDir, '.cache', 'cote', 'downloads');
+
+    if (source.startsWith('/books/')) {
+        try {
+            const publicPath = path.join(process.cwd(), 'public', source);
+            if (fs.existsSync(publicPath)) {
+                console.log(`[EPUB-PARSER] Found local file: ${publicPath}`);
+                const buffer = fs.readFileSync(publicPath);
+                return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
+            }
+        } catch (e) {
+            console.warn(`[EPUB-PARSER] Failed to read local file: ${source}`, e);
+        }
+    }
+
+   
     if (!process.env.VERCEL) {
         if (!fs.existsSync(CACHE_DIR)) {
             try {
                 fs.mkdirSync(CACHE_DIR, { recursive: true });
-            } catch (e) {
-            }
+            } catch (e) { }
         }
         const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
         if (fs.existsSync(cachedFile)) {
             try {
                 const buffer = fs.readFileSync(cachedFile);
                 if (buffer.length > 0) {
-
                     return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
                 }
-            } catch (e) {
-
-            }
-        }
-    }
-
-    let searchNames = [path.basename(source)];
-
-    const vol = volumes.find(v => v.id === volumeId);
-    let validDirs = LOCAL_DIRS;
-
-    if (vol) {
-        if (vol.volumeNumber.startsWith('Y1:')) validDirs = [LOCAL_DIRS[0]];
-        else if (vol.volumeNumber.startsWith('Y2:')) validDirs = [LOCAL_DIRS[1]];
-        else if (vol.volumeNumber.startsWith('Y3:')) validDirs = [LOCAL_DIRS[2]];
-
-        const parts = vol.volumeNumber.split(':');
-        if (parts.length === 2) {
-            const vNum = parts[1].replace('V', '');
-            const padded = vNum.length === 1 && !vNum.includes('.') ? `0${vNum}` : vNum;
-            searchNames.push(`Volume ${padded}.epub`);
-            searchNames.push(`Volume ${vNum}.epub`);
-            searchNames.push(`volume ${vNum}.epub`);
-
-            searchNames.push(`${vol.volumeNumber.replace(':', '')}.epub`);
+            } catch (e) { }
         }
     }
 
     let resultBuffer: ArrayBuffer | null = null;
 
-    if (source.startsWith('/books/')) {
-        const baseUrl = process.env.VERCEL_URL
-            ? `https://${process.env.VERCEL_URL}`
-            : (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000');
-        try {
-            const res = await fetch(`${baseUrl}${source}`, { cache: 'force-cache' });
-            if (res.ok) {
-                resultBuffer = await res.arrayBuffer();
-            }
-        } catch (e) { }
-    }
-
-
-    if (!process.env.VERCEL && !resultBuffer) {
-        for (const dir of validDirs) {
-            if (!fs.existsSync(dir)) continue;
-            for (const name of searchNames) {
-                const p = path.join(dir, name);
-                if (fs.existsSync(p)) {
-
-                    resultBuffer = fs.readFileSync(p).buffer as ArrayBuffer;
-                    break;
-                }
-            }
-            if (resultBuffer) break;
-        }
-    }
-
+    // 3. Fallback: External HTTP source
     if (!resultBuffer && source.startsWith('http')) {
         try {
             const res = await fetch(source, { cache: 'force-cache' });
             if (!res.ok) throw new Error(`Fetch error: ${res.statusText}`);
             resultBuffer = await res.arrayBuffer();
         } catch (e) {
-
             return null;
-        }
-    }
-
-
-    if (!resultBuffer) {
-        const baseUrl = process.env.VERCEL_URL
-            ? `https://${process.env.VERCEL_URL}`
-            : process.env.NEXT_PUBLIC_SITE_URL;
-
-        if (baseUrl && !source.startsWith('http')) {
-            try {
-                const url = `${baseUrl}${source.startsWith('/') ? '' : '/'}${source}`;
-                const res = await fetch(url, { cache: 'force-cache' });
-                if (res.ok) {
-                    resultBuffer = await res.arrayBuffer();
-                } else {
-                }
-            } catch (e) {
-            }
         }
     }
 
     if (!resultBuffer) {
         const githubRawBase = "https://raw.githubusercontent.com/NITHINSPACETIME/classroom-of-the-elite-reader/main";
-
         if (!source.startsWith('http')) {
             try {
                 const cleanSource = source.startsWith('/') ? source.substring(1) : source;
                 const pathInRepo = `public/${cleanSource}`;
                 const url = `${githubRawBase}/${pathInRepo}`;
-
+                console.log(`[EPUB-PARSER] Fetching from GitHub: ${url}`);
                 const res = await fetch(url, { cache: 'force-cache' });
                 if (res.ok) {
                     resultBuffer = await res.arrayBuffer();
-                } else {
                 }
-            } catch (e) {
-            }
+            } catch (e) { }
         }
     }
-
-
 
     if (resultBuffer && !process.env.VERCEL) {
         try {
@@ -189,12 +122,10 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
             }
             const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
             fs.writeFileSync(cachedFile, Buffer.from(resultBuffer));
-        } catch (e) {
-        }
+        } catch (e) { }
     }
-    if (resultBuffer) return resultBuffer;
 
-    return null;
+    return resultBuffer;
 }
 
 
@@ -418,20 +349,10 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
 
 
-    try {
-        const baseUrl = process.env.VERCEL_URL
-            ? `https://${process.env.VERCEL_URL}`
-            : (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000');
-        const contentUrl = `${baseUrl}/content/${volumeId}/${chapterIndex}.json`;
 
-        const res = await fetch(contentUrl, { cache: 'force-cache' });
-        if (res.ok) {
-            const cached = await res.json();
-            return cached;
-        }
-    } catch (e) {
+    // Removed self-fetching of content API to prevent timeouts and loops.
+    // Logic below handles cache file reading or regeneration from EPUB directly.
 
-    }
 
 
 
