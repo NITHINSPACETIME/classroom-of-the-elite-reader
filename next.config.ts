@@ -12,16 +12,11 @@ const nextConfig: NextConfig = {
     outputFileTracingExcludes: {
         '*': [
             'public/books/**/*',
+            'public/content/**/*',
             '.cache/**/*',
-            './public/books/**/*',
-            './.cache/**/*',
             'node_modules/**/*.map',
-        ],
-        '/read/[volumeId]/[chapterIndex]': [
-            'public/books/**/*',
-            '.cache/**/*',
-            './public/books/**/*',
-            './.cache/**/*',
+            'node_modules/**/*.md',
+            'node_modules/**/*.txt',
         ],
     },
 };

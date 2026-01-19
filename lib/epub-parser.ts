@@ -103,21 +103,19 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
 
     let resultBuffer: ArrayBuffer | null = null;
 
-    
-    if (!process.env.VERCEL && source.startsWith('/books/')) {
-        const publicFile = path.join(process.cwd(), 'public', source);
-        if (fs.existsSync(publicFile)) {
-            try {
-                const buffer = fs.readFileSync(publicFile);
-
-                resultBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
-            } catch (e) {
-
+    if (source.startsWith('/books/')) {
+        const baseUrl = process.env.VERCEL_URL
+            ? `https://${process.env.VERCEL_URL}`
+            : (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000');
+        try {
+            const res = await fetch(`${baseUrl}${source}`, { cache: 'force-cache' });
+            if (res.ok) {
+                resultBuffer = await res.arrayBuffer();
             }
-        }
+        } catch (e) { }
     }
 
-    
+
     if (!process.env.VERCEL && !resultBuffer) {
         for (const dir of validDirs) {
             if (!fs.existsSync(dir)) continue;
@@ -182,14 +180,7 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
         }
     }
 
-    // Fallback to reading from public folder - local dev only
-    if (!process.env.VERCEL && !resultBuffer) {
-        const publicPath = path.join(process.cwd(), 'public', source.replace(/^\//, ''));
-        if (fs.existsSync(publicPath)) {
-            const buffer = fs.readFileSync(publicPath);
-            resultBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
-        }
-    }
+
 
     if (resultBuffer && !process.env.VERCEL) {
         try {
@@ -441,6 +432,8 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     } catch (e) {
 
     }
+
+
 
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
     const CACHE_DIR = path.join(baseDir, '.cache', 'cote', volumeId);
