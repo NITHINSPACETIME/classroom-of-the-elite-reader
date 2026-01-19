@@ -88,7 +88,7 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
 
     let resultBuffer: ArrayBuffer | null = null;
 
-    // 3. Fallback: External HTTP source
+   
     if (!resultBuffer && source.startsWith('http')) {
         try {
             const res = await fetch(source, { cache: 'force-cache' });
@@ -350,8 +350,6 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
 
 
-    // Removed self-fetching of content API to prevent timeouts and loops.
-    // Logic below handles cache file reading or regeneration from EPUB directly.
 
 
 
