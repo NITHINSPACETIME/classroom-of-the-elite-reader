@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     compress: true,
     images: {
         qualities: [60, 75],
-        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048], 
+        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
     serverExternalPackages: ['jszip'],
@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
         '*': [
             'public/books/**/*',
             'public/content/**/*',
+            'public/images/books/**/*',
             '.cache/**/*',
             'node_modules/**/*.map',
             'node_modules/**/*.md',
