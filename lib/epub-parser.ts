@@ -422,33 +422,21 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         }
     }
 
-   
-    const preGenPath = path.join(process.cwd(), 'public', 'content', volumeId, `${chapterIndex}.json`);
 
-    if (!process.env.VERCEL && fs.existsSync(preGenPath)) {
-        try {
-            const cached = JSON.parse(fs.readFileSync(preGenPath, 'utf-8'));
-            return cached;
-        } catch (e) {
-            
-        }
-    }
-
-    if (process.env.VERCEL) {
+  
+    try {
         const baseUrl = process.env.VERCEL_URL
             ? `https://${process.env.VERCEL_URL}`
-            : (process.env.NEXT_PUBLIC_APP_URL || '');
+            : (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000');
         const contentUrl = `${baseUrl}/content/${volumeId}/${chapterIndex}.json`;
 
-        try {
-            const res = await fetch(contentUrl, { cache: 'force-cache' });
-            if (res.ok) {
-                const cached = await res.json();
-                return cached;
-            }
-        } catch (e) {
-            
+        const res = await fetch(contentUrl, { cache: 'force-cache' });
+        if (res.ok) {
+            const cached = await res.json();
+            return cached;
         }
+    } catch (e) {
+        
     }
 
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
