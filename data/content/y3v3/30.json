@@ -1,0 +1,272 @@
+{
+  "title": "Part 2",
+  "content": "<h2 class=\"heading_2\">Part 2</h2><hr/><p class=\"paragraph\" style=\"text-align: left\">IT WAS 11:00 a.m. for Class D.</p><p class=\"paragraph\" style=\"text-align: left\">Their plan to avoid conflict as much as possible was set to begin crumbling from this time on.</p><p class=\"paragraph\" style=\"text-align: left\">Kanzaki stared at the tablet operated by their analyst Andou and couldn&apos;t help but hold his breath.</p><p class=\"paragraph\" style=\"text-align: left\">The announced supply drop points were E4, E9, G8, G11, H5, J8, J13, K3, M12, N9 and O14.</p><p class=\"paragraph\" style=\"text-align: left\">And&#x2014;a screen with numerous gray squares added, a clear difference from the day before.</p><p class=\"paragraph\" style=\"text-align: left\">It also covered O14, where a supply drop appeared.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;Hey Kanzaki, does this... mean what I think it means...?&quot;</p><p class=\"paragraph\" style=\"text-align: left\">&quot;It&apos;s too early to draw conclusions, but if the next event has a similar mechanic, the probability will be orders of magnitude higher.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">The 11:00 a.m. event on the second day.</p><p class=\"paragraph\" style=\"text-align: left\">A warning flag was raised on the basic assumption that they&apos;d simply repeat what they&apos;d done four times the day before.</p><p class=\"paragraph\" style=\"text-align: left\">The map was divided into a 15x15 grid. Its outer squares were, of course, mostly sea, but it&apos;d been announced that all of these outer squares would be designated as completely prohibited areas starting in one hour. In an hour, this gray would turn pitch black and a rule would be activated that would get you eliminated in five minutes for entering.</p><p class=\"paragraph\" style=\"text-align: left\">But that alone would have no effect on their current situation. However, what would happen in two hours, at the start of the next event? If the outer squares were similarly made prohibited, that would mean the map would silently shrink, layer by layer from the outside, with each future event.</p><p class=\"paragraph\" style=\"text-align: left\">Today, tomorrow, the day after. There were 10 events left, not including this one. While it was hard to imagine the perimeter shrinking in all of them, if the rule didn&apos;t change, the four classes would end up clustered near the center. If that happened, the enemy would be right under their noses.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;There&apos;s no way to avoid a fight from here on out&#x2014;&quot;</p><p class=\"paragraph\" style=\"text-align: left\">Dark clouds began to gather over Class D, whose primary goal had been to make it through the exam just by staying in the eastern area, where they could maintain their distance from the other three classes.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;If one or two more prohibited areas are created today by shrinking the perimeter, we should probably consider making a major move.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">Returning to the center from the north would require a time-consuming detour. Furthermore, Class A was in the northern area, creating the risk of an ambush. On the other hand, if they leaned too far south in an attempt to return to the center early, the terrain might be unsuitable for collecting event rewards.</p><p class=\"paragraph\" style=\"text-align: left\">Unable to take his eyes off the tablet, his thoughts spun round and round in his head.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;Kanzaki-kun!&quot;</p><p class=\"paragraph\" style=\"text-align: left\">Kanzaki, shaken by the shoulder, realized his name had been called repeatedly and looked up.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;...My apologies. What is it?&quot;</p><p class=\"paragraph\" style=\"text-align: left\">&quot;A message from Honami-chan. She says she&apos;ll think about our course of action, so don&apos;t worry.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">It was a message from Ichinose, as if she&apos;d been watching Kanzaki&apos;s near-confusion from the side.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;It seems she wants you to focus on the event in front of you for now.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">&quot;Yes... you&apos;re right.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">&quot;She also said we don&apos;t have to push ourselves for O14, just in case.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">If they headed to O14 from their current position and had trouble recovering the supplies, there was a risk of being eliminated.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;For now, we&apos;ll move to secure it. O14 has little land, so the supplies themselves should be easy to find.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">Not going after the event would mean losing the opportunity to collect the supplies.</p><p class=\"paragraph\" style=\"text-align: left\">&quot;...We&apos;ll split into three groups at once and head to collect the event rewards.&quot;</p><p class=\"paragraph\" style=\"text-align: left\">He kept their goal unchanged: to play it safe by repeating the same actions and work hard to gather the supplies needed for everyone to get through the day.</p>",
+  "prevChapter": {
+    "volumeId": "y3v3",
+    "chapter": 29,
+    "title": "Part 1"
+  },
+  "nextChapter": {
+    "volumeId": "y3v3",
+    "chapter": 31,
+    "title": "Part 3"
+  },
+  "toc": [
+    {
+      "label": "Classroom of the Elite – Year 3, Volume 3",
+      "href": "cover.xhtml",
+      "index": 1
+    },
+    {
+      "label": "Illustrations",
+      "href": "inner-cover.xhtml",
+      "index": 4
+    },
+    {
+      "label": "Illustration #1",
+      "href": "illustration-0.xhtml",
+      "index": 5
+    },
+    {
+      "label": "Illustration #2",
+      "href": "illustration-1.xhtml",
+      "index": 6
+    },
+    {
+      "label": "Illustration #3",
+      "href": "illustration-2.xhtml",
+      "index": 7
+    },
+    {
+      "label": "Synopsis",
+      "href": "synopsis.xhtml",
+      "index": 11
+    },
+    {
+      "label": "Prologue: Shiina Hiyori's Monologue",
+      "href": "prologue.xhtml",
+      "index": 12
+    },
+    {
+      "label": "Chapter 1: Opening. Survival Game Special Exam.",
+      "href": "c1.xhtml",
+      "index": 13
+    },
+    {
+      "label": "Part 1",
+      "href": "c1p1.xhtml",
+      "index": 14
+    },
+    {
+      "label": "Part 2",
+      "href": "c1p2.xhtml",
+      "index": 15
+    },
+    {
+      "label": "Part 3",
+      "href": "c1p3.xhtml",
+      "index": 16
+    },
+    {
+      "label": "Chapter 2: A Surprise Attack",
+      "href": "c2.xhtml",
+      "index": 17
+    },
+    {
+      "label": "Part 1",
+      "href": "c2p1.xhtml",
+      "index": 18
+    },
+    {
+      "label": "Part 2",
+      "href": "c2p2.xhtml",
+      "index": 19
+    },
+    {
+      "label": "Part 3",
+      "href": "c2p3.xhtml",
+      "index": 20
+    },
+    {
+      "label": "Part 4",
+      "href": "c2p4.xhtml",
+      "index": 21
+    },
+    {
+      "label": "Chapter 3: The Unseen Pressure",
+      "href": "c3.xhtml",
+      "index": 22
+    },
+    {
+      "label": "Part 1",
+      "href": "c3p1.xhtml",
+      "index": 23
+    },
+    {
+      "label": "Part 2",
+      "href": "c3p2.xhtml",
+      "index": 24
+    },
+    {
+      "label": "Part 3",
+      "href": "c3p3.xhtml",
+      "index": 25
+    },
+    {
+      "label": "Part 4",
+      "href": "c3p4.xhtml",
+      "index": 26
+    },
+    {
+      "label": "Part 5",
+      "href": "c3p5.xhtml",
+      "index": 27
+    },
+    {
+      "label": "Chapter 4: A Chance Encounter",
+      "href": "c4.xhtml",
+      "index": 28
+    },
+    {
+      "label": "Part 1",
+      "href": "c4p1.xhtml",
+      "index": 29
+    },
+    {
+      "label": "Part 2",
+      "href": "c4p2.xhtml",
+      "index": 30
+    },
+    {
+      "label": "Part 3",
+      "href": "c4p3.xhtml",
+      "index": 31
+    },
+    {
+      "label": "Part 4",
+      "href": "c4p4.xhtml",
+      "index": 32
+    },
+    {
+      "label": "Part 5",
+      "href": "c4p5.xhtml",
+      "index": 33
+    },
+    {
+      "label": "Chapter 5: The Alliance",
+      "href": "c5.xhtml",
+      "index": 34
+    },
+    {
+      "label": "Part 1",
+      "href": "c5p1.xhtml",
+      "index": 35
+    },
+    {
+      "label": "Part 2",
+      "href": "c5p2.xhtml",
+      "index": 36
+    },
+    {
+      "label": "Part 3",
+      "href": "c5p3.xhtml",
+      "index": 37
+    },
+    {
+      "label": "Part 4",
+      "href": "c5p4.xhtml",
+      "index": 38
+    },
+    {
+      "label": "Chapter 6: The Real Goal",
+      "href": "c6.xhtml",
+      "index": 39
+    },
+    {
+      "label": "Part 1",
+      "href": "c6p1.xhtml",
+      "index": 40
+    },
+    {
+      "label": "Part 2",
+      "href": "c6p2.xhtml",
+      "index": 41
+    },
+    {
+      "label": "Part 3",
+      "href": "c6p3.xhtml",
+      "index": 42
+    },
+    {
+      "label": "Part 4",
+      "href": "c6p4.xhtml",
+      "index": 43
+    },
+    {
+      "label": "Part 5",
+      "href": "c6p5.xhtml",
+      "index": 44
+    },
+    {
+      "label": "Part 6",
+      "href": "c6p6.xhtml",
+      "index": 45
+    },
+    {
+      "label": "Chapter 7: The Time of the Decisive Battle",
+      "href": "c7.xhtml",
+      "index": 46
+    },
+    {
+      "label": "Part 1",
+      "href": "c7p1.xhtml",
+      "index": 47
+    },
+    {
+      "label": "Part 2",
+      "href": "c7p2.xhtml",
+      "index": 48
+    },
+    {
+      "label": "Part 3",
+      "href": "c7p3.xhtml",
+      "index": 49
+    },
+    {
+      "label": "Part 4",
+      "href": "c7p4.xhtml",
+      "index": 50
+    },
+    {
+      "label": "Part 5",
+      "href": "c7p5.xhtml",
+      "index": 51
+    },
+    {
+      "label": "Epilogue: Show Me What You’ve Got",
+      "href": "e.xhtml",
+      "index": 52
+    },
+    {
+      "label": "Part 1",
+      "href": "e1.xhtml",
+      "index": 53
+    },
+    {
+      "label": "Author's Afterword",
+      "href": "authors-afterword.xhtml",
+      "index": 54
+    },
+    {
+      "label": "LegacyEMTLs Afterword",
+      "href": "afterword.xhtml",
+      "index": 55
+    },
+    {
+      "label": "LegacyEMTLs Credits",
+      "href": "credits.xhtml",
+      "index": 56
+    }
+  ],
+  "currentSpineIndex": 30
+}

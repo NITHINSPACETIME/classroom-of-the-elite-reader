@@ -1,0 +1,97 @@
+{
+  "title": "Newsletter",
+  "content": "\n    <nav epub:type=\"toc\" id=\"toc\">\n      <h1>Table of Contents</h1>\n      <ol>\n        <li>\n          <a href=\"/read/y2v9.5/2\">Table of Contents</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/3\">Character Gallery</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/8\">Title Page</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/9\">Copyrights and Credits</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/10\">Table of Contents Page</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/11\">Chapter 1: Irreplaceable Today</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/12\">Chapter 2: Song of Loneliness</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/15\">Chapter 3: Just A Hunch</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/18\">Chapter 4: Casing Each Other Out</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/21\">Chapter 5: Signs of Quiet</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/28\">Chapter 6: Remaining Time</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/35\">Chapter 7: Changing Relationships</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/38\">Postscript</a>\n        </li>\n        <li>\n          <a href=\"/read/y2v9.5/39\">Newsletter</a>\n        </li>\n      </ol>\n    </nav>\n  <nav epub:type=\"landmarks\" id=\"landmarks\" hidden=\"\">\n    <h1>Landmarks</h1>\n    <ol>\n      <li>\n        <a epub:type=\"cover\" href=\"/read/y2v9.5/1\">Cover Page</a>\n      </li>\n      <li>\n        <a epub:type=\"toc\" href=\"/read/y2v9.5/2\">Table of Contents</a>\n      </li>\n    </ol>\n  </nav>\n",
+  "prevChapter": {
+    "volumeId": "y2v9.5",
+    "chapter": 39,
+    "title": "Newsletter"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "section-0001.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "section-0002.html",
+      "index": 3
+    },
+    {
+      "label": "Title Page",
+      "href": "section-0007.html",
+      "index": 8
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "section-0008.html",
+      "index": 9
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "section-0009.html",
+      "index": 10
+    },
+    {
+      "label": "Chapter 1 - Prologue : Irreplaceable Today",
+      "href": "section-0010.html#auto_bookmark_toc_10",
+      "index": 11
+    },
+    {
+      "label": "Chapter 2: Song of Loneliness",
+      "href": "section-0011.html#auto_bookmark_toc_11",
+      "index": 12
+    },
+    {
+      "label": "Chapter 3: Just A Hunch",
+      "href": "section-0014.html#auto_bookmark_toc_14",
+      "index": 15
+    },
+    {
+      "label": "Chapter 4: Casing Each Other Out",
+      "href": "section-0017.html#auto_bookmark_toc_17",
+      "index": 18
+    },
+    {
+      "label": "Chapter 5: Signs of Quiet",
+      "href": "section-0020.html#auto_bookmark_toc_20",
+      "index": 21
+    },
+    {
+      "label": "Chapter 6: Remaining Time",
+      "href": "section-0027.html#auto_bookmark_toc_27",
+      "index": 28
+    },
+    {
+      "label": "Chapter 7: Changing Relationships",
+      "href": "section-0034.html#auto_bookmark_toc_34",
+      "index": 35
+    },
+    {
+      "label": "Short Story",
+      "href": "OPS/section-0035.html",
+      "index": 36
+    },
+    {
+      "label": "Epilogue: Short Story",
+      "href": "OPS/section-0036.html",
+      "index": 37
+    },
+    {
+      "label": "Postscript",
+      "href": "section-0037.html#auto_bookmark_toc_37",
+      "index": 38
+    },
+    {
+      "label": "Newsletter",
+      "href": "section-0038.html",
+      "index": 39
+    },
+    {
+      "label": "Newsletter",
+      "href": "OPS/nav.xhtml",
+      "index": 40
+    }
+  ],
+  "currentSpineIndex": 40
+}

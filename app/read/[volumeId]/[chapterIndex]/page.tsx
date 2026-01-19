@@ -2,9 +2,9 @@ import { getChapterContent } from "@/lib/epub-parser";
 import { HtmlReader } from "@/components/reader/HtmlReader";
 import { notFound } from "next/navigation";
 import { allVolumes } from "@/lib/volumes";
-import { volumes as y1 } from "@/data/year1";
-import { volumes as y2 } from "@/data/year2";
-import { volumes as y3 } from "@/data/year3";
+import { volumes as y1, shortStories as y1ss } from "@/data/year1";
+import { volumes as y2, shortStories as y2ss } from "@/data/year2";
+import { volumes as y3, shortStories as y3ss } from "@/data/year3";
 
 
 
@@ -35,8 +35,52 @@ export default async function ReadPage({ params, searchParams }: { params: Promi
 
     if (isNaN(index)) notFound();
 
-    const data = await getChapterContent(volumeId, index, isLogical);
     const volume = allVolumes.find(v => v.id === volumeId);
+
+
+    if (volume?.customChapters && volume.customChapters[index]) {
+        const customContent = volume.customChapters[index];
+        const chapterTitle = volume.chapters[index - 1] || `Chapter ${index}`;
+
+
+        let detailsLink = "/select";
+        if (y1ss.some(v => v.id === volumeId)) {
+            detailsLink = `/select/year-1/${volumeId}`;
+        } else if (y2ss.some(v => v.id === volumeId)) {
+            detailsLink = `/select/year-2/${volumeId}`;
+        } else if (y3ss.some(v => v.id === volumeId)) {
+            detailsLink = `/select/year-3/${volumeId}`;
+        }
+
+
+        // Convert plain text to HTML paragraphs
+        const htmlContent = customContent
+            .split('\n')
+            .filter((line: string) => line.trim())
+            .map((line: string) => `<p>${line}</p>`)
+            .join('');
+
+        return (
+            <HtmlReader
+                content={htmlContent}
+                title={chapterTitle}
+                volumeId={volumeId}
+                chapterIndex={index}
+                prevChapter={index > 1 && volume.customChapters[index - 1] ? { volumeId, chapter: index - 1, title: volume.chapters[index - 2] } : undefined}
+                nextChapter={volume.customChapters[index + 1] ? { volumeId, chapter: index + 1, title: volume.chapters[index] } : undefined}
+                toc={volume.chapters.map((ch, i) => ({ label: ch, href: `/read/${volumeId}/${i + 1}?logical=true`, index: i + 1 }))}
+                volumeTitle={volume.title}
+                epubSource={undefined}
+                detailsLink={detailsLink}
+                returnLink="/select"
+                currentSpineIndex={index}
+                nextVolumeLink={undefined}
+                nextVolumeTitle={undefined}
+            />
+        );
+    }
+
+    const data = await getChapterContent(volumeId, index, isLogical);
 
     let detailsLink = "/select";
     let returnLink = "/select";
@@ -109,3 +153,4 @@ export default async function ReadPage({ params, searchParams }: { params: Promi
         />
     );
 }
+

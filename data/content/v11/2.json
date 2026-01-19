@@ -1,0 +1,102 @@
+{
+  "title": "Table of Contents",
+  "content": "\n<h3 class=\"P_TOC_Heading\"><a id=\"tableofcontents\"/>Table of Contents</h3>\n\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/3\">Character Gallery</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/4\">Table of Contents Page</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/5\">Title Page</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/6\">Copyrights and Credits</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/7\">Chapter 1: Sakayanagi Arisu’s Soliloquy</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/8\">Chapter 2: The Teachers’ Battle</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/9\">Chapter 3: The Final Battle of The First Year</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/10\">Chapter 4: Opponents</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/11\">Chapter 5: What the Class is Lacking</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/12\">Chapter 6: Good and Evil</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/13\">Chapter 7: A Man’s Tears</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/14\">Chapter 8: Ayanokouji VS. Sakayanagi</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/15\">Chapter 9: Class B VS. Class D</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/16\">Chapter 10: The Line Between Winner and Loser</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/17\">Postscript</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v11/18\">Newsletter</a></p>\n",
+  "prevChapter": {
+    "volumeId": "v11",
+    "chapter": 1,
+    "title": "Chapter 1"
+  },
+  "nextChapter": {
+    "volumeId": "v11",
+    "chapter": 3,
+    "title": "Character Gallery"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Sakayanagi Arisu’s Soliloquy",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: The Teachers’ Battle",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: The Final Battle of The First Year",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Opponents",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: What the Class is Lacking",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: Good and Evil",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7: A Man’s Tears",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Chapter 8: Ayanokouji VS. Sakayanagi",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Chapter 9: Class B VS. Class D",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Chapter 10 - Epilogue : The Line Between Winner and Loser",
+      "href": "Text/section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0015.html#auto_bookmark_toc_top",
+      "index": 17
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0016.html#auto_bookmark_toc_top",
+      "index": 18
+    }
+  ],
+  "currentSpineIndex": 2
+}

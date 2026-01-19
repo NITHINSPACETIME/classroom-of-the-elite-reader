@@ -1,0 +1,92 @@
+{
+  "title": "About the Author and Illustrator",
+  "content": "\r\n<p class=\"P__STAR__STAR__STAR__page_break\" id=\"auto_bookmark_toc_top\"><span style=\" font-weight: bold; font-size: 1.17em;\">Author:<br/></span><span style=\" font-weight: bold; font-size: 1.17em;\">Syougo Kinugasa</span></p>\r\n<p class=\"P_Prose_Formatting\"> </p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Born in November. Blood type AB. Primarily responsible for PC game development. Most notable works: </span><span style=\" font-style: italic; font-size: 1.00em;\">Guards of Daybreak,</span><span style=\" font-size: 1.00em;\"> </span><span style=\" font-style: italic; font-size: 1.00em;\">Reminiscence</span><span style=\" font-size: 1.00em;\">.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Although he’s based in Fukuoka, the possibility of moving to Tokyo has emerged. However, he’s a resolute Hanshin fan. </span></p>\r\n<p class=\"P_Prose_Formatting\"> </p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\" font-weight: bold; font-size: 1.17em;\">Illustrator:<br/></span><span style=\" font-weight: bold; font-size: 1.17em;\">Tomoseshunsaku</span></p>\r\n<p class=\"P_Prose_Formatting\"> </p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Born in September. Lead animator and illustrator for the </span><span style=\" font-style: italic; font-size: 1.00em;\">Sagittarius</span><span style=\" font-size: 1.00em;\"> games. Lead animator for </span><span style=\" font-style: italic; font-size: 1.00em;\">Guards of Daybreak, Reminiscence</span><span style=\" font-size: 1.00em;\">, etc.</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Laughs scornfully at friends, saying, “You still play </span><span style=\" font-style: italic; font-size: 1.00em;\">Pokémon GO</span><span style=\" font-size: 1.00em;\">?” But…he still plays </span><span style=\" font-style: italic; font-size: 1.00em;\">Pokémon GO.</span></p>\r\n",
+  "prevChapter": {
+    "volumeId": "v4.5",
+    "chapter": 14,
+    "title": "Postscript"
+  },
+  "nextChapter": {
+    "volumeId": "v4.5",
+    "chapter": 16,
+    "title": "Newsletter"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Summer Vacation is Nearly Over",
+      "href": "section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: Ibuki Mio has Surprisingly Good Sense",
+      "href": "section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Katsuragi Kouhei is Surprisingly Troubled",
+      "href": "section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Dangers Lurk in Everyday Life",
+      "href": "section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: A Day of Girl Troubles and Disaster: A Devil Smiles Like an Angel",
+      "href": "section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: A Gathering Between Classes",
+      "href": "section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7 - Epilogue : Ike, Yamauchi, and Sudou’s Summer Vacation (Extra Stories)",
+      "href": "section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Postscript",
+      "href": "section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "About the Author and Illustrator",
+      "href": "section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Newsletter",
+      "href": "section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    }
+  ],
+  "currentSpineIndex": 15
+}

@@ -1,0 +1,107 @@
+{
+  "title": "Newsletter",
+  "content": "\r\n<div class=\"p.P_Centre\">\r\n<p></p>\r\n<p class=\"P_Text_body__And__Centre_Alignment\" id=\"auto_bookmark_toc_top\"><span><img alt=\"\" id=\"sevenseaslogo\" src=\"data:image/jpeg;base64,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\" loading=\"lazy\" decoding=\"async\" style=\" top: 0px; vertical-align: top;\"/></span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-weight: bold; font-size: 1.50em;\">Thank you for reading!</span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.00em;\">Get the latest news about your favorite Seven Seas books and brand-new licenses delivered to your inbox every week:</span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.25em;\"><a href=\"http://www.gomanga.com/newsletter/\">Sign up for our newsletter!</a></span></p>\r\n\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.00em;\">Or visit us online:</span></p>\r\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.25em;\"><a href=\"http://www.gomanga.com/newsletter/\">gomanga.com/newsletter</a></span></p>\r\n</div>\r\n",
+  "prevChapter": {
+    "volumeId": "v1",
+    "chapter": 19,
+    "title": "Postscript"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Credits and Copyright",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue :  The Structure of Japanese Society",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: Welcome to the School Life of Your Dreams",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: The Students of D Class",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Ladies and Gentlemen, Thank You for Waiting",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: Friends",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: The End of Everyday Life",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7: Classroom of the Elite",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Chapter 8: The Association of Failures",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Chapter 9: The Failures Mobilize Once Again",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Chapter 10: Midterm Exam",
+      "href": "Text/section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    },
+    {
+      "label": "Chapter 11: The Beginning",
+      "href": "Text/section-0015.html#auto_bookmark_toc_top",
+      "index": 17
+    },
+    {
+      "label": "Chapter 12 - Epilogue : Victory Celebration",
+      "href": "Text/section-0016.html#auto_bookmark_toc_top",
+      "index": 18
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0017.html#auto_bookmark_toc_top",
+      "index": 19
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0018.html#auto_bookmark_toc_top",
+      "index": 20
+    }
+  ],
+  "currentSpineIndex": 20
+}

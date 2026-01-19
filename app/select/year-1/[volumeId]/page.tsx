@@ -1,6 +1,6 @@
 "use client"
 
-import { volumes } from "@/data/year1";
+import { volumes, shortStories } from "@/data/year1";
 import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,12 +12,14 @@ import { use, useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
 import { UserMenu } from "@/components/auth/UserMenu";
-import { AuthModal } from "@/components/auth/AuthModal";
-import { ProfileModal } from "@/components/auth/ProfileModal";
+import dynamic from "next/dynamic";
+
+const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
+const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
 
 export default function VolumePage({ params }: { params: Promise<{ volumeId: string }> }) {
     const { volumeId } = use(params);
-    const volume = volumes.find((v) => v.id === volumeId);
+    const volume = volumes.find((v) => v.id === volumeId) || shortStories.find((v) => v.id === volumeId);
 
     if (!volume) {
         notFound();
@@ -47,9 +49,9 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
 
     const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
 
+    const isSideStory = volume.volumeNumber === 'SS' || volume.id.startsWith('ss-');
+
     const getChapterDisplay = (chapter: string, index: number) => {
-
-
         let cleanTitle = chapter;
         let typeLabel = '';
 
@@ -70,12 +72,17 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
         const displayNum = (index + 1).toString();
 
         let fullTitle = `Chapter ${displayNum} : ${cleanTitle}`;
-        if (typeLabel) {
+        let type = 'CH';
+
+        if (isSideStory) {
+            fullTitle = `${cleanTitle}`;
+            type = 'SS';
+        } else if (typeLabel) {
             fullTitle = `Chapter ${displayNum} - ${typeLabel} : ${cleanTitle}`;
         }
 
         return {
-            type: 'CH',
+            type,
             number: displayNum,
             full: fullTitle
         };
@@ -150,7 +157,7 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
 
 
             <nav className="relative z-50 p-6 flex items-center justify-between">
-                <Link href="/select/year-1">
+                <Link href={isSideStory ? "/select/year-1?contentType=shortStories" : "/select/year-1"}>
                     <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-white/5 gap-2">
                         <ArrowLeft className="w-5 h-5" />
                         Back to Year 1
@@ -279,6 +286,11 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
 
 
                         <div>
+                            {isSideStory && (
+                                <h3 className="text-xl font-medium text-white/80 mb-4 px-1">
+                                    List of side stories
+                                </h3>
+                            )}
                             <div className="mb-6 flex gap-4">
                                 <div className="relative flex-1">
                                     <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
@@ -286,7 +298,7 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
                                     </div>
                                     <Input
                                         type="text"
-                                        placeholder="Search chapters..."
+                                        placeholder={isSideStory ? "Search side stories..." : "Search chapters..."}
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                         className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-gray-500 hover:bg-white/10 focus:bg-white/10 transition-colors h-11"
@@ -319,10 +331,18 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
                                                     <div className="group flex items-start justify-between p-3 md:p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer gap-3">
                                                         <div className="flex items-start gap-3 flex-1">
                                                             <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? 'text-gray-600 bg-black/40' : 'text-amber-500 bg-amber-950/30'}`}>
-                                                                {type} {number}
+                                                                {type === 'SS' ? `SS ${number}` : `${type} ${number}`}
                                                             </span>
                                                             <span className="text-sm md:text-base text-gray-300 group-hover:text-white transition-colors font-medium leading-tight md:leading-normal">
-                                                                {full}
+                                                                {isSideStory && full.includes(" : ") ? (() => {
+                                                                    const [narrator, title] = full.split(" : ");
+                                                                    return (
+                                                                        <span className="flex flex-col md:block">
+                                                                            <span className="font-bold text-red-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
+                                                                            <span className="text-gray-300">{title}</span>
+                                                                        </span>
+                                                                    );
+                                                                })() : full}
                                                             </span>
                                                         </div>
                                                         <ArrowLeft className="shrink-0 w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
@@ -333,7 +353,7 @@ export default function VolumePage({ params }: { params: Promise<{ volumeId: str
                                     })
                                 ) : (
                                     <div className="text-center text-gray-500 py-10">
-                                        No chapters found matching "{searchQuery}"
+                                        No {isSideStory ? "side stories" : "chapters"} found matching "{searchQuery}"
                                     </div>
                                 )}
                             </div>

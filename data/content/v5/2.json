@@ -1,0 +1,102 @@
+{
+  "title": "Table of Contents",
+  "content": "\n<h3 class=\"P_TOC_Heading\"><a id=\"tableofcontents\"/>Table of Contents</h3>\n\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/3\">Character Gallery</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/4\">Table of Contents Page</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/5\">Title Page</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/6\">Copyrights and Credits</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/7\">Chapter 1: Sudou Ken's Soliloquy</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/8\">Chapter 2: The School Sports Festival Begins</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/9\">Chapter 3: Class D's Objective</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/10\">Chapter 4: Everyone's Calculations</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/11\">Chapter 5: There's a Reason for Their Relationship</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/12\">Chapter 6: The Curtains Rise</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/13\">Chapter 7: For Whose Sake?</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/14\">Chapter 8: What You and I Lack</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/15\">Chapter 9: The Turning Point</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/16\">Postscript</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/17\">About the Author and Illustrator</a></p>\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v5/18\">Newsletter</a></p>\n",
+  "prevChapter": {
+    "volumeId": "v5",
+    "chapter": 1,
+    "title": "Chapter 1"
+  },
+  "nextChapter": {
+    "volumeId": "v5",
+    "chapter": 3,
+    "title": "Character Gallery"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Sudou Ken's Soliloquy",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: The School Sports Festival Begins",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Class D's Objective",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Everyone's Calculations",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: There's a Reason for Their Relationship",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: The Curtains Rise",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7: For Whose Sake?",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Chapter 8: What You and I Lack",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Chapter 9 - Epilogue : The Turning Point",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    },
+    {
+      "label": "About the Author and Illustrator",
+      "href": "Text/section-0015.html#auto_bookmark_toc_top",
+      "index": 17
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0016.html#auto_bookmark_toc_top",
+      "index": 18
+    }
+  ],
+  "currentSpineIndex": 2
+}

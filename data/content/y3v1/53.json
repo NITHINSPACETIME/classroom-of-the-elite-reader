@@ -1,0 +1,267 @@
+{
+  "title": "LegacyEMTLs Afterword",
+  "content": "<h1 class=\"heading_1\"><a class=\"heading-link\" href=\"/read/y3v1/2\">LegacyEMTLs Afterword</a></h1><hr/><div class=\"text-block\"><p class=\"paragraph\">Hey there, Colibri here.</p><p class=\"paragraph\">Just wanted to say thanks for reading our translation. Countless hours of work and effort went into it and I just wanna say thank you to everyone in the team for being a part of this, and thank you to the reader for supporting us by reading our translation. If you encounter any errors, feel free to report them on our <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://www.legacyemtls.com/report-error\">site</a>. And if you have any comments, you can add them to the comments section of the <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://www.legacyemtls.com/volume/cote-y3-v1\">Y3V1 page</a>. Spread our name through word of mouth and feel free to share these files so long as you credit us.</p><p class=\"paragraph\">Anyways, see you next time with Y3V2.</p><p class=\"paragraph\" style=\"text-align: right\"><em>Colibri</em></p></div><p class=\"paragraph\" style=\"text-align: center\">&#x22c6;&#x22c5;&#x2606;&#x22c5;&#x22c6;</p><div class=\"text-block\"><p class=\"paragraph\">Hi, FS7 here.</p><p class=\"paragraph\">Thanks for reading our translation. This is our first new volume release as a TL group so we hope the quality is up to par. We&apos;re planning to redesign some of the mechanisms for translation to make it even better for Y3V2. Also, just like Colibri said, please report any issues to us. We&apos;re very particular about our translations so we&apos;re more than happy to rectify any issues if made aware of them.</p><p class=\"paragraph\">Thanks.&#xa0;</p><p class=\"paragraph\" style=\"text-align: right\"><em>FS7</em></p></div><p class=\"paragraph\" style=\"text-align: center\">&#x22c6;&#x22c5;&#x2606;&#x22c5;&#x22c6;</p><div class=\"text-block\"><p class=\"paragraph\">One more lead here, F2P2W.</p><p class=\"paragraph\">We spent a lot more effort on this volume compared to our translation of V0 since we&apos;re on a much stricter deadline this time. I&apos;ll say this again, the team is full of people taking on multiple things at once&#x2014;whether that be school, jobs, or personal projects&#x2014;all while working on LegacyEMTLs, so please be kind to the team~</p><p class=\"paragraph\">Also, you will see a lot of the team bashing Anime Anyway here. Please don&apos;t take it too seriously&#x2026; don&apos;t send hate to anybody. Don&apos;t take our other leads as examples.</p><p class=\"paragraph\">That being said, we hope to bring good quality reads for those patiently waiting for the Seven Seas official translations! And I hope you all win your 50/50s early pity.</p><p class=\"paragraph\">Signing out.</p><p class=\"paragraph\" style=\"text-align: right\"><em>F2P2W</em></p></div>",
+  "prevChapter": {
+    "volumeId": "y3v1",
+    "chapter": 52,
+    "title": "Guidebook Short Story: Ever Since That Time..."
+  },
+  "toc": [
+    {
+      "label": "Classroom of the Elite – Year 3, Volume 1",
+      "href": "cover.xhtml",
+      "index": 1
+    },
+    {
+      "label": "Illustrations",
+      "href": "inner-cover.xhtml",
+      "index": 4
+    },
+    {
+      "label": "Illustration #1",
+      "href": "illustration-0.xhtml",
+      "index": 5
+    },
+    {
+      "label": "Illustration #2",
+      "href": "illustration-1.xhtml",
+      "index": 6
+    },
+    {
+      "label": "Illustration #3",
+      "href": "illustration-2.xhtml",
+      "index": 7
+    },
+    {
+      "label": "Synopsis",
+      "href": "synopsis.xhtml",
+      "index": 9
+    },
+    {
+      "label": "Prologue: The End of Everyday Life",
+      "href": "prologue.xhtml",
+      "index": 10
+    },
+    {
+      "label": "Chapter 1: Confusion",
+      "href": "chapter-1.xhtml",
+      "index": 11
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-1-part-1.xhtml",
+      "index": 12
+    },
+    {
+      "label": "Chapter 2: Confirmation",
+      "href": "chapter-2.xhtml",
+      "index": 13
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-2-part-1.xhtml",
+      "index": 14
+    },
+    {
+      "label": "Chapter 3: The Commencement of a One-Year Period",
+      "href": "chapter-3.xhtml",
+      "index": 15
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-3-part-1.xhtml",
+      "index": 16
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-3-part-2.xhtml",
+      "index": 17
+    },
+    {
+      "label": "Part 3",
+      "href": "chapter-3-part-3.xhtml",
+      "index": 18
+    },
+    {
+      "label": "Part 4",
+      "href": "chapter-3-part-4.xhtml",
+      "index": 19
+    },
+    {
+      "label": "Part 5",
+      "href": "chapter-3-part-5.xhtml",
+      "index": 20
+    },
+    {
+      "label": "Chapter 4: An Onlooker's Perspective ",
+      "href": "chapter-4.xhtml",
+      "index": 21
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-4-part-1.xhtml",
+      "index": 22
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-4-part-2.xhtml",
+      "index": 23
+    },
+    {
+      "label": "Chapter 5: Convolution",
+      "href": "chapter-5.xhtml",
+      "index": 24
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-5-part-1.xhtml",
+      "index": 25
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-5-part-2.xhtml",
+      "index": 26
+    },
+    {
+      "label": "Part 3",
+      "href": "chapter-5-part-3.xhtml",
+      "index": 27
+    },
+    {
+      "label": "Part 4",
+      "href": "chapter-5-part-4.xhtml",
+      "index": 28
+    },
+    {
+      "label": "Part 5",
+      "href": "chapter-5-part-5.xhtml",
+      "index": 29
+    },
+    {
+      "label": "Chapter 6: School Life in Class C",
+      "href": "chapter-6.xhtml",
+      "index": 30
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-6-part-1.xhtml",
+      "index": 31
+    },
+    {
+      "label": "Chapter 7: Ayanokouji's Defeat",
+      "href": "chapter-7.xhtml",
+      "index": 32
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-7-part-1.xhtml",
+      "index": 33
+    },
+    {
+      "label": "Part 2",
+      "href": "chapter-7-part-2.xhtml",
+      "index": 34
+    },
+    {
+      "label": "Part 3",
+      "href": "chapter-7-part-3.xhtml",
+      "index": 35
+    },
+    {
+      "label": "Part 4",
+      "href": "chapter-7-part-4.xhtml",
+      "index": 36
+    },
+    {
+      "label": "Part 5",
+      "href": "chapter-7-part-5.xhtml",
+      "index": 37
+    },
+    {
+      "label": "Chapter 8: Enemies and Allies",
+      "href": "chapter-8.xhtml",
+      "index": 38
+    },
+    {
+      "label": "Part 1",
+      "href": "chapter-8-part-1.xhtml",
+      "index": 39
+    },
+    {
+      "label": "Epilogue: What Awaits Ahead",
+      "href": "epilogue.xhtml",
+      "index": 40
+    },
+    {
+      "label": "Part 1",
+      "href": "epilogue-part-1.xhtml",
+      "index": 41
+    },
+    {
+      "label": "Part 2",
+      "href": "epilogue-part-2.xhtml",
+      "index": 42
+    },
+    {
+      "label": "Author's Afterword",
+      "href": "authors-afterword.xhtml",
+      "index": 43
+    },
+    {
+      "label": "Y2V12.75 - Ibuki Mio Short Story: Behind the Scenes",
+      "href": "ss-1.xhtml",
+      "index": 44
+    },
+    {
+      "label": "Part 1",
+      "href": "ss-1-part-1.xhtml",
+      "index": 45
+    },
+    {
+      "label": "Shiraishi Asuka’s Short Story: The Secrets She Harbors",
+      "href": "ss-2.xhtml",
+      "index": 46
+    },
+    {
+      "label": "Morishita Ai’s Short Story: Gatling Gun",
+      "href": "ss-3.xhtml",
+      "index": 47
+    },
+    {
+      "label": "Shiraishi Asuka's Short Story: An Extra Pair of Ears",
+      "href": "ss-4.xhtml",
+      "index": 48
+    },
+    {
+      "label": "Ibuki Mio's Short Story: Concern?",
+      "href": "ss-5.xhtml",
+      "index": 49
+    },
+    {
+      "label": "Guidebook Short Story: A Pillar of Support",
+      "href": "ss-6.xhtml",
+      "index": 50
+    },
+    {
+      "label": "Guidebook Short Story: Mock Date",
+      "href": "ss-7.xhtml",
+      "index": 51
+    },
+    {
+      "label": "Guidebook Short Story: Ever Since That Time...",
+      "href": "ss-8.xhtml",
+      "index": 52
+    },
+    {
+      "label": "LegacyEMTLs Afterword",
+      "href": "afterword.xhtml",
+      "index": 53
+    },
+    {
+      "label": "LegacyEMTLs Credits",
+      "href": "credits.xhtml",
+      "index": 54
+    }
+  ],
+  "currentSpineIndex": 53
+}

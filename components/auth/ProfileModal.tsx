@@ -173,10 +173,10 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         onClick={(e) => e.stopPropagation()}
-                        className="relative w-full max-w-md bg-[#18181b] border border-[#2a2b36] rounded-xl shadow-2xl flex flex-col z-[110] max-h-[90vh] overflow-hidden"
+                        className="relative w-full max-w-lg bg-zinc-950 border border-white/10 rounded-2xl shadow-2xl flex flex-col z-[110] max-h-[85vh] overflow-hidden ring-1 ring-white/10 m-4 sm:m-0"
                     >
 
-                        <div className="flex justify-between items-center p-6 border-b border-[#2a2b36] shrink-0 bg-[#0f0f13]">
+                        <div className="flex justify-between items-center p-5 border-b border-white/5 shrink-0 bg-white/[0.02]">
                             <h2 className="text-xl font-bold text-white font-serif flex items-center gap-2">
                                 <User className="h-5 w-5 text-[#a855f7]" />
                                 Profile Settings
@@ -187,7 +187,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                         </div>
 
 
-                        <div className="p-6 space-y-8 overflow-y-auto custom-scrollbar bg-[#0f0f13]">
+                        <div className="p-4 sm:p-6 space-y-6 overflow-y-auto custom-scrollbar bg-black/20">
 
 
                             {message && (
@@ -203,7 +203,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
 
                             <div className="flex flex-col items-center space-y-4">
                                 <div className="relative group">
-                                    <div className="h-24 w-24 rounded-full overflow-hidden border-2 border-[#2a2b36] bg-[#18181b]">
+                                    <div className="h-24 w-24 rounded-full overflow-hidden border-4 border-white/5 bg-black/40 shadow-xl ring-1 ring-white/10 group-hover:border-white/10 transition-all">
                                         {avatarUrl ? (
                                             <img src={avatarUrl} alt="Avatar" className="h-full w-full object-cover" />
                                         ) : (
@@ -239,7 +239,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                                 </button>
                             </div>
 
-                            <hr className="border-[#2a2b36]" />
+                            <div className="h-px bg-white/5 w-full" />
 
 
                             <div className="space-y-4">
@@ -251,11 +251,10 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                                     </label>
                                     <div className="flex gap-2">
                                         <input
-                                            type="text"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
                                             disabled={isUsernameFixed}
-                                            className={`flex-1 bg-[#18181b] border border-[#2a2b36] rounded-lg p-2.5 text-white focus:outline-none focus:border-[#a855f7] transition-colors ${isUsernameFixed ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                            className={`flex-1 bg-white/5 border border-white/10 rounded-xl p-3 text-white placeholder-white/30 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all ${isUsernameFixed ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/10'}`}
                                             placeholder="Enter username"
                                         />
                                         {!isUsernameFixed && (
@@ -272,7 +271,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                                 </div>
                             </div>
 
-                            <hr className="border-[#2a2b36]" />
+                            <div className="h-px bg-white/5 w-full" />
 
 
                             <div className="space-y-4">
@@ -286,7 +285,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                                                 type="password"
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
-                                                className="w-full bg-[#18181b] border border-[#2a2b36] rounded-lg p-2.5 pl-9 text-white focus:outline-none focus:border-[#a855f7] transition-colors"
+                                                className="w-full bg-white/5 border border-white/10 rounded-xl p-3 pl-10 text-white placeholder-white/30 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all hover:bg-white/10"
                                                 placeholder="••••••••"
                                             />
                                         </div>
@@ -301,7 +300,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                                 </div>
                             </div>
 
-                            <hr className="border-[#2a2b36]" />
+                            <div className="h-px bg-white/5 w-full" />
 
 
                             <div className="space-y-4">
@@ -319,7 +318,8 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                                 </Button>
                             </div>
 
-                            <hr className="border-[#2a2b36]" />
+
+                            <div className="h-px bg-white/5 w-full" />
 
 
                             <div className="space-y-4">
@@ -433,7 +433,6 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
                                     </motion.div>
                                 )}
                             </div>
-
                         </div>
                     </motion.div>
                 </div>

@@ -1,0 +1,107 @@
+{
+  "title": "Table of Contents",
+  "content": "\r\n<div xmlns=\"http://www.w3.org/1999/xhtml\" id=\"book-columns\"><div xmlns=\"http://www.w3.org/1999/xhtml\" id=\"book-inner\">\r\n<p id=\"tableofcontents\" class=\"P_TOC_Heading\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.1.1\">Table of Contents</span></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/3\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.2.1\">Character Gallery</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/8\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.3.1\">Title Page</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/9\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.4.1\">Copyrights and Credits</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/10\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.5.1\">Table of Contents Page</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/11\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.6.1\">Chapter 1: Hashimoto Masayoshi’s Soliloquy</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/12\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.7.1\">Chapter 2: The Curtain Rises on the Third Semester of the Second Year</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/13\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.8.1\">Chapter 3: Survival and Elimination Special Exam</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/16\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.9.1\">Chapter 4: The Identity of the Sender</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/17\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.10.1\">Chapter 5: Advice</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/18\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.11.1\">Chapter 6: Game Changer</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/19\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.12.1\">Chapter 7: Quadrilateral of Offense and Defense</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/32\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.13.1\">Chapter 8: New Expulsion</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/39\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.14.1\">Chapter 9: Harbinger of Awakening</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/40\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.15.1\">Postscript</span></a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/y2v10/41\"><span xmlns=\"http://www.w3.org/1999/xhtml\" class=\"koboSpan\" id=\"kobo.16.1\">Newsletter</span></a></p>\r\n</div>\r\n</div>\r\n",
+  "prevChapter": {
+    "volumeId": "y2v10",
+    "chapter": 1,
+    "title": "Chapter 1"
+  },
+  "nextChapter": {
+    "volumeId": "y2v10",
+    "chapter": 3,
+    "title": "Character Gallery"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/section-0001.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0002.html",
+      "index": 3
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0007.html",
+      "index": 8
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0008.html",
+      "index": 9
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0009.html",
+      "index": 10
+    },
+    {
+      "label": "Chapter 1 - Prologue : Hashimoto Masayoshi’s Soliloquy",
+      "href": "Text/section-0010.html#auto_bookmark_toc_10",
+      "index": 11
+    },
+    {
+      "label": "Chapter 2: The Curtain Rises on the Third Semester of the Second Year",
+      "href": "Text/section-0011.html#auto_bookmark_toc_11",
+      "index": 12
+    },
+    {
+      "label": "Chapter 3: Survival and Elimination Special Exam",
+      "href": "Text/section-0012.html#auto_bookmark_toc_12",
+      "index": 13
+    },
+    {
+      "label": "Chapter 4: The Identity of the Sender",
+      "href": "Text/section-0015.html#auto_bookmark_toc_15",
+      "index": 16
+    },
+    {
+      "label": "Chapter 5: Advice",
+      "href": "Text/section-0016.html#auto_bookmark_toc_16",
+      "index": 17
+    },
+    {
+      "label": "Chapter 6: Game Changer",
+      "href": "Text/section-0017.html#auto_bookmark_toc_17",
+      "index": 18
+    },
+    {
+      "label": "Chapter 7: Quadrilateral of Offense and Defense",
+      "href": "Text/section-0018.html#auto_bookmark_toc_18",
+      "index": 19
+    },
+    {
+      "label": "Chapter 8: New Expulsion",
+      "href": "Text/section-0031.html#auto_bookmark_toc_31",
+      "index": 32
+    },
+    {
+      "label": "Short Story",
+      "href": "OEBPS/Text/section-0037.html",
+      "index": 38
+    },
+    {
+      "label": "Chapter 9 - Epilogue : Harbinger of Awakening",
+      "href": "Text/section-0038.html#auto_bookmark_toc_38",
+      "index": 39
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0039.html#auto_bookmark_toc_39",
+      "index": 40
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0040.html",
+      "index": 41
+    },
+    {
+      "label": "Newsletter",
+      "href": "OEBPS/Text/nav.xhtml",
+      "index": 42
+    }
+  ],
+  "currentSpineIndex": 2
+}

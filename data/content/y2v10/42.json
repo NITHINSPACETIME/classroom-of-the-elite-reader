@@ -1,0 +1,102 @@
+{
+  "title": "Newsletter",
+  "content": "\n    <nav epub:type=\"toc\" id=\"toc\">\n  <h1>Table of Contents</h1>\n  <ol>\n    <li><a href=\"/read/y2v10/2\">Table of Contents</a></li>\n    <li><a href=\"/read/y2v10/3\">Character Gallery</a></li>\n    <li><a href=\"/read/y2v10/8\">Title Page</a></li>\n    <li><a href=\"/read/y2v10/9\">Copyrights and Credits</a></li>\n    <li><a href=\"/read/y2v10/10\">Table of Contents Page</a></li>\n    <li><a href=\"/read/y2v10/11\">Chapter 1: Hashimoto Masayoshi’s Soliloquy</a></li>\n    <li><a href=\"/read/y2v10/12\">Chapter 2: The Curtain Rises on the Third Semester of the Second Year</a></li>\n    <li><a href=\"/read/y2v10/13\">Chapter 3: Survival and Elimination Special Exam</a></li>\n    <li><a href=\"/read/y2v10/16\">Chapter 4: The Identity of the Sender</a></li>\n    <li><a href=\"/read/y2v10/17\">Chapter 5: Advice</a></li>\n    <li><a href=\"/read/y2v10/18\">Chapter 6: Game Changer</a></li>\n    <li><a href=\"/read/y2v10/19\">Chapter 7: Quadrilateral of Offense and Defense</a></li>\n    <li><a href=\"/read/y2v10/32\">Chapter 8: New Expulsion</a></li>\n    <li><a href=\"/read/y2v10/39\">Chapter 9: Harbinger of Awakening</a></li>\n    <li><a href=\"/read/y2v10/40\">Postscript</a></li>\n    <li><a href=\"/read/y2v10/41\">Newsletter</a></li>\n  </ol>\n</nav>\n<nav epub:type=\"landmarks\" id=\"landmarks\" hidden=\"\">\n      <h2>Guide</h2>\n      <ol>\n        <li>\n          <a epub:type=\"cover\" href=\"../Images/1.png\">Cover Page</a>\n        </li>\n        <li>\n          <a epub:type=\"toc\" href=\"../Images/1.png\">Table of Contents</a>\n        </li>\n      </ol>\n    </nav>\n",
+  "prevChapter": {
+    "volumeId": "y2v10",
+    "chapter": 41,
+    "title": "Newsletter"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/section-0001.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0002.html",
+      "index": 3
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0007.html",
+      "index": 8
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0008.html",
+      "index": 9
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0009.html",
+      "index": 10
+    },
+    {
+      "label": "Chapter 1 - Prologue : Hashimoto Masayoshi’s Soliloquy",
+      "href": "Text/section-0010.html#auto_bookmark_toc_10",
+      "index": 11
+    },
+    {
+      "label": "Chapter 2: The Curtain Rises on the Third Semester of the Second Year",
+      "href": "Text/section-0011.html#auto_bookmark_toc_11",
+      "index": 12
+    },
+    {
+      "label": "Chapter 3: Survival and Elimination Special Exam",
+      "href": "Text/section-0012.html#auto_bookmark_toc_12",
+      "index": 13
+    },
+    {
+      "label": "Chapter 4: The Identity of the Sender",
+      "href": "Text/section-0015.html#auto_bookmark_toc_15",
+      "index": 16
+    },
+    {
+      "label": "Chapter 5: Advice",
+      "href": "Text/section-0016.html#auto_bookmark_toc_16",
+      "index": 17
+    },
+    {
+      "label": "Chapter 6: Game Changer",
+      "href": "Text/section-0017.html#auto_bookmark_toc_17",
+      "index": 18
+    },
+    {
+      "label": "Chapter 7: Quadrilateral of Offense and Defense",
+      "href": "Text/section-0018.html#auto_bookmark_toc_18",
+      "index": 19
+    },
+    {
+      "label": "Chapter 8: New Expulsion",
+      "href": "Text/section-0031.html#auto_bookmark_toc_31",
+      "index": 32
+    },
+    {
+      "label": "Short Story",
+      "href": "OEBPS/Text/section-0037.html",
+      "index": 38
+    },
+    {
+      "label": "Chapter 9 - Epilogue : Harbinger of Awakening",
+      "href": "Text/section-0038.html#auto_bookmark_toc_38",
+      "index": 39
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0039.html#auto_bookmark_toc_39",
+      "index": 40
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0040.html",
+      "index": 41
+    },
+    {
+      "label": "Newsletter",
+      "href": "OEBPS/Text/nav.xhtml",
+      "index": 42
+    }
+  ],
+  "currentSpineIndex": 42
+}

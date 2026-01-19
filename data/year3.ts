@@ -11,6 +11,8 @@ export interface VolumeData {
     characters: string[];
     coverImage: string;
     epubSource?: string;
+    customChapters?: Record<number, string>;
+    inProgress?: boolean;
 }
 
 export const volumes: VolumeData[] = [
@@ -83,5 +85,63 @@ export const volumes: VolumeData[] = [
         characters: ["Honami Ichinose", "Hiyori Shiina"],
         coverImage: "/assets/y3v3.jpg",
         epubSource: "/books/year3/y3v3.epub"
+    }
+];
+
+export const shortStories: VolumeData[] = [
+    {
+        id: "ss-y3-v1",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 1",
+        releaseDateJP: "Mar 25, 2025",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Ibuki Mio : Concern?",
+            "Shiraishi Asuka : The Secrets She Harbors",
+            "Morishita Ai : Gatling Gun",
+            "Shiraishi Asuka : An Extra Pair of Ears",
+            "Haruka Hasebe : A Pillar of Support"
+        ],
+        characters: ["Mio Ibuki", "Asuka Shiraishi", "Ai Morishita", "Haruka Hasebe"],
+        coverImage: "/assets/y3v1.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y3-v2",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 2",
+        releaseDateJP: "Jul 25, 2025",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Ichinose Honami : To Love Too Much...",
+            "Morishita Ai : Ear Gun",
+            "Shiina Hiyori : A Wavering Heart",
+            "Shiraishi Asuka : The Voice Hidden Within",
+            "Special : The Six First-Year Students"
+        ],
+        characters: ["Honami Ichinose", "Ai Morishita", "Hiyori Shiina", "Asuka Shiraishi"],
+        coverImage: "/assets/y3v2.jpg",
+        inProgress: true,
+    },
+    {
+        id: "ss-y3-v3",
+        volumeNumber: "SS",
+        title: "Short Stories: Volume 3",
+        releaseDateJP: "Nov 25, 2025",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Morishita Ai : Honor",
+            "Horikita Suzune : Contradiction",
+            "Shiraishi Asuka : Colorless and Transparent"
+        ],
+        characters: ["Ai Morishita", "Suzune Horikita", "Asuka Shiraishi"],
+        coverImage: "/assets/y3v3.jpg",
+        inProgress: true,
     }
 ];

@@ -1,0 +1,112 @@
+{
+  "title": "Table of Contents",
+  "content": "\r\n<h3 class=\"P_TOC_Heading\"><a id=\"tableofcontents\"></a>Table of Contents</h3>\r\n\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/3\">Character Gallery</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/4\">Table of Contents Page</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/5\">Title Page</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/6\">Credits and Copyright</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/7\">Chapter 1:  The Structure of Japanese Society</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/8\">Chapter 2: Welcome to the School Life of Your Dreams</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/9\">Chapter 3: The Students of Class D</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/10\">Chapter 4: Ladies and Gentlemen, Thank You for Waiting</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/11\">Chapter 5: Friends</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/12\">Chapter 6: The End of Everyday Life</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/13\">Chapter 7: Classroom of the Elite</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/14\">Chapter 8: The Association of Failures</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/15\">Chapter 9: The Failures Mobilize Once Again</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/16\">Chapter 10: Midterm Exam</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/17\">Chapter 11: The Beginning</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/18\">Chapter 12: Victory Celebration</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/19\">Postscript</a></p>\r\n<p class=\"P_TOC_Entry_1\"><a href=\"/read/v1/20\">Newsletter</a></p>\r\n",
+  "prevChapter": {
+    "volumeId": "v1",
+    "chapter": 1,
+    "title": "Chapter 1"
+  },
+  "nextChapter": {
+    "volumeId": "v1",
+    "chapter": 3,
+    "title": "Character Gallery"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Credits and Copyright",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue :  The Structure of Japanese Society",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: Welcome to the School Life of Your Dreams",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: The Students of D Class",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Ladies and Gentlemen, Thank You for Waiting",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: Friends",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: The End of Everyday Life",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7: Classroom of the Elite",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Chapter 8: The Association of Failures",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Chapter 9: The Failures Mobilize Once Again",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Chapter 10: Midterm Exam",
+      "href": "Text/section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    },
+    {
+      "label": "Chapter 11: The Beginning",
+      "href": "Text/section-0015.html#auto_bookmark_toc_top",
+      "index": 17
+    },
+    {
+      "label": "Chapter 12 - Epilogue : Victory Celebration",
+      "href": "Text/section-0016.html#auto_bookmark_toc_top",
+      "index": 18
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0017.html#auto_bookmark_toc_top",
+      "index": 19
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0018.html#auto_bookmark_toc_top",
+      "index": 20
+    }
+  ],
+  "currentSpineIndex": 2
+}

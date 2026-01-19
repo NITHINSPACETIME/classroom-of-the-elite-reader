@@ -1,0 +1,87 @@
+{
+  "title": "Newsletter",
+  "content": "\n<div class=\"p.P_Centre\">\n<p/>\n<p class=\"P_TEXTBODY_CENTERALIGN\" id=\"auto_bookmark_toc_top\"><img alt=\"\" id=\"sevenseaslogo\" src=\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwcIBwoICAoPCggKDxINCgoNEhQQEBIQEBQRDAwMDAwMEQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAALCACWAGEBAREA/8QAHAAAAQUBAQEAAAAAAAAAAAAAAAMEBQYIBwIB/8QARxAAAQMCBAEGBw0HAwUAAAAAAgEDBAAFBhESEyIHFCEjMlIxMzVCYnSyFRY0QUNVcnOCkpSx0kRRU2GDoqNxk6FjhLPB4v/aAAgBAQAAPwDjNFFFFFFFFFFFFFaujYPwmUZoiskFVUBVVWM1+5PQpT3m4S+ZIH4Zr9FHvNwl8yQPwzX6KPebhL5kgfhmv0Ue83CXzJA/DNfoo95uEvmSB+Ga/RR7zcJfMkD8M1+ij3m4S+ZIH4Zr9FHvNwl8yQPwzX6KPedhL5kgfhmv0Vle6AAXOYACggL7giKJkiIhkiIiU1orY0T4Kz9WP5JS1FFR96vUCxwDuNxIwhtqiOuABOadS5IRi0hFo1edUXaOUDCd6nM2+1zucy3tSi2Lbg5IAq4RGroAg9mrJRRRWPrv5WnesO+2VNKK2NE+Cs/Vj+SUtRRUZiGzLe7U/bFluw2pKaHnGEDWTapkbWbgnpE/O01ScM8nNtwpjWI7BlPSEdhSTIH0HMdJx2kJDbQO3vF5ldJprAmpMbdcQNCNvPMZZ557LhM6vtaKdUVj67+Vp3rDvtlTSitjRPgrP1Y/klLUU2uFxg22I5NnvhGitJm464ukU/8ApfNGucyuXOyLOCHardJuCuGjbZootayJdIo0Ba3C1L3xbqCxjysybbizcszDLpRY3M5SSMzFHVNHXwaJk2/FGIsk52T26atcv19Tx1rin9AnA9onK6JyZX+df7E9PkQxisnKfVhRNTVxXHDfdLJRDSDZu7Q9/RU7YXXngnm6ZHlOkAGpVXSIHtoA5+AU0VK1j67+Vp3rDvtlTSitjRPgrP1Y/klLV8rNXKfjd/E17cjx3FSzQTVuK2i8JkPCcku8Tnyfca+3VasFwS2XRq4JluRhccYVfieRs+bl9h7bOo5VUlVVXNV6VVfDnRVkbx9ieLaodot0w7fChgoiMZdBGRETpuuOp1moiPvaKe4TxZjt+8xLZbbu8Ls2Rl12ToanC1OumLyHn5zh1paODzbDYPu7zwiiOPaUDWSJxHoHhDV3ayHd/K071h32yppRWxonwVn6sfySlqg8az3LdhK8TGl0utxXUbJPiIh2wL7JHWWLfbpVwf2Yw5qIqbrhLpbbbHtuvOFwttB3yrpGGMB25/C10usl1tph2O6zbpklUZR59EXJ5veUNmKLg7TOrrX+N13R4mqHEw+/KbU0mQWVQiBQelMtlmK6V7R9nun59KnhG+oKmwy3MBOnOG+zJXL6EZx1z+ynkPDeHFs7E+6YhGDMeU09zkjG+6GklFCc23B0CY8Y6xClsGAzbcVWi5NSmpUZqUIvIGoXQAiVjcNh0QLToPc6rd0efWoKx9d/K071h32yppRWxonwVn6sfySlqgccMQ5GE7pHmyghRnWVE5TmaiHSmldKcR8XZbHt1wS3+593l+5EFDg4SgCsu6ySy3322e0/KIflXSXZhRQ6phx3z3Nx2ofFOJpOIJ6OKPN7dHFGbdAFerYYHhbAR7+lOsc8+oSihVVVzVc1/etT2CMPriLE8G1KattOEpvuD0ELbaK65oXvlp0BWq2mxaaBoM1FsUEVJVIshTLiMsyIvSKsg3fytO9Yd9sqaUVsaJ8FZ+rH8kpK6XSBaYD1wuDwsRGB1OOF/wAIiecZdkAGs24/5QZ+LpugdUezsEvNYmfhXwb7+XadL/F/ebKW6lrwnFt7fRKvJ89mr8fN2SJmCx9EnRkSi/7eq7RU7YrIzcLHf57hIBW1hlxoiXJNTjwgo/SJtHBCnkZjk2SOIS5d3OVp4nWmY4tIWXmtm6bun7dPMBXSy4dxfbbgU7chOAbcoiaMCZJxshyIU3BcEXdPG2X2ArSoGJgJj0iSISZoqdC9PgWsgXfytO9Yd9sqaUVryRcoNqs/uhPeFiJHaEnXC8CJknQneIuyA1nXHeObpjS47cdtwLUwS80hiiqq/FvvIGep4v8AF2O/rrJWa8COooEhB7ysmiezSU2W9LdA3ehWm22QH9wtALQp/bSFFSEa4mxZZ9vFcuePRyNP3iyj65ffdCo+r/yM4fj3fFnOZQI4xbG+coBdKK7qQGM/oEpO/wBOtG1j67+Vp3rDvtlTSitQXkbE61ELE8IzgRxEmXj1PQkJRRNyS234s/N1y2dlvzHasFsS0rEA7SkfmZJ1ZRdG2qeirPBSk+RzWDJk/wABo3PuCp/+qyvacH4qvyK/bra/JbNVXfy0Nqq+HrnVBsvv09uXJrjG2DFWZBQFmvhFjAjzRETziEoN5C4unsFxFwUwueDcVWoVKfaZLLY+F3bU20/qt62/7qhaK6byE3NqNiiVBcXJZ0ZUa/mbRI5p/wBvdKu/1j67+Vp3rDvtlTSitjRUzisovg2x9lKoWM8DXCOh33BDq2u6NIRyYkZVBuUicXikXY3h4uEmuu8+uL33HOJ73LalTZhNvssrHzYzZQgVVVzcBtUEic1dZ5lOXuUzGb9oK0O3BVjlpRHBEW3hEFzQAeaRstPRSBcoGLHG4YSZ5SeYO84iG8iGYO6CaE91U3D0bmodwjqYhcs2O4qILkpqWifx2Qz+8zslUDiPFs3EE9me/EhxX2clzisCGskXVrf17hPf1OCr/L5WsOSMIe5z1sOTeTiow6ZssgzukG25IEg1adJ9YAgyH9OqMuLI6TGLjFtEa3XOMYuMSYJONDqFejcjOG+yQF54gLWutMWC4SbnZYNxksjHelsg8TLZ7gohprDJzSHhBdXo1k+7+Vp3rDvtlTSitiMGjcFtwkVUBoSVBRSLoHzQHMiX6NQLPKNgp2QUZbs2xIEtJtyRcjqJJ0aS5yDWlao+LeSKyyrVcb5YZLjs4ydmNtCQGwYqqumwzoHu+K6yuQ2q2R55EDk5qKaLkIOZoRfRItDH33gp9Iww0y+sYrnHZlIiLsSwejEqL0iqG40sfSXmnv6Kjp1nuUEUckMLsF0DIbUXWS+hIZVxkvv0tbbVEnN9M4GpSlkMUhyIk+JQddJpjp7m7rr69ZQakFFclhHlAuRMSwcYJF8PTmBtj9tymsy2ToSCUhpRaPxbwqhtH9W82ptH9k60zyZvm/gSym52kY20/wBGzNoP7ArM938rTvWHfbKmlFdgs3L26yyDN2tSOKAoO9Fc055Jl4l1D/8ANVL5RMXW7Fl4auEGCUPQyjTpGoqbioqqJHo4eAeCoay4lvtid3bTOdiqvSQCubZfWMnqac+2FIc7hOEpPw+IlVVVlxW81X0TR8fu17ud1KczDjC0jUaC2TUcVJTPIzV09x0stXGfCIiDYdykYNyn29xXIT5skSZGgrwkndcbXgdD0HBp+d4tcoV5/aWt5f2iEaxSX+ZM6X4n+1HapK8Xdq4NQWGmSbbgMqwDjriOvGOs3RRxwQZHQ1ubbIaOrbpnGmyYyGDRqjTnQ60vE2aem2XAVdVw/wAuTVutbMGVZQTmzaNs80PbbyFMhTacFzR9LcOuUS31kynpCjpV5wnFHw5a1Usv+aSooooooooooooop1a4rcy5w4jp7bUh9to3O6JmIEXT3UKrPcbk5h/EyAsBhLSyYikFxkCFQbXbdzMk3edNug5qe3N3eqoOEhOESeBVVUz/AJrXmiiirhiQXcOTIjFvjsrBaaBDJ1oHRkGqI6ZSdwS3BfacbcbHsbJ9TVbvExmddJUxhpGWX3CcbZTwAhLmjY+HhDsjTOiiiir5abnGxi0Nluwp7uacoc1OjnKgPCzI7k7bDRHl/tHAxL3OCq4uFbquZCIo0UkoUYzJA33h+TZEl9IPQ49GvXXpjCN6fbjONg2oypCRG0VwUUX1Qi2XhJepLqnPG0ixhq6PsDIbRvYdf5pGdUxQXn/4UdV8Z4e34r069RsL3aTGOUAtgy08keQrjggrThKoCLwnxBxjpqPnQpMCY9ClBokMEoODmi5Kn7iHhKrVh7EES5xmcOYg07SojEC4l0q1mvVRpf8AFhay6tzx8H5E9vgqNuOELlDl3AFFGotvMAkPvEgiBudDbKl8o7qQh6sfM3eBumrOG7mcl+K4jcd+OYtONvGIrqPsaBTURgva3R6n/qV7YwteHXZjRtgwtvcFmWbxiAgZntAKln2SNfGeK751FPsmw+4w5lraIgLJc0zFdK5LXilYpttymXHU1NAYk4OWeYoqKSZf6VYmZOFbfiBm8wJMk4kZ5JTMBxpAe1AW42wTwGbG1qTif7e38hSzmMed2mPGcefgzGJj0s3oqIqGL2kkEONtWnGSHq6ZQcUuw4d3ighmlwzJgnS3DbNS4nic4ev2iPrRHtmffpeNidocOwrUj0iDIhSXH9+PkW4DiDknba23WiHhryzf7aFpkxTKSUiRObm6jQXOhsj4HXlcAnXTQ9W5tduo/E1xi3S9yrhE1ozIVCQXRQSRUFBy4CcHze9TqeGE5L7MmNLfjAoNpLjEwikhiIo8UQwc2yBw0LRv7OipaZjsLixeGnEdguXCS1IjPM8ehtpFb2HU1N6tQaT3f4tIx8V24bbKjunMKU9MjSilEom68EcFbJp55TEm+ItTYdc22FPUxlaG8QzrtGflNhMeEnGDYbcbNhQ0PMuNK9p1f4nflKpU96O/OkvRWtiM46ZssZ56AIlIG8/QHhpCiiiiiiiiiiiiiv/Z\" loading=\"lazy\" decoding=\"async\" style=\" top: 0px; vertical-align: top;\"/></p>\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-weight: bold; font-size: 1.50em;\">Thank you for reading!</span></p>\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.00em;\">Get the latest news about your favorite Seven Seas books and brand-new licenses delivered to your inbox every week:</span></p>\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.25em;\"><a href=\"http://www.gomanga.com/newsletter/\">Sign up for our newsletter!</a></span></p>\n\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.00em;\">Or visit us online:</span></p>\n<p class=\"P__STAR__STAR__STAR__page_break\"><span style=\"font-size: 1.25em;\"><a href=\"http://www.gomanga.com/newsletter/\">gomanga.com/newsletter</a></span></p>\n</div>\n",
+  "prevChapter": {
+    "volumeId": "y2v4",
+    "chapter": 15,
+    "title": "Postscript"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "Text/TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "Text/section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Title Page",
+      "href": "Text/section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "Text/section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "Text/section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Amasawa Ichika's Soliloquy",
+      "href": "Text/section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: Secret Maneuvers",
+      "href": "Text/section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: Just Keep Going and Keep Quiet",
+      "href": "Text/section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Fighting Against Solitude",
+      "href": "Text/section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: Under Siege: Kouenji VS. The Free Groups",
+      "href": "Text/section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: Each and Every Calculation",
+      "href": "Text/section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7: The Man Called Tsukishiro",
+      "href": "Text/section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Chapter 8 - Epilogue : Announcement of the Results",
+      "href": "Text/section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Postscript",
+      "href": "Text/section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    },
+    {
+      "label": "Newsletter",
+      "href": "Text/section-0014.html#auto_bookmark_toc_top",
+      "index": 16
+    }
+  ],
+  "currentSpineIndex": 16
+}

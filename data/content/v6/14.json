@@ -1,0 +1,87 @@
+{
+  "title": "Postscript",
+  "content": "\r\n<p class=\"P__STAR__STAR__STAR__page_break\" id=\"auto_bookmark_toc_top\"><span style=\" font-weight: bold; font-size: 1.17em;\">Postscript</span></p>\r\n<p class=\"P_Prose_Formatting\"> </p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-weight: bold; font-size: 2.40em;\">W</span><span style=\" font-size: 0.80em;\">ELL, THAT’S ALL</span><span style=\" font-size: 1.00em;\"> for Volume 6. </span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Syougo Kinugasa here. Lately, I’ve been pretty worried about an epidermoid cyst on my body, which has grown to about the size of a golf ball. Scary. </span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Next up, the seventh volume of </span><span style=\" font-style: italic; font-size: 1.00em;\">Classroom of the Elite</span><span style=\" font-size: 1.00em;\">. The sixth volume was a kind of calm before the storm, giving me a chance to explore each character’s internal changes. The seventh volume will greatly advance the story. It will include things like a look into Ayanokouji Kiyotaka’s past, and a decisive battle with a certain enemy. </span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">And then…yes, there will be an anime adaptation of </span><span style=\" font-style: italic; font-size: 1.00em;\">Classroom</span><span style=\" font-size: 1.00em;\">. That’s thanks to all of you, and you have my utmost gratitude. Tomoseshunsaku-sama and I are both overjoyed, especially since we recently celebrated ten years of (metaphorically) licking each other’s wounds. I’ll definitely have the seventh volume out by the time the anime starts broadcasting! (I’ve never had a confident declaration like that go well for me, but there’s a first time for everything.)</span></p>\r\n<p class=\"P_Prose_Formatting\"><span style=\" font-size: 1.00em;\">Including the editors, publishers, anime producers, and everyone else, a lot of people are involved with this project now, and I’ll do my absolute best to ensure that their efforts aren’t wasted. Again, thank you. I’m looking forward to working with you all.</span></p>\r\n",
+  "prevChapter": {
+    "volumeId": "v6",
+    "chapter": 13,
+    "title": "Chapter 7 - Epilogue : A Difference in Determination"
+  },
+  "nextChapter": {
+    "volumeId": "v6",
+    "chapter": 15,
+    "title": "Newsletter"
+  },
+  "toc": [
+    {
+      "label": "Table of Contents",
+      "href": "TableOfContents.html#tableofcontents",
+      "index": 2
+    },
+    {
+      "label": "Character Gallery",
+      "href": "section-0001.html#auto_bookmark_toc_top",
+      "index": 3
+    },
+    {
+      "label": "Table of Contents Page",
+      "href": "section-0002.html#auto_bookmark_toc_top",
+      "index": 4
+    },
+    {
+      "label": "Title Page",
+      "href": "section-0003.html#auto_bookmark_toc_top",
+      "index": 5
+    },
+    {
+      "label": "Copyrights and Credits",
+      "href": "section-0004.html#auto_bookmark_toc_top",
+      "index": 6
+    },
+    {
+      "label": "Chapter 1 - Prologue : Kushida Kikyou’s Soliloquy",
+      "href": "section-0005.html#auto_bookmark_toc_top",
+      "index": 7
+    },
+    {
+      "label": "Chapter 2: The Changing Class D",
+      "href": "section-0006.html#auto_bookmark_toc_top",
+      "index": 8
+    },
+    {
+      "label": "Chapter 3: The Paper Shuffle",
+      "href": "section-0007.html#auto_bookmark_toc_top",
+      "index": 9
+    },
+    {
+      "label": "Chapter 4: Class C Makes Its Move",
+      "href": "section-0008.html#auto_bookmark_toc_top",
+      "index": 10
+    },
+    {
+      "label": "Chapter 5: A Means of Escape",
+      "href": "section-0009.html#auto_bookmark_toc_top",
+      "index": 11
+    },
+    {
+      "label": "Chapter 6: The Ayanokouji Group’s Formation",
+      "href": "section-0010.html#auto_bookmark_toc_top",
+      "index": 12
+    },
+    {
+      "label": "Chapter 7 - Epilogue : A Difference in Determination",
+      "href": "section-0011.html#auto_bookmark_toc_top",
+      "index": 13
+    },
+    {
+      "label": "Postscript",
+      "href": "section-0012.html#auto_bookmark_toc_top",
+      "index": 14
+    },
+    {
+      "label": "Newsletter",
+      "href": "section-0013.html#auto_bookmark_toc_top",
+      "index": 15
+    }
+  ],
+  "currentSpineIndex": 14
+}

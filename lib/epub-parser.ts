@@ -58,23 +58,24 @@ const LOCAL_DIRS = [
 async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuffer | null> {
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
     const CACHE_DIR = path.join(baseDir, '.cache', 'cote', 'downloads');
-    if (!fs.existsSync(CACHE_DIR)) {
-        try {
-            fs.mkdirSync(CACHE_DIR, { recursive: true });
-        } catch (e) {
-        }
-    }
-    const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
-
-    if (fs.existsSync(cachedFile)) {
-        try {
-            const buffer = fs.readFileSync(cachedFile);
-            if (buffer.length > 0) {
-
-                return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
+    if (!process.env.VERCEL) {
+        if (!fs.existsSync(CACHE_DIR)) {
+            try {
+                fs.mkdirSync(CACHE_DIR, { recursive: true });
+            } catch (e) {
             }
-        } catch (e) {
+        }
+        const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
+        if (fs.existsSync(cachedFile)) {
+            try {
+                const buffer = fs.readFileSync(cachedFile);
+                if (buffer.length > 0) {
 
+                    return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
+                }
+            } catch (e) {
+
+            }
         }
     }
 
@@ -187,19 +188,23 @@ async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuf
         }
     }
 
-    if (resultBuffer) {
+    if (resultBuffer && !process.env.VERCEL) {
         try {
+            if (!fs.existsSync(CACHE_DIR)) {
+                fs.mkdirSync(CACHE_DIR, { recursive: true });
+            }
+            const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
             fs.writeFileSync(cachedFile, Buffer.from(resultBuffer));
         } catch (e) {
         }
-        return resultBuffer;
     }
+    if (resultBuffer) return resultBuffer;
 
     return null;
 }
 
 
-async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise<VolumeStructure | null> {
+export async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise<VolumeStructure | null> {
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
     const CACHE_DIR = path.join(baseDir, '.cache', 'cote', volumeId);
     const cacheFile = path.join(CACHE_DIR, 'structure.json');
@@ -417,6 +422,19 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         }
     }
 
+
+    // Check for pre-generated content in data/content
+    const preGeneratedDir = path.join(process.cwd(), 'data', 'content', volumeId);
+    const preGeneratedFile = path.join(preGeneratedDir, `${chapterIndex}.json`);
+
+    if (fs.existsSync(preGeneratedFile)) {
+        try {
+            const cached = JSON.parse(fs.readFileSync(preGeneratedFile, 'utf-8'));
+            return cached;
+        } catch (e) {
+            console.error(`Error reading pre-generated file for ${volumeId}:${chapterIndex}`, e);
+        }
+    }
 
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
     const CACHE_DIR = path.join(baseDir, '.cache', 'cote', volumeId);

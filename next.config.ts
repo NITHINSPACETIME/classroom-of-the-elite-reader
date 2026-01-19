@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
 
     reactStrictMode: true,
     poweredByHeader: false,
+    compress: true,
+    images: {
+        qualities: [60, 75],
+    },
     serverExternalPackages: ['jszip'],
     outputFileTracingExcludes: {
         '*': [
