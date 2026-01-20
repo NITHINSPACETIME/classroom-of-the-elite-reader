@@ -271,17 +271,56 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     let rawIndex = chapterIndex - 1;
 
     if (isLogical) {
-        const storyChapters = toc.filter(t => isStoryChapter(t.label));
-        const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
+        // Try to match by title first (most robust)
+        if (volume && volume.chapters && volume.chapters[chapterIndex - 1]) {
+            const expectedTitle = volume.chapters[chapterIndex - 1];
 
-        const targetTocItem = mappingCandidates[chapterIndex - 1];
+            // Normalize expected title (e.g. "Chapter 1: The Beginning" -> "chapter 1")
+            const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const expectedSimple = normalize(expectedTitle);
 
-        if (targetTocItem) {
-            rawIndex = targetTocItem.index - 1;
-            chapterIndex = targetTocItem.index;
+            // Try to find a TOC item that matches
+            const match = toc.find(t => {
+                const labelSimple = normalize(t.label);
+
+                // Direct match
+                if (labelSimple.includes(expectedSimple) || expectedSimple.includes(labelSimple)) return true;
+
+                // Chapter number match
+                const chNumMatch = expectedTitle.match(/Chapter\s+(\d+)/i);
+                if (chNumMatch) {
+                    const num = chNumMatch[1];
+                    // Check if TOC label is "Chapter X" or "X. Title"
+                    if (t.label.match(new RegExp(`Chapter\\s+${num}`, 'i'))) return true;
+                    if (t.label.match(new RegExp(`^${num}\\.`, 'i'))) return true;
+                }
+
+                return false;
+            });
+
+            if (match) {
+                rawIndex = match.index - 1;
+                // Update chapterIndex to reflect true structure if needed, or keep as is.
+                // We keep chapterIndex as passed to consistent with URL
+            } else {
+                // Fallback to old "story chapter" counting logic if title match fails
+                const storyChapters = toc.filter(t => isStoryChapter(t.label));
+                const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
+                const targetTocItem = mappingCandidates[chapterIndex - 1];
+                if (targetTocItem) {
+                    rawIndex = targetTocItem.index - 1;
+                }
+            }
         } else {
+            // Fallback if volume structure not found in data
+            const storyChapters = toc.filter(t => isStoryChapter(t.label));
+            const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
+            const targetTocItem = mappingCandidates[chapterIndex - 1];
 
-            if (rawIndex < 0 || rawIndex >= spineIndexToHref.length) return null;
+            if (targetTocItem) {
+                rawIndex = targetTocItem.index - 1;
+                chapterIndex = targetTocItem.index;
+            }
         }
     }
 
