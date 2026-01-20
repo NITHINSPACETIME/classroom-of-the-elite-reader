@@ -100,18 +100,8 @@ export async function getEpubBuffer(source: string, volumeId: string): Promise<A
     }
 
     if (!resultBuffer) {
-        const githubRawBase = "https://raw.githubusercontent.com/NITHINSPACETIME/classroom-of-the-elite-reader/main";
-        if (!source.startsWith('http')) {
-            try {
-                const cleanSource = source.startsWith('/') ? source.substring(1) : source;
-                const pathInRepo = `public/${cleanSource}`;
-                const url = `${githubRawBase}/${pathInRepo}`;
-                const res = await fetch(url, { cache: 'force-cache' });
-                if (res.ok) {
-                    resultBuffer = await res.arrayBuffer();
-                }
-            } catch (e) { }
-        }
+        // Fallback or other logic can go here if needed.
+        // For SSG with local files, this block is largely unused unless for specific debug cases.
     }
 
     if (resultBuffer && !process.env.VERCEL) {

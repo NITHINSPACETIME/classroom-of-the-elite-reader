@@ -12,7 +12,7 @@ export async function generateStaticParams() {
     console.log("Generating static params for all volumes...");
 
     for (const volume of allVolumes) {
-        // Fallback count if parsing fails
+       
         const legacyCount = volume.chapters.length || 50;
         let count = legacyCount;
 
