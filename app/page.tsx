@@ -4,6 +4,9 @@ import { Github, Heart } from "lucide-react";
 import Link from "next/link";
 import { SiteHeader } from "@/components/ui/SiteHeader";
 
+export const dynamic = 'force-static';
+export const revalidate = false; // Never revalidate (until next build)
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col relative">
