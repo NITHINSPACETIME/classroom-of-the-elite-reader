@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/ui/SiteHeader";
 
 export const dynamic = 'force-static';
-export const revalidate = false; // Never revalidate (until next build)
+export const revalidate = false;
 
 export default function Home() {
   return (
