@@ -1,20 +1,37 @@
-import { getChapterContent } from "@/lib/epub-parser";
+import { getChapterContent, getEpubBuffer, getVolumeStructure } from "@/lib/epub-parser";
 import { HtmlReader } from "@/components/reader/HtmlReader";
 import { notFound } from "next/navigation";
 import { allVolumes } from "@/lib/volumes";
 import { volumes as y1, shortStories as y1ss } from "@/data/year1";
 import { volumes as y2, shortStories as y2ss } from "@/data/year2";
 import { volumes as y3, shortStories as y3ss } from "@/data/year3";
-
-
-
+import JSZip from "jszip";
 
 export async function generateStaticParams() {
     const params: { volumeId: string, chapterIndex: string }[] = [];
+    console.log("Generating static params for all volumes...");
 
     for (const volume of allVolumes) {
-        const chapterCount = volume.chapters.length || 50;
-        for (let i = 1; i <= chapterCount; i++) {
+        // Fallback count if parsing fails
+        const legacyCount = volume.chapters.length || 50;
+        let count = legacyCount;
+
+        try {
+            if (volume.epubSource) {
+                const epubBuffer = await getEpubBuffer(volume.epubSource, volume.id);
+                if (epubBuffer) {
+                    const zip = await JSZip.loadAsync(epubBuffer);
+                    const structure = await getVolumeStructure(volume.id, zip);
+                    if (structure && structure.spineIndexToHref) {
+                        count = structure.spineIndexToHref.length;
+                    }
+                }
+            }
+        } catch (e) {
+            console.error(`Error parsing volume ${volume.id} for static params:`, e);
+        }
+
+        for (let i = 1; i <= count; i++) {
             params.push({
                 volumeId: volume.id,
                 chapterIndex: i.toString(),
@@ -25,8 +42,9 @@ export async function generateStaticParams() {
     return params;
 }
 
-export const revalidate = 86400; 
-export const dynamicParams = true;
+export const revalidate = false;
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 export default async function ReadPage({ params, searchParams }: { params: Promise<{ volumeId: string, chapterIndex: string }>, searchParams: Promise<{ logical?: string }> }) {
     const { volumeId, chapterIndex } = await params;
