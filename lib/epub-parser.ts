@@ -32,7 +32,8 @@ export function isStoryChapter(label: string): boolean {
         'contents', 'copyright', 'title page', 'gallery',
         'illustration', 'credit', 'colophon', 'nav', 'toc', 'newsletter',
         'author', 'illustrator', 'postscript', 'classroom of the elite',
-        'synopsis'
+        'synopsis', 'front matter', 'color', 'insert', 'images', 'flyleaf',
+        'bonus', 'advertisement', 'preview', 'acknowledgments', 'dedication'
     ];
     return !skip.some(s => lower.includes(s));
 }
@@ -271,26 +272,30 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     let rawIndex = chapterIndex - 1;
 
     if (isLogical) {
-        
+
         if (volume && volume.chapters && volume.chapters[chapterIndex - 1]) {
             const expectedTitle = volume.chapters[chapterIndex - 1];
 
-        
+
             const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
             const expectedSimple = normalize(expectedTitle);
 
             const match = toc.find(t => {
                 const labelSimple = normalize(t.label);
 
-            
                 if (labelSimple.includes(expectedSimple) || expectedSimple.includes(labelSimple)) return true;
+
+                // Special handling for Prologue/Epilogue
+                if (expectedSimple.includes('prologue') && labelSimple.includes('prologue')) return true;
+                if (expectedSimple.includes('epilogue') && labelSimple.includes('epilogue')) return true;
 
                 const chNumMatch = expectedTitle.match(/Chapter\s+(\d+)/i);
                 if (chNumMatch) {
                     const num = chNumMatch[1];
-                  
                     if (t.label.match(new RegExp(`Chapter\\s+${num}`, 'i'))) return true;
                     if (t.label.match(new RegExp(`^${num}\\.`, 'i'))) return true;
+                    // Handle "1. Title" format
+                    if (normalize(t.label).startsWith(`${num}`)) return true;
                 }
 
                 return false;
@@ -298,9 +303,9 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
             if (match) {
                 rawIndex = match.index - 1;
-             
+
             } else {
-                
+
                 const storyChapters = toc.filter(t => isStoryChapter(t.label));
                 const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
                 const targetTocItem = mappingCandidates[chapterIndex - 1];
@@ -309,7 +314,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
                 }
             }
         } else {
-           
+
             const storyChapters = toc.filter(t => isStoryChapter(t.label));
             const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
             const targetTocItem = mappingCandidates[chapterIndex - 1];
