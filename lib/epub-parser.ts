@@ -52,69 +52,18 @@ function shouldSkipRenaming(volumeId: string, volumeNumber: string): boolean {
 
 
 export async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuffer | null> {
-    const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
-    const CACHE_DIR = path.join(baseDir, '.cache', 'cote', 'downloads');
-
     if (source.startsWith('/books/')) {
         try {
             const publicPath = path.join(process.cwd(), 'public', source);
             if (fs.existsSync(publicPath)) {
                 const buffer = fs.readFileSync(publicPath);
                 return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
-            } else {
-
             }
         } catch (e) {
+            console.error(`Failed to read local epub: ${source}`, e);
         }
     }
-
-
-    if (!process.env.VERCEL) {
-        if (!fs.existsSync(CACHE_DIR)) {
-            try {
-                fs.mkdirSync(CACHE_DIR, { recursive: true });
-            } catch (e) { }
-        }
-        const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
-        if (fs.existsSync(cachedFile)) {
-            try {
-                const buffer = fs.readFileSync(cachedFile);
-                if (buffer.length > 0) {
-                    return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
-                }
-            } catch (e) { }
-        }
-    }
-
-    let resultBuffer: ArrayBuffer | null = null;
-
-
-    if (!resultBuffer && source.startsWith('http')) {
-        try {
-            const res = await fetch(source, { cache: 'force-cache' });
-            if (!res.ok) throw new Error(`Fetch error: ${res.statusText}`);
-            resultBuffer = await res.arrayBuffer();
-        } catch (e) {
-            return null;
-        }
-    }
-
-    if (!resultBuffer) {
-        // Fallback or other logic can go here if needed.
-        // For SSG with local files, this block is largely unused unless for specific debug cases.
-    }
-
-    if (resultBuffer && !process.env.VERCEL) {
-        try {
-            if (!fs.existsSync(CACHE_DIR)) {
-                fs.mkdirSync(CACHE_DIR, { recursive: true });
-            }
-            const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
-            fs.writeFileSync(cachedFile, Buffer.from(resultBuffer));
-        } catch (e) { }
-    }
-
-    return resultBuffer;
+    return null;
 }
 
 
