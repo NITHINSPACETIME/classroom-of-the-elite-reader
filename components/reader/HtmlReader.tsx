@@ -57,6 +57,14 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     const [searchQuery, setSearchQuery] = useState("");
 
+    useEffect(() => {
+        if (toc && toc.length > 0) {
+            console.log("[Debug Client] Received TOC:", JSON.stringify(toc));
+        } else {
+            console.log("[Debug Client] TOC is empty or undefined");
+        }
+    }, [toc]);
+
 
 
 
