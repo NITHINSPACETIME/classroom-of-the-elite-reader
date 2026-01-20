@@ -272,10 +272,11 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     let rawIndex = chapterIndex - 1;
 
     if (isLogical) {
-
         if (volume && volume.chapters && volume.chapters[chapterIndex - 1]) {
             const expectedTitle = volume.chapters[chapterIndex - 1];
-
+            console.log(`[Debug] Lookup: "${expectedTitle}" (Index: ${chapterIndex})`);
+            console.log(`[Debug] TOC Length: ${toc.length}`);
+            if (toc.length > 0) console.log(`[Debug] First TOC: ${toc[0].label}, Last: ${toc[toc.length - 1].label}`);
 
             const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
             const expectedSimple = normalize(expectedTitle);
@@ -374,7 +375,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     const EXCLUDED_FROM_SHIFT = ['v0', 'y3v1', 'y3v2', 'y3v3'];
 
     if (!EXCLUDED_FROM_SHIFT.includes(volumeId)) {
-        // Generic detection: small content size (< 1500 chars) AND contains an img tag
+
         const isImagePage = cleanHtml.length < 1500 && /<img[^>]+>/i.test(cleanHtml);
 
         if (isImagePage) {
