@@ -285,7 +285,6 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
                 if (labelSimple.includes(expectedSimple) || expectedSimple.includes(labelSimple)) return true;
 
-                // Special handling for Prologue/Epilogue
                 if (expectedSimple.includes('prologue') && labelSimple.includes('prologue')) return true;
                 if (expectedSimple.includes('epilogue') && labelSimple.includes('epilogue')) return true;
 
@@ -294,7 +293,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
                     const num = chNumMatch[1];
                     if (t.label.match(new RegExp(`Chapter\\s+${num}`, 'i'))) return true;
                     if (t.label.match(new RegExp(`^${num}\\.`, 'i'))) return true;
-                    // Handle "1. Title" format
+
                     if (normalize(t.label).startsWith(`${num}`)) return true;
                 }
 
@@ -375,23 +374,17 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     const EXCLUDED_FROM_SHIFT = ['v0', 'y3v1', 'y3v2', 'y3v3'];
 
     if (!EXCLUDED_FROM_SHIFT.includes(volumeId)) {
-        const imageBlockRegex = /^\s*<p[^>]*class="P_TEXTBODY_CENTERALIGN"[^>]*>\s*<span>\s*<img[^>]+>\s*<\/span>\s*<\/p>/i;
+        // Generic detection: small content size (< 1500 chars) AND contains an img tag
+        const isImagePage = cleanHtml.length < 1500 && /<img[^>]+>/i.test(cleanHtml);
 
-
-        if (imageBlockRegex.test(cleanHtml)) {
-            cleanHtml = cleanHtml.replace(imageBlockRegex, '');
-        }
-
-
-        const nextRawIndex = rawIndex + 1;
-        if (nextRawIndex < spineIndexToHref.length) {
-            const nextAbsPath = spineIndexToHref[nextRawIndex];
-            const nextHtmlRaw = await zip!.file(nextAbsPath)?.async("string");
-            if (nextHtmlRaw) {
-                const nextBody = nextHtmlRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || nextHtmlRaw;
-                const nextMatch = nextBody.match(imageBlockRegex);
-                if (nextMatch) {
-                    cleanHtml += nextMatch[0];
+        if (isImagePage) {
+            const nextRawIndex = rawIndex + 1;
+            if (nextRawIndex < spineIndexToHref.length) {
+                const nextAbsPath = spineIndexToHref[nextRawIndex];
+                const nextHtmlRaw = await zip!.file(nextAbsPath)?.async("string");
+                if (nextHtmlRaw) {
+                    const nextBody = nextHtmlRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || nextHtmlRaw;
+                    cleanHtml += nextBody;
                 }
             }
         }
