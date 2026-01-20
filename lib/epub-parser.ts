@@ -51,7 +51,7 @@ function shouldSkipRenaming(volumeId: string, volumeNumber: string): boolean {
 
 
 
-async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuffer | null> {
+export async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuffer | null> {
     const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
     const CACHE_DIR = path.join(baseDir, '.cache', 'cote', 'downloads');
 
