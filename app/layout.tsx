@@ -65,6 +65,8 @@ export const viewport: Viewport = {
 
 import { AuthProvider } from "@/context/AuthContext";
 
+import { GlobalContinueReading } from "@/components/GlobalContinueReading";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,6 +79,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} ${merriweather.variable} ${roboto.variable} ${lora.variable} font-sans antialiased bg-background text-foreground selection:bg-primary selection:text-primary-foreground`}
       >
         <AuthProvider>
+          <GlobalContinueReading />
           {children}
         </AuthProvider>
       </body>

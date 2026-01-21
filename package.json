@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "tsx lib/generate-mappings.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "extract-images": "tsx scripts/extract-images.ts"

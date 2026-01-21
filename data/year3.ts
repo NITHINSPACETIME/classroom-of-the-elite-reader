@@ -102,11 +102,13 @@ export const shortStories: VolumeData[] = [
             "Shiraishi Asuka : The Secrets She Harbors",
             "Morishita Ai : Gatling Gun",
             "Shiraishi Asuka : An Extra Pair of Ears",
-            "Haruka Hasebe : A Pillar of Support"
+            "Haruka Hasebe : A Pillar of Support",
+            "[Special] Guidebook Short Story: Mock Date",
+            "[Special] Guidebook Short Story: Ever Since That Time..."
         ],
         characters: ["Mio Ibuki", "Asuka Shiraishi", "Ai Morishita", "Haruka Hasebe"],
-        coverImage: "/assets/y3v1.jpg",
-        inProgress: true,
+        epubSource: "/books/year3/y3v1.epub",
+        coverImage: "/assets/y3v1.jpg"
     },
     {
         id: "ss-y3-v2",
@@ -125,23 +127,6 @@ export const shortStories: VolumeData[] = [
         ],
         characters: ["Honami Ichinose", "Ai Morishita", "Hiyori Shiina", "Asuka Shiraishi"],
         coverImage: "/assets/y3v2.jpg",
-        inProgress: true,
-    },
-    {
-        id: "ss-y3-v3",
-        volumeNumber: "SS",
-        title: "Short Stories: Volume 3",
-        releaseDateJP: "Nov 25, 2025",
-        releaseDateEN: "-",
-        isbnJP: "-",
-        isbnEN: "-",
-        chapters: [
-            "Morishita Ai : Honor",
-            "Horikita Suzune : Contradiction",
-            "Shiraishi Asuka : Colorless and Transparent"
-        ],
-        characters: ["Ai Morishita", "Suzune Horikita", "Asuka Shiraishi"],
-        coverImage: "/assets/y3v3.jpg",
-        inProgress: true,
+        epubSource: "/books/year3/y3v2.epub"
     }
 ];

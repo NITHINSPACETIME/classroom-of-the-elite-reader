@@ -13,6 +13,7 @@ import { UserMenu } from "@/components/auth/UserMenu"
 import { AuthModal } from "@/components/auth/AuthModal"
 import { ProfileModal } from "@/components/auth/ProfileModal"
 import { ShortcutsModal } from "./ShortcutsModal"
+import { useReadingProgress } from "@/hooks/useReadingProgress"
 
 interface ReaderProps {
     content: string;
@@ -58,6 +59,30 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     const [searchQuery, setSearchQuery] = useState("");
 
+    
+    const { progress, loading: progressLoading, saveScrollPosition } = useReadingProgress(volumeId, chapterIndex);
+    const [restoredPosition, setRestoredPosition] = useState(false);
+
+ 
+    useEffect(() => {
+        if (!progressLoading && progress && !restoredPosition && progress.chapterIndex === chapterIndex) {
+           
+            if (progress.scrollPercentage > 0) {
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollTop = (progress.scrollPercentage / 100) * scrollHeight;
+
+                
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: scrollTop,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+            setRestoredPosition(true);
+        }
+    }, [progressLoading, progress, restoredPosition, chapterIndex]);
+
 
 
 
@@ -75,6 +100,16 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 setScrollDirection(currentScrollY > lastScrollY ? 'down' : 'up');
                 lastScrollY = currentScrollY;
             }
+
+            // Save reading progress
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (maxScroll > 0) {
+                const percentage = (currentScrollY / maxScroll) * 100;
+                // Clamp between 0 and 100
+                const clampedPercentage = Math.min(100, Math.max(0, percentage));
+                saveScrollPosition(clampedPercentage);
+            }
+
             ticking = false;
         };
 
@@ -298,15 +333,16 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
         localStorage.setItem('cote-fontWeight', fontWeight.toString());
     }, [theme, fontSize, lineHeight, fontFamily, fontWeight, isInitialized]);
 
+
     const headerStyle = theme === 'light'
-        ? "bg-white/95 text-black border-gray-200"
-        : theme === 'sepia' ? "bg-[#f4ecd8]/95 text-[#5b4636] border-[#eaddcf]"
-            : theme === 'midnight' ? "bg-[#0f172a]/95 text-[#cbd5e1] border-slate-800"
-                : theme === 'forest' ? "bg-[#1a2321]/95 text-[#c1d1cb] border-[#2a3633]"
-                    : theme === 'oled' ? "bg-black/95 text-[#a3a3a3] border-gray-900"
-                        : theme === 'espresso' ? "bg-[#2b2523]/95 text-[#d6c6c1] border-[#403632]"
-                            : theme === 'gray' ? "bg-[#27272a]/95 text-[#d4d4d8] border-zinc-700"
-                                : "bg-[#0d1117]/95 text-gray-300 border-gray-800";
+        ? "bg-white text-gray-900 border-gray-200"
+        : theme === 'sepia' ? "bg-[#f4ecd8] text-[#5b4636] border-[#e8dcc8]"
+            : theme === 'midnight' ? "bg-[#0f172a] text-[#e2e8f0] border-[#1e293b]"
+                : theme === 'forest' ? "bg-[#1a2321] text-[#d0ddd7] border-[#2a3633]"
+                    : theme === 'oled' ? "bg-black text-gray-300 border-gray-900"
+                        : theme === 'espresso' ? "bg-[#2b2523] text-[#e0d0cb] border-[#3d322f]"
+                            : theme === 'gray' ? "bg-[#27272a] text-[#e4e4e7] border-[#3f3f46]"
+                                : "bg-[#0d1117] text-gray-200 border-[#21262d]";
 
 
     const handleContentClickInternal = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -344,87 +380,78 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
             }}>
 
 
-            <header className={cn("sticky top-0 z-50 flex h-14 items-center gap-4 border-b px-4 print:hidden", headerStyle)}>
-                <div className="flex items-center gap-2 flex-1 min-w-0">
-                    <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="flex-shrink-0" aria-label="Toggle Sidebar">
-                        <Menu className="h-5 w-5" />
+            {/* Simple, header */}
+            <header className={cn("sticky top-0 z-50 flex h-12 items-center gap-3 border-b px-3 print:hidden", headerStyle)}>
+
+                <div className="flex items-center gap-1 flex-1 min-w-0">
+                    <Link href={detailsLink} title="Back to Volume">
+                        <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Back">
+                            <ArrowLeft className="h-4 w-4" />
+                        </Button>
+                    </Link>
+                    <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="h-9 w-9" aria-label="Menu">
+                        <Menu className="h-4 w-4" />
                     </Button>
-                    <div className="flex flex-col min-w-0 flex-1">
-                        <Link href={detailsLink} className="font-serif font-bold text-lg leading-tight hidden sm:block truncate hover:underline hover:text-amber-400 transition-colors">
-                            Classroom of the Elite: {volumeTitle}
-                        </Link>
-                        <Link href={detailsLink} className="font-serif font-bold text-sm leading-tight sm:hidden truncate block hover:underline hover:text-amber-400 transition-colors">
-                            {volumeTitle}
-                        </Link>
-                        <button
-                            onClick={() => setSidebarOpen(true)}
-                            className="text-xs opacity-70 truncate text-left hover:text-red-500 hover:opacity-100 transition-colors"
-                        >
+                    <div className="flex flex-col min-w-0 flex-1 ml-1">
+                        <span className="font-medium text-sm leading-tight truncate">{volumeTitle}</span>
+                        <button onClick={() => setSidebarOpen(true)} className="text-xs opacity-50 truncate text-left hover:opacity-80 transition-opacity">
                             {title}
                         </button>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
 
-                    <div className="hidden sm:flex items-center gap-1">
-                        <Button variant="ghost" size="icon" onClick={toggleFullscreen} title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}>
-                            {isFullscreen ? <Minimize className="h-5 w-5" /> : <Maximize className="h-5 w-5" />}
+                <div className="flex items-center gap-0.5 flex-shrink-0">
+                    {/* Desktop actions */}
+                    <div className="hidden sm:flex items-center gap-0.5">
+                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={toggleFullscreen} title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}>
+                            {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
                         </Button>
 
-                        <div className="relative block" ref={downloadRef}>
-                            <Button variant="ghost" size="icon" onClick={() => setDownloadMenuOpen(!downloadMenuOpen)} title="Download / Print">
-                                <Download className="h-5 w-5" />
+                        <div className="relative" ref={downloadRef}>
+                            <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setDownloadMenuOpen(!downloadMenuOpen)} title="Download">
+                                <Download className="h-4 w-4" />
                             </Button>
                             {downloadMenuOpen && (
-                                <div className="absolute right-0 top-full z-50 mt-2 w-56 rounded-md border border-border bg-popover p-1 shadow-md text-popover-foreground bg-card print:hidden">
-                                    <button
-                                        onClick={handlePrint}
-                                        className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground transition-colors text-left"
-                                    >
-                                        <Printer className="h-4 w-4" />
-                                        <span>Print this page</span>
+                                <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border bg-popover p-1 shadow-lg">
+                                    <button onClick={handlePrint} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
+                                        <Printer className="h-4 w-4" /> Print
                                     </button>
-                                    <button
-                                        onClick={handleDownload}
-                                        disabled={!epubSource}
-                                        className="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground transition-colors disabled:opacity-50 text-left"
-                                    >
-                                        <FileDown className="h-4 w-4" />
-                                        <span>Download Full Volume</span>
+                                    <button onClick={handleDownload} disabled={!epubSource} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors disabled:opacity-40 text-left">
+                                        <FileDown className="h-4 w-4" /> Download EPUB
                                     </button>
                                 </div>
                             )}
                         </div>
 
-                        <Button variant="ghost" size="icon" onClick={() => setShortcutsOpen(true)} title="Keyboard Shortcuts" aria-label="Keyboard Shortcuts">
-                            <Keyboard className="h-5 w-5" />
+                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setShortcutsOpen(true)} title="Shortcuts">
+                            <Keyboard className="h-4 w-4" />
                         </Button>
 
-                        <Button variant="ghost" size="icon" onClick={() => setCommentsOpen(true)} title="Open Discussions">
-                            <MessageCircle className="h-5 w-5" />
+                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setCommentsOpen(true)} title="Discussions">
+                            <MessageCircle className="h-4 w-4" />
                         </Button>
                     </div>
 
-
+                    {/* Mobile menu */}
                     <div className="sm:hidden relative" ref={mobileMenuRef}>
-                        <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                            <MoreVertical className="h-5 w-5" />
+                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                            <MoreVertical className="h-4 w-4" />
                         </Button>
                         {mobileMenuOpen && (
-                            <div className="absolute right-0 top-full mt-2 w-48 rounded-xl shadow-2xl border bg-[#1a1b26] text-gray-200 z-50 border-gray-800 overflow-hidden">
-                                <button onClick={toggleFullscreen} className="flex w-full items-center gap-3 px-4 py-3 hover:bg-white/5 text-sm transition-colors text-left">
+                            <div className="absolute right-0 top-full mt-1 w-40 rounded-lg shadow-lg border bg-popover p-1 z-50">
+                                <button onClick={toggleFullscreen} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
                                     {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
-                                    {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                                    {isFullscreen ? "Exit Full" : "Fullscreen"}
                                 </button>
-                                <button onClick={() => { setCommentsOpen(true); setMobileMenuOpen(false); }} className="flex w-full items-center gap-3 px-4 py-3 hover:bg-white/5 text-sm transition-colors text-left">
-                                    <MessageCircle className="h-4 w-4" /> Discussions
+                                <button onClick={() => { setCommentsOpen(true); setMobileMenuOpen(false); }} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
+                                    <MessageCircle className="h-4 w-4" /> Discuss
                                 </button>
-                                <button onClick={handlePrint} className="flex w-full items-center gap-3 px-4 py-3 hover:bg-white/5 text-sm transition-colors text-left border-t border-gray-800">
-                                    <Printer className="h-4 w-4" /> Print Page
+                                <button onClick={handlePrint} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
+                                    <Printer className="h-4 w-4" /> Print
                                 </button>
-                                <button onClick={handleDownload} disabled={!epubSource} className="flex w-full items-center gap-3 px-4 py-3 hover:bg-white/5 text-sm transition-colors text-left disabled:opacity-50">
-                                    <FileDown className="h-4 w-4" /> Download EPUB
+                                <button onClick={handleDownload} disabled={!epubSource} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors disabled:opacity-40 text-left">
+                                    <FileDown className="h-4 w-4" /> Download
                                 </button>
                             </div>
                         )}
@@ -442,8 +469,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     />
 
                     <div className="relative">
-                        <Button variant="ghost" size="icon" onClick={() => setSettingsOpen(!settingsOpen)}>
-                            <Settings className="h-5 w-5" />
+                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setSettingsOpen(!settingsOpen)}>
+                            <Settings className="h-4 w-4" />
                         </Button>
 
 
@@ -830,6 +857,20 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 margin-top: 2rem !important;
                                 margin-bottom: 1.5rem !important;
                             }
+
+                            .reader-content[data-volume^="ss-"] h1 {
+                                text-align: center !important;
+                                font-weight: 700 !important;
+                                display: block !important;
+                                width: 100% !important;
+                                margin-left: auto !important;
+                                margin-right: auto !important;
+                                font-size: clamp(1.5em, 5vw, 2em) !important;
+                                line-height: 1.3 !important;
+                                margin-top: 2rem !important;
+                                margin-bottom: 2rem !important;
+                                font-family: var(--font-serif) !important;
+                            }
                         `}</style>
 
 
@@ -965,7 +1006,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     </Button>
                 </div >
 
-                <Link href={detailsLink}>
+                <Link href="/select">
                     <Button
                         size="icon"
                         className={cn(

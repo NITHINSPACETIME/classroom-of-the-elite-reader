@@ -114,6 +114,19 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
             detailsLink = `/select/year-3/${volume.id}`;
             returnLink = `/select`;
         }
+        
+        else if (y1ss.some(v => v.id === volume.id)) {
+            detailsLink = `/select/year-1/${volume.id}`;
+            returnLink = `/select/year-1?contentType=shortStories`;
+        }
+        else if (y2ss.some(v => v.id === volume.id)) {
+            detailsLink = `/select/year-2/${volume.id}`;
+            returnLink = `/select/year-2?contentType=shortStories`;
+        }
+        else if (y3ss.some(v => v.id === volume.id)) {
+            detailsLink = `/select/year-3/${volume.id}`;
+            returnLink = `/select/year-3?contentType=shortStories`;
+        }
     }
 
     if (!data) {
@@ -147,6 +160,26 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
             } else if (isY3 && nextIsY3) {
                 nextVolumeLink = `/select/year-3/${nextVol.id}`;
                 nextVolumeTitleVal = nextVol.title;
+            } else {
+
+                const isY1SS = y1ss.some(v => v.id === volume.id);
+                const isY2SS = y2ss.some(v => v.id === volume.id);
+                const isY3SS = y3ss.some(v => v.id === volume.id);
+
+                const nextIsY1SS = y1ss.some(v => v.id === nextVol.id);
+                const nextIsY2SS = y2ss.some(v => v.id === nextVol.id);
+                const nextIsY3SS = y3ss.some(v => v.id === nextVol.id);
+
+                if (isY1SS && nextIsY1SS) {
+                    nextVolumeLink = `/select/year-1/${nextVol.id}`;
+                    nextVolumeTitleVal = nextVol.title;
+                } else if (isY2SS && nextIsY2SS) {
+                    nextVolumeLink = `/select/year-2/${nextVol.id}`;
+                    nextVolumeTitleVal = nextVol.title;
+                } else if (isY3SS && nextIsY3SS) {
+                    nextVolumeLink = `/select/year-3/${nextVol.id}`;
+                    nextVolumeTitleVal = nextVol.title;
+                }
             }
         }
     }

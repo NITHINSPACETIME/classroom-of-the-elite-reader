@@ -2,7 +2,7 @@
 
 import { volumes, shortStories } from "@/data/year1";
 import { getSpineIndex } from "@/lib/chapter-mappings";
-import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
@@ -32,22 +32,49 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
     const [hasStarted, setHasStarted] = useState(false);
+    const [savedChapterIndex, setSavedChapterIndex] = useState<number>(0);
     const [authModalOpen, setAuthModalOpen] = useState(false);
     const [profileModalOpen, setProfileModalOpen] = useState(false);
 
     useEffect(() => {
+        if (!user || !volume) return;
+        const volumeId = volume.id;
+        const userId = user.id;
+
         async function checkProgress() {
-            if (!user || !volume) return;
             const { data } = await supabase
                 .from('reading_progress')
-                .select('percentage')
-                .eq('user_id', user.id)
-                .eq('volume_id', volume.id)
+                .select('percentage, chapter_index')
+                .eq('user_id', userId)
+                .eq('volume_id', volumeId)
                 .maybeSingle();
 
-            if (data) setHasStarted(true);
+            if (data) {
+                setHasStarted(true);
+                setSavedChapterIndex(data.chapter_index);
+            }
         }
+
         checkProgress();
+
+        const channel = supabase
+            .channel(`progress:${volumeId}`)
+            .on('postgres_changes', {
+                event: '*',
+                schema: 'public',
+                table: 'reading_progress',
+                filter: `volume_id=eq.${volumeId}`
+            }, (payload) => {
+                if (payload.new && (payload.new as any).user_id === userId) {
+                    setHasStarted(true);
+                    setSavedChapterIndex((payload.new as any).chapter_index);
+                }
+            })
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
     }, [user, volume]);
 
     const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
@@ -246,10 +273,10 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                         </div>
 
                         <div className="flex flex-col gap-3">
-                            <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, 0)}`} className="w-full">
+                            <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, hasStarted ? savedChapterIndex : 0)}`} className="w-full">
                                 <Button className="w-full h-14 text-lg bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-900/20 transition-all duration-300 hover:scale-[1.02]">
                                     <BookOpen className="mr-2 w-5 h-5" />
-                                    {hasStarted ? "Start/Resume Reading" : "Start Reading"}
+                                    {hasStarted ? "Continue Reading" : "Start Reading"}
                                 </Button>
                             </Link>
                         </div>
@@ -327,6 +354,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                     sortedChapters.map((chapter) => {
                                         const originalIndex = volume.chapters.indexOf(chapter);
                                         const { type, number, full } = getChapterDisplay(chapter, originalIndex);
+                                        const isCurrent = hasStarted && originalIndex === savedChapterIndex;
 
                                         return (
                                             <motion.div
@@ -336,12 +364,12 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 transition={{ delay: 0.1 + (originalIndex * 0.03) }}
                                             >
                                                 <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
-                                                    <div className="group flex items-start justify-between p-3 md:p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer gap-3">
+                                                    <div className={`group flex items-start justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 cursor-pointer gap-3 ${isCurrent ? 'bg-red-900/10 border-red-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}>
                                                         <div className="flex items-start gap-3 flex-1">
-                                                            <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? 'text-gray-600 bg-black/40' : 'text-amber-500 bg-amber-950/30'}`}>
+                                                            <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-red-200 bg-red-950/40' : 'text-gray-600 bg-black/40') : 'text-amber-500 bg-amber-950/30'}`}>
                                                                 {type === 'SS' ? `SS ${number}` : `${type} ${number}`}
                                                             </span>
-                                                            <span className="text-sm md:text-base text-gray-300 group-hover:text-white transition-colors font-medium leading-tight md:leading-normal">
+                                                            <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-red-200' : 'text-gray-300 group-hover:text-white'}`}>
                                                                 {isSideStory && full.includes(" : ") ? (() => {
                                                                     const [narrator, title] = full.split(" : ");
                                                                     return (
@@ -351,6 +379,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                                         </span>
                                                                     );
                                                                 })() : full}
+                                                                {isCurrent && <span className="ml-2 text-xs text-red-400 font-normal animate-pulse">(Current)</span>}
                                                             </span>
                                                         </div>
                                                         <ArrowLeft className="shrink-0 w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
@@ -369,6 +398,25 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                     </motion.div>
                 </div>
             </main>
+
+            {hasStarted && (
+                <motion.div
+                    initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    className="fixed bottom-6 left-0 right-0 z-50 flex justify-center pointer-events-none"
+                >
+                    <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, savedChapterIndex)}`} className="pointer-events-auto">
+                        <Button className="h-14 px-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white font-medium shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
+                            <BookOpen className="mr-2 w-5 h-5 text-red-400 group-hover:text-red-300" />
+                            <span className="flex flex-col items-start leading-none gap-1">
+                                <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Continue Reading</span>
+                                <span className="text-sm">Chapter {savedChapterIndex + 1}</span>
+                            </span>
+                            <ArrowRight className="ml-4 w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                    </Link>
+                </motion.div>
+            )}
             <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
             <ProfileModal isOpen={profileModalOpen} onClose={() => setProfileModalOpen(false)} />
         </div>

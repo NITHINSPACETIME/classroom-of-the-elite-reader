@@ -240,8 +240,7 @@ export const chapterMappings: Record<string, number[]> = {
     28,
     30,
     41,
-    48,
-    53
+    48
   ],
   "y2v9": [
     11,
@@ -251,7 +250,10 @@ export const chapterMappings: Record<string, number[]> = {
     23,
     26,
     31,
-    34
+    34,
+    36,
+    37,
+    38
   ],
   "y2v9.5": [
     11,
@@ -260,7 +262,9 @@ export const chapterMappings: Record<string, number[]> = {
     18,
     21,
     28,
-    35
+    35,
+    36,
+    37
   ],
   "y2v10": [
     11,
@@ -271,6 +275,7 @@ export const chapterMappings: Record<string, number[]> = {
     18,
     19,
     32,
+    38,
     39
   ],
   "y2v11": [
@@ -292,7 +297,9 @@ export const chapterMappings: Record<string, number[]> = {
     19,
     27,
     30,
-    37
+    37,
+    38,
+    39
   ],
   "y2v12.5": [
     11,
@@ -306,6 +313,8 @@ export const chapterMappings: Record<string, number[]> = {
     28,
     31,
     38,
+    40,
+    41,
     42
   ],
   "y3v1": [
@@ -318,16 +327,7 @@ export const chapterMappings: Record<string, number[]> = {
     30,
     32,
     38,
-    40,
-    44,
-    46,
-    47,
-    48,
-    49,
-    50,
-    51,
-    52,
-    53
+    40
   ],
   "y3v2": [
     10,
@@ -338,13 +338,7 @@ export const chapterMappings: Record<string, number[]> = {
     33,
     39,
     43,
-    47,
-    51,
-    52,
-    53,
-    54,
-    55,
-    56
+    47
   ],
   "y3v3": [
     12,
@@ -355,7 +349,22 @@ export const chapterMappings: Record<string, number[]> = {
     34,
     39,
     46,
+    52
+  ],
+  "ss-y3-v1": [
+    49,
+    46,
+    47,
+    48,
+    50,
+    51,
+    52
+  ],
+  "ss-y3-v2": [
+    51,
     52,
+    53,
+    54,
     55
   ]
 };
@@ -367,9 +376,9 @@ export const chapterMappings: Record<string, number[]> = {
  * @returns spine index, or logicalIndex + 1 if no mapping exists
  */
 export function getSpineIndex(volumeId: string, logicalIndex: number): number {
-    const mapping = chapterMappings[volumeId];
-    if (mapping && mapping[logicalIndex]) {
-        return mapping[logicalIndex];
-    }
-    return logicalIndex + 1; // Fallback to 1-based index
+  const mapping = chapterMappings[volumeId];
+  if (mapping && mapping[logicalIndex]) {
+    return mapping[logicalIndex];
+  }
+  return logicalIndex + 1;
 }

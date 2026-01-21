@@ -2,24 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import JSZip from 'jszip';
 import { allVolumes } from './volumes';
-
-
-
-const skip = [
-    'contents', 'copyright', 'title page', 'gallery',
-    'illustration', 'credit', 'colophon', 'nav', 'toc', 'newsletter',
-    'author', 'illustrator', 'postscript', 'classroom of the elite',
-    'synopsis', 'front matter', 'color', 'insert', 'images', 'flyleaf',
-    'bonus', 'advertisement', 'preview', 'acknowledgments', 'dedication'
-];
-
-function isStoryChapter(label: string): boolean {
-    const lower = label.toLowerCase();
-    if (lower.includes('classroom of the elite') && lower.trim().startsWith('chapter')) {
-        return true;
-    }
-    return !skip.some(s => lower.includes(s));
-}
+import { getVolumeStructure, isStoryChapter } from './epub-parser';
 
 async function getVolumeMappings(volumeId: string, epubSource: string): Promise<number[]> {
     const publicPath = path.join(process.cwd(), 'public', epubSource);
@@ -34,77 +17,27 @@ async function getVolumeMappings(volumeId: string, epubSource: string): Promise<
     const zip = await JSZip.loadAsync(arrayBuffer);
 
    
-    const containerXml = await zip.file("META-INF/container.xml")?.async("string");
-    const opfPathMatch = containerXml?.match(/full-path="([^"]+)"/);
-    const opfPath = opfPathMatch![1];
-    const opfDir = path.dirname(opfPath);
+    const structure = await getVolumeStructure(volumeId, zip);
 
-
-    const opfContent = await zip.file(opfPath)?.async("string");
-
-
-    const manifest: Record<string, string> = {};
-    const itemRegex = /<item\s+([^>]+)>/g;
-    let match;
-    while ((match = itemRegex.exec(opfContent!)) !== null) {
-        const attrs = match[1];
-        const idMatch = attrs.match(/id="([^"]+)"/);
-        const hrefMatch = attrs.match(/href="([^"]+)"/);
-        if (idMatch && hrefMatch) {
-            manifest[idMatch[1]] = hrefMatch[1];
-        }
+    if (!structure) {
+        console.warn(`  ⚠️ Failed to parse structure for ${volumeId}`);
+        return [];
     }
 
-    const spineRefs: string[] = [];
-    const spineRegex = /<itemref\s+[^>]*idref="([^"]+)"/g;
-    while ((match = spineRegex.exec(opfContent!)) !== null) {
-        spineRefs.push(match[1]);
-    }
+    const toc = structure.toc;
 
-    const spineIndexToHref: string[] = spineRefs.map(id => {
-        const rel = manifest[id];
-        return rel ? (opfDir === '.' ? rel : path.join(opfDir, rel).replace(/\\/g, '/')) : '';
-    });
-
-    // Get NCX TOC
-    const spineTagMatch = opfContent?.match(/<spine\s+[^>]*toc="([^"]+)"/);
-    let ncxId = spineTagMatch ? spineTagMatch[1] : null;
-    if (!ncxId) {
-        const ncxItemMatch = opfContent?.match(/<item\s+[^>]*id="([^"]+)"\s+[^>]*media-type="application\/x-dtbncx\+xml"/);
-        if (ncxItemMatch) ncxId = ncxItemMatch[1];
-    }
-
-    let toc: { label: string, href: string, index: number }[] = [];
-    if (ncxId && manifest[ncxId]) {
-        const ncxHref = manifest[ncxId];
-        const ncxPath = opfDir === '.' ? ncxHref : path.join(opfDir, ncxHref);
-        const ncxContent = await zip.file(ncxPath)?.async("string");
-        if (ncxContent) {
-            const navPointRegex = /<navLabel>\s*<text>([^<]+)<\/text>\s*<\/navLabel>\s*<content\s+src="([^"]+)"/g;
-            let navMatch;
-            while ((navMatch = navPointRegex.exec(ncxContent)) !== null) {
-                const label = navMatch[1];
-                const src = navMatch[2];
-                const ncxDir = path.dirname(ncxPath);
-                const absPath = path.join(ncxDir, src.split('#')[0]).replace(/\\/g, '/');
-                const index = spineIndexToHref.indexOf(absPath);
-                if (index !== -1) {
-                    toc.push({ label, href: src, index: index + 1 });
-                }
-            }
-        }
-    }
-
+  
    
     const storyChapters = toc.filter(t => isStoryChapter(t.label));
+
+  
     const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
 
-   
     return mappingCandidates.map(t => t.index);
 }
 
 async function generateAllMappings() {
-    console.log('🔍 Generating chapter mappings for all volumes...\n');
+    console.log('🔍 Generating chapter mappings for all volumes... (using epub-parser)\n');
 
     const mappings: Record<string, number[]> = {};
 
@@ -115,15 +48,21 @@ async function generateAllMappings() {
         }
 
         console.log(`  📖 Processing ${volume.id}...`);
-        const indices = await getVolumeMappings(volume.id, volume.epubSource);
+        try {
+            const indices = await getVolumeMappings(volume.id, volume.epubSource);
 
-        if (indices.length > 0) {
-            mappings[volume.id] = indices;
-            console.log(`     ✅ Found ${indices.length} chapters: [${indices.slice(0, 5).join(', ')}${indices.length > 5 ? '...' : ''}]`);
+            if (indices.length > 0) {
+                mappings[volume.id] = indices;
+                console.log(`     ✅ Found ${indices.length} chapters: [${indices.slice(0, 5).join(', ')}${indices.length > 5 ? '...' : ''}]`);
+            } else {
+                console.log(`     ❌ Found 0 chapters.`);
+            }
+        } catch (e) {
+            console.error(`     ❌ Error processing ${volume.id}:`, e);
         }
     }
 
-    // Write to file
+   
     const outputPath = path.join(process.cwd(), 'lib', 'chapter-mappings.ts');
     const content = `// Auto-generated by generate-mappings.ts
 // Maps logical chapter index (0-based) to spine index

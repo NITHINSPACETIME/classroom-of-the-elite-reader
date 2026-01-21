@@ -279,7 +279,52 @@ export async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise
             }
         }
 
+
         toc = toc.filter(t => !t.label.toLowerCase().includes('newsletter') && !t.label.toLowerCase().includes('legacyemtls'));
+
+
+        if (volumeId.startsWith('ss-')) {
+
+            toc = toc.filter(t => {
+                const filename = t.href.split('/').pop()?.toLowerCase() || '';
+
+
+                if (volumeId === 'ss-y3-v1' && (filename === 'ss-1.xhtml' || filename.startsWith('ss-1-'))) {
+                    return false;
+                }
+
+                return filename.startsWith('ss-');
+            });
+
+
+            if (volumeId === 'ss-y3-v1') {
+                toc.sort((a, b) => {
+                    const filenameA = a.href.split('/').pop()?.toLowerCase() || '';
+                    const filenameB = b.href.split('/').pop()?.toLowerCase() || '';
+
+
+                    if (filenameA.startsWith('ss-5')) return -1;
+                    if (filenameB.startsWith('ss-5')) return 1;
+
+
+                    return a.index - b.index;
+                });
+
+
+                toc = toc.map(t => {
+                    if (t.label.includes('Guidebook Short Story: A Pillar of Support')) {
+                        return { ...t, label: "Haruka Hasebe's Short Story: A Pillar of Support" };
+                    }
+                    return t;
+                });
+            }
+        } else {
+
+            toc = toc.filter(t => {
+                const filename = t.href.split('/').pop()?.toLowerCase() || '';
+                return !filename.startsWith('ss-');
+            });
+        }
 
         const structure: VolumeStructure = {
             toc,
@@ -429,6 +474,28 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     }
 
 
+    if (volumeId === 'ss-y3-v1') {
+
+        cleanHtml = cleanHtml.replace(
+            /Guidebook Short Story:\s*(<br\s*\/?>)?\s*A Pillar of Support/gi,
+            "Haruka Hasebe's Short Story:<br>A Pillar of Support"
+        );
+
+
+        cleanHtml = cleanHtml.replace(
+            /<h1([^>]*)>\s*<a[^>]*>([\s\S]*?)<\/a>\s*<\/h1>/gi,
+            '<h1$1>$2</h1>'
+        );
+
+
+
+        cleanHtml = cleanHtml.replace(
+            /<p[^>]*>[\s\S]*?Original translation provided by[\s\S]*?LegacyEMTLs[\s\S]*?<\/p>/gi,
+            ''
+        );
+    }
+
+
     const imgRegex = /src="([^"]+)"/g;
     let imgMatch;
     const imagesToLoad: { original: string, fullPath: string }[] = [];
@@ -480,7 +547,32 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     let prevChapterVal = undefined;
     let nextChapterVal = undefined;
 
-    if (isLogical) {
+
+    const ssY3V1CustomOrder = [49, 46, 47, 48, 50, 51, 52]; 
+
+    if (volumeId === 'ss-y3-v1') {
+        const currentOrderIndex = ssY3V1CustomOrder.indexOf(chapterIndex);
+        if (currentOrderIndex !== -1) {
+            if (currentOrderIndex > 0) {
+                const prevSpineIndex = ssY3V1CustomOrder[currentOrderIndex - 1];
+                const prevItem = toc.find(t => t.index === prevSpineIndex);
+                prevChapterVal = {
+                    volumeId,
+                    chapter: prevSpineIndex,
+                    title: prevItem?.label || `Chapter ${prevSpineIndex}`
+                };
+            }
+            if (currentOrderIndex < ssY3V1CustomOrder.length - 1) {
+                const nextSpineIndex = ssY3V1CustomOrder[currentOrderIndex + 1];
+                const nextItem = toc.find(t => t.index === nextSpineIndex);
+                nextChapterVal = {
+                    volumeId,
+                    chapter: nextSpineIndex,
+                    title: nextItem?.label || `Chapter ${nextSpineIndex}`
+                };
+            }
+        }
+    } else if (isLogical) {
         const storyChapters = toc.filter(t => isStoryChapter(t.label));
         const currentStoryIndex = storyChapters.findIndex(t => t.index === chapterIndex);
 
