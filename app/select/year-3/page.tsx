@@ -2,6 +2,8 @@ import { volumes, shortStories, VolumeData } from "@/data/year3";
 import Year3Client from "./Year3Client";
 import { Suspense } from "react";
 
+export const dynamic = 'force-static';
+
 export default function Year3Page() {
     // Strip heavy content (customChapters text)
     const stripContent = (vol: VolumeData): VolumeData => {

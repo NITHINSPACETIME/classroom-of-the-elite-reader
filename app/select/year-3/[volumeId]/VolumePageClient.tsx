@@ -1,6 +1,7 @@
 "use client"
 
 import { volumes, shortStories } from "@/data/year3";
+import { getSpineIndex } from "@/lib/chapter-mappings";
 import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -225,7 +226,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                             </div>
                         </div>
 
-                        <Link href={`/read/${volume.id}/1?logical=true`} className="w-full">
+                        <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, 0)}`} className="w-full">
                             <Button className="w-full h-14 text-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-900/20 transition-all duration-300 hover:scale-[1.02]">
                                 <BookOpen className="mr-2 w-5 h-5" />
                                 {hasStarted ? "Start/Resume Reading" : "Start Reading"}
@@ -314,7 +315,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: 0.1 + (originalIndex * 0.03) }}
                                             >
-                                                <Link href={`/read/${volume.id}/${originalIndex + 1}?logical=true`}>
+                                                <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
                                                     <div className="group flex items-start justify-between p-3 md:p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer gap-3">
                                                         <div className="flex items-start gap-3 flex-1">
                                                             <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? 'text-emerald-200 bg-emerald-950/30' : 'text-emerald-400 bg-emerald-950/50'}`}>

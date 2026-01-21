@@ -1,6 +1,8 @@
 import { VolumePageClient } from "./VolumePageClient";
 import { volumes, shortStories } from "@/data/year3";
 
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
     return [...volumes, ...shortStories].map((vol) => ({
         volumeId: vol.id,
