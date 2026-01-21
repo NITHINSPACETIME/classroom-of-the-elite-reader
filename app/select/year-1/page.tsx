@@ -2,6 +2,8 @@ import { volumes, shortStories, VolumeData } from "@/data/year1";
 import Year1Client from "./Year1Client";
 import { Suspense } from "react";
 
+export const dynamic = 'force-static';
+
 export default function Year1Page() {
     const accurateVolumes: VolumeData[] = [
         volumes[0],

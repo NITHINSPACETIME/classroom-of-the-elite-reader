@@ -29,9 +29,10 @@ interface ReaderProps {
     currentSpineIndex?: number;
     nextVolumeLink?: string;
     nextVolumeTitle?: string;
+    debugInfo?: string;
 }
 
-export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId, chapterIndex, toc, volumeTitle, epubSource, detailsLink = "/select", returnLink, currentSpineIndex, nextVolumeLink, nextVolumeTitle }: ReaderProps) {
+export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId, chapterIndex, toc, volumeTitle, epubSource, detailsLink = "/select", returnLink, currentSpineIndex, nextVolumeLink, nextVolumeTitle, debugInfo }: ReaderProps) {
     const router = useRouter();
 
 
@@ -57,13 +58,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     const [searchQuery, setSearchQuery] = useState("");
 
-    useEffect(() => {
-        if (toc && toc.length > 0) {
-            console.log("[Debug Client] Received TOC:", JSON.stringify(toc));
-        } else {
-            console.log("[Debug Client] TOC is empty or undefined");
-        }
-    }, [toc]);
+
 
 
 
@@ -677,6 +672,11 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     onClick={handleContentClickInternal}
                 >
                     <div className="max-w-4xl mx-auto px-6 py-12 md:py-20 md:px-12">
+                        {debugInfo && (
+                            <div className="bg-red-500 text-white p-4 mb-4 rounded font-mono text-xs whitespace-pre-wrap">
+                                FLAGS: {debugInfo}
+                            </div>
+                        )}
 
                         <style jsx global>{`
                             .reader-content p, 

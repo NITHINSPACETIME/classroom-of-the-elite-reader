@@ -53,18 +53,79 @@ function shouldSkipRenaming(volumeId: string, volumeNumber: string): boolean {
 
 
 export async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuffer | null> {
+    const baseDir = process.env.VERCEL ? '/tmp' : process.cwd();
+    const CACHE_DIR = path.join(baseDir, '.cache', 'cote', 'downloads');
+
     if (source.startsWith('/books/')) {
         try {
             const publicPath = path.join(process.cwd(), 'public', source);
             if (fs.existsSync(publicPath)) {
                 const buffer = fs.readFileSync(publicPath);
                 return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
+            } else {
+
             }
         } catch (e) {
-            console.error(`Failed to read local epub: ${source}`, e);
         }
     }
-    return null;
+
+
+    if (!process.env.VERCEL) {
+        if (!fs.existsSync(CACHE_DIR)) {
+            try {
+                fs.mkdirSync(CACHE_DIR, { recursive: true });
+            } catch (e) { }
+        }
+        const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
+        if (fs.existsSync(cachedFile)) {
+            try {
+                const buffer = fs.readFileSync(cachedFile);
+                if (buffer.length > 0) {
+                    return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer;
+                }
+            } catch (e) { }
+        }
+    }
+
+    let resultBuffer: ArrayBuffer | null = null;
+
+
+    if (!resultBuffer && source.startsWith('http')) {
+        try {
+            const res = await fetch(source, { cache: 'force-cache' });
+            if (!res.ok) throw new Error(`Fetch error: ${res.statusText}`);
+            resultBuffer = await res.arrayBuffer();
+        } catch (e) {
+            return null;
+        }
+    }
+
+    if (!resultBuffer) {
+        const githubRawBase = "https://raw.githubusercontent.com/NITHINSPACETIME/classroom-of-the-elite-reader/main";
+        if (!source.startsWith('http')) {
+            try {
+                const cleanSource = source.startsWith('/') ? source.substring(1) : source;
+                const pathInRepo = `public/${cleanSource}`;
+                const url = `${githubRawBase}/${pathInRepo}`;
+                const res = await fetch(url, { cache: 'force-cache' });
+                if (res.ok) {
+                    resultBuffer = await res.arrayBuffer();
+                }
+            } catch (e) { }
+        }
+    }
+
+    if (resultBuffer && !process.env.VERCEL) {
+        try {
+            if (!fs.existsSync(CACHE_DIR)) {
+                fs.mkdirSync(CACHE_DIR, { recursive: true });
+            }
+            const cachedFile = path.join(CACHE_DIR, `${volumeId}.epub`);
+            fs.writeFileSync(cachedFile, Buffer.from(resultBuffer));
+        } catch (e) { }
+    }
+
+    return resultBuffer;
 }
 
 
@@ -170,9 +231,7 @@ export async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise
                     const lowerContent = content.toLowerCase().substring(0, 2000);
                     let label = "";
 
-                    if (lowerContent.includes('newsletter') || href.toLowerCase().includes('newsletter')) {
-                        label = 'Newsletter';
-                    } else if (lowerContent.includes('about the author') || lowerContent.includes('author:')) {
+                    if (lowerContent.includes('about the author') || lowerContent.includes('author:')) {
                         label = 'About the Author';
                     } else if (lowerContent.includes('postscript')) {
                         label = 'Postscript';
@@ -219,6 +278,8 @@ export async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise
                 }
             }
         }
+
+        toc = toc.filter(t => !t.label.toLowerCase().includes('newsletter') && !t.label.toLowerCase().includes('legacyemtls'));
 
         const structure: VolumeStructure = {
             toc,
@@ -272,57 +333,16 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     let rawIndex = chapterIndex - 1;
 
     if (isLogical) {
-        if (volume && volume.chapters && volume.chapters[chapterIndex - 1]) {
-            const expectedTitle = volume.chapters[chapterIndex - 1];
-            console.log(`[Debug] Lookup: "${expectedTitle}" (Index: ${chapterIndex})`);
-            console.log(`[Debug] TOC Length: ${toc.length}`);
-            if (toc.length > 0) console.log(`[Debug] First TOC: ${toc[0].label}, Last: ${toc[toc.length - 1].label}`);
+        const storyChapters = toc.filter(t => isStoryChapter(t.label));
+        const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
 
-            const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-            const expectedSimple = normalize(expectedTitle);
+        const targetTocItem = mappingCandidates[chapterIndex - 1];
 
-            const match = toc.find(t => {
-                const labelSimple = normalize(t.label);
-
-                if (labelSimple.includes(expectedSimple) || expectedSimple.includes(labelSimple)) return true;
-
-                if (expectedSimple.includes('prologue') && labelSimple.includes('prologue')) return true;
-                if (expectedSimple.includes('epilogue') && labelSimple.includes('epilogue')) return true;
-
-                const chNumMatch = expectedTitle.match(/Chapter\s+(\d+)/i);
-                if (chNumMatch) {
-                    const num = chNumMatch[1];
-                    if (t.label.match(new RegExp(`Chapter\\s+${num}`, 'i'))) return true;
-                    if (t.label.match(new RegExp(`^${num}\\.`, 'i'))) return true;
-
-                    if (normalize(t.label).startsWith(`${num}`)) return true;
-                }
-
-                return false;
-            });
-
-            if (match) {
-                rawIndex = match.index - 1;
-
-            } else {
-
-                const storyChapters = toc.filter(t => isStoryChapter(t.label));
-                const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
-                const targetTocItem = mappingCandidates[chapterIndex - 1];
-                if (targetTocItem) {
-                    rawIndex = targetTocItem.index - 1;
-                }
-            }
+        if (targetTocItem) {
+            rawIndex = targetTocItem.index - 1;
+            chapterIndex = targetTocItem.index;
         } else {
-
-            const storyChapters = toc.filter(t => isStoryChapter(t.label));
-            const mappingCandidates = storyChapters.filter(t => !t.label.match(/^Part \d+/i));
-            const targetTocItem = mappingCandidates[chapterIndex - 1];
-
-            if (targetTocItem) {
-                rawIndex = targetTocItem.index - 1;
-                chapterIndex = targetTocItem.index;
-            }
+            if (rawIndex < 0 || rawIndex >= spineIndexToHref.length) return null;
         }
     }
 
@@ -375,17 +395,23 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     const EXCLUDED_FROM_SHIFT = ['v0', 'y3v1', 'y3v2', 'y3v3'];
 
     if (!EXCLUDED_FROM_SHIFT.includes(volumeId)) {
+        const imageBlockRegex = /^\s*<p[^>]*class="P_TEXTBODY_CENTERALIGN"[^>]*>\s*<span>\s*<img[^>]+>\s*<\/span>\s*<\/p>/i;
 
-        const isImagePage = cleanHtml.length < 1500 && /<img[^>]+>/i.test(cleanHtml);
 
-        if (isImagePage) {
-            const nextRawIndex = rawIndex + 1;
-            if (nextRawIndex < spineIndexToHref.length) {
-                const nextAbsPath = spineIndexToHref[nextRawIndex];
-                const nextHtmlRaw = await zip!.file(nextAbsPath)?.async("string");
-                if (nextHtmlRaw) {
-                    const nextBody = nextHtmlRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || nextHtmlRaw;
-                    cleanHtml += nextBody;
+        if (imageBlockRegex.test(cleanHtml)) {
+            cleanHtml = cleanHtml.replace(imageBlockRegex, '');
+        }
+
+
+        const nextRawIndex = rawIndex + 1;
+        if (nextRawIndex < spineIndexToHref.length) {
+            const nextAbsPath = spineIndexToHref[nextRawIndex];
+            const nextHtmlRaw = await zip!.file(nextAbsPath)?.async("string");
+            if (nextHtmlRaw) {
+                const nextBody = nextHtmlRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || nextHtmlRaw;
+                const nextMatch = nextBody.match(imageBlockRegex);
+                if (nextMatch) {
+                    cleanHtml += nextMatch[0];
                 }
             }
         }
@@ -492,26 +518,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
                 };
                 break;
             }
-
-
-
-
-            if (tItem) {
-                prevChapterCandidate = {
-                    volumeId,
-                    chapter: pIndex,
-                    title: tItem.label
-                };
-                break;
-            }
-
-
-            prevChapterCandidate = {
-                volumeId,
-                chapter: pIndex,
-                title: `Chapter ${pIndex}`
-            };
-            break;
+            pIndex--;
         }
         prevChapterVal = prevChapterCandidate;
 
@@ -539,12 +546,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
                 break;
             }
 
-            nextChapterCandidate = {
-                volumeId,
-                chapter: nIndex,
-                title: `Chapter ${nIndex}`
-            };
-            break;
+            nIndex++;
         }
         nextChapterVal = nextChapterCandidate;
     }

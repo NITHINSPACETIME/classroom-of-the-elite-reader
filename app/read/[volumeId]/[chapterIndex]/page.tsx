@@ -9,10 +9,10 @@ import JSZip from "jszip";
 
 export async function generateStaticParams() {
     const params: { volumeId: string, chapterIndex: string }[] = [];
-    console.log("Generating static params for all volumes...");
+
 
     for (const volume of allVolumes) {
-       
+
         const legacyCount = volume.chapters.length || 50;
         let count = legacyCount;
 
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
                 }
             }
         } catch (e) {
-            console.error(`Error parsing volume ${volume.id} for static params:`, e);
+
         }
 
         for (let i = 1; i <= count; i++) {
@@ -46,11 +46,9 @@ export const revalidate = false;
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
-export default async function ReadPage({ params, searchParams }: { params: Promise<{ volumeId: string, chapterIndex: string }>, searchParams: Promise<{ logical?: string }> }) {
+export default async function ReadPage({ params }: { params: Promise<{ volumeId: string, chapterIndex: string }> }) {
     const { volumeId, chapterIndex } = await params;
-    const { logical } = await searchParams;
     const index = parseInt(chapterIndex);
-    const isLogical = logical === 'true';
 
     if (isNaN(index)) notFound();
 
@@ -99,7 +97,7 @@ export default async function ReadPage({ params, searchParams }: { params: Promi
         );
     }
 
-    const data = await getChapterContent(volumeId, index, isLogical);
+    const data = await getChapterContent(volumeId, index, false);
 
     let detailsLink = "/select";
     let returnLink = "/select";
