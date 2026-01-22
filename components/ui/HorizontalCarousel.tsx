@@ -103,7 +103,7 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
             }
 
             container.addEventListener('scroll', onScroll, { passive: true })
-          
+
             handleScroll()
 
             return () => {
@@ -164,7 +164,7 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
                         return (
                             <div
                                 key={keyExtractor(item)}
-                                className="snap-center flex-shrink-0 transition-all duration-500 ease-out"
+                                className="snap-center flex-shrink-0 transition-all duration-300 ease-out will-change-transform"
                                 onClick={() => scrollTo(index)}
                             >
                                 {renderItem(item, isActive, index)}
@@ -174,7 +174,7 @@ export const HorizontalCarousel = React.forwardRef<CarouselHandle, HorizontalCar
 
                     {ListFooterComponent && (
                         <div
-                            className="snap-center flex-shrink-0 transition-all duration-500 ease-out flex items-center justify-center"
+                            className="snap-center flex-shrink-0 transition-all duration-300 ease-out flex items-center justify-center will-change-transform"
                             onClick={() => scrollTo(items.length)}
                         >
 

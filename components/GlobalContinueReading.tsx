@@ -95,7 +95,7 @@ export function GlobalContinueReading() {
                         </button>
 
                         <Link href={`/read/${lastRead.volumeId}/${getSpineIndex(lastRead.volumeId, lastRead.chapterIndex)}`}>
-                            <div className="flex items-center gap-4 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full p-2 pl-3 pr-6 shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-105 transition-all duration-300 cursor-pointer ring-1 ring-white/20 animate-pulse hover:animate-none">
+                            <div className="flex items-center gap-4 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full p-2 pl-3 pr-6 shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-105 transition-all duration-200 cursor-pointer ring-1 ring-white/20">
                                 {/* Small Cover Preview */}
                                 <div className="h-10 w-8 rounded overflow-hidden shrink-0 border border-white/20">
                                     <img src={lastRead.coverImage} alt="Cover" className="h-full w-full object-cover" />

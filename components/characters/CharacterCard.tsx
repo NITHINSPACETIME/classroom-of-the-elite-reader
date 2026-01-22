@@ -43,9 +43,9 @@ export function CharacterCard({ character, index, contextClass, contextYear }: C
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
+            transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.15), ease: "easeOut" }}
             className="group relative h-[500px] w-full perspective-1000"
         >
             <div className={`

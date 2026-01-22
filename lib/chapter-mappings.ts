@@ -376,9 +376,9 @@ export const chapterMappings: Record<string, number[]> = {
  * @returns spine index, or logicalIndex + 1 if no mapping exists
  */
 export function getSpineIndex(volumeId: string, logicalIndex: number): number {
-  const mapping = chapterMappings[volumeId];
-  if (mapping && mapping[logicalIndex]) {
-    return mapping[logicalIndex];
-  }
-  return logicalIndex + 1;
+    const mapping = chapterMappings[volumeId];
+    if (mapping && mapping[logicalIndex]) {
+        return mapping[logicalIndex];
+    }
+    return logicalIndex + 1; // Fallback to 1-based index
 }
