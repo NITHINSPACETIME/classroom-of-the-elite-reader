@@ -263,7 +263,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                                     onClick={(e) => vol.inProgress && e.preventDefault()}
                                                 >
                                                     {vol.coverImage ? (
-                                                        <div className="relative w-full aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-500 cursor-pointer">
+                                                        <div className="relative w-full aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-300 cursor-pointer">
                                                             <Image
                                                                 src={vol.coverImage}
                                                                 alt={vol.title}
@@ -378,7 +378,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                                     src={vol.coverImage}
                                                     alt={vol.title}
                                                     fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                                                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02] opacity-90 group-hover:opacity-100"
                                                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
                                                     priority={index < 6}
                                                 />
@@ -482,32 +482,27 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                     }
                 </AnimatePresence >
 
-                {/* Toggle Button */}
-                < motion.div
-                    className="fixed bottom-8 right-8 z-50 pointer-events-auto"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                >
-                    <Button
-                        onClick={() => setViewMode(prev => prev === "detailed" ? "compact" : "detailed")}
-                        className="rounded-full w-14 h-14 bg-red-600 hover:bg-red-700 text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-400/20 flex items-center justify-center transition-all duration-300"
-                    >
-                        <AnimatePresence mode="wait" initial={false}>
-                            <motion.div
-                                key={viewMode}
-                                initial={{ rotate: -90, opacity: 0 }}
-                                animate={{ rotate: 0, opacity: 1 }}
-                                exit={{ rotate: 90, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                {viewMode === "detailed" ? <LayoutGrid className="w-6 h-6" /> : <List className="w-6 h-6" />}
-                            </motion.div>
-                        </AnimatePresence>
-                    </Button>
-                </motion.div >
             </motion.div >
+
+            {/* Toggle Button */}
+            <div className="fixed bottom-8 right-8 z-[100]">
+                <Button
+                    onClick={() => setViewMode(prev => prev === "detailed" ? "compact" : "detailed")}
+                    className="rounded-full w-14 h-14 bg-red-600 hover:bg-red-700 text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-400/20 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+                >
+                    <AnimatePresence mode="wait" initial={false}>
+                        <motion.div
+                            key={viewMode}
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            {viewMode === "detailed" ? <LayoutGrid className="w-6 h-6" /> : <List className="w-6 h-6" />}
+                        </motion.div>
+                    </AnimatePresence>
+                </Button>
+            </div>
 
             <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
             <ProfileModal isOpen={profileModalOpen} onClose={() => setProfileModalOpen(false)} />
