@@ -35,7 +35,7 @@ export function isStoryChapter(label: string): boolean {
         'synopsis', 'front matter', 'color', 'insert', 'images', 'flyleaf',
         'bonus', 'advertisement', 'preview', 'acknowledgments', 'dedication'
     ];
-    
+
     return !skip.some(s => new RegExp(`(?:^|[\\s,;:!?\\-"'(])${s}`, 'i').test(lower));
 }
 
@@ -196,232 +196,232 @@ export async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise
 
         let toc: { label: string, href: string, index: number }[] = [];
 
-       
+
         if (volumeId === 'y2v11') {
             const tocOverrides = [
-                
-        { label: "Illustrations", href: "index_split_000.html#illustrations", index: 1 },
-        { label: "Prologue: Miki Yamamura’s Monologue", href: "index_split_000.html#prologue", index: 2 },
-        { label: "Chapter 1: The Elusive Two-Party Interview", href: "index_split_001.html#chapter-1", index: 3 },
-        { label: "Chapter 2: The Exchange Training Camp", href: "index_split_002.html#chapter-2", index: 4 },
-        { label: "Chapter 3: Request from Horikita & Request from Ayanokōji", href: "index_split_002.html#chapter-3", index: 4 },
-        { label: "Chapter 4: A Strange Discomfort", href: "index_split_003.html#chapter-4", index: 5 },
-        { label: "Chapter 5: The One Who Watches, The One Being Watched", href: "index_split_004.html#chapter-5", index: 6 },
-        { label: "Chapter 6: A Peaceful Resolution", href: "index_split_005.html#chapter-6", index: 7 },
-        { label: "Chapter 7: A Settled Night", href: "index_split_006.html#chapter-7", index: 8 },
-        { label: "Chapter 8: The Courage to Move Forward", href: "index_split_007.html#chapter-8", index: 9 },
-        { label: "Epilogue: Who is the Challenger?", href: "index_split_007.html#epilogue", index: 9 },
-        { label: "Postscript", href: "index_split_007.html#postscript", index: 9 }
+
+                { label: "Illustrations", href: "index_split_000.html#illustrations", index: 1 },
+                { label: "Prologue: Miki Yamamura’s Monologue", href: "index_split_000.html#prologue", index: 2 },
+                { label: "Chapter 1: The Elusive Two-Party Interview", href: "index_split_001.html#chapter-1", index: 3 },
+                { label: "Chapter 2: The Exchange Training Camp", href: "index_split_002.html#chapter-2", index: 4 },
+                { label: "Chapter 3: Request from Horikita & Request from Ayanokōji", href: "index_split_002.html#chapter-3", index: 4 },
+                { label: "Chapter 4: A Strange Discomfort", href: "index_split_003.html#chapter-4", index: 5 },
+                { label: "Chapter 5: The One Who Watches, The One Being Watched", href: "index_split_004.html#chapter-5", index: 6 },
+                { label: "Chapter 6: A Peaceful Resolution", href: "index_split_005.html#chapter-6", index: 7 },
+                { label: "Chapter 7: A Settled Night", href: "index_split_006.html#chapter-7", index: 8 },
+                { label: "Chapter 8: The Courage to Move Forward", href: "index_split_007.html#chapter-8", index: 9 },
+                { label: "Epilogue: Who is the Challenger?", href: "index_split_007.html#epilogue", index: 9 },
+                { label: "Postscript", href: "index_split_007.html#postscript", index: 9 }
             ];
-        toc = tocOverrides.map(t => ({ ...t }));
-    } else if (ncxId && manifest[ncxId]) {
-        const ncxHref = manifest[ncxId];
-        const ncxPath = opfDir === '.' ? ncxHref : path.join(opfDir, ncxHref);
-        const ncxContent = await zip.file(ncxPath)?.async("string");
-        if (ncxContent) {
-            const navPointRegex = /<navLabel>\s*<text>([^<]+)<\/text>\s*<\/navLabel>\s*<content\s+src="([^"]+)"/g;
-            let navMatch;
-            while ((navMatch = navPointRegex.exec(ncxContent)) !== null) {
-                const label = navMatch[1];
-                const src = navMatch[2];
+            toc = tocOverrides.map(t => ({ ...t }));
+        } else if (ncxId && manifest[ncxId]) {
+            const ncxHref = manifest[ncxId];
+            const ncxPath = opfDir === '.' ? ncxHref : path.join(opfDir, ncxHref);
+            const ncxContent = await zip.file(ncxPath)?.async("string");
+            if (ncxContent) {
+                const navPointRegex = /<navLabel>\s*<text>([^<]+)<\/text>\s*<\/navLabel>\s*<content\s+src="([^"]+)"/g;
+                let navMatch;
+                while ((navMatch = navPointRegex.exec(ncxContent)) !== null) {
+                    const label = navMatch[1];
+                    const src = navMatch[2];
 
 
-                const ncxDir = path.dirname(ncxPath);
-                const absPath = path.join(ncxDir, src.split('#')[0]).replace(/\\/g, '/');
+                    const ncxDir = path.dirname(ncxPath);
+                    const absPath = path.join(ncxDir, src.split('#')[0]).replace(/\\/g, '/');
 
 
-                const index = spineIndexToHref.indexOf(absPath);
-                if (index !== -1) {
+                    const index = spineIndexToHref.indexOf(absPath);
+                    if (index !== -1) {
 
-                    toc.push({ label, href: src, index: index + 1 });
-                }
-            }
-        }
-    }
-
-
-    const candidates = spineIndexToHref.map((href, idx) => ({ href, idx })).slice(-5);
-
-    for (const { href, idx } of candidates) {
-        const inToc = toc.some(t => t.index === idx + 1);
-        if (!inToc) {
-            const itemPath = href;
-            const content = await zip.file(itemPath)?.async("string");
-            if (content) {
-                const lowerContent = content.toLowerCase().substring(0, 2000);
-                let label = "";
-
-                if (lowerContent.includes('about the author') || lowerContent.includes('author:')) {
-                    label = 'About the Author';
-                } else if (lowerContent.includes('postscript')) {
-                    label = 'Postscript';
-                } else if (lowerContent.includes('short story') || lowerContent.includes('ss')) {
-                    label = 'Short Story';
-                }
-
-                if (label) {
-                    toc.push({ label, href, index: idx + 1 });
-                }
-            }
-        }
-    }
-
-    
-    if (volumeId === 'y2v11') {
-        const epilogueIndex = toc.findIndex(t => t.label.toLowerCase().includes('epilogue'));
-        if (epilogueIndex !== -1) {
-            
-            const hasPostscript = toc.some(t => t.label.toLowerCase().includes('postscript'));
-            if (!hasPostscript) {
-               
-                const postscriptItem = {
-                    label: "Postscript",
-                    href: "index_split_007.html", 
-                    index: 39 
-                };
-                toc.push(postscriptItem);
-            }
-        }
-    }
-
-    
-    if (volumeId === 'y2v9') {
-        const ch8Index = toc.findIndex(t => t.label.includes('Chapter 8: A Tinge of Anxiety') || t.label.includes('Epilogue: A Tinge of Anxiety'));
-        if (ch8Index !== -1) {
-            toc[ch8Index].label = 'Chapter 8 - Epilogue : A Tinge of Anxiety';
-        }
-    }
-
-    
-    if (volumeId === 'y2v9.5') {
-        const index = toc.findIndex(t => t.label.includes('Chapter 7'));
-        if (index !== -1) {
-            toc[index].label = toc[index].label.replace('Chapter 7:', 'Chapter 7 - Epilogue :');
-        }
-    }
-
-    if (volumeId === 'y2v10') {
-        const index = toc.findIndex(t => t.label.includes('Chapter 9'));
-        if (index !== -1) {
-            toc[index].label = toc[index].label.replace('Chapter 9:', 'Chapter 9 - Epilogue :');
-        }
-    }
-
-    
-    if (volumeId === 'y2v12') {
-        const index = toc.findIndex(t => t.label.includes('Chapter 10'));
-        if (index !== -1) {
-            toc[index].label = toc[index].label.replace('Chapter 10:', 'Chapter 10 - Epilogue :');
-        }
-    }
-
-    const volume = volumes.find(v => v.id === volumeId);
-    if (volume && !shouldSkipRenaming(volumeId, volume.volumeNumber)) {
-        const storyChapters = toc.filter(t => isStoryChapter(t.label));
-
-        if (storyChapters.length > 0) {
-
-            const first = storyChapters[0];
-            if (!first.label.toLowerCase().includes('prologue')) {
-                if (first.label.match(/^Chapter \d+/)) {
-                    first.label = first.label.replace(/^Chapter (\d+)(:?)/, 'Chapter $1 - Prologue $2');
-                } else {
-                    first.label = `Prologue: ${first.label}`;
-                }
-            }
-
-
-            if (storyChapters.length > 1) {
-                const last = storyChapters[storyChapters.length - 1];
-                if (!last.label.toLowerCase().includes('epilogue')) {
-                    if (last.label.match(/^Chapter \d+/)) {
-                        last.label = last.label.replace(/^Chapter (\d+)(:?)/, 'Chapter $1 - Epilogue $2');
-                    } else {
-                        last.label = `Epilogue: ${last.label}`;
+                        toc.push({ label, href: src, index: index + 1 });
                     }
                 }
             }
         }
-    }
 
 
-    toc = toc.filter(t => !t.label.toLowerCase().includes('newsletter') && !t.label.toLowerCase().includes('legacyemtls'));
+        const candidates = spineIndexToHref.map((href, idx) => ({ href, idx })).slice(-5);
 
+        for (const { href, idx } of candidates) {
+            const inToc = toc.some(t => t.index === idx + 1);
+            if (!inToc) {
+                const itemPath = href;
+                const content = await zip.file(itemPath)?.async("string");
+                if (content) {
+                    const lowerContent = content.toLowerCase().substring(0, 2000);
+                    let label = "";
 
-    if (volumeId.startsWith('ss-')) {
+                    if (lowerContent.includes('about the author') || lowerContent.includes('author:')) {
+                        label = 'About the Author';
+                    } else if (lowerContent.includes('postscript')) {
+                        label = 'Postscript';
+                    } else if (lowerContent.includes('short story') || lowerContent.includes('ss')) {
+                        label = 'Short Story';
+                    }
 
-        toc = toc.filter(t => {
-            const filename = t.href.split('/').pop()?.toLowerCase() || '';
-
-
-            if (volumeId === 'ss-y3-v1' && (filename === 'ss-1.xhtml' || filename.startsWith('ss-1-'))) {
-                return false;
-            }
-
-            return filename.startsWith('ss-');
-        });
-
-
-        if (volumeId === 'ss-y3-v1') {
-            toc.sort((a, b) => {
-                const filenameA = a.href.split('/').pop()?.toLowerCase() || '';
-                const filenameB = b.href.split('/').pop()?.toLowerCase() || '';
-
-
-                if (filenameA.startsWith('ss-5')) return -1;
-                if (filenameB.startsWith('ss-5')) return 1;
-
-
-                return a.index - b.index;
-            });
-
-
-            toc = toc.map(t => {
-                if (t.label.includes('Guidebook Short Story: A Pillar of Support')) {
-                    return { ...t, label: "Haruka Hasebe's Short Story: A Pillar of Support" };
+                    if (label) {
+                        toc.push({ label, href, index: idx + 1 });
+                    }
                 }
-                return t;
+            }
+        }
+
+
+        if (volumeId === 'y2v11') {
+            const epilogueIndex = toc.findIndex(t => t.label.toLowerCase().includes('epilogue'));
+            if (epilogueIndex !== -1) {
+
+                const hasPostscript = toc.some(t => t.label.toLowerCase().includes('postscript'));
+                if (!hasPostscript) {
+
+                    const postscriptItem = {
+                        label: "Postscript",
+                        href: "index_split_007.html",
+                        index: 39
+                    };
+                    toc.push(postscriptItem);
+                }
+            }
+        }
+
+
+        if (volumeId === 'y2v9') {
+            const ch8Index = toc.findIndex(t => t.label.includes('Chapter 8: A Tinge of Anxiety') || t.label.includes('Epilogue: A Tinge of Anxiety'));
+            if (ch8Index !== -1) {
+                toc[ch8Index].label = 'Chapter 8 - Epilogue : A Tinge of Anxiety';
+            }
+        }
+
+
+        if (volumeId === 'y2v9.5') {
+            const index = toc.findIndex(t => t.label.includes('Chapter 7'));
+            if (index !== -1) {
+                toc[index].label = toc[index].label.replace('Chapter 7:', 'Chapter 7 - Epilogue :');
+            }
+        }
+
+        if (volumeId === 'y2v10') {
+            const index = toc.findIndex(t => t.label.includes('Chapter 9'));
+            if (index !== -1) {
+                toc[index].label = toc[index].label.replace('Chapter 9:', 'Chapter 9 - Epilogue :');
+            }
+        }
+
+
+        if (volumeId === 'y2v12') {
+            const index = toc.findIndex(t => t.label.includes('Chapter 10'));
+            if (index !== -1) {
+                toc[index].label = toc[index].label.replace('Chapter 10:', 'Chapter 10 - Epilogue :');
+            }
+        }
+
+        const volume = volumes.find(v => v.id === volumeId);
+        if (volume && !shouldSkipRenaming(volumeId, volume.volumeNumber)) {
+            const storyChapters = toc.filter(t => isStoryChapter(t.label));
+
+            if (storyChapters.length > 0) {
+
+                const first = storyChapters[0];
+                if (!first.label.toLowerCase().includes('prologue')) {
+                    if (first.label.match(/^Chapter \d+/)) {
+                        first.label = first.label.replace(/^Chapter (\d+)(:?)/, 'Chapter $1 - Prologue $2');
+                    } else {
+                        first.label = `Prologue: ${first.label}`;
+                    }
+                }
+
+
+                if (storyChapters.length > 1) {
+                    const last = storyChapters[storyChapters.length - 1];
+                    if (!last.label.toLowerCase().includes('epilogue')) {
+                        if (last.label.match(/^Chapter \d+/)) {
+                            last.label = last.label.replace(/^Chapter (\d+)(:?)/, 'Chapter $1 - Epilogue $2');
+                        } else {
+                            last.label = `Epilogue: ${last.label}`;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        toc = toc.filter(t => !t.label.toLowerCase().includes('newsletter') && !t.label.toLowerCase().includes('legacyemtls'));
+
+
+        if (volumeId.startsWith('ss-')) {
+
+            toc = toc.filter(t => {
+                const filename = t.href.split('/').pop()?.toLowerCase() || '';
+
+
+                if (volumeId === 'ss-y3-v1' && (filename === 'ss-1.xhtml' || filename.startsWith('ss-1-'))) {
+                    return false;
+                }
+
+                return filename.startsWith('ss-');
+            });
+
+
+            if (volumeId === 'ss-y3-v1') {
+                toc.sort((a, b) => {
+                    const filenameA = a.href.split('/').pop()?.toLowerCase() || '';
+                    const filenameB = b.href.split('/').pop()?.toLowerCase() || '';
+
+
+                    if (filenameA.startsWith('ss-5')) return -1;
+                    if (filenameB.startsWith('ss-5')) return 1;
+
+
+                    return a.index - b.index;
+                });
+
+
+                toc = toc.map(t => {
+                    if (t.label.includes('Guidebook Short Story: A Pillar of Support')) {
+                        return { ...t, label: "Haruka Hasebe's Short Story: A Pillar of Support" };
+                    }
+                    return t;
+                });
+            }
+        } else {
+
+            toc = toc.filter(t => {
+                const filename = t.href.split('/').pop()?.toLowerCase() || '';
+                const label = t.label.toLowerCase();
+
+                if (filename.startsWith('ss-')) return false;
+                if (label.includes('short story')) return false;
+
+
+                if (filename.includes('nav.xhtml') || filename.includes('nav.html')) return false;
+
+                return true;
             });
         }
-    } else {
 
-        toc = toc.filter(t => {
-            const filename = t.href.split('/').pop()?.toLowerCase() || '';
-            const label = t.label.toLowerCase();
-           
-            if (filename.startsWith('ss-')) return false;
-            if (label.includes('short story')) return false;
-
-            
-            if (filename.includes('nav.xhtml') || filename.includes('nav.html')) return false;
-
-            return true;
-        });
-    }
-
-    const structure: VolumeStructure = {
-        toc,
-        spineIndexToHref,
-        manifest,
-        opfDir
-    };
+        const structure: VolumeStructure = {
+            toc,
+            spineIndexToHref,
+            manifest,
+            opfDir
+        };
 
 
-    try {
-        if (!fs.existsSync(CACHE_DIR)) {
-            fs.mkdirSync(CACHE_DIR, { recursive: true });
+        try {
+            if (!fs.existsSync(CACHE_DIR)) {
+                fs.mkdirSync(CACHE_DIR, { recursive: true });
+            }
+            fs.writeFileSync(cacheFile, JSON.stringify(structure));
+        } catch (e) {
+
         }
-        fs.writeFileSync(cacheFile, JSON.stringify(structure));
+
+        return structure;
+
     } catch (e) {
-
+        console.error('getVolumeStructure error:', e);
+        return null;
     }
-
-    return structure;
-
-} catch (e) {
-    console.error('getVolumeStructure error:', e);
-    return null;
-}
 }
 
 export async function getChapterContent(volumeId: string, chapterIndex: number, isLogical: boolean = false): Promise<ChapterContent | null> {
@@ -490,18 +490,18 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         return null;
     }
 
-   
+
     const currentTocItem = toc.slice().reverse().find(t => t.index <= chapterIndex);
     const bestTitle = currentTocItem ? currentTocItem.label : `Chapter ${chapterIndex}`;
 
-    
+
     const startIndex = rawIndex;
 
-   
+
     const sortedToc = toc.slice().sort((a, b) => a.index - b.index);
     const nextTocItem = sortedToc.find(t => t.index > chapterIndex);
 
-   
+
     const endIndex = nextTocItem ? (nextTocItem.index - 1) : spineIndexToHref.length;
 
     if (!zip) {
@@ -520,7 +520,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         const bodyMatch = chunkRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i);
         let chunkHtml = bodyMatch ? bodyMatch[1] : chunkRaw;
 
-       
+
         const imgRegex = /src="([^"]+)"/g;
         let imgMatch;
         const imagesToLoad: { original: string, fullPath: string }[] = [];
@@ -535,14 +535,14 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             }
         }
 
-      
+
         for (const img of imagesToLoad) {
             const publicUrl = `/images/books/${volumeId}/${img.fullPath}`;
             const encodedUrl = publicUrl.split('/').map(part => encodeURIComponent(part)).join('/').replace('//', '/');
             chunkHtml = chunkHtml.split(`src="${img.original}"`).join(`src="${encodedUrl}" loading="lazy" decoding="async"`);
         }
 
-      
+
         const linkRegex = /href="([^"]+)"/g;
         let linkMatch;
         const linksToReplace: { original: string, newHref: string }[] = [];
@@ -555,7 +555,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             const linkDir = path.dirname(absPath);
             const absLinkPath = (linkDir === '.' ? cleanHref : path.join(linkDir, cleanHref)).replace(/\\/g, '/');
 
-          
+
             const linkIndex = spineIndexToHref.indexOf(absLinkPath);
             if (linkIndex !== -1) {
                 linksToReplace.push({
@@ -575,33 +575,33 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     let cleanHtml = mergedHtml;
 
     if (volumeId === 'y2v9' || volumeId === 'y2v9.5' || volumeId === 'y2v10' || volumeId === 'y2v12') {
-       
+
         cleanHtml = cleanHtml.replace(/class="P_Chapter_Header"/g, 'class="P__STAR__STAR__STAR__page_break"');
 
-       
+
         cleanHtml = cleanHtml.replace(/<p[^>]*class="P__STAR__STAR__STAR__page_break"[^>]*>\s*<span[^>]*>\s*<span[^>]*>\s*(?:&nbsp;|&#160;| )\s*<\/span>\s*<\/span>\s*<\/p>/gi, '');
 
-        
+
         cleanHtml = cleanHtml.replace(/(<p[^>]*class="P__STAR__STAR__STAR__page_break"[^>]*>[\s\S]*?)<br\s*\/?>([\s\S]*?<\/p>)/gi, '$1 $2');
     }
 
-    
+
     if (volumeId === 'y2v9' && cleanHtml.includes('A Tinge of Anxiety')) {
-        
+
         const headerRegex = /<p[^>]*class="P__STAR__STAR__STAR__page_break"[^>]*>[\s\S]*?Chapter 8\s*:\s*<br\s*\/?>\s*A Tinge of Anxiety[\s\S]*?<\/p>/i;
 
         if (headerRegex.test(cleanHtml)) {
-           
+
             cleanHtml = cleanHtml.replace(headerRegex,
                 '<p class="P__STAR__STAR__STAR__page_break"><span><span style="font-weight: bold; font-size: 1.17em;">Chapter 8 - Epilogue<br/>A Tinge of Anxiety</span></span></p>'
             );
         } else {
-           
+
             cleanHtml = cleanHtml.replace(/Chapter 8\s*:\s*/gi, '');
         }
     }
 
-   
+
     if (volumeId === 'y2v9.5' && cleanHtml.includes('Changing Relationships')) {
         const headerRegex = /<p[^>]*class="P__STAR__STAR__STAR__page_break"[^>]*>[\s\S]*?Chapter 7\s*:\s*<br\s*\/?>\s*Changing Relationships[\s\S]*?<\/p>/i;
         if (headerRegex.test(cleanHtml)) {
@@ -611,7 +611,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         }
     }
 
-  
+
     if (volumeId === 'y2v10' && cleanHtml.includes('Harbinger of Awakening')) {
         const headerRegex = /<p[^>]*class="P__STAR__STAR__STAR__page_break"[^>]*>[\s\S]*?Chapter 9\s*:\s*<br\s*\/?>\s*Harbinger of Awakening[\s\S]*?<\/p>/i;
         if (headerRegex.test(cleanHtml)) {
@@ -621,9 +621,9 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         }
     }
 
-  
+
     if (volumeId === 'y2v12' && cleanHtml.includes('The Truth Is')) {
-       
+
         const headerRegex = /<p[^>]*class="P__STAR__STAR__STAR__page_break"[^>]*>[\s\S]*?Chapter 10\s*:\s*(?:<br\s*\/?>\s*)?The Truth Is[\s\S]*?<\/p>/i;
         if (headerRegex.test(cleanHtml)) {
             cleanHtml = cleanHtml.replace(headerRegex,
@@ -642,10 +642,10 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
     }
 
 
-   
+
     cleanHtml = cleanHtml.replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, '');
 
-   
+
     if (cleanHtml.includes('Or visit us online') || cleanHtml.includes('gomanga.com/newsletter') || cleanHtml.includes('Seas books and brand-new licenses')) {
         const markers = [
             'Get the latest news about your favorite Seven Seas books',
@@ -660,7 +660,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         for (const marker of markers) {
             const idx = cleanHtml.indexOf(marker);
             if (idx !== -1) {
-              
+
                 const pStart = cleanHtml.lastIndexOf('<p', idx);
                 if (pStart !== -1) {
                     if (cutIndex === -1 || pStart < cutIndex) {
@@ -675,17 +675,17 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         }
     }
 
-    
+
     if (volumeId === 'y2v11') {
-       
+
         cleanHtml = cleanHtml.replace(/<p[^>]*>\s*RoyalMTLs\s*<\/p>/gi, '');
-        
+
         cleanHtml = cleanHtml.replace(/<p[^>]*>\s*\d+\s*<\/p>/gi, '');
-        
+
         cleanHtml = cleanHtml.replace(/<p[^>]*>\s*<\/p>/gi, '');
         cleanHtml = cleanHtml.replace(/<p[^>]*>\s*&nbsp;\s*<\/p>/gi, '');
 
-        
+
         cleanHtml = cleanHtml.replace(
             /<p class="calibre1">(\s*<img[^>]+>\s*)<\/p>/gi,
             '<p class="P_TEXTBODY_CENTERALIGN">$1</p>'
@@ -696,13 +696,13 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             'class="P_Prose_Formatting"'
         );
 
-     
+
         cleanHtml = cleanHtml.replace(/class="calibre2"/gi, '');
 
 
-      
+
         if (cleanHtml.includes("Prologue: Miki Yamamura")) {
-           
+
             cleanHtml = '<div id="illustrations"></div>' + cleanHtml;
         }
 
@@ -714,26 +714,26 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             );
         }
 
-       
+
         const chapterRegexP = /<p class="P_Prose_Formatting">Chapter (\d+):\s*<\/p>\s*<p class="P_Prose_Formatting">(.*?)<\/p>/gi;
         cleanHtml = cleanHtml.replace(chapterRegexP, (match, num, title) => {
             return `<h1 id="chapter-${num}" class="chapter-title">Chapter ${num}: ${title.trim()}</h1>`;
         });
 
-       
+
         const chapterRegexH = /<h2[^>]*>Chapter (\d+):\s*<\/h2>\s*<h3[^>]*>(.*?)<\/h3>/gi;
         cleanHtml = cleanHtml.replace(chapterRegexH, (match, num, title) => {
             return `<h1 id="chapter-${num}" class="chapter-title">Chapter ${num}: ${title.trim()}</h1>`;
         });
 
-      
+
         if (cleanHtml.includes('Epilogue:')) {
-           
+
             cleanHtml = cleanHtml.replace(
                 /<p class="P_Prose_Formatting">Epilogue: <\/p>\s*<p class="P_Prose_Formatting">Who is the Challenger\?/i,
                 '<h1 id="epilogue" class="chapter-title">Epilogue: Who is the Challenger?</h1>'
             );
-          
+
         }
 
 
@@ -749,7 +749,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             }
         }
 
-       
+
         const injectedCss = `
 <style>
     body {
@@ -798,7 +798,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
 
 
-    
+
     const EXCLUDED_FROM_SHIFT = ['v0', 'y3v1', 'y3v2', 'y3v3'];
 
     if (!EXCLUDED_FROM_SHIFT.includes(volumeId)) {
@@ -808,17 +808,17 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             cleanHtml = cleanHtml.replace(imageBlockRegex, '');
         }
 
-       
+
         if (endIndex < spineIndexToHref.length) {
             const nextAbsPath = spineIndexToHref[endIndex];
             const nextHtmlRaw = await zip!.file(nextAbsPath)?.async("string");
             if (nextHtmlRaw) {
                 const nextBody = nextHtmlRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || nextHtmlRaw;
 
-              
+
                 const nextMatch = nextBody.match(imageBlockRegex);
                 if (nextMatch) {
-                   
+                    let imgChunk = nextMatch[0];
                     const imgRegex = /src="([^"]+)"/g;
                     const imgMatch = imgRegex.exec(imgChunk);
                     if (imgMatch) {
