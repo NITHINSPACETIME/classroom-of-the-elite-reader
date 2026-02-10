@@ -77,30 +77,12 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
             }
 
 
-            const { data: existing } = await supabase
+            const { error: upsertError } = await supabase
                 .from('reading_progress')
-                .select('id')
-                .eq('user_id', user.id)
-                .eq('volume_id', volumeId)
-                .maybeSingle()
+                .upsert(progressData, { onConflict: 'user_id,volume_id' })
 
-            if (existing) {
-                const { error: updateError } = await supabase
-                    .from('reading_progress')
-                    .update(progressData)
-                    .eq('id', existing.id)
-
-                if (updateError) {
-                    console.error("Failed to update progress:", updateError)
-                }
-            } else {
-                const { error: insertError } = await supabase
-                    .from('reading_progress')
-                    .insert(progressData)
-
-                if (insertError) {
-                    console.error("Failed to insert progress:", insertError);
-                }
+            if (upsertError) {
+                console.error("Failed to save progress:", upsertError)
             }
 
             lastSavedRef.current = { chapter: newChapterIndex, scroll: scrollPercentage }
