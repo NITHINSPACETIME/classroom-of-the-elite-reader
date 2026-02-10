@@ -254,7 +254,7 @@ export const volumes: VolumeData[] = [
             "Chapter 4: How to Spend a Day Off",
             "Chapter 5: Approaching the Special Exam",
             "Chapter 6: The Expected and the Unexpected",
-            "Epilogue: A Tinge of Anxiety"
+            "Chapter 8 - Epilogue : A Tinge of Anxiety"
         ],
         characters: ["Mako Amikura", "Norihito Watanabe"],
         coverImage: "/assets/y2v9.jpg",
@@ -326,7 +326,8 @@ export const volumes: VolumeData[] = [
         ],
         characters: ["Ai Morishita", "Kōsei Sanada"],
         coverImage: "/assets/y2v11.jpg",
-        epubSource: "/books/year2/y2v11.epub"
+        epubSource: "/books/year2/y2v11.epub",
+        inProgress: true
     },
     {
         id: "y2v12",
