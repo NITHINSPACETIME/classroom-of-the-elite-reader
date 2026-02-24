@@ -30,12 +30,16 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Classroom of the Elite Reader",
-  description: "A premium reader experience for Classroom of the Elite light novels.",
+  title: {
+    default: "Read Classroom of the Elite Light Novel Online | COTE Reader",
+    template: "%s | COTE Reader"
+  },
+  description: "Read Classroom of the Elite (COTE) light novel series online. Enjoy a premium, ad-free, and immersive reading experience for all volumes and chapters of You-Zitsu / Youkoso Jitsuryoku.",
+  keywords: ["Classroom of the Elite", "COTE", "light novel", "read online", "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e", "Ayanokoji Kiyotaka", "cote reader", "classroom of the elite light novel"],
   openGraph: {
-    title: "Classroom of the Elite Reader",
-    description: "Read Classroom of the Elite light novels with a premium, immersive experience.",
-    url: "https://classroom-of-the-elite-reader.vercel.app",
+    title: "Read Classroom of the Elite Light Novel Online | COTE Reader",
+    description: "Read Classroom of the Elite (COTE) light novel series online. Enjoy a premium, ad-free, and immersive reading experience for all volumes and chapters.",
+    url: "https://cote-reader.me",
     siteName: "COTE Reader",
     images: [
       {
@@ -50,11 +54,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Classroom of the Elite Reader",
-    description: "Read Classroom of the Elite light novels with a premium, immersive experience.",
+    title: "Read Classroom of the Elite Light Novel Online | COTE Reader",
+    description: "Read Classroom of the Elite (COTE) light novel series online. Enjoy a premium, ad-free, and immersive reading experience for all volumes.",
     images: ["/assets/preview-hero.png"],
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://cote-reader.me'),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export const viewport: Viewport = {
@@ -66,6 +73,22 @@ export const viewport: Viewport = {
 import { Analytics } from "@vercel/analytics/react";
 import { AuthProvider } from "@/context/AuthContext";
 import { GlobalContinueReading } from "@/components/GlobalContinueReading";
+import Script from "next/script";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "COTE Reader",
+  alternateName: ["Classroom of the Elite Reader", "You-Zitsu Reader"],
+  url: "https://cote-reader.me",
+  description: "Read Classroom of the Elite (COTE) light novel series online. Enjoy a premium, ad-free, and immersive reading experience for all volumes and chapters.",
+  author: {
+    "@type": "Person",
+    name: "Shōgo Kinugasa",
+  },
+  genre: ["Light Novel", "Psychological Thriller", "Drama"],
+  inLanguage: "en",
+};
 
 export default function RootLayout({
   children,
@@ -80,6 +103,12 @@ export default function RootLayout({
       >
         <AuthProvider>
           <GlobalContinueReading />
+          <Script
+            id="json-ld"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            strategy="beforeInteractive"
+          />
           {children}
         </AuthProvider>
         <Analytics />

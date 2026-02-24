@@ -34,7 +34,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <p className="flex items-center gap-1">
+          <p className="flex items-center gap-1 justify-center">
             © 2026 COTE Reader. Made by{" "}
             <a
               href="https://github.com/NITHINSPACETIME"
@@ -46,6 +46,16 @@ export default function Home() {
             </a>
           </p>
           <p className="text-xs text-muted-foreground/60">Not affiliated with the official Classroom of the Elite franchise.</p>
+        </div>
+
+        <div className="sr-only">
+          <h2>Read Classroom of the Elite (COTE) Light Novel</h2>
+          <p>
+            Welcome to COTE Reader, the premier destination to read the Classroom of the Elite light novel series online for free.
+            Follow the journey of Kiyotaka Ayanokoji and his classmates at the Tokyo Metropolitan Advanced Nurturing School.
+            Explore all volumes and chapters of Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e (You-Zitsu) with our immersive, ad-free reader.
+            Whether you are looking for Year 1 or Year 2 translations, our platform offers the best reading experience for COTE fans.
+          </p>
         </div>
 
         <div className="max-w-3xl lg:max-w-4xl w-full mt-8 pt-8 border-t border-white/5 flex flex-col gap-3 px-6 text-[11px] text-muted-foreground/30 text-center leading-relaxed font-light">

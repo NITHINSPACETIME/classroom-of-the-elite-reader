@@ -2,7 +2,7 @@
 
 **The only best way to read *Classroom of the Elite Light Novel* properly.**
 
-[Visit Website](https://classroom-of-the-elite-reader.vercel.app/) | [Report an Issue](https://github.com/NITHINSPACETIME/classroom-of-the-elite-reader/issues) | Give it a ⭐ If you liked it!
+[Visit Website](https://cote-reader.me) | [Report an Issue](https://github.com/NITHINSPACETIME/classroom-of-the-elite-reader/issues) | Give it a ⭐ If you liked it!
 
 ![Build Status](https://img.shields.io/vercel/deploy/classroom-of-the-elite-reader/main?style=for-the-badge&logo=vercel)
 ![Last Commit](https://img.shields.io/github/last-commit/NITHINSPACETIME/classroom-of-the-elite-reader?style=for-the-badge)
