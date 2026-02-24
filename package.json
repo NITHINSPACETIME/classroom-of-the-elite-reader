@@ -10,6 +10,7 @@
     "extract-images": "tsx scripts/extract-images.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "@supabase/supabase-js": "^2.90.1",
     "clsx": "^2.1.1",
     "epubjs": "^0.3.93",

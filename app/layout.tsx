@@ -63,8 +63,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+import { Analytics } from "@vercel/analytics/react";
 import { AuthProvider } from "@/context/AuthContext";
-
 import { GlobalContinueReading } from "@/components/GlobalContinueReading";
 
 export default function RootLayout({
@@ -82,6 +82,7 @@ export default function RootLayout({
           <GlobalContinueReading />
           {children}
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
