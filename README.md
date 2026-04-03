@@ -1,5 +1,7 @@
 # Classroom of the Elite Reader
 
+**Also available on darkweb : http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion**
+
 **The only best way to read *Classroom of the Elite Light Novel* properly.**
 
 [Visit Website](https://cote-reader.me) | [Report an Issue](https://github.com/NITHINSPACETIME/classroom-of-the-elite-reader/issues) | Give it a ⭐ If you liked it!
