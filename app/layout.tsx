@@ -73,6 +73,7 @@ export const viewport: Viewport = {
 import { Analytics } from "@vercel/analytics/react";
 import { AuthProvider } from "@/context/AuthContext";
 import { GlobalContinueReading } from "@/components/GlobalContinueReading";
+import { GuestbookPopup } from "@/components/GuestbookPopup";
 import Script from "next/script";
 
 const jsonLd = {
@@ -103,6 +104,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <GlobalContinueReading />
+          <GuestbookPopup />
           <Script
             id="json-ld"
             type="application/ld+json"

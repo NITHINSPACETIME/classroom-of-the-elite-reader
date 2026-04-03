@@ -1,6 +1,6 @@
 import { Hero } from "@/components/landing/Hero";
 import { BackgroundSlideshow } from "@/components/landing/BackgroundSlideshow";
-import { Github, Heart } from "lucide-react";
+import { Github, Heart, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { SiteHeader } from "@/components/ui/SiteHeader";
 
@@ -24,6 +24,13 @@ export default function Home() {
           >
             <Github className="w-6 h-6 text-white/80 group-hover:text-white" />
           </a>
+
+          <Link
+            href="/guestbook"
+            className="p-3 rounded-full bg-white/5 hover:bg-amber-500/20 hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:border-amber-500/30 border border-transparent transition-all duration-300 hover:scale-110 group"
+          >
+            <BookOpen className="w-6 h-6 text-white/80 group-hover:text-amber-400 transition-all duration-300" />
+          </Link>
 
           <Link
             href="/donate"
