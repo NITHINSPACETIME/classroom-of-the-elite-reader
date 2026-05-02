@@ -25,6 +25,22 @@ export function Hero() {
                 {...fadeIn}
                 className="z-10 flex flex-col items-center gap-6 max-w-4xl"
             >
+                <motion.a
+                    href="https://discord.gg/3zAsapzwmv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={shouldReduceMotion ? {} : { opacity: 0, y: -10 }}
+                    animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? {} : { delay: 0.1, duration: 0.5 }}
+                    className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#5865F2]/40 bg-[#5865F2]/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-[#c4c9ff] hover:text-white hover:bg-[#5865F2]/20 shadow-[0_0_15px_rgba(88,101,242,0.3)] hover:shadow-[0_0_25px_rgba(88,101,242,0.6)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm"
+                >
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5865F2] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#5865F2]"></span>
+                    </span>
+                    Join Discord for Updates
+                </motion.a>
+
                 <div className="relative h-40 w-full max-w-xl md:h-52">
                     <Image
                         src="/assets/logo.png"
