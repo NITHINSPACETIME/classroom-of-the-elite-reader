@@ -79,17 +79,34 @@ export function Hero() {
                     transition={shouldReduceMotion ? {} : { delay: 0.35, duration: 0.5 }}
                     className="mt-8 flex flex-col gap-4 sm:flex-row"
                 >
-                    <Link href="/select">
+                    <Link prefetch={false} href="/select">
                         <Button size="lg" className="group text-lg px-8 py-6 rounded-full shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] transition-all duration-200">
                             Start Reading
                             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Button>
                     </Link>
-                    <Link href="/characters">
+                    <Link prefetch={false} href="/characters">
                         <Button variant="outline" size="lg" className="text-lg px-8 py-6 rounded-full border-white/20 bg-black/30 hover:bg-white/10 hover:border-white/40 text-white backdrop-blur-sm transition-all duration-200">
                             Characters
                         </Button>
                     </Link>
+                </motion.div>
+
+                <motion.div
+                    initial={shouldReduceMotion ? {} : { opacity: 0, y: 15 }}
+                    animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? {} : { delay: 0.45, duration: 0.5 }}
+                    className="mt-12 w-full max-w-2xl px-4"
+                >
+                    <a
+                        href="http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-full gap-2 text-[9px] sm:text-[11px] font-mono text-emerald-500/60 hover:text-emerald-400 bg-emerald-950/20 px-3 py-2 rounded border border-emerald-900/30 hover:border-emerald-500/50 hover:bg-emerald-950/40 transition-all duration-300"
+                    >
+                        <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span className="truncate">Also available on Darkweb : http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion</span>
+                    </a>
                 </motion.div>
             </motion.div>
 
