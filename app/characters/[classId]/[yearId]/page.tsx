@@ -1,5 +1,7 @@
 import { CharacterGridClient } from "./CharacterGridClient";
 
+export const revalidate = 2592000; // Cache for 30 days
+
 
 
 interface PageProps {
