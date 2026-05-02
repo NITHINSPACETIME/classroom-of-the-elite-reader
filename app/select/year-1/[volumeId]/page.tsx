@@ -1,13 +1,7 @@
 import { VolumePageClient } from "./VolumePageClient";
 import { volumes, shortStories } from "@/data/year1";
 
-export const dynamic = 'force-static';
-
-export async function generateStaticParams() {
-    return [...volumes, ...shortStories].map((vol) => ({
-        volumeId: vol.id,
-    }));
-}
+export const runtime = 'edge';
 
 interface PageProps {
     params: Promise<{ volumeId: string }>;

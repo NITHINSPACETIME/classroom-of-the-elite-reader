@@ -1,24 +1,6 @@
 import { CharacterGridClient } from "./CharacterGridClient";
 
-export async function generateStaticParams() {
-    const classes = ["A", "B", "C", "D", "Student Council", "Teacher"];
-    const years = ["1", "2", "3"];
-
-    const params: { classId: string; yearId: string }[] = [];
-
-    for (const yearId of years) {
-        const validClasses = [...classes, "All"];
-
-        for (const classId of validClasses) {
-            params.push({
-                classId: classId,
-                yearId: yearId
-            });
-        }
-    }
-
-    return params;
-}
+export const runtime = 'edge';
 
 interface PageProps {
     params: Promise<{ classId: string; yearId: string }>;

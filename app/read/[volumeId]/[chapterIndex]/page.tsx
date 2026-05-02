@@ -7,44 +7,8 @@ import { volumes as y2, shortStories as y2ss } from "@/data/year2";
 import { volumes as y3, shortStories as y3ss } from "@/data/year3";
 import JSZip from "jszip";
 
-export async function generateStaticParams() {
-    const params: { volumeId: string, chapterIndex: string }[] = [];
+export const runtime = 'edge';
 
-
-    for (const volume of allVolumes) {
-
-        const legacyCount = volume.chapters.length || 50;
-        let count = legacyCount;
-
-        try {
-            if (volume.epubSource) {
-                const epubBuffer = await getEpubBuffer(volume.epubSource, volume.id);
-                if (epubBuffer) {
-                    const zip = await JSZip.loadAsync(epubBuffer);
-                    const structure = await getVolumeStructure(volume.id, zip);
-                    if (structure && structure.spineIndexToHref) {
-                        count = structure.spineIndexToHref.length;
-                    }
-                }
-            }
-        } catch (e) {
-
-        }
-
-        for (let i = 1; i <= count; i++) {
-            params.push({
-                volumeId: volume.id,
-                chapterIndex: i.toString(),
-            });
-        }
-    }
-
-    return params;
-}
-
-export const revalidate = false;
-export const dynamic = 'force-static';
-export const dynamicParams = false;
 
 export default async function ReadPage({ params }: { params: Promise<{ volumeId: string, chapterIndex: string }> }) {
     const { volumeId, chapterIndex } = await params;
