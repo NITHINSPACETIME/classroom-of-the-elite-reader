@@ -1,6 +1,7 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -8,6 +9,13 @@ import { ArrowRight } from "lucide-react"
 
 export function Hero() {
     const shouldReduceMotion = useReducedMotion()
+    const [copied, setCopied] = useState(false)
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText("http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion")
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+    }
 
     const fadeIn = shouldReduceMotion
         ? { initial: {}, animate: {}, transition: {} }
@@ -40,6 +48,20 @@ export function Hero() {
                     </span>
                     Join Discord for Updates
                 </motion.a>
+
+                <motion.button
+                    onClick={handleCopy}
+                    initial={shouldReduceMotion ? {} : { opacity: 0, y: -10 }}
+                    animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                    transition={shouldReduceMotion ? {} : { delay: 0.2, duration: 0.5 }}
+                    className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-emerald-100 hover:text-white hover:bg-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm"
+                >
+                    <span className="relative flex h-2 w-2 shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    {copied ? "URL Copied to Clipboard!" : "Also available on Darkweb"}
+                </motion.button>
 
                 <div className="relative h-40 w-full max-w-xl md:h-52">
                     <Image
@@ -90,23 +112,6 @@ export function Hero() {
                             Characters
                         </Button>
                     </Link>
-                </motion.div>
-
-                <motion.div
-                    initial={shouldReduceMotion ? {} : { opacity: 0, y: 15 }}
-                    animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-                    transition={shouldReduceMotion ? {} : { delay: 0.45, duration: 0.5 }}
-                    className="mt-12 w-full max-w-2xl px-4"
-                >
-                    <a
-                        href="http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-full gap-2 text-[9px] sm:text-[11px] font-mono text-emerald-500/60 hover:text-emerald-400 bg-emerald-950/20 px-3 py-2 rounded border border-emerald-900/30 hover:border-emerald-500/50 hover:bg-emerald-950/40 transition-all duration-300"
-                    >
-                        <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span className="truncate">Also available on Darkweb : http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion</span>
-                    </a>
                 </motion.div>
             </motion.div>
 
