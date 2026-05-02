@@ -258,6 +258,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                         <div className="relative group min-h-[400px] h-full w-full flex items-center justify-center p-4">
                                             <div className="absolute inset-0 flex items-center justify-center p-4">
                                                 <Link
+                                                    prefetch={false}
                                                     href={vol.inProgress ? "#" : `/select/year-1/${vol.id}`}
                                                     className={`block relative z-10 w-full max-w-[240px] ${vol.inProgress ? "cursor-not-allowed" : ""}`}
                                                     onClick={(e) => vol.inProgress && e.preventDefault()}
@@ -294,7 +295,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                                             IN PROGRESS
                                                         </Button>
                                                     ) : (
-                                                        <Link href={`/select/year-1/${vol.id}`} className="w-full">
+                                                        <Link prefetch={false} href={`/select/year-1/${vol.id}`} className="w-full">
                                                             <Button variant="default" className="w-full bg-red-600 hover:bg-red-700 text-white shadow-lg font-bold tracking-wide">
                                                                 VIEW DETAILS
                                                             </Button>
@@ -366,6 +367,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                             {displayItems.map((vol, index) => (
 
                                 <Link
+                                    prefetch={false}
                                     href={vol.inProgress ? "#" : `/select/year-1/${vol.id}`}
                                     key={vol.id}
                                     className={`flex flex-col gap-2 group relative ${vol.inProgress ? "cursor-not-allowed" : "cursor-pointer"}`}

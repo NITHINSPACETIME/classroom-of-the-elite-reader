@@ -60,7 +60,7 @@ export default function SelectPageClient() {
                             whileHover={{ scale: 1.05, y: -10 }}
                             className={`group relative cursor-pointer flex-shrink-0 transition-all duration-500 rounded-xl overflow-hidden ${isActive ? 'scale-105 z-10 brightness-110 shadow-2xl shadow-primary/20' : 'scale-90 opacity-60 brightness-75 hover:opacity-100 hover:scale-95'} w-[75vw] md:w-[280px]`}
                         >
-                            <Link href={item.id === "year-1" ? "/select/year-1" : item.id === "year-2" ? "/select/year-2" : item.id === "year-3" ? "/select/year-3" : "/reader"} className="block w-full h-full">
+                            <Link prefetch={false} href={item.id === "year-1" ? "/select/year-1" : item.id === "year-2" ? "/select/year-2" : item.id === "year-3" ? "/select/year-3" : "/reader"} className="block w-full h-full">
                                 {/* Card Container */}
                                 <div className={`relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-zinc-900/40 border backdrop-blur-md transition-all duration-500 ${isActive ? 'border-red-500/50 shadow-[0_0_50px_rgba(220,38,38,0.3)]' : 'border-white/10 group-hover:border-red-500/30 group-hover:shadow-[0_0_30px_rgba(220,38,38,0.15)]'}`}>
 

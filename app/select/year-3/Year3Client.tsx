@@ -226,6 +226,7 @@ export default function Year3Client({ volumes, shortStories }: Year3ClientProps)
                                         <div className="relative group min-h-[400px] h-full w-full flex items-center justify-center p-4">
                                             <div className="absolute inset-0 flex items-center justify-center p-4">
                                                 <Link
+                                                    prefetch={false}
                                                     href={vol.inProgress ? "#" : `/select/year-3/${vol.id}`}
                                                     className={`block relative z-10 w-full max-w-[240px] ${vol.inProgress ? "cursor-not-allowed" : ""}`}
                                                     onClick={(e) => vol.inProgress && e.preventDefault()}
@@ -262,8 +263,8 @@ export default function Year3Client({ volumes, shortStories }: Year3ClientProps)
                                                             IN PROGRESS
                                                         </Button>
                                                     ) : (
-                                                        <Link href={`/select/year-3/${vol.id}`} className="w-full">
-                                                            <Button variant="default" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg font-bold tracking-wide">
+                                                        <Link prefetch={false} href={`/select/year-3/${vol.id}`} className="w-full">
+                                                            <Button variant="default" className="w-full bg-red-600 hover:bg-red-700 text-white shadow-lg font-bold tracking-wide">
                                                                 VIEW DETAILS
                                                             </Button>
                                                         </Link>
@@ -332,6 +333,7 @@ export default function Year3Client({ volumes, shortStories }: Year3ClientProps)
                             {displayItems.map((vol, index) => (
 
                                 <Link
+                                    prefetch={false}
                                     href={vol.inProgress ? "#" : `/select/year-3/${vol.id}`}
                                     key={vol.id}
                                     className={`flex flex-col gap-2 group relative ${vol.inProgress ? "cursor-not-allowed" : "cursor-pointer"}`}
