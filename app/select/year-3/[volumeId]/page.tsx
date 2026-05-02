@@ -1,8 +1,5 @@
-import dynamic from 'next/dynamic';
-const VolumePageClient = dynamic(() => import('./VolumePageClient').then(mod => mod.VolumePageClient), { ssr: false });
+import { VolumePageClient } from "./VolumePageClient";
 import { volumes, shortStories } from "@/data/year3";
-
-export const runtime = 'edge';
 
 
 

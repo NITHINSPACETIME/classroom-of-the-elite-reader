@@ -1,14 +1,11 @@
 import { getChapterContent, getEpubBuffer, getVolumeStructure } from "@/lib/epub-parser";
-import dynamic from 'next/dynamic';
-const HtmlReader = dynamic(() => import('@/components/reader/HtmlReader').then(mod => mod.HtmlReader), { ssr: false });
+import { HtmlReader } from "@/components/reader/HtmlReader";
 import { notFound } from "next/navigation";
 import { allVolumes } from "@/lib/volumes";
 import { volumes as y1, shortStories as y1ss } from "@/data/year1";
 import { volumes as y2, shortStories as y2ss } from "@/data/year2";
 import { volumes as y3, shortStories as y3ss } from "@/data/year3";
 import JSZip from "jszip";
-
-export const runtime = 'edge';
 
 
 
