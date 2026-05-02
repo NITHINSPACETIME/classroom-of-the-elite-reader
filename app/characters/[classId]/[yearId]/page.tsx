@@ -1,6 +1,6 @@
 import { CharacterGridClient } from "./CharacterGridClient";
 
-export const runtime = 'edge';
+
 
 interface PageProps {
     params: Promise<{ classId: string; yearId: string }>;

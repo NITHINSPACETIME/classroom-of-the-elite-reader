@@ -7,7 +7,7 @@ import { volumes as y2, shortStories as y2ss } from "@/data/year2";
 import { volumes as y3, shortStories as y3ss } from "@/data/year3";
 import JSZip from "jszip";
 
-export const runtime = 'edge';
+
 
 
 export default async function ReadPage({ params }: { params: Promise<{ volumeId: string, chapterIndex: string }> }) {

@@ -1,7 +1,7 @@
 import { VolumePageClient } from "./VolumePageClient";
 import { volumes, shortStories } from "@/data/year2";
 
-export const runtime = 'edge';
+
 
 interface PageProps {
     params: Promise<{ volumeId: string }>;
