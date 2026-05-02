@@ -1,6 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 
+export const runtime = 'edge';
+
 export async function POST(request: Request) {
     try {
         const body = await request.text()

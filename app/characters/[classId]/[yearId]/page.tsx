@@ -1,4 +1,7 @@
-import { CharacterGridClient } from "./CharacterGridClient";
+import dynamic from 'next/dynamic';
+const CharacterGridClient = dynamic(() => import('./CharacterGridClient').then(mod => mod.CharacterGridClient), { ssr: false });
+
+export const runtime = 'edge';
 
 
 

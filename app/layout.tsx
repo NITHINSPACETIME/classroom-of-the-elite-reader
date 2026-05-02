@@ -71,10 +71,19 @@ export const viewport: Viewport = {
 };
 
 import { Analytics } from "@vercel/analytics/react";
+import dynamic from "next/dynamic";
 import { AuthProvider } from "@/context/AuthContext";
-import { GlobalContinueReading } from "@/components/GlobalContinueReading";
-import { GuestbookPopup } from "@/components/GuestbookPopup";
 import Script from "next/script";
+
+const GlobalContinueReading = dynamic(
+  () => import("@/components/GlobalContinueReading").then((mod) => mod.GlobalContinueReading),
+  { ssr: false }
+);
+
+const GuestbookPopup = dynamic(
+  () => import("@/components/GuestbookPopup").then((mod) => mod.GuestbookPopup),
+  { ssr: false }
+);
 
 const jsonLd = {
   "@context": "https://schema.org",
