@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { BookOpen, Send, PenLine, Loader2, X } from "lucide-react"
+import { supabase } from "@/lib/supabase"
 
 interface GuestbookEntry {
     id: number
@@ -41,23 +42,30 @@ export function GuestbookPopup() {
     const [count, setCount] = useState(0)
     const listRef = useRef<HTMLDivElement>(null)
 
-    // Fetch count on mount (always runs — hooks cannot be conditional)
+    
     useEffect(() => {
-        fetch('/api/guestbook').then(r => r.ok ? r.json() : []).then((data: GuestbookEntry[]) => {
-            setCount(data.length)
-        }).catch(() => {})
+        async function fetchCount() {
+            const { count } = await supabase
+                .from('guestbook')
+                .select('*', { count: 'exact', head: true })
+            if (count !== null) setCount(count)
+        }
+        fetchCount()
     }, [])
 
-    // Only show on landing and year select pages
     const visible = pathname === '/' || pathname === '/select'
 
     const fetchEntries = async () => {
         if (fetched) return
         setLoading(true)
         try {
-            const res = await fetch('/api/guestbook')
-            if (res.ok) {
-                const data = await res.json()
+            const { data, error } = await supabase
+                .from('guestbook')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(100)
+            
+            if (!error && data) {
                 setEntries(data)
             }
         } catch {
@@ -81,23 +89,29 @@ export function GuestbookPopup() {
         setError("")
 
         try {
-            const res = await fetch('/api/guestbook', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name.trim(), message: message.trim() })
-            })
+            const displayName = (name && name.trim().length > 0) ? name.trim().slice(0, 30) : 'Anonymous'
+            
+            const { data, error } = await supabase
+                .from('guestbook')
+                .insert({
+                    name: displayName,
+                    message: message.trim(),
+                    created_at: new Date().toISOString()
+                })
+                .select()
+                .single()
 
-            if (!res.ok) {
-                const data = await res.json()
-                setError(data.error || "Something went wrong")
+            if (error) {
+                setError(error.message)
                 return
             }
 
-            const entry = await res.json()
-            setEntries(prev => [entry, ...prev])
-            setCount(prev => prev + 1)
-            setMessage("")
-            listRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+            if (data) {
+                setEntries(prev => [data, ...prev])
+                setCount(prev => prev + 1)
+                setMessage("")
+                listRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+            }
         } catch {
             setError("Failed to submit. Try again.")
         } finally {
