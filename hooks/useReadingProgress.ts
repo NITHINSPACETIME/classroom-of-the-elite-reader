@@ -116,31 +116,12 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
 
 
     useEffect(() => {
-        const handleBeforeUnload = () => {
-            if (user) {
-
-                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const currentScroll = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
-
-                const data = JSON.stringify({
-                    user_id: user.id,
-                    volume_id: volumeId,
-                    chapter_index: chapterIndex,
-                    scroll_percentage: Math.round(currentScroll),
-                    last_read: new Date().toISOString()
-                })
-                navigator.sendBeacon('/api/save-progress', data)
-            }
-        }
-
-        window.addEventListener('beforeunload', handleBeforeUnload)
         return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload)
             if (saveTimeoutRef.current) {
                 clearTimeout(saveTimeoutRef.current)
             }
         }
-    }, [user, volumeId, chapterIndex])
+    }, [])
 
 
 

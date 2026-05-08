@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { ArrowLeft, BookOpen, Send, PenLine, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { supabase } from "@/lib/supabase"
 
 interface GuestbookEntry {
     id: number
@@ -44,11 +45,14 @@ export default function GuestbookPage() {
 
     const fetchEntries = async () => {
         try {
-            const res = await fetch('/api/guestbook')
-            if (res.ok) {
-                const data = await res.json()
-                setEntries(data)
-            }
+            const { data, error } = await supabase
+                .from('guestbook')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(100)
+
+            if (error) throw error
+            if (data) setEntries(data)
         } catch {
             setError("Failed to load entries")
         } finally {
@@ -64,24 +68,24 @@ export default function GuestbookPage() {
         setError("")
 
         try {
-            const res = await fetch('/api/guestbook', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name.trim(), message: message.trim() })
-            })
+            const { data, error } = await supabase
+                .from('guestbook')
+                .insert([{
+                    name: name.trim() || 'Anonymous',
+                    message: message.trim()
+                }])
+                .select()
+                .single()
 
-            if (!res.ok) {
-                const data = await res.json()
-                setError(data.error || "Something went wrong")
-                return
+            if (error) throw error
+
+            if (data) {
+                setEntries(prev => [data, ...prev])
+                setMessage("")
+                listRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
             }
-
-            const entry = await res.json()
-            setEntries(prev => [entry, ...prev])
-            setMessage("")
-            listRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
-        } catch {
-            setError("Failed to submit. Try again.")
+        } catch (err: any) {
+            setError(err.message || "Failed to submit. Try again.")
         } finally {
             setSubmitting(false)
         }

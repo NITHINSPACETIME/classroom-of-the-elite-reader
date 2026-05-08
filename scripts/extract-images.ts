@@ -9,9 +9,9 @@ const PUBLIC_DIR = path.join(process.cwd(), 'public', 'images', 'books');
 
 async function getEpubBuffer(source: string, volumeId: string): Promise<ArrayBuffer | null> {
     const LOCAL_DIRS = [
-        '/home/kamisama/Downloads/cote/year 1',
-        '/home/kamisama/Downloads/cote/year 2',
-        '/home/kamisama/Downloads/cote/year 3'
+        path.join(process.cwd(), 'public', 'books', 'year1'),
+        path.join(process.cwd(), 'public', 'books', 'year2'),
+        path.join(process.cwd(), 'public', 'books', 'year3')
     ];
 
    

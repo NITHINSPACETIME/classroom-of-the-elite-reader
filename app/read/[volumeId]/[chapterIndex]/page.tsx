@@ -7,9 +7,34 @@ import { volumes as y2, shortStories as y2ss } from "@/data/year2";
 import { volumes as y3, shortStories as y3ss } from "@/data/year3";
 import JSZip from "jszip";
 
-export const revalidate = 2592000; // Cache for 30 days
+export async function generateStaticParams() {
+    const params: { volumeId: string; chapterIndex: string }[] = [];
 
+    for (const volume of allVolumes) {
+        // Handle custom chapters
+        if (volume.customChapters) {
+            Object.keys(volume.customChapters).forEach((idx) => {
+                params.push({ volumeId: volume.id, chapterIndex: idx });
+            });
+        }
 
+        // Handle EPUB chapters
+        if (volume.epubSource) {
+            try {
+                const structure = await getVolumeStructure(volume.id);
+                if (structure && structure.spineIndexToHref) {
+                    for (let i = 1; i <= structure.spineIndexToHref.length; i++) {
+                        params.push({ volumeId: volume.id, chapterIndex: i.toString() });
+                    }
+                }
+            } catch (e) {
+                console.error(`Error generating params for ${volume.id}:`, e);
+            }
+        }
+    }
+
+    return params;
+}
 
 
 export default async function ReadPage({ params }: { params: Promise<{ volumeId: string, chapterIndex: string }> }) {

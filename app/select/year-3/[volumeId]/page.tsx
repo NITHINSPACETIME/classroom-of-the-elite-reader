@@ -9,6 +9,12 @@ interface PageProps {
     params: Promise<{ volumeId: string }>;
 }
 
+export async function generateStaticParams() {
+    return [...volumes, ...shortStories].map((vol) => ({
+        volumeId: vol.id,
+    }));
+}
+
 export default async function VolumePage({ params }: PageProps) {
     const { volumeId } = await params;
     return <VolumePageClient volumeId={volumeId} />;

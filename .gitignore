@@ -21,6 +21,8 @@ scripts/debug*
 
 # production
 /build
+/public/images/books/
+/lib/chapter-mappings.ts
 
 
 # misc
