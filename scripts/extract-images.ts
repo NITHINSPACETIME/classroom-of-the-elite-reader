@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import JSZip from 'jszip';
+import sharp from 'sharp';
 import { allVolumes } from '../lib/volumes';
 
 const PUBLIC_DIR = path.join(process.cwd(), 'public', 'images', 'books');
@@ -87,7 +88,25 @@ async function extractImages() {
 
             const fileData = await zip.file(filename)?.async('nodebuffer');
             if (fileData) {
-                fs.writeFileSync(destPath, fileData);
+               
+                if (!filename.match(/\.(jpg|jpeg|png|webp|tiff)$/i)) {
+                    fs.writeFileSync(destPath, fileData);
+                    continue;
+                }
+
+        
+                const webpPath = destPath.replace(/\.(jpg|jpeg|png|tiff)$/i, '.webp');
+                
+                try {
+                    await sharp(fileData)
+                        .webp({ quality: 80 })
+                        .toFile(webpPath);
+                    
+               
+                } catch (err) {
+                    console.error(`Failed to convert ${filename} to webp, falling back to original:`, err);
+                    fs.writeFileSync(destPath, fileData);
+                }
             }
         }
     }

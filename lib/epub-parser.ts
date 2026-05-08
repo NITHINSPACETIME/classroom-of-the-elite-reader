@@ -537,7 +537,9 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
 
         for (const img of imagesToLoad) {
-            const publicUrl = `/images/books/${volumeId}/${img.fullPath}`;
+
+            const webpPath = img.fullPath.replace(/\.(jpg|jpeg|png|tiff)$/i, '.webp');
+            const publicUrl = `/images/books/${volumeId}/${webpPath}`;
             const encodedUrl = publicUrl.split('/').map(part => encodeURIComponent(part)).join('/').replace('//', '/');
             chunkHtml = chunkHtml.split(`src="${img.original}"`).join(`src="${encodedUrl}" loading="lazy" decoding="async"`);
         }
