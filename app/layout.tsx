@@ -77,11 +77,8 @@ export const viewport: Viewport = {
 
 
 import { AuthProvider } from "@/context/AuthContext";
-import dynamic from "next/dynamic";
-
-// Lazy load non-critical client components — they don't need to block initial paint
-const GlobalContinueReading = dynamic(() => import("@/components/GlobalContinueReading").then(m => ({ default: m.GlobalContinueReading })), { ssr: false });
-const GuestbookPopup = dynamic(() => import("@/components/GuestbookPopup").then(m => ({ default: m.GuestbookPopup })), { ssr: false });
+import { GlobalContinueReading } from "@/components/GlobalContinueReading";
+import { GuestbookPopup } from "@/components/GuestbookPopup";
 
 const jsonLd = {
   "@context": "https://schema.org",
