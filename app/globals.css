@@ -153,3 +153,30 @@
     scroll-behavior: auto !important;
   }
 }
+
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+
+.reader-content {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+
+.backdrop-blur-sm,
+.backdrop-blur-md,
+.backdrop-blur-xl {
+  backface-visibility: hidden;
+}
+
+
+img {
+  content-visibility: auto;
+}

@@ -1,0 +1,25 @@
+# Static assets — cache forever (they have content hashes)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts — cache forever
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Character & book images — cache for 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/books/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# EPUB files — cache for 30 days
+/books/*
+  Cache-Control: public, max-age=2592000
+
+# HTML pages — cache briefly, revalidate
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin

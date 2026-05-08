@@ -5,28 +5,33 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+  display: "swap",
 });
 
 const merriweather = Merriweather({
-  weight: ["300", "400", "700", "900"],
+  weight: ["300", "400", "700"],
   subsets: ["latin"],
   variable: "--font-merriweather",
+  display: "swap",
 });
 
 const roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700", "900"],
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-roboto",
+  display: "swap",
 });
 
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -72,9 +77,11 @@ export const viewport: Viewport = {
 
 
 import { AuthProvider } from "@/context/AuthContext";
-import { GlobalContinueReading } from "@/components/GlobalContinueReading";
-import { GuestbookPopup } from "@/components/GuestbookPopup";
-import Script from "next/script";
+import dynamic from "next/dynamic";
+
+// Lazy load non-critical client components — they don't need to block initial paint
+const GlobalContinueReading = dynamic(() => import("@/components/GlobalContinueReading").then(m => ({ default: m.GlobalContinueReading })), { ssr: false });
+const GuestbookPopup = dynamic(() => import("@/components/GuestbookPopup").then(m => ({ default: m.GuestbookPopup })), { ssr: false });
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -105,11 +112,9 @@ export default function RootLayout({
         <AuthProvider>
           <GlobalContinueReading />
           <GuestbookPopup />
-          <Script
-            id="json-ld"
+          <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            strategy="beforeInteractive"
           />
           {children}
         </AuthProvider>

@@ -40,12 +40,13 @@ export function BackgroundSlideshow({ images = backgroundImages, interval = 6000
                 >
                     <Image
                         src={images[currentImageIndex]}
-                        alt="Hero Background"
+                        alt=""
                         fill
                         sizes="100vw"
                         className="object-cover opacity-60"
-                        priority
-                        quality={60}
+                        priority={currentImageIndex === 0}
+                        loading={currentImageIndex === 0 ? "eager" : "lazy"}
+                        quality={50}
                     />
                 </motion.div>
             </AnimatePresence>

@@ -1,0 +1,2 @@
+# Redirect www to root
+https://www.cote-reader.me/* https://cote-reader.me/:splat 301

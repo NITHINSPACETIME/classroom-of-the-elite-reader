@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.90.1",
-    "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
     "epubjs": "^0.3.93",
     "framer-motion": "^12.25.0",
@@ -25,7 +24,6 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.5",
     "@tailwindcss/postcss": "^4",
     "@types/jszip": "^3.4.0",
     "@types/node": "^20",
