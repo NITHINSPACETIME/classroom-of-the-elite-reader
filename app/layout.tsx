@@ -79,7 +79,6 @@ export const viewport: Viewport = {
 import { AuthProvider } from "@/context/AuthContext";
 import { GlobalContinueReading } from "@/components/GlobalContinueReading";
 import { GuestbookPopup } from "@/components/GuestbookPopup";
-import Script from "next/script";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -104,12 +103,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        <Script
-          id="adsbygoogle-init"
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
+        <script
+          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7547996225576947"
-        />
+          crossOrigin="anonymous"
+        ></script>
       </head>
       <body
         suppressHydrationWarning
