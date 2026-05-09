@@ -104,11 +104,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
+        {/* Google AdSense */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7547996225576947"
           crossOrigin="anonymous"
         ></script>
+        {/* Adsterra Social Bar */}
+        <script 
+          type='text/javascript' 
+          src='//pl29389303.profitablecpmratenetwork.com/22/16/63/221663704df730d47d3c9c66e9efbe7a.js'>
+        </script>
       </head>
       <body
         suppressHydrationWarning
