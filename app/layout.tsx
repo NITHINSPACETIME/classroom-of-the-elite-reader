@@ -79,6 +79,7 @@ export const viewport: Viewport = {
 import { AuthProvider } from "@/context/AuthContext";
 import { GlobalContinueReading } from "@/components/GlobalContinueReading";
 import { GuestbookPopup } from "@/components/GuestbookPopup";
+import RedirectPagesDev from "@/components/RedirectPagesDev";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -113,6 +114,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${inter.variable} ${playfair.variable} ${merriweather.variable} ${roboto.variable} ${lora.variable} font-sans antialiased bg-background text-foreground selection:bg-primary selection:text-primary-foreground`}
       >
+        <RedirectPagesDev />
         <AuthProvider>
           <GlobalContinueReading />
           <GuestbookPopup />

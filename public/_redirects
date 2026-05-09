@@ -1,5 +1,2 @@
 # Redirect www to root
 https://www.cote-reader.me/* https://cote-reader.me/:splat 301
-
-# Redirect pages.dev to root
-https://cote-reader.pages.dev/* https://cote-reader.me/:splat 301
