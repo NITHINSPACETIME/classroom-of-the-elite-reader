@@ -14,6 +14,7 @@ import { AuthModal } from "@/components/auth/AuthModal"
 import { ProfileModal } from "@/components/auth/ProfileModal"
 import { ShortcutsModal } from "./ShortcutsModal"
 import { useReadingProgress } from "@/hooks/useReadingProgress"
+import AdBanner from "@/components/AdBanner"
 
 interface ReaderProps {
     content: string;
@@ -705,6 +706,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             </div>
                         )}
 
+                        <AdBanner />
+
                         <style jsx global>{`
                             .reader-content p, 
                             .reader-content li,
@@ -881,6 +884,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         >
                             <ReaderContent content={processedContent} volumeId={volumeId} />
                         </motion.div>
+
+                        <AdBanner />
                     </div>
 
 
