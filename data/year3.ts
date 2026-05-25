@@ -104,7 +104,7 @@ export const volumes: VolumeData[] = [
         characters: ["Kiyotaka Ayanokoji", "Mio Ibuki"],
         coverImage: "/assets/y3v3.jpg", 
         customChapters: y3v4Chapters,
-        inProgress: true
+        inProgress: false
     }
 ];
 
