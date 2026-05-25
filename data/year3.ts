@@ -102,7 +102,7 @@ export const volumes: VolumeData[] = [
             "Chapter 2: From a Subtle Rift"
         ],
         characters: ["Kiyotaka Ayanokoji", "Mio Ibuki"],
-        coverImage: "/assets/y3v3.jpg", 
+        coverImage: "/assets/y3v4.jpg", 
         customChapters: y3v4Chapters,
         inProgress: false
     }
