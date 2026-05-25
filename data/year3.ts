@@ -15,6 +15,8 @@ export interface VolumeData {
     inProgress?: boolean;
 }
 
+import { y3v4Chapters } from './custom/y3v4';
+
 export const volumes: VolumeData[] = [
     {
         id: "y3v1",
@@ -85,6 +87,24 @@ export const volumes: VolumeData[] = [
         characters: ["Honami Ichinose", "Hiyori Shiina"],
         coverImage: "/assets/y3v3.jpg",
         epubSource: "/books/year3/y3v3.epub"
+    },
+    {
+        id: "y3v4",
+        volumeNumber: "Y3:V4",
+        title: "Light Novel 3rd Year Volume 4",
+        releaseDateJP: "Feb 25, 2026",
+        releaseDateEN: "-",
+        isbnJP: "-",
+        isbnEN: "-",
+        chapters: [
+            "Prologue: Ibuki Mio's Monologue",
+            "Chapter 1: Token Collection Special Exam",
+            "Chapter 2: From a Subtle Rift"
+        ],
+        characters: ["Kiyotaka Ayanokoji", "Mio Ibuki"],
+        coverImage: "/assets/y3v3.jpg", 
+        customChapters: y3v4Chapters,
+        inProgress: true
     }
 ];
 
