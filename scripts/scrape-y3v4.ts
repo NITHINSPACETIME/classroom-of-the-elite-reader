@@ -7,24 +7,49 @@ async function fetchContent(url: string) {
     const html = await res.text();
     const $ = cheerio.load(html);
     
-    // Remove all style, script, and SVG tags so they don't pollute the text
+    // Remove unwanted elements
     $('style').remove();
     $('script').remove();
     $('svg').remove();
     $('button').remove();
     
-    let paragraphs: string[] = [];
-    $('p').each((i, el) => {
-        let text = $(el).text().trim();
-        if (text && text.length > 20 && !text.includes('Be the first one to comment') && !text.includes('Next Chapter')) {
-            // Also clean up any lingering css strings just in case
-            text = text.replace(/\.css-[a-zA-Z0-9_-]+{[^}]+}/g, '');
-            text = text.replace(/;}/g, '');
-            paragraphs.push(text);
+    // Fix image URLs
+    $('img').each((i, el) => {
+        $(el).removeAttr('srcset');
+        $(el).removeAttr('data-nimg');
+        $(el).removeAttr('decoding');
+        $(el).removeAttr('loading');
+        
+        let src = $(el).attr('src');
+        if (src && src.startsWith('/_next/image?url=')) {
+            const urlMatch = src.match(/url=([^&]+)/);
+            if (urlMatch) {
+                $(el).attr('src', decodeURIComponent(urlMatch[1]));
+            }
         }
     });
 
-    return paragraphs.join('\n');
+    let contentHtml = '';
+    const container = $('div.group').first().parent();
+    
+    container.children().each((i, el) => {
+        const text = $(el).text();
+        
+        // Skip navigation and comments sections
+        if (text.includes('Prev Chapter') || text.includes('Next Chapter')) return;
+        if (text.includes('Comments')) return;
+        if ($(el).attr('class') && $(el).attr('class')!.includes('flex flex-row justify-between')) return;
+        
+        // Strip all formatting attributes (class, style, id) to get pure clean HTML
+        $(el).removeAttr('class');
+        $(el).removeAttr('style');
+        $(el).removeAttr('id');
+        $(el).find('*').removeAttr('class').removeAttr('style').removeAttr('id');
+
+        contentHtml += $.html(el) + '\n';
+    });
+
+    return contentHtml;
 }
 
 async function main() {

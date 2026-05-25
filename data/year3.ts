@@ -92,7 +92,7 @@ export const volumes: VolumeData[] = [
         id: "y3v4",
         volumeNumber: "Y3:V4",
         title: "Light Novel 3rd Year Volume 4",
-        releaseDateJP: "Feb 25, 2026",
+        releaseDateJP: "May 21, 2026",
         releaseDateEN: "-",
         isbnJP: "-",
         isbnEN: "-",
@@ -104,7 +104,7 @@ export const volumes: VolumeData[] = [
         characters: ["Kiyotaka Ayanokoji", "Mio Ibuki"],
         coverImage: "/assets/y3v4.jpg", 
         customChapters: y3v4Chapters,
-        inProgress: false
+        inProgress: true
     }
 ];
 

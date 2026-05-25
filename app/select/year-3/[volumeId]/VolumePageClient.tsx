@@ -380,6 +380,19 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                     </div>
                                 )}
                             </div>
+                            
+                            {volume.inProgress && (
+                                <motion.div 
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.5 }}
+                                    className="mt-6 flex justify-center"
+                                >
+                                    <div className="px-6 py-3 rounded-xl bg-red-950/40 border border-red-500/50 text-red-400 font-bold shadow-[0_0_20px_rgba(220,38,38,0.3)] animate-pulse">
+                                        More chapters will be released soon (as they get leaked! )
+                                    </div>
+                                </motion.div>
+                            )}
                         </div>
                     </motion.div>
                 </div>

@@ -61,12 +61,18 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
         }
 
 
-        // Convert plain text to HTML paragraphs
-        const htmlContent = customContent
-            .split('\n')
-            .filter((line: string) => line.trim())
-            .map((line: string) => `<p>${line}</p>`)
-            .join('');
+      
+        const isHtml = customContent.includes('<p>') || customContent.includes('<div>') || customContent.includes('<img');
+        const contentBody = isHtml 
+            ? customContent 
+            : customContent
+                .split('\n')
+                .filter((line: string) => line.trim())
+                .map((line: string) => `<p>${line}</p>`)
+                .join('');
+                
+        const htmlContent = `<h1>${chapterTitle}</h1>\n${contentBody}`;
+
 
         return (
             <HtmlReader
