@@ -327,7 +327,7 @@ export const volumes: VolumeData[] = [
         characters: ["Ai Morishita", "Kōsei Sanada"],
         coverImage: "/assets/y2v11.jpg",
         epubSource: "/books/year2/y2v11.epub",
-        inProgress: true
+        inProgress: false
     },
     {
         id: "y2v12",

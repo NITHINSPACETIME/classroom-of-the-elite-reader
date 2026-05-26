@@ -248,8 +248,8 @@ export default function Year3Client({ volumes, shortStories }: Year3ClientProps)
                                                         </div>
                                                     )}
                                                     {vol.inProgress && (
-                                                        <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-[2px] pointer-events-none rounded-sm">
-                                                            <div className="text-white font-black text-xl md:text-3xl -rotate-12 border-4 border-emerald-500/80 text-emerald-500/80 p-2 md:p-4 rounded-lg tracking-wider uppercase shadow-2xl">
+                                                        <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/80 backdrop-blur-sm border-t border-red-500/50 py-2 pointer-events-none">
+                                                            <div className="text-red-400 font-black text-sm md:text-base text-center tracking-widest uppercase animate-pulse">
                                                                 IN PROGRESS
                                                             </div>
                                                         </div>
@@ -365,8 +365,8 @@ export default function Year3Client({ volumes, shortStories }: Year3ClientProps)
 
                                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                         {vol.inProgress && (
-                                            <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-[2px] pointer-events-none">
-                                                <div className="text-white font-black text-lg -rotate-12 border-4 border-emerald-500/80 text-emerald-500/80 p-2 rounded-lg tracking-wider uppercase shadow-2xl scale-75 md:scale-100">
+                                            <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/80 backdrop-blur-sm border-t border-red-500/50 py-1.5 pointer-events-none">
+                                                <div className="text-red-400 font-black text-xs text-center tracking-widest uppercase animate-pulse">
                                                     IN PROGRESS
                                                 </div>
                                             </div>
