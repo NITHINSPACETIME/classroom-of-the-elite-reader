@@ -21,7 +21,14 @@ export async function generateStaticParams() {
         // Handle EPUB chapters
         if (volume.epubSource) {
             try {
-                const structure = await getVolumeStructure(volume.id);
+                let structure = await getVolumeStructure(volume.id);
+                if (!structure) {
+                    const epubBuffer = await getEpubBuffer(volume.epubSource, volume.id);
+                    if (epubBuffer) {
+                        const zip = await JSZip.loadAsync(epubBuffer);
+                        structure = await getVolumeStructure(volume.id, zip);
+                    }
+                }
                 if (structure && structure.spineIndexToHref) {
                     for (let i = 1; i <= structure.spineIndexToHref.length; i++) {
                         params.push({ volumeId: volume.id, chapterIndex: i.toString() });

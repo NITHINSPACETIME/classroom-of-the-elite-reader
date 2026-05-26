@@ -33,7 +33,8 @@ export function isStoryChapter(label: string): boolean {
         'illustration', 'credit', 'colophon', 'nav', 'toc', 'newsletter',
         'author', 'illustrator', 'classroom of the elite',
         'synopsis', 'front matter', 'color', 'insert', 'images', 'flyleaf',
-        'bonus', 'advertisement', 'preview', 'acknowledgments', 'dedication'
+        'bonus', 'advertisement', 'preview', 'acknowledgments', 'dedication',
+        'postscript', 'afterword'
     ];
 
     return !skip.some(s => new RegExp(`(?:^|[\\s,;:!?\\-"'(])${s}`, 'i').test(lower));
@@ -180,7 +181,7 @@ export async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise
         }
 
 
-        const spineIndexToHref: string[] = spineRefs.map(id => {
+        let spineIndexToHref: string[] = spineRefs.map(id => {
             const rel = manifest[id];
             return rel ? (opfDir === '.' ? rel : path.join(opfDir, rel).replace(/\\/g, '/')) : '';
         });
@@ -198,20 +199,34 @@ export async function getVolumeStructure(volumeId: string, zip?: JSZip): Promise
 
 
         if (volumeId === 'y2v11') {
+            spineIndexToHref = [
+                "titlepage",
+                "index_split_000.html",
+                "index_split_000.html#prologue",
+                "index_split_001.html",
+                "index_split_002.html",
+                "index_split_002.html#chapter-3",
+                "index_split_003.html",
+                "index_split_004.html",
+                "index_split_005.html",
+                "index_split_006.html",
+                "index_split_007.html",
+                "index_split_007.html#epilogue",
+                "index_split_007.html#postscript"
+            ];
             const tocOverrides = [
-
-                { label: "Illustrations", href: "index_split_000.html#illustrations", index: 1 },
-                { label: "Prologue: Miki Yamamura’s Monologue", href: "index_split_000.html#prologue", index: 2 },
-                { label: "Chapter 1: The Elusive Two-Party Interview", href: "index_split_001.html#chapter-1", index: 3 },
-                { label: "Chapter 2: The Exchange Training Camp", href: "index_split_002.html#chapter-2", index: 4 },
-                { label: "Chapter 3: Request from Horikita & Request from Ayanokōji", href: "index_split_002.html#chapter-3", index: 4 },
-                { label: "Chapter 4: A Strange Discomfort", href: "index_split_003.html#chapter-4", index: 5 },
-                { label: "Chapter 5: The One Who Watches, The One Being Watched", href: "index_split_004.html#chapter-5", index: 6 },
-                { label: "Chapter 6: A Peaceful Resolution", href: "index_split_005.html#chapter-6", index: 7 },
-                { label: "Chapter 7: A Settled Night", href: "index_split_006.html#chapter-7", index: 8 },
-                { label: "Chapter 8: The Courage to Move Forward", href: "index_split_007.html#chapter-8", index: 9 },
-                { label: "Epilogue: Who is the Challenger?", href: "index_split_007.html#epilogue", index: 9 },
-                { label: "Postscript", href: "index_split_007.html#postscript", index: 9 }
+                { label: "Illustrations", href: "index_split_000.html", index: 2 },
+                { label: "Prologue: Miki Yamamura’s Monologue", href: "index_split_000.html#prologue", index: 3 },
+                { label: "Chapter 1: The Elusive Two-Party Interview", href: "index_split_001.html", index: 4 },
+                { label: "Chapter 2: The Exchange Training Camp", href: "index_split_002.html", index: 5 },
+                { label: "Chapter 3: Request from Horikita & Request from Ayanokōji", href: "index_split_002.html#chapter-3", index: 6 },
+                { label: "Chapter 4: A Strange Discomfort", href: "index_split_003.html", index: 7 },
+                { label: "Chapter 5: The One Who Watches, The One Being Watched", href: "index_split_004.html", index: 8 },
+                { label: "Chapter 6: A Peaceful Resolution", href: "index_split_005.html", index: 9 },
+                { label: "Chapter 7: A Settled Night", href: "index_split_006.html", index: 10 },
+                { label: "Chapter 8: The Courage to Move Forward", href: "index_split_007.html", index: 11 },
+                { label: "Epilogue: Who is the Challenger?", href: "index_split_007.html#epilogue", index: 12 },
+                { label: "Postscript", href: "index_split_007.html#postscript", index: 13 }
             ];
             toc = tocOverrides.map(t => ({ ...t }));
         } else if (ncxId && manifest[ncxId]) {
@@ -514,7 +529,8 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
     for (let i = startIndex; i < endIndex; i++) {
         const absPath = spineIndexToHref[i];
-        let chunkRaw = await zip.file(absPath)?.async("string");
+        const cleanPath = absPath.split('#')[0];
+        const chunkRaw = await zip.file(cleanPath)?.async("string");
         if (!chunkRaw) continue;
 
         const bodyMatch = chunkRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i);
@@ -587,6 +603,63 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
         cleanHtml = cleanHtml.replace(/(<p[^>]*class="P__STAR__STAR__STAR__page_break"[^>]*>[\s\S]*?)<br\s*\/?>([\s\S]*?<\/p>)/gi, '$1 $2');
     }
 
+
+    if (volumeId === 'y2v11') {
+        cleanHtml = cleanHtml.replace(
+            /<h2 title="[^"]*" id="([^"]+)" class="calibre5">(Chapter \d+): <\/h2>\s*<h3 class="sigilnotintoc">([^<]+)<\/h3>/g,
+            '<p class="P__STAR__STAR__STAR__page_break" id="$1"><span><span>$2<br/>$3</span></span></p>'
+        );
+
+        cleanHtml = cleanHtml.replace(
+            /<p class="calibre1">Chapter 3: <\/p>\s*<p class="calibre1">Request from Horikita and Request from Ayanokōji /g,
+            '<p class="P__STAR__STAR__STAR__page_break" id="chapter-3"><span><span>Chapter 3<br/>Request from Horikita and Request from Ayanokōji</span></span></p>\n<p class="calibre1">'
+        );
+
+        cleanHtml = cleanHtml.replace(
+            /<p class="calibre1">Epilogue: <\/p>\s*<p class="calibre1">Who is the Challenger\? <\/p>/g,
+            '<p class="P__STAR__STAR__STAR__page_break" id="epilogue"><span><span>Epilogue<br/>Who is the Challenger?</span></span></p>'
+        );
+
+        cleanHtml = cleanHtml.replace(
+            /<p class="calibre1">Author’s Postscript <\/p>/g,
+            '<p class="P__STAR__STAR__STAR__page_break" id="postscript"><span><span>Author’s Postscript</span></span></p>'
+        );
+
+        cleanHtml = cleanHtml.replace(
+            /<p class="calibre1">Yamamura Miki's Monologue <\/p>/g,
+            '<p class="P__STAR__STAR__STAR__page_break" id="prologue"><span><span>Prologue<br/>Yamamura Miki\'s Monologue</span></span></p>'
+        );
+
+        const absPathFull = spineIndexToHref[rawIndex];
+        const hash = absPathFull.includes('#') ? absPathFull.split('#')[1] : null;
+
+        let nextHash = null;
+        if (rawIndex + 1 < spineIndexToHref.length) {
+            const nextAbsPathFull = spineIndexToHref[rawIndex + 1];
+            if (nextAbsPathFull.startsWith(absPathFull.split('#')[0] + '#')) {
+                nextHash = nextAbsPathFull.split('#')[1];
+            }
+        }
+
+        if (hash) {
+            const splitRegex = new RegExp(`(<p class="P__STAR__STAR__STAR__page_break" id="${hash}">)`, 'i');
+            const parts = cleanHtml.split(splitRegex);
+            if (parts.length > 2) {
+                cleanHtml = parts[1] + parts[2];
+                if (hash === 'prologue') {
+                    cleanHtml = cleanHtml.replace(/<p class="calibre1">—Until this day\. <\/p>[\s\S]*?<\/body>/, '<p class="calibre1">—Until this day. </p>\n</body>');
+                }
+            }
+        }
+
+        if (nextHash) {
+            const splitRegex = new RegExp(`(<p class="P__STAR__STAR__STAR__page_break" id="${nextHash}">)`, 'i');
+            const parts = cleanHtml.split(splitRegex);
+            if (parts.length > 1) {
+                cleanHtml = parts[0];
+            }
+        }
+    }
 
     if (volumeId === 'y2v9' && cleanHtml.includes('A Tinge of Anxiety')) {
 
@@ -679,6 +752,8 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
 
     if (volumeId === 'y2v11') {
+        // Remove black page divider/spacer images (index-\d+_1.png)
+        cleanHtml = cleanHtml.replace(/<p[^>]*>\s*(?:<a[^>]*><\/a>\s*)?<img[^>]+src="[^"]*index-\d+_1\.[^"]+"[^>]*>\s*<\/p>/gi, '');
 
         cleanHtml = cleanHtml.replace(/<p[^>]*>\s*RoyalMTLs\s*<\/p>/gi, '');
 
@@ -751,6 +826,24 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             }
         }
 
+        // Truncate the chapter content right after the "voice of the forest" sentence
+        const cutSentence = "listen to the voice of the forest instead of me.";
+        const cutIdx = cleanHtml.indexOf(cutSentence);
+        if (cutIdx !== -1) {
+            const endOfSentence = cutIdx + cutSentence.length;
+            const closeITag = cleanHtml.indexOf('</i>', endOfSentence);
+            const closePTag = cleanHtml.indexOf('</p>', endOfSentence);
+            
+            let cutPos = endOfSentence;
+            if (closePTag !== -1 && (closePTag - endOfSentence < 100)) {
+                cutPos = closePTag + 4;
+            } else if (closeITag !== -1 && (closeITag - endOfSentence < 50)) {
+                cutPos = closeITag + 4;
+            }
+            
+            cleanHtml = cleanHtml.substring(0, cutPos);
+        }
+
 
         const injectedCss = `
 <style>
@@ -813,7 +906,8 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
 
         if (endIndex < spineIndexToHref.length) {
             const nextAbsPath = spineIndexToHref[endIndex];
-            const nextHtmlRaw = await zip!.file(nextAbsPath)?.async("string");
+            const cleanNextPath = nextAbsPath.split('#')[0];
+            const nextHtmlRaw = await zip!.file(cleanNextPath)?.async("string");
             if (nextHtmlRaw) {
                 const nextBody = nextHtmlRaw.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || nextHtmlRaw;
 

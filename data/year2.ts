@@ -322,7 +322,8 @@ export const volumes: VolumeData[] = [
             "Chapter 6: A Peaceful Resolution",
             "Chapter 7: A Drowsy Night",
             "Chapter 8: The Courage to Move Forward",
-            "Epilogue: Who is the Challenger?"
+            "Epilogue: Who is the Challenger?",
+            "Postscript"
         ],
         characters: ["Ai Morishita", "Kōsei Sanada"],
         coverImage: "/assets/y2v11.jpg",

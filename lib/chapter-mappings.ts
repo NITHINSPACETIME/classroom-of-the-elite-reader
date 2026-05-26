@@ -300,17 +300,17 @@ export const chapterMappings: Record<string, number[]> = {
     40
   ],
   "y2v11": [
-    2,
     3,
-    4,
     4,
     5,
     6,
     7,
     8,
     9,
-    9,
-    9
+    10,
+    11,
+    12,
+    13
   ],
   "y2v12": [
     11,

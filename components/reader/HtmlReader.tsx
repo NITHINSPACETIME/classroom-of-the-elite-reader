@@ -664,7 +664,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             return (
                                 <Link
                                     key={i}
-                                    href={`/read/${volumeId}/${item.index}`}
+                                    href={`/read/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
                                     onClick={() => setSidebarOpen(false)}
                                     className={cn(
                                         "block px-3 py-2 rounded-md text-sm transition-colors line-clamp-2",
