@@ -15,8 +15,7 @@ export const chapterMappings: Record<string, number[]> = {
     15,
     16,
     17,
-    18,
-    19
+    18
   ],
   "v2": [
     7,
@@ -25,8 +24,7 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "v3": [
     7,
@@ -35,16 +33,14 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "v4": [
     7,
     8,
     9,
     10,
-    11,
-    12
+    11
   ],
   "v4.5": [
     7,
@@ -53,8 +49,7 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "v5": [
     7,
@@ -65,8 +60,7 @@ export const chapterMappings: Record<string, number[]> = {
     12,
     13,
     14,
-    15,
-    16
+    15
   ],
   "v6": [
     7,
@@ -75,8 +69,7 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "v7": [
     7,
@@ -85,8 +78,7 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "v7.5": [
     7,
@@ -94,8 +86,7 @@ export const chapterMappings: Record<string, number[]> = {
     9,
     10,
     11,
-    12,
-    13
+    12
   ],
   "v8": [
     7,
@@ -106,8 +97,7 @@ export const chapterMappings: Record<string, number[]> = {
     12,
     13,
     14,
-    15,
-    16
+    15
   ],
   "v9": [
     7,
@@ -118,8 +108,7 @@ export const chapterMappings: Record<string, number[]> = {
     12,
     13,
     14,
-    15,
-    16
+    15
   ],
   "v10": [
     7,
@@ -129,8 +118,7 @@ export const chapterMappings: Record<string, number[]> = {
     11,
     12,
     13,
-    14,
-    15
+    14
   ],
   "v11": [
     7,
@@ -142,8 +130,7 @@ export const chapterMappings: Record<string, number[]> = {
     13,
     14,
     15,
-    16,
-    17
+    16
   ],
   "v11.5": [
     7,
@@ -152,8 +139,7 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "y2v1": [
     7,
@@ -163,8 +149,7 @@ export const chapterMappings: Record<string, number[]> = {
     11,
     12,
     13,
-    14,
-    15
+    14
   ],
   "y2v2": [
     7,
@@ -173,8 +158,7 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "y2v3": [
     7,
@@ -186,8 +170,7 @@ export const chapterMappings: Record<string, number[]> = {
     13,
     14,
     15,
-    16,
-    17
+    16
   ],
   "y2v4": [
     7,
@@ -197,8 +180,7 @@ export const chapterMappings: Record<string, number[]> = {
     11,
     12,
     13,
-    14,
-    15
+    14
   ],
   "y2v4.5": [
     7,
@@ -208,8 +190,7 @@ export const chapterMappings: Record<string, number[]> = {
     11,
     12,
     13,
-    14,
-    15
+    14
   ],
   "y2v5": [
     7,
@@ -220,8 +201,7 @@ export const chapterMappings: Record<string, number[]> = {
     12,
     13,
     14,
-    15,
-    16
+    15
   ],
   "y2v6": [
     7,
@@ -231,8 +211,7 @@ export const chapterMappings: Record<string, number[]> = {
     11,
     12,
     13,
-    14,
-    15
+    14
   ],
   "y2v7": [
     7,
@@ -243,8 +222,7 @@ export const chapterMappings: Record<string, number[]> = {
     12,
     13,
     14,
-    15,
-    16
+    15
   ],
   "y2v8": [
     7,
@@ -253,8 +231,7 @@ export const chapterMappings: Record<string, number[]> = {
     10,
     11,
     12,
-    13,
-    14
+    13
   ],
   "v0": [
     10,
@@ -274,8 +251,7 @@ export const chapterMappings: Record<string, number[]> = {
     23,
     26,
     31,
-    34,
-    39
+    34
   ],
   "y2v9.5": [
     11,
@@ -284,8 +260,7 @@ export const chapterMappings: Record<string, number[]> = {
     18,
     21,
     28,
-    35,
-    38
+    35
   ],
   "y2v10": [
     11,
@@ -296,8 +271,7 @@ export const chapterMappings: Record<string, number[]> = {
     18,
     19,
     32,
-    39,
-    40
+    39
   ],
   "y2v11": [
     3,
@@ -309,8 +283,7 @@ export const chapterMappings: Record<string, number[]> = {
     9,
     10,
     11,
-    12,
-    13
+    12
   ],
   "y2v12": [
     11,
@@ -322,8 +295,7 @@ export const chapterMappings: Record<string, number[]> = {
     19,
     27,
     30,
-    37,
-    40
+    37
   ],
   "y2v12.5": [
     11,
@@ -337,8 +309,7 @@ export const chapterMappings: Record<string, number[]> = {
     28,
     31,
     38,
-    42,
-    43
+    42
   ],
   "y3v1": [
     10,
