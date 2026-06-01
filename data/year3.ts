@@ -100,7 +100,8 @@ export const volumes: VolumeData[] = [
             "Prologue: Ibuki Mio's Monologue",
             "Chapter 1: Token Collection Special Exam",
             "Chapter 2: From a Subtle Rift",
-            "Chapter 3: The Approaching Tasks"
+            "Chapter 3: The Approaching Tasks",
+            "Chapter 4: Nanase and Amasawa's Private Pool Time"
         ],
         characters: ["Kiyotaka Ayanokoji", "Mio Ibuki"],
         coverImage: "/assets/y3v4.jpg", 

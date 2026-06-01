@@ -1,15 +1,22 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
 export function Hero() {
-    const shouldReduceMotion = useReducedMotion()
+    const isReducedMotionHook = useReducedMotion()
+    const [mounted, setMounted] = useState(false)
     const [copied, setCopied] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const shouldReduceMotion = mounted ? isReducedMotionHook : false
 
     const handleCopy = () => {
         navigator.clipboard.writeText("http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion")
