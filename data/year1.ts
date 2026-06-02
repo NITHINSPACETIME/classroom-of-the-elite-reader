@@ -2850,7 +2850,309 @@ But, in reality, the "real no way out day" would come just a bit later.`,
         ],
         characters: ["Kei Karuizawa", "Mio Ibuki", "Kakeru Ryūen"],
         coverImage: "/assets/y1v7.5.jpg",
-        inProgress: true,
+        inProgress: false,
+
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Realised Feelings</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Karuizawa Kei SS — Volume 7.5</p>
+
+<p>I have made a big decision. Even I think so myself. I can no longer take back the words I have said.</p>
+<p>"I'm going to break up with Yousuke-kun".</p>
+<p>That was, for Karuizawa Kei, the greatest extreme, an option that would never have been chosen normally.</p>
+<p>"I'm sure everyone in the class will be surprised when the 3rd semester starts".</p>
+<p>Feeling restless like that, I silently whispered those words.</p>
+<p>"I suppose that's true".</p>
+<p>It's very likely that almost immediately, a battle between girls over Yousuke-kun will be expected to begin.</p>
+<p>"That guy, do you think he'll go out with someone else?".</p>
+<p>"Even if you ask me that, I don't know Yousu.........no, it's not like I know Hirata-kun that well either. But in some places, like Kiyotaka, he can be cool. As long as he's pretending to go out with me, he won't be able to date another girl too, and he might not even be that interested in romance".</p>
+<p>Even though it was a lie, we'll still be breaking up. If I mess it up and remain close to him as usual, I'd feel bad for the other girls too. In order to get into the habit from now on, I've decided to no longer call him 'Yousuke-kun' but rather back to 'Hirata-kun'.</p>
+<p>"Even though you're going back to calling him Hirata, you're still calling me like this?".</p>
+<p>Before I had realized it, I had unconsciously started calling Kiyotaka by his first name. By going back to calling Hirata-kun like that, Kiyotaka threw an obvious question like that at me.</p>
+<p>"Ahh........I see. Is it better if I change it back?".</p>
+<p>"That's not what I meant. You're free to call me whatever you like".</p>
+<p>After saying that, a short pause, then Kiyotaka continued.</p>
+<p>"This might be a good opportunity".</p>
+<p>Towards being continued to be called by his first name, Kiyotaka did not show any signs of disapproval. And then, a moment that felt like destiny to me, suddenly occurred.</p>
+<p>"I'll also just be calling you 'Kei' then".</p>
+<p>I'll also just be calling you 'Kei' then. I'll also just be calling you 'Kei' then. I'll also just be calling you 'Kei' then.</p>
+<p>Those words reverberated and repeated inside my heart like sacred words.</p>
+<p>Hyuruhyuruhyuru~. Just like that, a single arrow fell from the skies. That was, the arrow that was aimed towards Kiyotaka from Satou-san. That arrow was supposed to have flown off somewhere after being released. And that</p>
+<p>"Tauwa!".</p>
+<p>Of all things, it pierced my heart.</p>
+<p>".....tauwa?".</p>
+<p>Kiyotaka heard and repeated the mysterious word that flew out of my guts.</p>
+<p>"N-n-n-n-nothing! Why is Kiyotaka also calling me by my first name?".</p>
+<p>"If one side uses the surname and the other side uses the first name, it wouldn't feel right".</p>
+<p>No, no, no. That might be so but! You didn't give any prior notice or anything!</p>
+<p>My throbbing, no, soaring heartbeat continued to beat on and on. The sound of that was immense to the point I wondered if Kiyotaka would end up hearing it. And without even minding the panicking me, Kiyotaka continued to talk.</p>
+<p>"By the way......just to get things straight. The original proposer that set up the double date was not you, but Satou right?".</p>
+<p>As expected, I should say. Kiyotaka was already aware of the double date trick. Desperately suppressing my feelings, I answered the question.</p>
+<p>"W-What's that supposed to mean, set up?".</p>
+<p>Just in case, I'll try and deceive him.</p>
+<p>"Your acting was pretty much spot on but here and there, Satou's actions were strange you see".</p>
+<p>"Ahh---....as I thought you realized it? I also thought Satou-san was being suspicious".</p>
+<p>My heart had somehow managed to calm down. Fuu, fuu. It should be fine now.</p>
+<p>"That's right. I also have a Christmas present for you".</p>
+<p>"Ehh? No kidding?".</p>
+<p>As I thought that, my heart once again leaped up and soared.</p>
+<p>"I lied".</p>
+<p>"Huh? You want to get beaten up?".</p>
+<p>After the sudden climb came the nosedive, and I glared at Kiyotaka.</p>
+<p>Could it be, am I just being teased?</p>
+<p>"More precisely, it's just a normal present. I think it may be an unnecessary product for you but".</p>
+<p>".....wait, what's up with that pharmacy bag? Are you mocking me?".</p>
+<p>Even if he gives me such a thing, I'm not one bit happy. As I thought that, I received it, and checked the contents. The bag is what it is but the truth is the contents were---I was expecting something like that. What came out from inside it was.</p>
+<p>"Cold medicine and a receipt........?".</p>
+<p>Such fleeting expectations were betrayed simply to the point it was almost disappointing. But, I realized something strange. Why give me this?</p>
+<p>"Don't mind the receipt, please throw it away".</p>
+<p>But by hearing that, it only made me more unnecessarily curious. I pored over the details on the receipt. And then realized my question.</p>
+<p>"Hey, this receipt has 10:55 am on the 23rd written on it though.....".</p>
+<p>It's not something that was bought today. Normally cold medicine is something you buy only when you need it right away.</p>
+<p>"On my way back after buying it, I saw you and Satou together at Keyaki Mall. That's how I realized that the double date was a set up from a relatively early stage. I had thought your health would have deteriorated, but it seems that prediction was spectacularly off the mark".</p>
+<p>"So.....that means the reason you didn't call me out of worry was.....".</p>
+<p>Does it mean he wasn't being cold towards me, or had forgotten about me?</p>
+<p>"You weren't wearing a mask either, even from a distance I could see that you were healthy".</p>
+<p>W-what's that mean? I didn't hear anything about that!</p>
+<p>"I-If you're this worried about me.....instead of doing things in a roundabout way like this, do things like visiting me earlier or at least giving me a call. You could have confirmed it that way".</p>
+<p>"In such a conspicuous dorm, I can't afford to directly visit your room. Contacting you via phone would be an effective means of doing so, but I also took into account that you'd act tough in that case. Because you hate showing your weakness after all".</p>
+<p>What, what, what, what, what is that supposed to mean! I felt the sudden urge to hide my face which was rapidly becoming red.</p>
+<p>That day, ever since that incident on the rooftop, that means Kiyotaka's always been worried about me!</p>
+<p>Aaaaaaaaaaaaa, mou, aaaaaaaaaa! Inside my heart there was another me who was squealing while running around. There's no more mistaking it. I just have to admit it now. Seriously, seriously, seriously, my heart's seriously been stolen away. The arrow which had pierced my heart. The arrow of love which I could no longer take out. Is this even possible? Is it even fine for me to fall in love with someone who's been partly bullying me? But it's already too late. The power of this arrow is tremendous.</p>
+<p>I have, I have towards Kiyotaka-----really, seriously, I've fallen in love with him.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Cupid Karuizawa</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Karuizawa Kei SS — Volume 7.5</p>
+
+<p>At last it's the 25th, and the double date started. I, in order to faithfully carry out Satou-san's request, in order for a one hit kill, took into my hands the arrow of love. This arrow is a magical arrow which causes anyone it hits to fall in love. Satou-san beside me, in an attempt to get along with Kiyotaka, is coming into contact with him with a sense of distance similar to that of lovers. Looking at those two, I decided to call out to them like a meddlesome lady from the neighborhood.</p>
+<p>"Heh....you two are looking pretty good aren't you?".</p>
+<p>"R-Really?".</p>
+<p>"No matter how you look at it, you guys look like a couple affectionately spending Christmas together, that sort of feeling?".</p>
+<p>Firstly I need to tell Kiyotaka that they make a natural matchup. Kiyotaka, who usually thinks of things I wouldn't even be able to comprehend, in regards to romance alone, he doesn't seem like a professional.</p>
+<p>He should have no idea how his surroundings view him.</p>
+<p>"Hehehe. Isn't it embarrassing, Ayanokouji-kun? They're saying we look like a couple".</p>
+<p>".....I suppose so".</p>
+<p>Towards those words from Satou-san, Kiyotaka disinterestedly answers. What's 'I suppose so' supposed to mean. Aren't you supposed to be happy deep down inside? Zuzuzu, like that inside me, something dark whispers.</p>
+<p>Ahh, no good, no good. The cupid of love does not think such dark thoughts.</p>
+<p>"But still, the two of you seriously aren't going out with each other? Could it be the truth is you're already going out~".</p>
+<p>Killing my own feelings, I pressed them for an answer vigorously to stir them up.</p>
+<p>"N-N-No. Not at all. We still aren't in that kind of relationship!".</p>
+<p>Even though she was desperately denying it, Satou-san also checked Kiyotaka's state with a side glance. If he seems happy, it meant it would be material for her to decide that they have chemistry together.</p>
+<p>However on the contrary, this blockhead, no matter what's said, never once changed the serious look on his face. He doesn't laugh and neither does he get angry, that makes judgment difficult.</p>
+<p>"Really? If you're hiding something you'd better tell me right now, ok?".</p>
+<p>Even when I attack repeatedly like that, in response, Kiyotaka gave a reply that was close to outright ignoring us.</p>
+<p>I wonder if it was a bad idea to say it in a roundabout manner.</p>
+<p>"Speaking of which, Satou-san, you don't have a boyfriend yet right?".</p>
+<p>"Y-Yeah".</p>
+<p>Since it's come to this, I tried expressing it fairly straightforwardly and yet Kiyotaka still didn't have a good reaction to it. More like, he doesn't even seem to be paying attention to my words. It's almost like he has no awareness that he's on a date. The double date has just begun, maybe we came on too strong with the opening.....</p>
+<p>"We'll be enjoying this on our own so the two of you, don't mind us ok?".</p>
+<p>For now I decided to leave Satou-san and Kiyotaka to act independently. As I talked with Yousuke-kun, I eavesdropped on the conversation of those two from beside them. By the way, I waited for a fairly long time but the conversation between those two did not start up at all. It may be that Satou-san is also getting nervous, but she did not seem to be able to carve out a topic to discuss. Or it could be that she's expecting the conversation to come from Kiyotaka and is waiting for it. If that's the case it's probably hopeless.</p>
+<p>Kiyotaka doesn't seem to have any intention of changing from his usual, sparse self. Ahh mou! That means there's nothing left but for me to do something about it.</p>
+<p>I directed a hopeless gaze towards Kiyotaka. And when I did, it seems my feelings were delivered to him as my gaze immediately met Kiyotaka's.</p>
+<p>"You're being rather quiet. So does this mean you're going to keep acting quiet?".</p>
+<p>"It's not like I'm acting or anything. I'm not used to dates, I just don't understand the lifestyle of those with topics to discuss".</p>
+<p>It's probably that sort of thing.</p>
+<p>I felt like from our gaze, I was able to read such feelings from Kiyotaka.</p>
+<p>"Satou-san, isn't it just that Ayanokouji-kun doesn't know what to talk about?".</p>
+<p>The arrow of love I had let loose. If it hits, it's a magical arrow that will cause one to fall in love. This one arrow, one way or another I'll make sure to hit Kiyotaka with it.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Conflict of the Mind</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Mio Ibuki SS — Volume 7.5</p>
+
+<p>The 23rd which welcomed the first day of the winter vacation. I came to the movie theater, ignoring the couples who were being festive due to Christmas being at hand. Early in the morning, when I saw off Ryuuen who was intending on quitting school, I was planning on staying in my room for the whole day. But just a while ago, after receiving mail from that idiot Ishizaki, I changed my mind.</p>
+<p>"Ryuuen-san changed his mind!".</p>
+<p>Along with such a mail, them bragging about how their persuasion had worked was also written. But that's not the case. That guy, Ryuuen had hardened his resolve to quit school. It wasn't a situation where mere persuasion from Ishizaki and the others was going to make him change his mind. In other words........there were other factors besides that.</p>
+<p>Something that would make him change his mind. That is probably, something related to Class D's Ayanokouji Kiyotaka. My intuition is telling me that. If I'm in my room, it becomes obvious that I end up anxiously thinking about that, so I desired a time where I could focus on something else entirely.</p>
+<p>Remembering that there was a movie I had not seen yet which was almost nearing the end of its screening period, I made reservations for a seat and headed for Keyaki Mall. Just before the screening began, inside the building that was engulfed in darkness, the me who had arrived with that timing, upon reaching my seat, casually rested my arm on the empty armrest. Feeling a sensation of rubbing against cloth, I turned to glance at it.</p>
+<p>That was a mistake.</p>
+<p>"Geh".</p>
+<p>I ended up meeting with the number 1 person I did not want to meet right now in this unexpected place. It was the Ayanokouji who had been occupying my thoughts. He's the man who puts on a dumb face yet is the one manipulating the class from behind the scenes. He's not just smart, he's a surreal existence whose fighting skills are far beyond that of Ryuuen and Albert.</p>
+<p>"It's a coincidence, huh".</p>
+<p>He calls out to me like that.</p>
+<p>I really don't want such a coincidental meeting. I felt nauseous and turned my gaze away. Ahh mou, why do I have to come across Ayanokouji? On top of that, he's also alone.</p>
+<p>Back during the summer vacation, I remembered the time when I was trapped with Ayanokouji inside an elevator. Ever since then, I had been dancing in the palm of his head, and remembering that, frustration oozes out of me. Not knowing a thing, writing him off as an idiotic student of Class D. In a sense, this situation is similar to that situation back then.</p>
+<p>It feels like the two of us are trapped inside a sealed box. Desperately trying to clear up the darkness, I turned my gaze towards the movie that was being screened. But the contents of it barely came into my mind. I did think about just standing up from my seat and leaving, but that would just make it look like I'm running away from him. That alone, I cannot stand. As soon as the movie ends, I'll leave. I made that resolve. As it stands, without anything happening, such a wish of mine, right after this, would collapse at once.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A Sign of Battle</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kakeru Ryūen SS — Volume 7.5</p>
+
+<p>At night, the New Year's Eve bell declaring the coming of the New Year rang for the 108th time on the television. Apparently it's to cleanse all worldly desires away and to welcome the new year with a purified body. It's a silly story. People won't lose their worldly desires from a farce like this. The more you suppress it, avarice from the core is something that only swells up. There was an incoming call to me from an unregistered, unfamiliar number. Feeling like killing boredom, without thinking anything, I silently pressed the phone's call button.</p>
+<p>"Happy New Year. Were you awake?".</p>
+<p>A woman's voice. Naturally, a voice I'm familiar with.</p>
+<p>"To think you'd call me this early into the new year, Sakayanagi".</p>
+<p>"If you wouldn't mind, may I have a bit of your time from now? I'd like to meet you in person".</p>
+<p>"Are you asking me out on a date at a time like this? Kuku, it's not like I won't answer you though. Come directly to my room then".</p>
+<p>"Then, in 30 minutes, I shall be waiting by the vending machine outside the dorm".</p>
+<p>After ignoring my invitation, she sure is continuing to onesidedly talk.</p>
+<p>"Fine, I was free either way".</p>
+<p>Having finished our brief conversation, I threw my phone onto my bed. There's no need to honestly respond to her but this time, there are some circumstances. Either way, I already understand the contents of what she wants to say, so after confirming that the promised time has passed, I left my room.</p>
+<p>Then, slowly, I left the lobby of the dormitory and immediately headed for the vending machine. As I carefreely arrived at the promised location, that woman immediately called out to me. As always, she was carrying her cane around as she welcomed me.</p>
+<p>"You're 10 minutes late. I believe I've given you 30 minutes to prepare though".</p>
+<p>She spoke that fact calmly without any happiness or anger.</p>
+<p>"Kuku. I could have just ignored you though".</p>
+<p>"Well, this is fine".</p>
+<p>10 minutes was being too lenient. I should have kept her waiting longer in this cold weather.</p>
+<p>"But for a late night date, there are quite a bit of onlookers".</p>
+<p>Beside Sakayanagi, the figures of Kitou, Hashimoto and a sleepy-looking Kamuro were there.</p>
+<p>"Usually this is something that's done as a pair".</p>
+<p>"Fufu. I don't have the courage to meet you so late at night when it's just the two of us".</p>
+<p>Having received such words of praise I'm thankful for, I drew closer to Sakayanagi.</p>
+<p>However, just by drawing closer to a certain extent, Kitou takes a step forward. It was a silent pressure that was telling me not to come any closer. Is he playing at a knight protecting the princess? Kitou's face doesn't befit that of a knight's.</p>
+<p>"It appears you've suffered quite the terrible injury. Even now, it seems there are some scars left behind".</p>
+<p>"Are you worried about me?".</p>
+<p>"So you're not going to deny your injuries then?".</p>
+<p>"Deny? It'll just be strange even if I deny them with this face".</p>
+<p>It's been a week since I fought Ayanokouji on that rooftop. The swelling and the bruises have gone down quite a bit, but even so, I haven't made a complete recovery yet. It's obvious these injuries aren't something I'd sustain from falling down a flight of stairs. And I don't know where she got wind of this, but it's nothing particularly surprising.</p>
+<p>Looking at either me or Ishizaki who both went out with our faces swollen, anyone would be able to immediately tell.</p>
+<p>"For someone who holds pride in fighting, you've lost face, Ryuuen".</p>
+<p>Hashimoto says that while laughing. While courteously pointing out where my drive lies.</p>
+<p>"Was it alright for you to go about in such a state?".</p>
+<p>"I'm grateful for your concern, but I don't want to be told that by someone whose legs are crippled like you".</p>
+<p>"Fufu. That may be the case".</p>
+<p>Maybe my provocations were fruitless.</p>
+<p>As for Sakayanagi, she probably has something else she wants to hear.</p>
+<p>"If you wish, I can tell you all about the extent of the condition of my injuries right here and now".</p>
+<p>Sakayanagi's two prized bodyguards, Kitou and Hashimoto, each turn their eyes towards me.</p>
+<p>"Even though your subordinates are not present, you're rather bullish".</p>
+<p>By subordinate, she probably means Ishizaki or Albert and the others.</p>
+<p>"Whether they're here or not doesn't matter. If you look at them as part of my forces, they're not here after all".</p>
+<p>I took a step forward. Kitou also takes a step forward. Leaving aside Hashimoto, it seems Kitou has taken a fighting stance. Whatever happens, to be able to move immediately, he's warming up for it.</p>
+<p>"Let's stop with the dangerous stuff. No one stands to gain anything from fighting in a place like this".</p>
+<p>Hashimoto, as though joining in, said that.</p>
+<p>"Shall we get down to business then? The reason I called you out at a time like this is because there is something I would like to ask you directly. It's something that's difficult to ask when there are people around".</p>
+<p>Late at night between the end of one year and the start of the next, the rules on the school campus are somewhat different from the rules of the outside world. The convenience store that's normally open for 24 hours is also closed, and there are no stores currently open. There's no one that would go outside at a time like this. Either they've gone to bed already or are watching the welcoming of the new year on the television. This is a situation where we can talk about anything we like, in other words.</p>
+<p>"You've fallen from your seat as leader of Class C. I've heard word of that".</p>
+<p>"I knew you'd try to confirm that".</p>
+<p>"Is that true?".</p>
+<p>"If it is, what'll you do?".</p>
+<p>"That was a rather quick admission. Unlike your injuries, it's not like we were there at the scene watching".</p>
+<p>Sakayanagi stares at me with eyes that were searching for the truth. Until I met Sakayanagi, I had onesidedly reached a single conclusion. There's no way she could possibly know about Ayanokouji.</p>
+<p>Who I quarreled with, who I was defeated by. I had thought she wouldn't show much interest towards that.</p>
+<p>"Did you think I would have put on airs?".</p>
+<p>"I wonder. That may be the case indeed".</p>
+<p>However, it's still fishy. Sakayanagi's eyes are that of someone who knows something. She had such a look in her eyes. Ayanokouji did not talk in depth about it but did he already attract Sakayanagi's attention?</p>
+<p>If so, then when? There's almost no doubt it was before the incident on the rooftop with me. No, if that's the case, then Sakayanagi should have had a strong interest in Ayanokouji since way back.</p>
+<p>But up until now, Sakayanagi showed no signs of it and as a matter of fact, she's trying to investigate it like this. From that bizarre contradiction, I arrived at a single answer.</p>
+<p>It means there is a possibility that Ayanokouji and her were acquaintances from way back. If that is indeed the case then what Sakayanagi wants to know right now isn't whether or not I lost.</p>
+<p>'It's whether or not I lost to Ayanokouji'</p>
+<p>It would be that she wants to know the truth regarding that. It's quite an interesting line of reasoning if I do say so myself, or so I thought, but I'll let that problem be for now.</p>
+<p>If such an interesting topic were to be dangled in front of me, it'll cause my instincts to throb.</p>
+<p>"Even if you lose to someone, will you conceal that fact, Sakayanagi?".</p>
+<p>"I don't know, because for me to lose to someone, cannot possibly happen after all".</p>
+<p>That's a Sakayanagi-like screwed up response.</p>
+<p>"However, if I happened to lose, at such a time, will I honestly acknowledge it or not, you ask?".</p>
+<p>"Kukuku. Because you're prideful if nothing else, after all".</p>
+<p>"Pride is important, you know. A life without pride would be boring, wouldn't it?".</p>
+<p>"A life of showing off your pride, on the contrary, is the pointless one".</p>
+<p>"Hey, couldn't you have confirmed something like this over the phone?".</p>
+<p>Kamuro, who had been silent up until now and listening to the conversation, joined in.</p>
+<p>"The thing about truth is, you won't know until you meet face-to-face. Especially since he's proficient at telling lies. Over the phone, it would have been difficult to ascertain it".</p>
+<p>"Ahh, I see. Then at least get it over with quickly".</p>
+<p>The small fries Sakayanagi uses also have it tough. Underneath the freezing sky, Kamuro's body slightly trembled.</p>
+<p>"After playing the tyrant, in the end you ended up losing to your subordinate and fell from your seat as leader".</p>
+<p>Sakayanagi pretends to ponder over it.</p>
+<p>"It's a story that's hard to believe, isn't it?".</p>
+<p>"If so then what else could it be?".</p>
+<p>"That is something I do not know. That is why I have called you out like this".</p>
+<p>"If you meet face-to-face with me, you'll begin to see the truth, huh?".</p>
+<p>"I wonder".</p>
+<p>She's always trying to sound me out. Well, if you ask me, I have no intention of maneuvering around her every single time over Ayanokouji.</p>
+<p>"I have no further intention of doing anything else in this school".</p>
+<p>"Oi, oi. That's a joke, right? Are you seriously saying that?".</p>
+<p>The one who reacted before Sakayanagi, was Hashimoto.</p>
+<p>"There is no need to doubt like that. Due to his contract with Katsuragi-kun, every month, he is guaranteed private points. Ultimately, linking up with Class A is an assured pathway for him so even if he drops out now, it won't be an inconvenience".</p>
+<p>"Precisely. I'll be observing your petty fights from above".</p>
+<p>"However, there's no guarantee it'll continue to go well though. If an event where you lose a large amount of private points were to occur, your rise to Class A will become doubtful".</p>
+<p>She gives a courteous preface, no, explanation. The point is, it's a provocation from Sakayanagi saying she can crush me at any time.</p>
+<p>"But please be at ease. First of all, I've decided that I will be thoroughly tormenting Class B. Having you and Class C as my playtime opponents will have to be on a different occasion".</p>
+<p>"Do as you please".</p>
+<p>Just as Ayanokouji's information said, it appears the brunt of Sakayanagi's attack from now will be focused towards Class B. I have no interest in what'll become of Class A or Class B but as a spectator, I'll have them entertain me.</p>
+<p>"If you have no intention of starting a fight here, then I'll be taking my leave".</p>
+<p>"It was only for a brief while but I had quite a bit of fun. I thank you for your loser's speech".</p>
+<p>I turn my back. However, feeling like I'd tell her something, I stopped walking.</p>
+<p>"Sakayanagi, you should also remember that you're not a winner who's guaranteed victory".</p>
+<p>"If you're going to teach me defeat then I'll welcome it anytime".</p>
+<p>I have no further intention of getting involved in the dispute between classes. However, if she were to challenge me as an individual, then I will crush her. If I didn't need to protect my colleagues in Class C, I wouldn't have to rack my brains over Sakayanagi's strategies every single time.</p>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A New Experience</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Karuizawa Kei SS — Volume 7.5</p>
+
+<p>A large and expansive sea. The place I've been left behind on is this uninhabited island.</p>
+<p>"Aaah......they're gone.......".</p>
+<p>I stared at the passenger ship that's slowly becoming smaller and smaller like it's somebody else's problem. It appears the summer vacation has turned into something unbelievable.</p>
+<p>To be honest, I don't know what I should do now. Because I have no idea how I'm going to escape from this uninhabited island, surrounded by 360 degrees of sea. Ships, planes and phones. I don't have anything convenient like that with me. On top of that, because of my swimsuit, it's likely that my body will be chilled once night falls.</p>
+<p>But I was neither anxious nor panicking. On the contrary, I thought about how great it would be if this moment would last forever.</p>
+<p>Why is that, you ask? That is because of the significance of the presence of the boy sitting next to me. If he's with me, he'll save me no matter what predicament I'm stuck in.</p>
+<p>A new experience.</p>
+<p>It's because I'm confident of this that I feel no anxiety.</p>
+<p>"Hey, Kiyotaka. Where are we? As far as the eye can see, there are only mountains and the sea.......Could it be that we're stranded somewhere absurd? Like Tasmania?".</p>
+<p>"Tasmania isn't an uninhabited island, you know? Besides, there's no way it'd be this small".</p>
+<p>"I-I see".</p>
+<p>"In the first place, we're in Japan. There's that mountain you see in the distance, right? That's Mount Fuji".</p>
+<p>"Mount Fuji, you mean THAT Mount Fuji?".</p>
+<p>"Then that means we might surprisingly be able to escape this island easily".</p>
+<p>"That won't be the case. Because to escape on our own, there's only one way and that's to swim".</p>
+<p>It's not an exaggeration, but I don't quite have the strength to swim away. At that moment, a hawk took flight from the island and swiftly flew in the direction of Mount Fuji.</p>
+<p>In all likelihood, it'll reach land in no time.</p>
+<p>"It must be great having wings, isn't it? Because you could simply fly away like that".</p>
+<p>Saying that, I gazed at Kiyotaka.</p>
+<p>Eyes looking straightforwardly in the direction of Mount Fuji. And so I decided to ask him a frank question.</p>
+<p>"Could it be that.....you're capable of swimming all the way there, Kiyotaka?".</p>
+<p>"To be honest with you, there's a high possibility that if I'm on my own, I'd be able to swim all the way to land. Taking into account the probability of survival, it would be a good idea if I were to start swimming now while the sun is still out".</p>
+<p>"A-As I thought......you're amazing".</p>
+<p>But, Kiyotaka is here right now and he's showing no sign of swimming away.</p>
+<p>"Could it be that it's because I'm here?".</p>
+<p>"When I think about leaving Kei alone here, it's no longer a viable plan. There may be wild animals in the forest and once night falls, you'd have no way of protecting yourself".</p>
+<p>"Sorry, Kiyotaka. I'm always getting in your way".</p>
+<p>"That's not true".</p>
+<p>"I'm happy you'd say that. But......I want Kiyotaka to survive".</p>
+<p>"A plan where I'd be the only survivor can't even be considered a plan. It'll only be worthy of being considered a survival plan if it means both Kei and I can survive".</p>
+<p>The inside of my body started getting hotter and hotter.</p>
+<p>"Why do you care about me that much?".</p>
+<p>I was slightly afraid of hearing the answer, but I boldly tried asking him that.</p>
+<p>And when I did, Kiyotaka looked me straight in the eye and answered without any hesitation at all.</p>
+<p>"It's because to me, you're a precious partner. This is normal".</p>
+<p>As my body grew colder, Kiyotaka hugged me.</p>
+<p>A new experience.</p>
+<p>Because we were both wearing our swimsuits, our bodies were in close contact with one another.</p>
+<p>"N-No. We're not THAT kind of partners.......!".</p>
+<p>I tried to get away from him but Kiyotaka wouldn't let me go.</p>
+<p>"Then you and I just have to become that kind of partners. Am I wrong?".</p>
+<p>".......b-but..........".</p>
+<p>Gradually, my resistance weakens. If I could be swept away, then I'd like to be.</p>
+<p>"Kei.........".</p>
+<p>And when I realized it, Kiyotaka's face is already right there in front of my eyes.</p>
+<p>"Kiyotaka.........".</p>
+<p>The two of us gaze at one another. The distance between our bodies and our hearts began to shrink.</p>
+<p>And then---guu~. Cruelly enough, in my state of starvation, my stomach growled.</p>
+<p>"!".</p>
+<p>A sound of ruin that seemed as though it could erase the romantic atmosphere in an instant.</p>
+<p>But Kiyotaka calmly took in this absurd situation where it wouldn't be strange even if he were to show disgust.</p>
+<p>"Eat this, Kei".</p>
+<p>The thing he handed to me, I wonder where he procured it from.</p>
+<p>"Is this.....an eggplant?".</p>
+<p>"It's native to this uninhabited island. It'll help you recover from your hunger if you eat this".</p>
+<p>"T-thank you. But why an eggplant......eggplant?".</p>
+<p>Fuu~ I began to realize something.</p>
+<p>The Mount Fuji I could see in the distance. The hawk that flew away earlier.</p>
+<p>And the eggplant.</p>
+<p>This is something you'd look forward to on New Year's Day, is what I've heard.</p>
+<p>Furthermore, when I thought about the eggplant, the world underwent a massive change. Kiyotaka, who was sitting next to me, was also affected by that change and I could see him fading away.</p>
+<p>"Have you noticed? This is your Hatsuyume. What an ideal Hatsuyume, congratulations Kei".</p>
+<p>"Hatsuyume.........so, it was a dream after all?".</p>
+<p>Kiyotaka beside me faded away even more. What a relief, being stranded on an uninhabited island was just my dream. But that means, that moment was also a dream.</p>
+<p>In other words, this romantic atmosphere will also be gone in a while.</p>
+<p>That kiss I almost had, all of it will disappear soon.</p>
+<p>I reached out to grab Kiyotaka. But Kiyotaka was no longer there beside me.</p>
+<p>I could see Kiyotaka swimming ferociously against the tide. I leaped up into the sky and in an instant, the uninhabited island disappeared.</p>
+<p>"Aaaaah wait. Wait, my Hatsuyume! My first kiss!".</p>
+<p>Even as I screamed out, it was already too late. My consciousness was swiftly pulled back into the real world.</p>
+<p>The very next moment, a familiar ceiling appeared before my eyes. A morning no different than the usual, so peaceful that it's almost unbelievable I had been panicking in my dreams.</p>
+<p>But, my heart was beating fast.</p>
+<p>"No, no......hey dream me, why are you so desperate for a kiss..........!?".</p>
+<p>In reality, I always make an effort to stay calm and I won't simply ask for a kiss that easily.</p>
+<p>E-Even if it happens to be the boy I love, that's why, umm, I won't be clingy.</p>
+<p>But even so, even if it's just in a dream, there are still things that are ok for me to fantasize about and things that aren't. I think this is the craziest dream I've ever had in my life.</p>
+<p>How could I have ever imagined this would be what I'd see in my Hatsuyume.</p>
+<p>"Hatsuyume, huh.......".</p>
+<p>Could my Hatsuyume turn into a Masayume.........no way, right?</p>
+<p>Either way, let's keep this super embarrassing dream to myself only.</p>`
+        }
     },
     {
         id: "ss-y1-v8",
@@ -2869,7 +3171,243 @@ But, in reality, the "real no way out day" would come just a bit later.`,
         ],
         characters: ["Honami Ichinose", "Kei Karuizawa", "Nazuna Asahina", "Arisu Sakayanagi"],
         coverImage: "/assets/y1v8.jpg",
-        inProgress: true,
+        inProgress: false,
+
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Weariness of the Heart</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Honami Ichinose SS — Volume 8</p>
+
+<p>"I'm exhausted".</p>
+<p>After splitting up with Asako-chan and the others, I leaned on the wide table in the cafeteria with my upper body.</p>
+<p>It felt like all the fatigue I had accumulated during the day just faded away.</p>
+<p>It'd be great if I fell asleep just like this.</p>
+<p>I closed my eyes and thought so.</p>
+<p>No, no. If I fall asleep in a place like this, I'd be inconveniencing the others. But my eyelids are already so heavy.</p>
+<p>When I tried my best to open them again, Ayanokouji-kun was reflected in my eyes.</p>
+<p>At a surprisingly close distance.</p>
+<p>I abruptly raised my upper body and called out to him.</p>
+<p>"Ayanokouji-kuuuun yaho~".</p>
+<p>"You were having a good time".</p>
+<p>Apparently he's overheard my conversation with Asako-chan and the others.</p>
+<p>"Girls' chats may or may not be their source of power".</p>
+<p>Perhaps I have't been sufficiently charged yet, but I just didn't have the strength and had to use the table as a replacement pillow.</p>
+<p>Since Ayanokouji-kun had a flabbergasted look on his face, I added.</p>
+<p>"Ahh, can't I do this?".</p>
+<p>It may have been too rude an attitude to take when speaking to another person...</p>
+<p>"It's normal to do something like that when you're tired".</p>
+<p>He did seem surprised but he gave his consent.</p>
+<p>"Sorry---. For making it slightly uncomfortable".</p>
+<p>"It's become quite the difficult group, hasn't it?".</p>
+<p>"It was difficult until we formed this current group, is perhaps how I should put it. Girls know very well what they like and dislike, or more like, there are more than a few girls who are willing to say they don't like another girl straight to their face. In that regard, when it comes to personal feelings, aren't they a lot of boys who like to muddy the waters?".</p>
+<p>Well, I've heard my fair share of quarrels breaking out over the small details though. If I can hear a variety of things from Ayanokouji-kun, then I'd like to collect information.</p>
+<p>"Ryuuen's openly disliked though".</p>
+<p>"It's bad to laugh at that but that really couldn't be helped, could it? But isn't Ryuuen-kun tired too? To be disliked by everyone must be tiring".</p>
+<p>It would've been just fine if he had connected with others more in order to get along with them.</p>
+<p>Even if he turns over a new leaf now, wouldn't it be difficult to make things go well?</p>
+<p>"Don't get too fired up".</p>
+<p>Perhaps he was being considerate of me, as Ayanokouji-kun quickly got up from his seat.</p>
+<p>Doesn't seem like I'll be able to draw information out of him but that can't be helped.</p>
+<p>I too, felt like relaxing on my own anyways.</p>
+<p>"It's fine, it's fine. Being energetic is about the only thing I have going for me. See you later, Ayanokouji-kun".</p>
+<p>Besides, either way all I can do when it comes to an exam like this is to tackle it seriously.</p>
+<p>A special exam where I'll have to join hands with people other than my classmates isn't really one I can do anything about.......</p>
+<p>How should I put it, if I increase the number of things I have to protect I'll end up being unable to keep up with it all.</p>
+<p>Someone who'd normally be my enemy becomes my ally. Something like that means that someday, my enemy now may end up as my ally.</p>
+<p>If something like that were to happen, then sooner or later I might just burst.</p>
+<p>I thought that while looking at Ayanokouji-kun's back as he went away.</p>
+<p>".....so they've climbed up to Class C. Even though all I've heard of are Horikita-san's accomplishments......".</p>
+<p>Ayanokouji-kun, who's always positioned perfectly.</p>
+<p>Exactly how much influence he exerts is still a complete unknown.</p>
+<p>But---there are only a few people who know the fact that I possess a massive sum of points.</p>
+<p>Did a student from Class B leak it, or could it be.....Ayanokouji-kun?</p>
+<p>I'll have to ascertain that soon enough.</p>
+<p>If he happened to be someone superior to Horikita-san then it means that he may be a threat to Class B, which I must protect.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A Teasing Partner</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kei Karuizawa SS — Volume 8</p>
+
+<p>Soon after the outdoors school began, I received a request from Kiyotaka and committed myself to understanding the girls' group.</p>
+<p>And now today, I could see Kiyotaka at last.</p>
+<p>Kiyotaka looked at me once.</p>
+<p>I immediately understood.</p>
+<p>The fact that he's going to be making contact with me now.</p>
+<p>And I could feel him sitting behind me.</p>
+<p>"hnn---".</p>
+<p>I sent him a signal by purring so I could let Kiyotaka know I noticed him without being noticed by my friends and my surroundings to my left and right.</p>
+<p>And then I proceeded to unreservedly chat with my friends to my heart's content.</p>
+<p>If I do something disruptive, it would cast suspicion on me. Then about three minutes later, I succeeded in going back ahead by saying I had an appointment with another girl.</p>
+<p>"So? Finally feel like relying on me on the third day?".</p>
+<p>I called out to Kiyotaka, who sat behind me. However, I didn't turn around to look that easily.</p>
+<p>At times like this, female spies don't act foolishly.</p>
+<p>"That's about right. There's far too little information on the girls".</p>
+<p>These days, Horikita-san seems a bit distant too. I'm the only person in the class he can depend on.</p>
+<p>I was extremely happy that deep down inside, Kiyotaka relied on me as though clinging to me.......no, no. What's the matter with me? Being delighted that I'm being worked to the bone.</p>
+<p>"Well, it can't be helped right? For someone with a communication disorder like you, there are only a few girls you could possibly make contact with".</p>
+<p>But I acted bullishly, just a bit, to tease him.</p>
+<p>"Then even without my advice, you can overcome this special exam?".</p>
+<p>I received that counter punch from him.</p>
+<p>I should have taken the advantage but with that one blow, I was left reeling.</p>
+<p>"O-Of course. Who do you think I am?".</p>
+<p>I made a bluff, but without a doubt, the fact that I was shaken by it must have been conveyed to Kiyotaka.</p>
+<p>"I see. Then there's nothing to fear".</p>
+<p>I can handle the rest myself? I received that sort of pressure and so I gave in.</p>
+<p>If I ever got into a pinch, it's not like I can do anything about it on my own.</p>
+<p>"......later, at least analyze my situation to see if there's any danger or not, ok?".</p>
+<p>I meekly(?) asked that of him.</p>
+<p>"For now, let's hear it starting from the partitioning of the girls' groups".</p>
+<p>"Ahh, before we talk about that there's something that's been bugging me".</p>
+<p>"Let's keep it brief".</p>
+<p>Of course I understand. I don't want anyone to start paying attention to Kiyotaka by messing up.</p>
+<p>"It's something pretty important.....or more like, what's going on with that Ryuuen guy?".</p>
+<p>"Are you concerned?".</p>
+<p>"I mean, yeah. It's become a topic even among the girls. Why that guy stopped being the leader but it doesn't look like anybody knows the truth though".</p>
+<p>There's no way I wouldn't be curious about what's going on with the man who did all those horrible things to me.</p>
+<p>"Being as meek as a lamb, that expression doesn't quite fit Ryuuen but right now it looks like he's acting quite mature".</p>
+<p>"Does that mean your chastisement worked?".</p>
+<p>"Chastisement, eh?".</p>
+<p>For the foreseeable future, I won't be targeted by that man.</p>
+<p>I was truly happy about that.</p>
+<p>"Don't worry about Ryuuen. He won't act carelessly. At the very least, I can say that he won't do anything to Kei from now on".</p>
+<p>Buu!</p>
+<p>A surprise attack. He called me 'Kei'.</p>
+<p>Since I'm still not used to him calling me by my first name, I unexpectedly panicked.</p>
+<p>But, it's lame panicking over something like being called by your first name.</p>
+<p>I stabilized my breathing.</p>
+<p>".....sorry, that was nothing".</p>
+<p>I gave that excuse and returned to our conversation.</p>
+<p>"That didn't seem like nothing, Kei".</p>
+<p>He called me by my first name again. Every time, my poor heart takes a giant leap. Then, after a few seconds, it begins beating rapidly.</p>
+<p>"I-I'm telling it's nothing".</p>
+<p>Calm down, calm down Kei. I'm not a woman who's moved just because she got called by her first name.</p>
+<p>I'm a popular gyaru who can easily overcome trivial things like that.</p>
+<p>Still, even though he didn't refer to me that way that much up until now, why's he calling me that consecutively?</p>
+<p>"Is that true, Kei?".</p>
+<p>The 3rd time honestly confirmed to me that I am being teased.</p>
+<p>".....hold it right there. You're doing it on purpose!".</p>
+<p>I wanted to turn around, but I can't.</p>
+<p>Because more important than the fact that our surroundings would notice us is the fact that I'm aware my face is beet red.</p>
+<p>"Ahh, mou. Really, I shouldn't have given you permission to call me by my first name..........".</p>
+<p>Even though I wanted to see him off while hiding my face, I can't quite do that at the cafeteria.</p>
+<p>The pain of having to play the part of the girl slowly eating her meal.</p>
+<p>"You're the one who called me out here in the first place though".</p>
+<p>"Yeah. That can't be helped".</p>
+<p>Can't be helped......is a lie though.</p>
+<p>The one who falls in love loses.</p>
+<p>I don't know who said it, but I think it's a clever saying.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">That First Year Boy</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Nazuna Asahina SS — Volume 8</p>
+
+<p>That meeting took place while I was on my way back to the cafeteria from the toilet.</p>
+<p>"Hmm?".</p>
+<p>When I passed by that boy, I heard that voice. Could it be that he's talking to me?</p>
+<p>As I pondered over whether or not to stop walking, that boy called out to me.</p>
+<p>"Ahh, I'm sorry. I just thought I've seen that amulet before a while back. Please don't mind me".</p>
+<p>That boy said such a thing. Just as I thought I'd seen him before somewhere, he turned out to be the 1st year that Miyabi talked to a while back.</p>
+<p>If I recall, he fought well against Horikita-senpai during the relay.</p>
+<p>A pitiful boy who attracted attention because of that, was the impression I somehow had of him.</p>
+<p>"This amulet isn't in stock at the school anymore though".</p>
+<p>I doubt this is the case but could he be hitting on me while putting on that naive face of his?</p>
+<p>"Is that so? By any chance, did you happen to drop this amulet somewhere a while back?".</p>
+<p>"Could it be.......you're the one who picked up my amulet?".</p>
+<p>"I wonder. I picked it up on my way back during the winter vacation though.....".</p>
+<p>I had dropped my amulet somewhere and had given up on it. I felt grateful towards the person who picked it up and so I felt ashamed of having imagined something rude.</p>
+<p>"I don't believe I'm mistaken. I see, so it was you".</p>
+<p>I went up to the boy and showed him my amulet.</p>
+<p>Perhaps it's because he immediately handed it over, since he hadn't realized it.</p>
+<p>"This amulet is something I bought in this school. So it's not like I have any strong attachment in particular to it. It's just, how should I put it, it's like my mental support? When I have this in hand I feel really at peace. That's why when I lose it, it feels like an omen that bad things are going to happen and that makes me anxious. That's why I was really happy knowing someone picked it up and handed it over".</p>
+<p>Unconsciously, I ended up talking about unrelated things but this should be enough.</p>
+<p>"To think the person who picked it up would be you".</p>
+<p>This too, might be called a strange, chance meeting. Or more like, it may be something along the lines of destiny.</p>
+<p>This amulet protects its owner and at the same time, is the harbinger of destiny.</p>
+<p>It's not just about romance but also brings people together.</p>
+<p>Perhaps there might just be a meaningful destiny both he and I share.</p>
+<p>Maybe that's why I happened to drop the amulet.</p>
+<p>Thinking that, I began to feel like cherishing this bizarre and precious destiny.</p>
+<p>That's right.</p>
+<p>For me, this was how I met Ayanokouji Kiyotaka-kun. The day destiny reared its head.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The True Meaning Is</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — Volume 8</p>
+
+<p>That boy walking towards me did so while looking away.</p>
+<p>I could easily see that he was engaged in a pleasant chat with his friends and thus was neglecting what is in front of him.</p>
+<p>At this rate, we will collide.</p>
+<p>However, even someone with handicapped legs like me can still adjust my course sufficiently enough considering my positioning.</p>
+<p>But there are times when my legs would hurt and it's harder than usual to get them to move.</p>
+<p>And that happened to be now.</p>
+<p>That is why I had no choice but to choose the option of calling out to him.</p>
+<p>"Umm---please look out?".</p>
+<p>However my voice was drowned out by the boys' laughter.</p>
+<p>Disregarding the fact that I had worked out a measure to avoid them a second time, it was rendered ineffective.</p>
+<p>Since it's come to that, I don't feel like coming up with a third proposal.</p>
+<p>I made up my mind and braced for the conclusion that would follow shortly after.</p>
+<p>Sure enough, the boy did not notice me and his shoulder, with some force, hit me.</p>
+<p>I tried to endure it but there was no way it would go swimmingly and all I could manage was to sit down right there as though collapsing.</p>
+<p>"Sorry, sorry. Are you ok?".</p>
+<p>The name of the boy who noticed me for the first time after running into me was Yamauchi Haruki. A student of Class C.</p>
+<p>For the record, I do keep that information in mind but as far as I'm concerned, he's an insignificant existence.</p>
+<p>"Yes...no need for concern".</p>
+<p>I did not take the hand that was extended to me, rather, I used the wall to slowly get back up.</p>
+<p>"Then, umm, I'll be off?".</p>
+<p>Yamauchi-kun ended it with a single, non-serious apology.</p>
+<p>In a sense, you could say he's a pleasant boy.</p>
+<p>"Yes. Please don't concern yourself with me".</p>
+<p>As I replied politely like that, Yamauchi-kun immediately returned to chatting with his friends and walked off.</p>
+<p>"Really though, Sakayanagi-chan is cute but isn't she clumsy?".</p>
+<p>Despite not having taken much distance from me yet, without even knowing that he's being overheard, Yamauchi-kun left behind such words and disappeared.</p>
+<p>He probably didn't see all of it, but it appears Ayanokouji-kun too, has been observing my interaction with him.</p>
+<p>I ended up letting him see something unsightly.</p>
+<p>"Are you alright?".</p>
+<p>"Thank you for your concern but it's not a big deal".</p>
+<p>"I'll give Yamauchi an earful later".</p>
+<p>"It's not like he deliberately did it, I only fell once at most".</p>
+<p>However, now that I have fallen once, it also means I have gained the right to make him fall too.</p>
+<p>"Well then, please excuse me".</p>
+<p>Sooner or later, I'll have to deliver a special gift to him.</p>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">That Summer Day</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — Volume 8</p>
+
+<p>Early February. Just when I could feel the breath of spring. I held a warm can of coffee in my hands. Since the can happens to be very hot, I took out my handkerchief and wrapped it around the can.</p>
+<p>"Hey, I want to hear it upfront".</p>
+<p>"Ara. What might the matter be?".</p>
+<p>While watching me, Masumi-san said so.</p>
+<p>"You seem to be carrying around quite a lot of stuff but isn't that brown handkerchief for boys?".</p>
+<p>"Does it not suit me?".</p>
+<p>"To be honest, no".</p>
+<p>"I don't really dislike how Masumi-san's not one to mince words".</p>
+<p>I laughed thinly and glanced at the handkerchief. Certainly, it's a very plain and simple one meant for boys that it's hard to say I'd normally be interested in it.</p>
+<p>"This is not mine. So it's no surprise it doesn't suit me. Shall I say it's something I borrowed?".</p>
+<p>"Borrowing a handkerchief.....what's with that? Isn't that a bit creepy?".</p>
+<p>"Fufu. Maybe".</p>
+<p>"But you're laughing......".</p>
+<p>I first encountered this handkerchief before I enrolled at the Advanced Nurturing High School. Let's go back to when I was a 3rd year in middle school and the summer vacation of that time.</p>
+<p>Calling it a summer adventure, I got onto a train alone and travelled to a sea far away. A place I used to visit many times as a child but grew apart from as I grew older. Since I can't swim, it's a place I had no business being at. I used to think that in those days but now that I've enrolled in high school, that's become a fond memory for me.</p>
+<p>I realized that there's plenty of value even in simply admiring the rippling waves of the sea. But I realize too that a cripple like me would find it difficult to walk down the beach and so I settled for gazing at it from the paved road along the coast. To protect myself from the blazing summer sun, I made sure to wear a white hat.</p>
+<p>However---</p>
+<p>"Ahh------".</p>
+<p>Not too long after that, along with a breeze, the white hat I had been wearing flew off into the sky. I panicked and reached out but a cripple like myself couldn't possibly reach it and it flew towards the beach.</p>
+<p>"......a mischief of the wind, I suppose? There's no other choice then".</p>
+<p>That hat is a precious belonging of mine that my father bought for me. I need to go pick it up somehow.</p>
+<p>I decided to take a detour down to the beach while bathing directly in the sun's rays that I'm not used to. However, the blazing sun sapped away more of my strength than I had expected.</p>
+<p>"Honestly.....I'm no good when it comes to doing anything physical".</p>
+<p>Feeling very dizzy, I collapsed as soon as I arrived at a bench with a roof over it near the lighthouse.</p>
+<p>Even at this very moment, my hat may be blown further out to sea. That was what I thought but my body simply won't listen to me. Then let's have a short break.</p>
+<p>I thought that and decided to cool myself down on the bench. I wonder how much time's passed since then. I felt a cool sensation on my neck and opened my eyes. It would appear I fell asleep.</p>
+<p>The fact that I've been walking long distances must be one of the causes of that.</p>
+<p>".......this is........".</p>
+<p>Both my hat that had flown off and a wet handkerchief that had been placed on my neck were there.</p>
+<p>To prevent the hat from flying off again, an unopened bottle of mineral water had been placed on the rim of the hat.</p>
+<p>When I looked around, I saw a boy walking away alone. Judging from his physique and his height, he's my age or maybe slightly older. It would appear he's taken appropriate measures to guard against the risk of heatstroke but......that boy left without even seeking any gratitude from me.</p>
+<p>For some reason, his retreating back didn't seem familiar to me and so I eliminated that possibility.</p>
+<p>Because there's no way 'he' could be here in the outside world.</p>
+<p>"I want to see you......Ayanokouji-kun".</p>
+<p>I unconsciously whispered that.</p>
+<p>I want to see him with my own eyes since I was only able to see him through the glass.</p>
+<p>I want to hear his voice.</p>
+<p>I want to touch him.</p>
+<p>And then I want to break him.</p>
+<p>I wonder what this emotion, this urge, filling my heart is. I'm sure the answer to that can only be found in making contact with Ayanokouji-kun.</p>
+<p>Please......I hope to meet you again someday.</p>
+<p>While looking at that boy's back, I prayed.</p>`
+        }
     },
     {
         id: "ss-y1-v9",
@@ -2889,7 +3427,325 @@ But, in reality, the "real no way out day" would come just a bit later.`,
         ],
         characters: ["Kei Karuizawa", "Masumi Kamuro", "Mei-Yu Wang", "Honami Ichinose", "Arisu Sakayanagi", "Kiyotaka Ayanokōji"],
         coverImage: "/assets/y1v9.jpg",
-        inProgress: true,
+        inProgress: false,
+
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A Special Day for Students</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kei Karuizawa SS — Volume 9</p>
+
+<p>February 14th. Underneath the cold winter sky, I came to this place, a slight distance away from the dorm.</p>
+<p>An invitation from Kiyotaka via mobile to rendezvous here.</p>
+<p>I had desperately been hiding my ever quickening heartbeat from Kiyotaka during our conversation.</p>
+<p>To give someone chocolate.</p>
+<p>If I were to start counting all the way from childhood, it wouldn't be my first time doing so. But whenever I let my guard down, I can feel my face reddening.</p>
+<p>"What day is it today? Alright, 5, 4, 3---".</p>
+<p>To conceal my embarrassment, I chose to poke fun at him with such a quiz.</p>
+<p>"...that was easier than I expected. On the contrary, it's making me feel like I won't get it right".</p>
+<p>"Don't beat around the bush, give me a straight answer, ok?".</p>
+<p>It's okay. I just need to be the 'cool me'. It's okay.</p>
+<p>"Valen---".</p>
+<p>"Alright, correct answer".</p>
+<p>I got really embarrassed and even as I covered it up with words, I hit Kiyotaka's head with the box.</p>
+<p>"Is this for me?".</p>
+<p>"I actually prepared this for Yousuke-kun but that's no longer necessary".</p>
+<p>I lied.</p>
+<p>The truth is, I bought it a while back while fretting over this and that.</p>
+<p>I bought it just before the shop closed so I doubt anyone saw me.</p>
+<p>"For Hirata, huh?".</p>
+<p>"What? You don't like that?".</p>
+<p>"No, I was just thinking that meant you've spent quite a while preparing for Valentine's".</p>
+<p>There's no way a phony, transparent lie like that would work against Kiyotaka but that phony lie is the only option I have here, isn't it?</p>
+<p>If I told Kiyotaka I bought it for him then......that'd just make me look like a maiden in love!</p>
+<p>"I-I'm the thoroughly prepared type. Even though I decided I'd break up with him, there's still the possibility that it may become necessary, no? Well, there's no way someone as romantically inexperienced as you would understand that though".</p>
+<p>It's precisely because I know he's romantically inexperienced that I was able to make this my escape route.</p>
+<p>But still, surely even Kiyotaka would have had expectations?</p>
+<p>After all, he knows today's February 14th.</p>
+<p>"I thought you picked this date because you expected to get something from me".</p>
+<p>That's why I asked him that.</p>
+<p>"Sorry, that didn't cross my mind".</p>
+<p>Grr......</p>
+<p>He has his usual poker face up and my words came bouncing straight back at me.</p>
+<p>Even though I threw them hard at him straight up, he still kept his cool.</p>
+<p>"By the way, did you get any from some other girl?".</p>
+<p>I think I'll probably be able to hear his answer calmly.</p>
+<p>"No, nothing at all".</p>
+<p>In other words, this means I'm the first girl in this whole school to give Kiyotaka chocolate.</p>
+<p>"Serves you right. Zero Love Interest Man~".</p>
+<p>"But is it really okay? If you give me chocolate, it'll stop being zero, you know?".</p>
+<p>"That in itself would make you pathetic. You'd be the guy who needed me to hand him a lifeline".</p>
+<p>I wish today would end without this being known to anyone else.</p>
+<p>And on White Day, I'll be able to monopolize Kiyotaka, won't I?</p>
+<p>Just kidding, I mean, this would mean I'm nothing more than a maiden in love.......!</p>
+<p>Inside my head, I had fallen into a state of panic.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Kamuro's Intention</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Masumi Kamuro SS — Volume 9</p>
+
+<p>I'm in Ayanokouji's room.</p>
+<p>For a certain reason.</p>
+<p>"Give me something to drink. It's going to take a while".</p>
+<p>Ayanokouji began preparing my request for the essentials with a displeased look.</p>
+<p>"Then I'll boil some tea or coffee".</p>
+<p>After saying that, Ayanokouji began preparing it.</p>
+<p>I felt suspicious of how defenseless he seemed.</p>
+<p>Sakayanagi told me to keep an eye on this man, Ayanokouji, but to be honest, I have no idea exactly what he's capable of.</p>
+<p>"No cocoa?".</p>
+<p>"...I've got some".</p>
+<p>"Then I'll have some of that".</p>
+<p>I once again made another meaningless demand, as though testing him.</p>
+<p>"So what did you want to talk about? If it's cold, we could've had this talk in the lobby".</p>
+<p>"No one will get in our way here. It's the ideal place for our talk".</p>
+<p>"What exactly is it about?".</p>
+<p>"Are you, by any chance, being wary?".</p>
+<p>"It'd be far stranger for me to not be wary. A girl I'm not familiar with, not to mention a student from our enemy Class A, is in my room after all".</p>
+<p>"You're saying Yamauchi from your class is different?".</p>
+<p>When I said that, Ayanokouji gave me a glance.</p>
+<p>"Are you curious?".</p>
+<p>"Not at all".</p>
+<p>"I see. Then let's not speak of that matter. It doesn't matter anyway".</p>
+<p>Right now, Yamauchi is irrelevant. The important stuff comes now.</p>
+<p>"That letter about Ichinose earlier. What do you think?".</p>
+<p>A letter that states that Ichinose Honami is a criminal.</p>
+<p>"What do you mean by that?".</p>
+<p>"Exactly what it sounded like. About her being a criminal. Do you believe it?".</p>
+<p>"I haven't a clue. Besides, I'm not interested".</p>
+<p>"Even if you aren't interested, surely you've thought about it at least. About whether Ichinose is benevolent or malevolent, I mean".</p>
+<p>"You can't just label someone malevolent because they happen to be a criminal. Just like you can't label someone benevolent by virtue of them not being a criminal".</p>
+<p>I tried to unsettle him. To confirm whether this man can truly be used or not. That is the mission I've been given.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Reliable Classmates?</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Mei-Yu Wang SS — Volume 9</p>
+
+<p>I asked Ayanokouji-kun for advice regarding a certain matter at a cafe corner. But I wasn't able to take the initiative and a long silence followed.</p>
+<p>I need to do something about it, I need to do something about it.</p>
+<p>That feeling took priority even over the matter I had wanted to get his advice on. I feel bad for Ayanokouji-kun, who's wasting his time on me...</p>
+<p>"Umm, you see...umm, it's about Hirata-kun".</p>
+<p>I somehow desperately managed to squeeze my voice out. I continued before I end up choking my words back.</p>
+<p>"I want you to tell me all about him......".</p>
+<p>I think I explained that badly too but there's nothing I can do about it. Because I can't straight up tell him 'I'm in love with Hirata-kun' after all.</p>
+<p>"Hirata and I aren't particularly close, you know?".</p>
+<p>Even after seeing me panicking, Ayanokouji-kun's tone remained the same as always.</p>
+<p>"But Hirata-kun told me Ayanokouji-kun is the most reliable one though?".</p>
+<p>"...did he now?".</p>
+<p>The impression I had of Ayanokouji-kun was that he's like 'air'. Describing it as 'air' may be somewhat rude but I've got nothing else to go on. He's a boy whose thoughts I find hard to tell after all. Besides, he seems a little scary in a way different from that of Sudou-kun and the others. But---</p>
+<p>"Yeah. He says you're the most level-headed one in class. He really sang your praises".</p>
+<p>Hirata-kun, who cares more about his classmates than anyone else and who keeps an eye on his classmates more than anyone else, praised Ayanokouji-kun.</p>
+<p>I've never seen Hirata-kun talk about a friend that energetically before so that surprised me.</p>
+<p>I still don't know the reason for that though but......</p>
+<p>"Recently there's been talk that Hirata-kun and Karuizawa-san, umm...broke up, have you heard?".</p>
+<p>"Of course".</p>
+<p>It's not just Class C but the whole school year that's paying attention to this topic. The calamity that befell Hirata-kun and Karuizawa-san. It was unbelievable for me too.</p>
+<p>But I can't take action on my own.</p>
+<p>Because I can't possibly confess knowing full well I may be rejected.</p>
+<p>"That's why, umm.....".</p>
+<p>Let's get some advice. From Ayanokouji-kun, who Hirata-kun referred to as the most reliable one. I'm a coward but...in order to be able to confess.</p>
+<p>".....d-does Hirata-kun currently have someone he's interested in?".</p>
+<p>Let's take the first step towards overcoming this cowardice. I definitely can't look in the mirror, knowing my face is probably turning red. That's what I thought.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The First Gift</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Honami Ichinose SS — Volume 9</p>
+
+<p>I secretly went to Keyaki Mall that night just as it was about to close.</p>
+<p>"Umm.....I wonder which one's popular......".</p>
+<p>The chocolate shop. I loitered around inside it. Since it's already late at night, there aren't any other students in the shop.</p>
+<p>"As I thought, it's gone...".</p>
+<p>There should have been a Valentine's Special corner at this shop but since Valentine's Day is already over, it would seem the corner has been removed.</p>
+<p>But still, this shop has plenty of chocolate in stock.</p>
+<p>A large variety of chocolates, of different colors and types. The price range goes from several hundred yen up to several thousand yen. The lack of symmetry there is astounding.</p>
+<p>Even though they cater mainly to students, they must have sold quite a lot considering the date.</p>
+<p>"Are you perhaps looking for Valentine's chocolate?".</p>
+<p>When I felt lost, a clerk from the shop called out to me.</p>
+<p>"Ahh, yes. I was but.....how could you tell?".</p>
+<p>"It's written all over your face. That you want to give some to the boy you like".</p>
+<p>"Ehh! That's, umm, that's not the case! But I owe him a lot or maybe I should say he saved me.....as thanks, I was thinking I'd give him some chocolate......".</p>
+<p>I've never given anyone anything before in the first place. The first gift since I was born.</p>
+<p>It's strange how it ended up being Valentine's chocolate.</p>
+<p>"Which one would you recommend?".</p>
+<p>"Shouldn't you just go with the one you prefer? It's all about intuition. Intuition".</p>
+<p>Intuition, hmm? That might be the case.</p>
+<p>Rather than have someone else decide for me, it's obvious the best present would be one I personally think is best.</p>
+<p>"Alright then, I'll have this one".</p>
+<p>"Thank you. Would you like to attach a message card to this? Something like 'I love you' perhaps?".</p>
+<p>"No need, no need!".</p>
+<p>If I handed him the present with a message like that attached, he'll surely be confused.</p>
+<p>In the first place, I don't even see him that way. That's right. I'm just thanking him.</p>
+<p>I'll give him the chocolate I purchased, that's what I thought.</p>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Sakayanagi's Preparations</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — Volume 9</p>
+
+<p>Today's the 7th of February. This is a story from back when I was still playing with the toy known as Ichinose-san.</p>
+<p>It was after school, when our class had ended, that I quietly stood up from my seat with my trusty cane in hand.</p>
+<p>In my case, I always end up attracting attention when I walk around due to the fact that a cane is an absolute necessity for me.</p>
+<p>Being unable to act stealthily can sometimes be a drawback.</p>
+<p>"Are you fine today?".</p>
+<p>The one who said that to me would be Masumi-san. She's as languid as ever.</p>
+<p>"I believe I've gone over this before but I think I'll make contact with him today".</p>
+<p>I didn't name 'him' but she should know who I'm referring to.</p>
+<p>"Ahh.....Yamauchi, right? Is it ok to leave Ichinose be?".</p>
+<p>"Let's say there are two people you despise right in front of you. If you can only get rid of one, what would you do, Masumi-san? You'd get rid of the one you hate more, wouldn't you?".</p>
+<p>"Well...I suppose so".</p>
+<p>"That's my answer".</p>
+<p>Right now, rather than Ichinose-san, I'm far more entranced by Yamauchi-kun.</p>
+<p>I didn't say that out loud but I'm sure Masumi-san understands.</p>
+<p>"Ahh, I see. I'll be heading back then?".</p>
+<p>"Yes. As always, I appreciate your effort".</p>
+<p>Having received no orders from me, Masumi-san immediately left the classroom.</p>
+<p>On my way to Class C, I spotted a lone male student walking my way.</p>
+<p>That male student used to be surrounded by several of his followers until a while ago. But he's since kept a low profile and now he's but a shell of his former self.</p>
+<p>"Greetings, Ryuuen-kun".</p>
+<p>When I called out to him like that, he looked at me with those fierce eyes of his that haven't changed.</p>
+<p>To be honest, I would have liked to call him Dragon Boy but if I did so, we wouldn't even have a conversation so I avoided saying unnecessary words and simply stopped quietly.</p>
+<p>After he was dethroned as leader, I came up with several theories of my own. But now they're no longer necessary.</p>
+<p>Since he's stepped down from the stage, I can afford to leave him be.</p>
+<p>Do not reject one who comes and do not chase one who leaves.</p>
+<p>Of course, it's a different story when it comes to Ayanokouji-kun though.</p>
+<p>Regardless of whether he has any intention of fighting or not, he must become a sacrifice for the sake of my pride.</p>
+<p>"Are you ready for the end of school year exam?".</p>
+<p>"And here I was wondering what you'd say. I have no intention of having a casual chat with you".</p>
+<p>"Please don't say that. Isn't it difficult studying alone? If you so desire, why not prepare for the test together with us?".</p>
+<p>I made a proposal he would never accept.</p>
+<p>"Do you really think you can provoke me with something like that?".</p>
+<p>It would appear he's interpreted my good intentions as malevolence. Ryuuen-kun began walking again and mercilessly barged up to me.</p>
+<p>"So you're leaving me alone to play with Ichinose?".</p>
+<p>The rumors that have been spreading seems to have reached his ears as well.</p>
+<p>"Speaking of which, she's currently being assailed by rumors an anonymous person spread".</p>
+<p>But Ryuuen-kun only kept glaring at me as though he has no interest in that.</p>
+<p>Well, let's just say it's my turn for a little while longer.</p>
+<p>"If she were a student like you, constantly being badmouthed, then she wouldn't have incurred much damage, no?".</p>
+<p>"What's your business with me?".</p>
+<p>"There's no reason behind it or anything. I just wanted to have a chat with you. Should I not have?".</p>
+<p>"A chat, huh? Then I'll play along and ask you a question too".</p>
+<p>"How interesting. What could it be?".</p>
+<p>That unexpected reaction from Ryuuen-kun pleased me.</p>
+<p>I wonder what sort of question he'll ask me.</p>
+<p>"I'm swindling large amounts of private points from you incompetent lot every month thanks to my contract with Katsuragi. Why are you dealing with that?".</p>
+<p>It wasn't anything I hadn't expected but at least it's a question that won't bore me.</p>
+<p>"Because it doesn't affect us significantly. For Class A, feeding you alone doesn't carry any risk. There's no point in going out of your way to drive you to expulsion. Besides, as long as his contract with you remains intact, Katsuragi-kun will never make a comeback".</p>
+<p>"Kuku.......".</p>
+<p>For the first time, Ryuuen-kun laughed.</p>
+<p>"To think you'd be wary of small fry like Katsuragi".</p>
+<p>"It's easy to deal with external enemies but to deal with an ally can be troublesome should a mistake occur. He's an excellent pawn as long as he keeps his head down and allows himself to be used".</p>
+<p>It doesn't mean he's afraid of being targeted by me. He's simply trying to provoke me. Getting this sort of reaction from Ryuuen-kun is precisely why I always end up talking to him.</p>
+<p>"Please do your best to save up 20 million points while you can".</p>
+<p>If he can escape to the safe zone, at least some of his pride would remain intact.</p>
+<p>"I'll do just that".</p>
+<p>"Ryuuen-kun, may I also ask you a question?".</p>
+<p>"If you want to know what a man's like, I can teach you anytime, you know?".</p>
+<p>I'm rather pleased by that provocation that fits Ryuuen-kun so.</p>
+<p>"There's no need for you to teach me. I too, have my own ideal. Or perhaps you're saying I'm your type?".</p>
+<p>If you stab me, I'll stab you right back.</p>
+<p>"I have no problem devouring low-quality products, you see".</p>
+<p>If you touch a thorn, you'll get pricked.</p>
+<p>A person like this really is valuable.</p>
+<p>"If you're quite done, I'll be off".</p>
+<p>Apparently this beast has truly been defanged. Even though he's someone I needed to be wary of unlike Katsuragi-kun or Ichinose-san.</p>
+<p>Either way, it's one less troublesome enemy for me so it's a burden off my back.</p>
+<p>I can focus solely on my heart's desire, Ayanokouji-kun.</p>
+<p>"Please excuse me then".</p>
+<p>But he had already walked off. After splitting up with Ryuuen-kun, I once again headed for my destination, Class C.</p>
+<p>Because if my target escapes while I play around, it would've only been a waste of my time.</p>
+<p>"Excuse me".</p>
+<p>I said as I peered into the classroom.</p>
+<p>"Is Yamauchi Haruki-kun here?".</p>
+<p>The reply was immediate. From the person himself.</p>
+<p>"Ehh, that's me but.....you need something?".</p>
+<p>Yamauchi-kun looked at me confusedly. It doesn't seem like he's on his guard at all.</p>
+<p>"Would you mind giving me a few moments of your time?".</p>
+<p>"O-Of course I'm free.........".</p>
+<p>You're going to make me think if you're this stupid.</p>
+<p>Well, what I've prepared is a single ticket.</p>
+<p>".....this isn't quite the right place so I'll be waiting for you in the corridor by the stairs".</p>
+<p>And just like that, I invited Yamauchi-kun.</p>
+<p>Heaven or Hell.</p>
+<p>I'll hand him a ticket that leads to both.</p>
+<p>He's free to choose which one he prefers.</p>`,
+            6: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A Small Being</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — Volume 9</p>
+
+<p>This is an event that happened during the period following the end term exams some time before the results were released.</p>
+<p>My plan was to take a stroll to the convenience store before returning home after the last period of school ended.</p>
+<p>During my way to the store, I saw the back of a person I knew.</p>
+<p>It was Ichinose; 1st year class B. Following her were two girls who I believe were her classmates. I saw them surrounding Ichinose and talking merrily with her.</p>
+<p>Depending on the topic of conversation, their walking pace would slow down making it simple to just pass them.</p>
+<p>Of course, trying to raise my voice and chasing after them is not something I would do.</p>
+<p>It won’t be a problem if only Ichinose was there, but I haven’t had a decent conversation with the other girls before. It would be easier for me to just slip away. While I’m not sure about the other students, Ichinose would definitely call out to me.</p>
+<p>I guess I should head back more slowly. Not that I had anything planned once I’m home.</p>
+<p>While walking on the road towards the convenience store, I suddenly heard the light footsteps of someone running from behind. Before long, some girls called out to Ichinose and ran past me.</p>
+<p>The three girls in front turned around towards the voice. Ichinose naturally noticed me.</p>
+<p>She probably noticed how uncomfortable I was from my face since she just flashed a smile. She didn’t call out to me. As expected of a most considerate model student.</p>
+<p>After being joined by the girls, Ichinose and her group began talking again, as if nothing had happened.</p>
+<p>"Well then… convenience store next".</p>
+<p>I watched the backs of Ichinose and her friends for a while before leaving them at the store. After buying all the necessities, I went outside.</p>
+<p>It must have only been 2-3 minutes, but I couldn’t see Ichinose and her group anymore.</p>
+<p>Let’s go home, I thought as I once again headed towards the dorms.</p>
+<p>It was at that precise moment.</p>
+<p>"Here, here Ayanokouji-kun!" I heard a voice.</p>
+<p>I glanced at the direction where the handwaving came from and among the trees standing a distance away from the road was Ichinose.</p>
+<p>"What are you doing over there?".</p>
+<p>"Maybe you should come over here then?".</p>
+<p>She showed a smile like that of a child playing a prank, as if testing me.</p>
+<p>Since she urged me to come closer, I went over towards her.</p>
+<p>Yet even after arriving right by her, there wasn’t as if anything had changed either.</p>
+<p>"Something?".</p>
+<p>"Hmm? No, maybe not after all".</p>
+<p>Not following her, I tilted my head which was folIowed by Ichinose lightly laughing.</p>
+<p>"I wanted to talk with you a bit, I think".</p>
+<p>"Right then… you mean here?"</p>
+<p>"Here, come on, sit sit! If we hide here we won’t be seen by others, surprisingly".</p>
+<p>No, well she may have a point but…</p>
+<p>It was midwinter, naturally it was freezing.</p>
+<p>"I was trying to be considerate in my own way you know? I was thinking you didn’t want to talk surrounded by the other girls".</p>
+<p>It seems like she managed to piece together quite a bit from my expression earlier.</p>
+<p>As expected of Ichinose I must say.</p>
+<p>Anyway, wanting to progress the conversation I also sat down.</p>
+<p>To think the day had come when I would sit here like this.</p>
+<p>I must say, the trees really do shade us from view.</p>
+<p>It was also a significant distance from the main road so if we talked quietly, few would even notice.</p>
+<p>"Aren’t you cold?".</p>
+<p>"It’s fine, it’s fine!". Ichinose laughed.</p>
+<p>"Hey, how did your end term exam go?".</p>
+<p>"Not bad. The whole class should probably be fine I guess".</p>
+<p>"I see. That’s good. We are at the end of our first year so wouldn’t you also hate it if someone were missing?".</p>
+<p>"Class B shouldn’t worry right? You are always at the top for the written exams."</p>
+<p>"Of course my own class is important to me, but that’s the same for all the other classes too".</p>
+<p>She wouldn’t want to lose anyone. Not even her rivals, is what she said.</p>
+<p>Normally, people saying that is just saying it for appearances sake. The less rivals there are, the more your own class gains in return.</p>
+<p>Ichinose is perhaps an exception. She doesn’t want anyone to drop out from the bottom of her heart.</p>
+<p>That’s an ideal.</p>
+<p>But that doesn’t mean it’s just lip service. In the event there will be an exam in which someone from Class B or any other class needs to drop out, she will without doubt protect her own class.</p>
+<p>She doesn’t want anyone to be expelled, but she will prioritise her own classmates. That’s her position.</p>
+<p>"What are you thinking about?".</p>
+<p>"Well no… not really. Just haven’t come to grips with this situation yet".</p>
+<p>A boy and a girl were hiding in the shades from the leaves while conversing in low voices. This situation.</p>
+<p>It would be strange if someone didn’t have some weird thoughts about this.</p>
+<p>Thus was my thoughts, but I sorted them out immediately again. Ichinose right in front of me was absolutely not having any thoughts about this.</p>
+<p>"By the way, Ayanokouji-kun, Tokyo?".</p>
+<p>"Eh?".</p>
+<p>"You know, this school has a lot of students from within the Tokyo area, but there’s also students from outside too".</p>
+<p>Is that so? That’s news to me.</p>
+<p>"Well, within the city I guess".</p>
+<p>"I guess? So from one of the 23 wards?".</p>
+<p>"Well yeah".</p>
+<p>"What middle school?".</p>
+<p>"That’s a secret".</p>
+<p>"Ah, maybe that was too much? I’m sorry If I made you feel bad".</p>
+<p>Maybe she was thinking I was one of those bullied students who was absent from school or something in the past. Thus her apology.</p>
+<p>"No it’s fine. It’s just, my classmates warned me to not say too much".</p>
+<p>"Ah I see. Just knowing which school someone came from may be too much perhaps?".</p>
+<p>She didn’t seem to understand so she managed to convice herself someway or another.</p>
+<p>I’m so glad the classes in this school were made to compete with each other.</p>
+<p>"By the way Ayanokouji-kun, it’s been quite some time since we first met right? That’s why, eh well, I thought I wanted to ask things friends ask each other… so that’s why, that just now".</p>
+<p>"No, that’s alright. There aren’t many people who socialise with me so I was just at a loss".</p>
+<p>"Is that so?"</p>
+<p>"I’m basically this shady existence in my class after all. No, perhaps I’m really dark after all truth to be said".</p>
+<p>I said negatively, but it didn’t seem like Ichinose thought of me like that.</p>
+<p>"Rather than dark, aren’t you more calm? Or stoic perhaps?".</p>
+<p>"That may be true if you think of it in positive terms maybe? That would rather be nice".</p>
+<p>"That’s right! You don’t feel like you are going in the same class as us, more like, you have the feeling of a senpai?".</p>
+<p>It seems like she is praising me, is it alright to feel glad then?</p>
+<p>"By the way, would it be fine if I came to hang around in your room later?".</p>
+<p>"Eh? A-ah, sure…".</p>
+<p>It came so sudden, like a flying arrow, so my heart skipped a beat.</p>
+<p>"I was wondering how your room was, you know. That’s a promise then!".</p>
+<p>Thus I and Ichinose made a promise in a nook by the trees standing along the road.</p>`
+        }
     },
     {
         id: "ss-y1-v10",
@@ -2907,7 +3763,156 @@ But, in reality, the "real no way out day" would come just a bit later.`,
         ],
         characters: ["Honami Ichinose", "Suzune Horikita", "Arisu Sakayanagi"],
         coverImage: "/assets/y1v10.jpg",
-        inProgress: true,
+        inProgress: false,
+
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Apparent Difficulty</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Honami Ichinose SS — Volume 10</p>
+
+<p>A short distance from the dorms.</p>
+<p>I was standing by the shadow of a vending machine letting out a breath of fog.</p>
+<p>«It’s still so cold~».</p>
+<p>It was morning and time to go to school. A cold morning in March was inviting the coming of spring. I had wanted to talk to a certain person so much this morning so I decided to wait until I could see his back.</p>
+<p>It would have been warmer to wait in the lobby but I felt it would have been embarrassing to ambush him. In the end I decided to lay it low hiding instead.</p>
+<p>«… Being called out by my other friends would be… a bit».</p>
+<p>With this excuse, I had already waited about ten minutes.</p>
+<p>Can he come over quickly please? With these thoughts in mind, I felt my pulse steadily rising along with the time ticking away.</p>
+<p>U—</p>
+<p>If I knew it would be like this, I wished I’d rather contacted him and asked to meet up in the first place.</p>
+<p>The thought that I should so suddenly and coincidently call out to him was a mistake. My bad.</p>
+<p>Maybe I should stop with the ambushing thing and just do it normally? Well then, where and when should I call out to him then?</p>
+<p>But…</p>
+<p>I wanted to meet and talk to him today, no matter what.</p>
+<p>Remembering the exchange with Nagumo-senpai yesterday, I felt I wanted to overwrite it somehow.</p>
+<p>Then in the corner of my line of sight, I discovered my objective walking by. It was Ayanokouji-kun.</p>
+<p>«Good morning— Ayanokouji-kun!».</p>
+<p>Leaving it up to flow of events I walked closer while greeting.</p>
+<p>«Ah. Good morning, Ichinose».</p>
+<p>Noticing me voice, he turned around and replied. Despite his blank look on his face, seeing his usual self, I…</p>
+<p>I stiffened up.</p>
+<p>«Hmm?».</p>
+<p>Yahoo—! A greeting pose followed with my body stiffening.</p>
+<p>I remembered I hadn’t decided what to talk about at all.</p>
+<p>Usually I went with the flow or the mood when I talked with my friends after all.</p>
+<p>However, today have been the only day I thought about deciding on a topic beforehand.</p>
+<p>But that’s way too late now. Having already called out to him, I just have to make it work somehow.</p>
+<p>«What is it?».</p>
+<p>Showing some worry from seeing me standing there as if petrified, Ayanokouji-kun called out to me.</p>
+<p>As if breaking out of a movement restricting spell, I decided to start with a certain template I’ve been using frequently.</p>
+<p>«Yaa, well, it’s cold today, right—?»</p>
+<p>The topic being about the recent weather due to this March being unusually cold.</p>
+<p>«Sure is».</p>
+<p>The weather was somewhat weird, making it easy to mistake that one was living in Snow Country.</p>
+<p>«Did you plan to go to school with someone?»</p>
+<p>Wanting to confirm it, just in case, I asked him.</p>
+<p>«No, not at all. I’m basically alone in the mornings».</p>
+<p>That was a relief. If someone was going to just show up impromptu here and now, Ayanokouji-kun would probably be troubled.</p>
+<p>«Well then… Want to go together?».</p>
+<p>Hearing this Ayanokouji-kun nodded without hesitation.</p>
+<p>Ah—that went well.</p>
+<p>«………»</p>
+<p>Ah— it should have anyway…</p>
+<p>The topic, I can’t find anything! Realising how I wasn’t being my usual self, his expression showed how troubled he was.</p>
+<p>I felt talking like we usually do was getting harder. There was a strange change going on within myself.</p>
+<p>As expected, deciding to talk with him proved to be the right choice after all.</p>
+<p>With these firm thoughts in my head, I began walking by his side.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Neighbour</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Suzune Horikita SS — Volume 10</p>
+
+<p>He walked past me and stood in front of Kouenji-kun. It seems they were talking about something in low voices. I didn’t hear what they were saying though. I saw him leaving the classroom, seeing his back I felt something I couldn’t express inside me. Before I noticed, I was standing up from my seat and followed after him. Ayanokouji-kun was walking further down the corridor. His walking pace wasn’t especially fast, but it felt like I would never reach it no matter what. Rushing it, I grabbed his hand without thinking. I didn’t have confidence my words alone could stop him somehow. He turned around. His pupils had no colour. But he was someone who didn’t show his emotions at all, black nor white. During the span of one year beside him, I couldn’t see anything.</p>
+<p>«Ayanokouji-kun. You… since when and how much did you know?»</p>
+<p>So I asked him. What I wanted to know. What I needed to know. He didn’t seem to worry, nor did he change his facial expressions when he answered.</p>
+<p>«Haven’t I said it before? I haven’t participated in this special exam in the literal sense».</p>
+<p>No matter how much I knocked on his door, the knock coming back was the same as always. That’s why I have been distancing myself slightly from him lately. Since I feared getting closer to him.</p>
+<p>«… But…».</p>
+<p>I don’t know.</p>
+<p>I can’t see the person behind Ayanokouji Kiyotaka-kun.</p>
+<p>«I’ll leave then».</p>
+<p>After his reply, I didn’t manage to hold him there any further. I could only watch him going farther away.</p>
+<p>I felt I managed to grow up a bit during this exam. But in the end, I couldn’t grab his existence itself.</p>
+<p>«By the way».</p>
+<p>I heard a voice coming from behind me which surprised me before I turned around.</p>
+<p>It was my classmate Karuizawa-san.</p>
+<p>«…What is it?».</p>
+<p>«Nothing. I was just wondering what you were talking about».</p>
+<p>«Not much. It seems he isn’t trusting me, that’s all».</p>
+<p>«Hmm…»</p>
+<p>She then looked at Ayanokouji-kun once just like I did moments earlier.</p>
+<p>«It seems like he is trusting you, far more than me».</p>
+<p>«What makes you say so?».</p>
+<p>Of course I didn’t have any proof.</p>
+<p>But, I somehow knew it from seeing Karuizawa’s eyes.</p>
+<p>«Since it looks like you are trusting him, perhaps? I can’t seem to trust him no matter what though».</p>
+<p>That was the only answer I could come up with. I wonder what she would say after hearing that.</p>
+<p>«You cannot trust someone who isn’t trusting you, right?»</p>
+<p>«!…»</p>
+<p>I flinched from the unexpected, yet precise and obvious words directed at me.</p>
+<p>«If I really start to trust him… One day I feel I will witness something scary. I feel like I will be betrayed».</p>
+<p>«Ah is that so? I can’t understand since I no longer have anything to fear anymore».</p>
+<p>Karuizawa didn’t seem scared at all.</p>
+<p>«I thought you were really amazing yesterday. You got a bit of my respect, seeing you take the initiative for the class. But Kiyotaka is a different matter altogether. If you are that scared, your relationship with him will never begin».</p>
+<p>Karuizawa answered before returning back and joining her friends.</p>
+<p>Her word would remain deep in my heart forever. Together with the existence of an invisible neighbour.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Sakayanagi's Strategy</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — Volume 10</p>
+
+<p>A space for only me and Ayanokouji was spreading before my eyes. He was wearing his usual poker face as always, watching me steadily.</p>
+<p>«To think you would even send Kamuro away first, what did you want to talk about?»</p>
+<p>It seems like he wanted to finish this conversation as soon as possible, pushing for a quick conclusion. As for me, I’d have liked to talk more leisurely, but seeing as we are enemies, that won’t be possible.</p>
+<p>«It’s about this special exam».</p>
+<p>«Correct me if I’m wrong, but we decided to fight it out during the next special exam, right?».</p>
+<p>«Yes. That was the plan. However… if it’s alright with you, can we settle it during the next one? This is not a fight between classes, but eliminating someone from your own. Since the only thing outsiders can do to influence the results is by giving praising points, you can’t attack at all either… do you mind if we postpone to the next time?».</p>
+<p>I wonder how he will answer my self-indulgent suggestion?</p>
+<p>After a brief silence, I decided to ask again.</p>
+<p>«Won’t you accept, this deal?»</p>
+<p>Having reached a conclusion it seems, he replied back.</p>
+<p>«It’s up to you».</p>
+<p>In other words, we will ignore this special exam and settle it during the next one. That’s something I’m really thankful for.</p>
+<p>«Thank you. I was wondering what would happen if you were determined that this special was as good as any. I can thus freely concentrate on the internal matters of class A. It’s just…»</p>
+<p>«Just?».</p>
+<p>Since we just had delayed our duel, there was a need to remind him of this.</p>
+<p>«Since this is a temporary ceasefire, I will certainly need to earn your trust, thus why I say this. During this exam I won’t give you any minus points. In other words, I will definitely not give you any criticism votes».</p>
+<p>Yes. There is a need to clearly show that we won’t fight during this exam. I don’t think he will be caught off guard but this is an action meant to instil the sense of rightfulness.</p>
+<p>«On the off chance that any involvement of mine with class C results in any harm to you… I don’t mind if we consider that my loss. I’m fine with you rejecting the coming exam too».</p>
+<p>«If I get most of the criticism votes this time, there won’t be a next time though».</p>
+<p>«Certainly. Anyway, please rest assured, is what I have to say».</p>
+<p>In any case, I wonder if that may give him some peace of mind?</p>
+<p>However, this means I can freely use «that» without reserve.</p>
+<p>I can’t help but looking forward to the results after the exam has ended.</p>
+<p>At that time, let’s settle this between us, Ayanokouji-kun.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Small Heartbeats</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Honami Ichinose SS — Volume 10</p>
+
+<p>The time crept closer towards midnight. I’ve been hanging around in the rooms of several boys from Class B before, but staying at a boy’s room at this hour was a first for me.</p>
+<p>Furthermore, being alone together with a boy like now was obviously something I haven’t experienced yet.</p>
+<p>We were done discussing the topic I had to talk about.</p>
+<p>I just have to drink this cup of hot chocolate I held in my hands before returning back.</p>
+<p>«Hey, Ayanokouji-kun».</p>
+<p>I stared at the cup while calling out to him.</p>
+<p>«Hmm?»</p>
+<p>He replied back with the blank face he always had, or pretty close to it, as I could feel a sense of composure from it.</p>
+<p>«Ayanokouji-kun, are you perhaps someone really amazing?».</p>
+<p>«What makes you think so? Sorry, but that’s something I’m not aware of».</p>
+<p>«That’s even more amazing if so. I mean, Ayanokouji-kun…»</p>
+<p>You saved Sakura-san. The actions you took during the special exam aboard the cruiser. How fast you were during the sports festival…</p>
+<p>Yes, that’s right. There’s no doubt about it.</p>
+<p>This person, Ayanokouji-kun is a very intelligent person.</p>
+<p>I can’t come up with an example but… I can’t come up with words to explain how great he seems to be…</p>
+<p>Isn’t he a person we should be way, way more cautious of than Horikita-san or Hirata-kun after all?</p>
+<p>But if that’s true…</p>
+<p>«What is it?».</p>
+<p>«No, nothing at all».</p>
+<p>I was assaulted with the feeling of something tightening inside me and averted my eyes.</p>
+<p>He will surely become a formidable enemy.</p>
+<p>And then, we will be unable to spend time and laugh together like this anymore.</p>
+<p>I have to remember this fact.</p>
+<p>I know. I know that this is inevitable due to the school rules. The fact that we are in separate classes is something we can’t fight. I will prepare myself for that time.</p>
+<p>But now, only for now… I want to talk to him just like a normal girl.</p>
+<p>«… what’s this, I wonder…».</p>
+<p>This, strange feeling.</p>
+<p>Even though I was talking to him just recently, just as usual.</p>
+<p>For some reason, I could feel my heart beating softly.</p>`
+        }
     },
     {
         id: "ss-y1-v11",
@@ -2926,7 +3931,265 @@ But, in reality, the "real no way out day" would come just a bit later.`,
         ],
         characters: ["Kei Karuizawa", "Arisu Sakayanagi", "Kikyō Kushida", "Kiyotaka Ayanokōji"],
         coverImage: "/assets/y1v11.jpg",
-        inProgress: true,
+        inProgress: false,
+
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The First Gift</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kei Karuizawa SS — Volume 11</p>
+
+<p>There was a little box resting in my hand. It was so light, yet it felt so heavy.</p>
+<p>My heart rate was rising like the high tide. It easily surpassed 120 beats per minute.</p>
+<p>«So, I’m going to confirm something, fine with you?» I asked.</p>
+<p>Trying to conceal my nervousness, I looked at Kiyotaka. But I couldn’t meet his eyes. My gaze flickered around his nose disguising trying to act as if I was looking at him.</p>
+<p>I’m confident that I would swoon looking directly in his eyes now.</p>
+<p><i>A birthday plus white day gift from Kiyotaka. </i></p>
+<p>I neatly unwrapped it so it could be wrapped again later. Then— I opened the cover.</p>
+<p>«Wha…What is this!?»</p>
+<p>I screamed out my first impression before I knew it.</p>
+<p>A heart-shaped necklace shining in gold.</p>
+<p>«It’s a necklace.»</p>
+<p>«Yeah, even I can see that! A too heavy present, you know!»</p>
+<p><i>I mean, isn’t that almost a confession!?</i></p>
+<p>N-no, I’ve never been confessed to so I can’t be sure.</p>
+<p>But, but, I was sure it was a present way surpassing what friends give each other.</p>
+<p>I faintly remember that I said he should return the favour many times back, but that was just meant as a little joke.</p>
+<p>«Heavy?»</p>
+<p>I wasn’t sure whether to be happy or sad, that idiot was just looking as if he had no clue.</p>
+<p>Even if that was intentional that would mean, well in other words, that right? I imagined an unreal situation, but then chased it in the furthest back on my mind.</p>
+<p>«B-but you don’t give a necklace to a friend, you know!» I first have to tell him how strange this present was.</p>
+<p>«And, and you know? It doesn’t seem to fit me either! This is heart-shaped, you know!»</p>
+<p>It was true I didn’t think it would fit me, but that wasn’t the big issue.</p>
+<p><i>This was the kind of thing that frequently made girls misunderstand, wasn’t it! Come on, really!</i></p>
+<p>«Heart-shaped, you know!»</p>
+<p>I thought I perhaps was being confessed to so accept my feelings !</p>
+<p><i>«Fuu, fuu»</i> (TN: Sound of huffing and puffing)</p>
+<p>My feelings exploded without me realising it, but… that was probably my fault. He probably bought it since I requested a pricy gift in return. Listening to the full details later, I understood. It was something he, who had never gifted a present to a girl, had earnestly chosen.</p>
+<p>In other words— it was his first gift.</p>
+<p><i>Of course I will receive it.</i></p>
+<p>Aah, he got me.</p>
+<p>I thought as I was looking at myself, wearing the necklace, in the mirror.</p>
+<p>Would a time come when I would wear this and go together with him somewhere? That would definitely be a very enjoyable day.</p>
+<p>That I was certain of.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Time of Realisation</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — Volume 11</p>
+
+<p>In a multi-purpose room. Me and Ayanokouji-kun would be spending some time alone in here. The teachers started talking among each other so they must be doing the final checks.</p>
+<p>The strong beatings in my chest felt pleasant to me. Every time I looked at Ayanokouji-kun in front of me, my whole body felt hot as if not wanting to look away.</p>
+<p><i>Fufu, just like a maiden in love, isn’t it?</i></p>
+<p>I observed myself as if I was a bystander, while enjoying myself from the bottom of my heart.</p>
+<p>Let’s savour this moment by striking some conversation before the match starts. The time he and I was granted together was decisively limited after all.</p>
+<p>«Finally… finally this day has come at last. I really couldn’t sleep yesterday so I almost overslept today.»</p>
+<p>I earnestly started talking about my morning. I stammered a bit since it was the first time raising my voice for a while alone with him. He looked a bit troubled but replied back.</p>
+<p>«I have no recollection of making you wait though. Me meeting you was a coincident in the first place.»</p>
+<p>It was easy to think why he would have doubts regarding whether it was a coincident or not.</p>
+<p>«You are saying that if you did not enter this school, we would never have met?»</p>
+<p>The world is big. True, the fact we met once again may have been close to a coincidence.</p>
+<p>«Certainly, the fact we met at this school was a coincidence. However, I’m convinced I would meet you again someday. It was meant to be, yes fate.»</p>
+<p>Yes, it was not a coincidence, it was inevitable.</p>
+<p>«Fate? That’s quite an abstract thing to say.»</p>
+<p>True, there was no logic to that, just some hunch. But… here we were talking to each other, right? Ayanokouji-kun.</p>
+<p><i>If this wasn’t fate, what else would you say it was?</i></p>
+<p>«It’s because I’m also a maiden.»</p>
+<p>But there was probably no need to say more than that.</p>
+<p>«If you didn’t enrol at this school, that should only have been a delay of 3 years. I had confidence I could hide my anticipation deep inside my heart without rushing it.</p>
+<p>But, I can’t hold it back anymore. inevitably, I felt the days becoming longer knowing you were there by my side. I want to fight, suppressing that feeling have been quite difficult. That’s the extent of my dream.»</p>
+<p>A loved one. I was thinking of him as my childhood friend, although selfishly. That’s why I couldn’t stop the overflowing words by my own will. I was talking to him non-stop, as if I was yearning for him, one topic after another. That calm look he gave me and those pupils gave me an even greater pleasure.</p>
+<p>«Are you not afraid of waking up from that dream?»</p>
+<p>Nothing is as kind as a dream. When you wake up from that dream and return back to reality, that happiness will disappear in a moment. Fighting Ayanokouji-kun and lose, and then despair. Or, winning so easily that all that’s left was disappointment.</p>
+<p>I couldn’t overlook the chance that it could happen.</p>
+<p><i>But that was fine.</i></p>
+<p>«Because dreams are things you are meant to wake up from.»</p>
+<p>If I could find an ‘answer’, I will be satisfied with that.</p>
+<p>«Normally, I would ask you to… go easy on me but…»</p>
+<p>I pierced his elusive pupils.</p>
+<p>«Please meet me with all you have.»</p>
+<p>He definitely, although just faintly, confirmed by a nod. And at the same time, I could begin to guess what he had in mind. The thing keeping me from enjoying myself to the fullest, its true identity.</p>
+<p>«It would be a lie to say that I don’t have any conflicting feelings about this. An inadequate test like this won’t be good enough for us to prove our abilities. Us leaders are limited to how we can influence the outcome, right?»</p>
+<p>The main point of this exam was how the difference in abilities between the classes would spell victory or defeat. The leaders’ intervention and the rules for the events are nothing more than accessories. Of course there would be classes that would force their way through, but that was a story for another time.</p>
+<p>«That being said, if the leaders’ influence was too large another problem arrives. I think I ought to consider your situation too Ayanokouji-kun. You don’t want your classmates to figure out your real abilities, right?»</p>
+<p>This special exam had meaning in that it was simply a secret duel between me and Ayanokouji-kun. It was just an extension of a game, played in secret, unknown to the teachers and other students.</p>
+<p>That’s why it was understandable why Ayanokouji-kun was looking so suspicious. No matter how limited our way of fighting may be, it would be fine as long as it was fair for today. Ascertaining anything more or less would be a luxury so it was best left unspoken.</p>
+<p>The teachers were approaching. The special exam will start very soon.</p>
+<p>«A—lright! The exam will begin soo—n! Back to your seats!»</p>
+<p>After hearing what Hoshinomiya-sensei said, me and Ayanokouji returned back to our seats.</p>
+<p>I could no longer see his face, but there was no need to be discouraged by that.</p>
+<p>Because as long as we were in the same room, I could exchange words with him anytime, as many times as I wanted.</p>
+<p>«Best regards, Ayanokouji-kun.»</p>
+<p>I sent a greeting in his direction in a voice so low that nobody could hear.</p>
+<p>I suppressed the throbbings of my heart—</p>
+<p><i>And now, the time my dreams will be realised has come.</i></p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A Truly Frightening Person</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kikyō Kushida SS — Volume 11</p>
+
+<p>«Hey, do you have some time?»</p>
+<p>I was about to go home when a boy behind me called out. I didn’t even need to turn around, it was that boy again. He was always following that girl around, a really troublesome person.</p>
+<p>«What is it, Ayanokouji-kun?»</p>
+<p>I made a smile and then slowly returned his gaze. I cannot show any gaps regarding my appearance here in this school corridor, in a public space.</p>
+<p>«I see, so you aren’t going to support her this time.»</p>
+<p>I was wondering what he was about to say since he ran after me… I felt exasperated inside but still put up my guard.</p>
+<p>«Can we talk while walking?»</p>
+<p>«That’s fine.»</p>
+<p>This boy called Ayanokouji Kiyotaka-kun, his whole existence was like an ungraspable shadow to me.</p>
+<p>«Do you have any plans for today?»</p>
+<p>«Yes, I’m planning on meeting up with some girls from class B. You think having fun considering what’s happening now is considered bad, don’t you?»</p>
+<p>From the first time we met, he was just an unremarkable student. He was somewhat good-looking, but that was it. He wasn’t particularly athletic or smart. Just a normal person.</p>
+<p>«No, it’s necessary to take breaks. I think everyone understands that.</p>
+<p><i>But— I was far too naive.</i></p>
+<p>Maybe this boy, possesses something even greater than what I judged him to. Like what he’s doing now, trying to shake me up pointing out my actions one by one.</p>
+<p>«So you do understand it, the reason I’m not doing anything right now? I was thinking it was fine to expel you and assisted Yamauchi with it. What face do you think I should make , what act do you think I can put up to lead the class, after everything was brought to light?»</p>
+<p>I was being honest, explaining to him why I couldn’t do anything in my situation.</p>
+<p>«You don’t seem to accept that do you? I can see it on your face—»</p>
+<p>«Well, yeah.»</p>
+<p>As could be expected, there was no way he would accept just from this explanation, right?</p>
+<p><i>Even though it should have worked for any other idiot.</i></p>
+<p>«I’ll say it now, it’s not that I don’t want to help Horikita-san because she’s the leader now, okay?»</p>
+<p>That’s the worst part of it though…</p>
+<p>«Is that true?»</p>
+<p>He was doubting me, but no way will I ever acknowledge it.</p>
+<p>«Really, it’s true.»</p>
+<p>But this boy didn’t change his expression.</p>
+<p>«Ah, I doubt it.»</p>
+<p>«How do I look like to you, I wonder? How about it?»</p>
+<p>I wasn’t particularly interested, but he caught my attention.</p>
+<p>I want to know what this boy is thinking, what he is feeling.</p>
+<p>If I not— I won’t be able to remove that girl.</p>
+<p>That’s why it was inevitable for me to, just barely, show a little bit of my inner self, to him.</p>
+<p>If I don’t…. I don’t think I can ever win.</p>
+<p><i>Surely, this boy must be—— a frightening person.</i></p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Morning of Fulfilment</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — Volume 11</p>
+
+<p>I was deep at sleep.</p>
+<p>The appearances of myself when I was young, and of him was repeatedly projected within.</p>
+<p>A famous museum of that world. Even the exhibition objects made for an artistic spectacle I think. It was that grandeur, that sweet, and that madly affectionable.</p>
+<p>In a sense, that was love.</p>
+<p>There are many kinds of love.</p>
+<p>Love, charity, affection… love-and-hate.</p>
+<p>I think, I feel all of those towards him.</p>
+<p>«…3 hours and 36 minutes…»</p>
+<p>Each time I wake up, I always check how much time I’ve slept. If I don’t sleep for 7-8 hours, I don’t feel refreshed. That was because I was so excited last night that I couldn’t sleep.</p>
+<p>The body pillow I use to support my sleep every day didn’t seem to work that much.</p>
+<p>«Fufufu…»</p>
+<p>I let out a sweet laughter before I knew it.</p>
+<p>I have never experienced becoming this excited before so I couldn’t control my feelings.</p>
+<p>The more I tried to hold back the laughter, a smile appeared, so naturally, on my face.</p>
+<p>I can’t help it.</p>
+<p>I was exposed by the contradiction dwelling within myself right now.</p>
+<p>A me that would never lose to anyone.</p>
+<p>A him that maybe would teach me defeat.</p>
+<p>The conflicting feelings were clashing, going back and forth, neither side yielding.</p>
+<p>However, there will definitely be a conclusion.</p>
+<p>In other words, superiority and inferiority will be decided.</p>
+<p><i>Ah— how beautiful it is.</i></p>
+<p>I hugged my body pillow tightly and a pleasant drowsiness came over me.</p>
+<p>I was already napping, wanting to enjoy a passionate dance with him.</p>
+<p>That dream of mine was being interrupted by the cold sounds of the ringing sounds from my cellphone.</p>
+<p>«Was that Masumi…? She’s also a worrywart, right.»</p>
+<p>I know. Let’s continue the rest of my dream later tonight.</p>
+<p>After I have settled it with him, made it clear as black and white.</p>
+<p>At my leisure.</p>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">An Encouragement of Adventure</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — Volume 11</p>
+
+<p>This is what happened on a certain holiday.</p>
+<p>A few students gathered in my room.</p>
+<p>"VR experience?"</p>
+<p>"Yes! VR experience."</p>
+<p>Sotomura and Ike showed a cheerful smile, holding something that looks like a helmet. It seems to be the latest game; when you put on this thing to play, you can experience the game in a virtual space.</p>
+<p>"It seems like 4 people will play as a team so I want to try."</p>
+<p>That's why there are four devices.</p>
+<p>"Then why did you look for me and Ayanokōji-kun?"</p>
+<p>"If we let Ken play, he will become obsessed and will always want to keep it for himself. If it's you then it won't be like that."</p>
+<p>Horikita looked completely uninterested, but I was a little bit interested in playing.</p>
+<p>Men are creatures driven by adventurous spirit, aren't they?</p>
+<p>"We were called out during our free time because of this boring thing?"</p>
+<p>Horikita stood up, staring at Ike.</p>
+<p>"I'm not going to take part."</p>
+<p>"Wait! This is a game that recommends 4 people, so ah... just play for a while, please!"</p>
+<p>"I'm not interested in things such as games."</p>
+<p>"Please think about it again!"</p>
+<p>The two guys seemed to be repeatedly begging on the ground in prostration.</p>
+<p>"How about just listening to them? This could also be for the class."</p>
+<p>Trivial interactions like these can also make progress in interpersonal relationships.</p>
+<p>"...... Good grief. Only for a while, right? Then I'll head back after."</p>
+<p>Like this, Horikita eventually accepted it. She reluctantly put on the device. Sotomura and Ike followed right after.</p>
+<p>"There are 12 occupations at the beginning. Choose according to your own preferences. Ah, don't choose the same as the others. I choose the Paladin! It looks very handsome!"</p>
+<p>Ike was a Paladin, while Sotomura chose the Elf. From the description, it appears to be a character in defense and recovery. The importance of the defense is not yet clear.</p>
+<p>Horikita simply selected the Swordsman, which is the first option, while I picked a job called the Summoner.</p>
+<p>After the career selection was over, I felt my consciousness instantly slipped away and my vision is covered with white light, then the sight of the imaginary world came into view.</p>
+<p>I have been introduced to mobile games soon after entering school, but compared to those, the quality of this game is not just in the same dimension.</p>
+<p>"This is really...... very amazing."</p>
+<p>It's no surprise that Horikita couldn't help but gasped.</p>
+<p>Despite being imaginary, the realism of it is not far away from an actual world.</p>
+<p>There was a smell of trees coming from elsewhere.</p>
+<p>I tried to pinch my arm, but there was not really any pain, just only a tiny feeling. This is probably necessary in order to stay connected with reality.</p>
+<p>I could confirm that my body, except for the appearance of different clothing, seemed no different.</p>
+<p>"It's like the real world."</p>
+<p>Horikita said something similar to what I was thinking.</p>
+<p>She tried to pull out the sword she was wearing on her waist.</p>
+<p>"But I haven't touched this thing once, huh?"</p>
+<p>"It seems there is a technical correction, and you can't become stronger without accumulating EXP."</p>
+<p>"Even if you say so,——"</p>
+<p>Horikita wielded the sword several times with awe and then sheathed it.</p>
+<p>"Oh! That's fast! The beginner tutorial is here!"</p>
+<p>Ike wielded his shield and sword excitedly, although he was still not used to the movements.</p>
+<p>Two wolf-shaped monsters appeared in front of us.</p>
+<p>"Are you going to fight this thing?"</p>
+<p>"Horikita, you need to fight too. Please, swordsman!"</p>
+<p>Ike then put up his shield.</p>
+<p>"Wouldn't there be all sort of ethical issues? Like killing animals?"</p>
+<p>"It's just a game..."</p>
+<p>The monsters pounced on us in an instant.</p>
+<p>"Hey! Woah!! Why are you attacking me first! Is there any passive skill that attracts monsters??"</p>
+<p>Ike said something that people normally couldn't really understand, and was sent flying back to the ground by the wolves.</p>
+<p>"Hurts, it hurts, it's numb and painful! Help me!"</p>
+<p>Sotomura hurriedly chant a recovery spell, but it had very little effect.</p>
+<p>"Hori...... Horikita and Ayanokōji! Help! Help me!"</p>
+<p>Ike desperately asked us for help. But I had no idea what to do. Speaking of my character, what exactly does a summoner do? There seems to be no swords or shields, so I'm not clear how to fight at all.</p>
+<p>"I'm leaving it to you, Horikita."</p>
+<p>"Me? ....... I'm not doing it.</p>
+<p>The swordsman gave up the battle. Or rather, let's say she did not have the spirit to do it in the first place...</p>
+<p>"Uwaaa!"</p>
+<p>Ike yelled continuously, then Sotomura also screamed.</p>
+<p>In a short time their bodies were destroyed and turned into dust.</p>
+<p>"What happened?"</p>
+<p>"It's probably... being sent somewhere after getting killed?</p>
+<p>"Umu...."</p>
+<p>The two wolves gradually approached us, who were still struggling to understand the situation.</p>
+<p>They were clearly showing their murderous intent to hunt us.</p>
+<p>"In short, it can only be fighting..."</p>
+<p>I don't know how a summoner fights, so I simply shortened the distance to give one of the wolves a physical blow.</p>
+<p>After being punched, the wolf screamed and was sent flying.</p>
+<p>There was a clear feeling on my fist, with a sense of excitement and stimulation.</p>
+<p>As I avoided the wolf's sharp teeth, I repeated the punches again.</p>
+<p>However, unlike in reality, it doesn't seem to do a lot of damage</p>
+<p>This occupation is definitely not a melee type.</p>
+<p>I couldn't completely avoid the wolf's counter-attack and received a little bit of damage.</p>
+<p>An electrical pain, making zapping sounds, ran through my body</p>
+<p>"Not good..."</p>
+<p>The situation is obviously unfavorable. Am I going to get killed like Ike if this goes on?</p>
+<p>"—I guess it can't be helped then."</p>
+<p>Horikita sighed while holding up the sword.</p>
+<p>Her stance looked unexpectedly well.</p>
+<p>"Ha—!"</p>
+<p>Horikita shortened the distance, slashed horizontally, and hit the wolf-shaped monster. Does she have a feel for it? She did wipe out the monster with just a stream of movements. It seems that this game is directly related to physical ability in reality. The other wolf, which was licking its teeth at me, turned to Horikita.</p>
+<p>It released a murderous intent even stronger than before, probably because its companion had been down.</p>
+<p>Horikita, looking as though she's already a swordmaster, put up a flawless stance.</p>
+<p>At the same time as the wolf started charging, she also ran up while keeping her distance from it.</p>
+<p>"Sword—slash!"</p>
+<p>Horikita shouted out the name of the skill, cutting the wolf apart in a single slash.</p>
+<p>"......Beautiful"</p>
+<p>I clapped my hands and while I stood up, Horikita let out a breath.</p>
+<p>"The body moved on its own. I was made to say something weird involuntarily."</p>
+<p>It is probably due to the necessary procedure in the game’s programming beforehand to launch the unique kill.</p>
+<p>"So how was it? The first RPG experience of your life."</p>
+<p>"Well... maybe it’s more interesting than I thought."</p>
+<p>Horikita seemed to also be interested in the unknown adventure.</p>
+<p>Maybe this game will be popular among us for the time being.</p>
+<p>"What about Ike-kun and Sotomura-kun?"</p>
+<p>"Who knows......"</p>
+<p>With this, our wonderful adventure story was born.</p>`
+        }
     },
     {
         id: "ss-y1-v11.5",
@@ -2948,6 +4211,874 @@ But, in reality, the "real no way out day" would come just a bit later.`,
         ],
         characters: ["Hiyori Shiina", "Chiaki Matsushita", "Arisu Sakayanagi", "Kiyotaka Ayanokōji", "Kakeru Ryūen", "Kei Karuizawa", "Honami Ichinose"],
         coverImage: "/assets/y1v11.5.jpg",
-        inProgress: true,
+        inProgress: false,
+
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">By Reading Books</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Hiyori Shiina SS — Volume 11.5</p>
+
+<p>It was at the beginning of the spring vacation. I wore my casual clothes and headed for the Keyaki mall.</p>
+<p>«Good day, Ayanokouji-kun»</p>
+<p>And there, right in front of me was a student from another class right. I felt this was somewhat unusual as we went to the cafe.</p>
+<p>«You are pretty early.»</p>
+<p>«There’s no way I can be late since I’m the one inviting after all.</p>
+<p>Ayanokouji-kun, who was so intelligent and so mature, was as relaxed as always. I have become fond of him lately for that.</p>
+<p>No, perhaps not in the terms of someone of the opposite sex, but it could be said it was him as a person perhaps…</p>
+<p>That’s why I end up wanting to meet him like this, whether it was a day off or not. I don’t have much experience going out to play with friends during day offs in the first place.</p>
+<p>The main reason is that I haven’t managed to make any close friends, however.</p>
+<p>That’s exactly why I don’t want to make them wait for me I think. Thinking that I would trouble him and disappoint him is what I wouldn’t like. Even though I don’t think of him as someone of the opposite sex, I end up doing it in the end. I become happy thinking that I’m the same as other girls experiencing the same thing as well. I wonder what this fluffy feeling I can’t quite define is? I’m looking forward to investigate this during our meeting.</p>
+<p>«I am sorry for inviting you so suddenly.»</p>
+<p>Even though I contacted him and, somewhat impatiently, said that he would be grateful if we could meet during early April, he didn’t make a troubled face and I even made him change his schedule this sudden.</p>
+<p>_______________</p>
+<p>«I don’t have anything planned during the spring vacation for that matter so don’t worry about it. Well then—»</p>
+<p>«The library finally got some new books yesterday.»</p>
+<p>I wanted to speak so much that I failed to suppress my excitement and showed him my bag.</p>
+<p>«So that’s why I wanted us to share information as fast as possible.»</p>
+<p>Before I knew it, we arrived at the cafe but since spring vacation just started, it was crowded.</p>
+<p>«There are more people here than I thought.»</p>
+<p>We managed to secure a seat by the window and close to the counter so we decided on that spot.</p>
+<p>«We don’t get many chances to meet like this during day offs so it feels so fresh to me.»</p>
+<p>«You may be right about that.»</p>
+<p>It was almost like a boy and a girl having a date together. No, it was precisely that but I will become more embarrassed by this train of thinking so I decided to stop.</p>
+<p>«Well, let us begin… Do you want to look at the books I brought with me?»</p>
+<p>I tried to conceal my embarrassment by taking out a book I looked forward to show him. But then I remembered there was something I wanted to talk to him about.</p>
+<p>My own class. It was just as important as me being his friend. Even if he ends up disliking me, it was something I had to do.</p>
+<p>«Right, before we get excited talking about books, there is something I wanted to talk about, could I take some of your time?»</p>
+<p>I brought up, looking directly at his eyes. His eyes looked as if he could see through anything, just as always. I felt that a day would come where we would fight against each other in the future. He would most likely be the most dangerous enemy my class will ever face. While looking him in the eyes, I became even more convinced of that.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Mind Games</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Chiaki Matsushita SS — Volume 11.5</p>
+
+<p>I’m chasing Ayanokouji-kun with light steps pondering on where to take a break. And then when I arrived at that corner I had seen him disappear from, I met him. He was facing me.</p>
+<p>«Wha!?»</p>
+<p>I let out my surprised voice at this unexpected development.</p>
+<p>Why. That was obvious, he had noticed that I was tailing him.</p>
+<p>«Do you need something from me?»</p>
+<p>«Me, what do you mean? …is something I want to say, but it seems like you’ve seen through me already.»</p>
+<p>He was inviting me so I can’t feign ignorance as that would just feel like I’m conceding more goals. I’d better just acknowledge it.</p>
+<p>«Yes, well you see, I was chasing after you.»</p>
+<p>I may have sucked at this, but do people usually notice someone tailing them? Was I seen by him somewhere?</p>
+<p>Just as I expected, Ayanokouji-kun in front of me is may not be normal. I became more wary of him.</p>
+<p>Now that it has come to this, it’s either sink or swim, let’s make sure. As long as it’s mind games, I don’t think I will lose.</p>
+<p>«Why do you think I followed after you?»</p>
+<p>I’ll try to lead him with questions to make him tell me to what degree he has noticed me.</p>
+<p>«Who knows, I don’t know where to start. More importantly, when did you begin tailing me?»</p>
+<p>I wanted to pry some information from him, but he had managed to hand the ball over to me.</p>
+<p>«It was just now maybe. So—»</p>
+<p>«Just now?»</p>
+<p>Ah, dang, he only throws such ambiguous questions. But I have to stay calm. Stay calm. If I let my rhythm get disturbed and say something incoherent, it will be my loss. I wonder if I should just say that I thought him and the chairman meeting as unusual and therefore followed after him? If I say I started to tail him at the cafe, he would most likely ask why.</p>
+<p>«Who was it again… right, from when you talked to that new chairman I think?»</p>
+<p>Since I’ve managed to keep some space between him and me, I will take the initiative and come back at you.</p>
+<p>«So did something happen? You talked with the chairman, right?»</p>
+<p>«It seems like ‘e’s planning to remodel Keyaki mall and saw me and asked for opinions. What facilities would make me happy etc. He asked me a few questions about that.»</p>
+<p>«Ohhh, so that’s what it was…»</p>
+<p>Certainly, there were other adults there when they started conversing so it might just be a coincidence. It seems like there are no links between his true abilities and the Chairman after all.</p>
+<p>«So, what about it?»</p>
+<p>«It’s not really related to that, you see. There is just something I found interesting.»</p>
+<p>The thing with the Chairman wasn’t important to me. It was whether Ayanokouji-kun was being serious or not, only that.</p>
+<p>«You know, during the final special exam last semester… wasn’t you the leader, right?»</p>
+<p>Since I ended up meeting him like this, I’ll throw every single information I know at him.</p>
+<p>«During that flash arithmetic event, the answer you and Kouenji gave was the same.»</p>
+<p>It wasn’t a math problem that could be solved by chance.</p>
+<p>«I did flash arithmetics during middle school so I’m relatively good at it.»</p>
+<p>«I’m the same but, that level of yours can’t explained as being relatively good at it, right? That’s probably at the national level, is what I think.»</p>
+<p>«That was just because it was an event I’m good at. In fact, I’ve also participated in national competitions.»</p>
+<p>Ayanokouji-kun easily admitted to it.</p>
+<p>«…really?»</p>
+<p>«Yeah. Since it was an event I’m good at, you may have misunderstood me I think.</p>
+<p>It seems plausible that there are persons who are only good at flash arithmetics. But unless you are pretty smart, you won’t be able to solve problems just like that one. And the fact that he didn’t reveal that he was good at it is a problem in itself.</p>
+<p>«But you know, why didn’t you just tell us that a bit earlier?»</p>
+<p>«That’s true. But, you know my personality, right? I’m not at the position where I can just take the initiative and tell the class about it. I became the leader since I had the protection point after all. What’s more, our opponent was Sakayanagi from class A. Even if I said I was good at it, I was worried since I didn’t know whether they would have believed me or not.»</p>
+<p>…I had planned to corner him, but I can’t get a grasp of him. He easily answered my questions like it was the natural thing to do. He didn’t try to excuse himself in some flustered manner either. The are a lot of people that don’t have confidence in themselves. They are unable to declare something since they are can’t say what they want to. There is nothing in our conversation that is weird when comparing it to how he has been until now.</p>
+<p>«That… Well, that may be so.»</p>
+<p>Oh, no no! I can’t seem to say what I was thinking in my head. Was it because he didn’t lie? No, even if that was the case, there is still something suspicious thing going on. It may change if brought up the cases regarding Hirata-kun and Karuizawa-san. My pace may have been thrown into disorder, but I promised again from the bottom of my heart, yet again, that I would regain my strength for what to come next.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A Prediction of the Future</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — Volume 11.5</p>
+
+<p>After the the end-of-term ceremony was concluded, all students went to their respective classrooms for some last explanations before I left the classroom at immediately.</p>
+<p>That being said, with my impaired feet, I couldn’t move as fast as other people. I eventually reached my goal and waited for that person who seemingly was delayed.</p>
+<p>«What are you doing out here, Sakayanagi?»</p>
+<p>Mashima, who attended the farewell ceremony for the 3rd years, puzzlingly asked me as he came closer.</p>
+<p>«I’ve been waiting for you, Mashima-sensei»</p>
+<p>«…For me?»</p>
+<p>«Yes. You are about to meet Ayanokouji-kun and Chabashira-sensei in the reception room, am I correct?»</p>
+<p>«What do you mean?»</p>
+<p>Mashima-sensei wouldn’t admit it, at least on the surface.</p>
+<p>But I already know the finer details. From the time I gave Ayanokouji-kun my father’s phone number, I expected this to happen.</p>
+<p>«You must have gotten a message from Chairman Sakayanagi to meet Ayanokouji-kun. Chabashira-sensei should be present as well, I presume?»</p>
+<p>«How do you know that?»</p>
+<p>———————</p>
+<p>«I just know more about the situation than both you and Chabashira-sensei, that’s all.»</p>
+<p>«Even if that’s true, your name wasn’t mentioned.»</p>
+<p>«That’s because I’m taking part on the spur of the moment. Could you I accompany you?»</p>
+<p>«I sadly don’t have the permission to do so. It would become a problem were I to take you along.»</p>
+<p>«I will just meet up with you later even if we went separately. So why don’t we just go together in the first place? I believe It will save you some time as well.»</p>
+<p>Even if I didn’t get his permission to go together with him, I would visit the reception room alone.</p>
+<p>In other words, the conclusion would be the same anyway.</p>
+<p>«…Fine, since it looks like you already know about the circumstances.»</p>
+<p>«Thank you very much.»</p>
+<p>I turned around and took a step towards the reception room. He soon caught up to me.</p>
+<p>«What in the world are we going to discuss at this meeting?»</p>
+<p>«Something very, very interesting.»</p>
+<p>I can predict some of the moves the Interim Chairman Tsukishiro may use in the future. I feel my boring days are getting more colourful just by imagining that. Following after Mashima, we walked into the reception room where Ayanokouji-kun is waiting.</p>
+<p>To enjoy my time with him. And to enjoy what’s about to come.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Second Chapter is about to Begin</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — Volume 11.5</p>
+
+<p>On a certain day during spring vacation, with the second semester just around the corner.</p>
+<p>Some cherry blossoms had already begun to bloom, welcoming the change from winter to spring.</p>
+<p>“He-y!”</p>
+<p>While I looked up at the cherry trees, a girl’s voice rang out to me.</p>
+<p>“Here, here! Look here Ayanokouji-kun!”</p>
+<p>It was a voice I’ve heard before, I thought when I suddenly was called by name. I soon realised who it was.</p>
+<p>Ichinose was sitting under a cherry tree waving her hand at me.</p>
+<p>“Did you go to school today?”</p>
+<p>She was sitting there in her school uniform, right beneath the tree.</p>
+<p>“Yes, I checked out the student council for a bit since the 2nd years said it probably will get busier now.”</p>
+<p>“So you decided to do some flower viewing on your way back?”</p>
+<p>“That’s it! I think I found the perfect spot.”</p>
+<p>Looking right up at the sky and the cherry blossoms intertwined, she narrowed her eyes in a happy smile.</p>
+<p>“I’ve never seen such small cherry flowers before. So they really do exist after all.”</p>
+<p>This variety of cherries are called Omuro Ariake. Their small height, about 2m-4m, are one of their defining traits.</p>
+<p>The school didn’t have those until last year so they must have been moved here from somewhere.</p>
+<p>“How about it, Ayanokouji-kun? Want to sit?”</p>
+<p>She prompted me to sit down beside where by tapping on the spot beside her. How should I put it, how she is able to carelessly call out to boys just like that is so like her and probably part of the reason she is so popular.</p>
+<p>It wasn’t prohibited to move closer to the trees, but there was a warning sign that said we shouldn’t touch them without any reason to.</p>
+<p>I didn’t have any excuses to refuse her so I sat down beside her.</p>
+<p>“How about we watch them together?”</p>
+<p>Thus I also looked straight up as she had.</p>
+<p>“Oh-”</p>
+<p>They may have been small, but at this range, they left a surprisingly strong impression.</p>
+<p>From time to time, a sudden gust of wind would make the pretty cherry petals dance and scatter around. As if it was all but a dream.</p>
+<p>“It’s nice to do some flower viewing from time to time, right?”</p>
+<p>“Yeah.”</p>
+<p>While we both looked up at the cherry blossoms, we talked together about the most casual of things.</p>
+<p>The impending battle looming in the distance all but forgotten for just this moment.</p>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">What Became Apparent to Me a Year After</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kakeru Ryūen SS — Volume 11.5</p>
+
+<p>It happened on that day right before the spring break was over.</p>
+<p>I dragged myself to the Keyaki mall. Once I defeated Ichinose and managed to return our class back to Class C, I decided to fight with Ayanokouji again.</p>
+<p>I have to think up a good strategy or else it won’t work on that guy.</p>
+<p>Which is why I seek someone who can become my hands and legs and move according to my will. No matter how insignificant they may be.</p>
+<p>There should be several useful pawns in his class that could be easily swayed.</p>
+<p>My class on the other hand, has for some reason too many of those who only have muscles for brain.</p>
+<p>They are sorta excellent as foot soldiers, but they can’t follow detailed instructions.</p>
+<p>And what’s more, my class still has a deeply rooted distrust towards me.</p>
+<p>Right now, Ishizaki holds the position as the ruler of the class, but I’m getting bored of his acting skills.</p>
+<p>A critical point for me to think over is when to take the reigns from him again.</p>
+<p>«Good morning. Are you alone today?»</p>
+<p>I sat down at a seat at the Keyaki Mall, waiting for Ibuki and Ishizaki to arrive, when a certain busybody called out to me.</p>
+<p>It was Sakayanagi Arisu.</p>
+<p>«I can say the same to you, what happened to those bodyguards of yours, Sakayanagi?»</p>
+<p>I can’t see Kamuro or Hashimoto here either, those servants of hers… no, maybe I should say familiars?</p>
+<p>«Fufu. Even I go out alone sometimes. Congratulations on your comeback victory.»</p>
+<p>«Same for you. You beat Suzune’s class I hear.»</p>
+<p>«4 wins, 3 losses. It was close of a result despite fighting with a lower class however.»</p>
+<p>«But you won so they have just become stepping stones for you in the end.»</p>
+<p>A lead of 500 points was too large to lose during a single year. You could safely assume it meant you were safe. Or at least, that’s how lazy people normally thought.</p>
+<p>«Empty words coming from you. You mean to say you plan to close the gap in 2 years…no, within this year. At least, you eyes do.»</p>
+<p>«Kuku, who knows?»</p>
+<p>«How about it? Care for a cup of tea we while discuss the next year together?»</p>
+<p>«Together? I have nothing to talk about. And I’m not in the mood either, alright?»</p>
+<p>«Oh, really? I was thinking of a little celebration for your comeback. My treat, of course.»</p>
+<p>She’s obviously looking down on me, but she’s still watching my every steps. Making sure she doesn’t miss anything.</p>
+<p>If I show her even the slightest of strange movements, it would bring her joy beyond compare.</p>
+<p>The battle between us has already begun.</p>
+<p>Well, I can play with her anytime. We’ll just try to read into what’s hidden behind each other anyway.</p>
+<p>I didn’t have any intention of doing that today.</p>
+<p>«Later.»</p>
+<p>I stood up, looking for another place to go. Seeing me like that, she called out to me again.</p>
+<p>«Your aura has certainly changed.»</p>
+<p>«What?»</p>
+<p>«A year ago, you would look at me with full enmity in your eyes. You surely don’t look like that same person to me.»</p>
+<p>I laughed making a sound saying ‘as if’. The same smile appeared on her face.</p>
+<p>So, she doesn’t think I’m showering her with all my hostility now, is she? I thought while holding back my laughter.</p>
+<p>«The fact that you still are directing it towards me hasn’t changed. But it’s obvious that the ‘colour’ has changed.»</p>
+<p>It seems like what she tried to say wasn’t what I had expected.</p>
+<p>«I didn’t think you were even worthy of being my opponent right after we entered school, but it’s different now it seems.»</p>
+<p>«That’s stupid, Sakayanagi. Aren’t you overestimating yourself a bit, huh? My principle is to win no matter what methods I have to use. I can kick you down to the ground right here, right now if I wanted, you see? And just so you know, I won’t show any mercy to you even if you cry.»</p>
+<p>Since neither Hashimoto not Kitou were here, she was just a weak girl who couldn’t even beat a brat.</p>
+<p>«As you say, I’d have no chance to win in a physical fight, but that doesn’t mean you’d win either.»</p>
+<p>«So you won’t admit a loss from violence just because of your handicap, huh?»</p>
+<p>«That’s not the problem. Physical power is also a necessary factor to any fights. I’m just saying that exercising violence against me here wouldn’t led to your victory. A lot of people and survellance cameras are watching us now after all. It won’t just end with a suspension, if you raised a hand against me now. I, who can’t move as I please, I may say. What a third party observer would deem a victory is also an important factor as well.»</p>
+<p>«Logically that is. But what if I wanted to use force to claim my victory for my own satisfaction, what then?»</p>
+<p>I took a step towards her and lightly raised a clenched fist in a somewhat threatening manner.</p>
+<p>I think it would have been a bit cute to see her frightened by this, somewhat charming. But she didn’t fret a single bit, only showing me that unpleasant smile of hers.</p>
+<p>She’s way too naive if she thought I wouldn’t hit her for real. But that wasn’t the reason it seems.</p>
+<p>She didn’t mind since being hit wasn’t a loss, but instead a step leading to her victory. That’s what her eyes told me.</p>
+<p>«You do have intelligence, despite your appearances. I’m just relieved you also can calculate your gains and losses.»</p>
+<p>Even if I punched her, she would end up brandishing her mark of the lowest scum onto me.</p>
+<p>«I think you, as you are right now, have grown to be worthy of playing with, you know?»</p>
+<p>You say I’ve grown during this year?</p>
+<p>Lol….you say the most ridiculous things as you please.</p>
+<p>«I haven’t changed at all.»</p>
+<p>«You sure about that? You’ve changed quite a bit as far as I can see.»</p>
+<p>She was still persistent on that despite my denial.</p>
+<p>Foolish ideas, I thought…</p>
+<p>But, I might have changed a bit.</p>
+<p>I thought I didn’t have any room for growth after middle school.</p>
+<p>I thought I had matured completely.</p>
+<p>And everyone else was my playthings.</p>
+<p>I had no empathy towards such things.</p>
+<p>«The current you seems to have changed your view compared to how you were a year ago perhaps?»</p>
+<p>Right… I’ve changed how I view things.</p>
+<p>I decided this school wasn’t much of anything once I took control over Class-C in April.</p>
+<p>I was aware that Sakayanagi, who used Katsuragi as her plaything, was pretty smart, but other than that she wasn’t worth taking notice of.</p>
+<p>I only thought about how to stave off boredom by crushing Class B or Class D.</p>
+<p>It’s laughable now that I think about it.</p>
+<p>But anyway, even I was surprised by how much motivation I had towards trying to pull up my class now.</p>
+<p>«It seems to me that something big has happened that made you change this much.»</p>
+<p>Her attitude and eyes were telling me she was testing me, but I didn’t show her anything and just let it go.</p>
+<p>«Fufu, I’m looking forward to— a new war this year too, okay?»</p>
+<p>«You’ll end up regretting it.»</p>
+<p>I noticed the guys I’d been waiting for, then turned my back and walked away from Sakayanagi.</p>
+<p>«Good morning, Ryuuen-san. That was Sakayanagi…right? Did something happen?»</p>
+<p>Ishizaki was taking glances back while trying to catch up to me.</p>
+<p>«Just some small talk.»</p>
+<p>I’d have wasted time and energy trying to explain to these guys anyway.</p>
+<p>Even idiots learn in their idiotic ways since he shut his mouth and didn’t pursue the topic.</p>
+<p>«Ah, by the way, we met Ayanokouji this morning. He also went to this Keyaki mall.»</p>
+<p>«I see.»</p>
+<p>At this time of day, the amount of places which could be used was limited.</p>
+<p>Meeting up and talking with someone on the 2nd floor should be about it.</p>
+<p>Well, I don’t think that would end in just 10 to 20 minutes.</p>
+<p>Going out this early must mean that the talk must be somewhat important after all.</p>
+<p>I’ll make these guys make the first moves for starters.</p>
+<p>«Oh by the way, Ryuuen-san. I suggested a plan to Ayanokouji, but he refused it though. To have him and you in the same class and aim for Class A together…»</p>
+<p>«Are you an idiot? No way Ryuuen will say that’s a good idea even if you told him.»</p>
+<p>Ibuki was disgusted by it, but what Ishizaki said shouldn’t be overlooked.</p>
+<p>It’s true that if we joined forces for real, there would be no enemies left standing in our year.</p>
+<p>«Well, that’s impossible.»</p>
+<p>«So it was impossible… yeah… sorry for my stupid suggestion.»</p>
+<p>«And? Why did you call us today?»</p>
+<p>«I wanted to talk about this 2nd year and what follows.»</p>
+<p>«What follows?»</p>
+<p>«It doesn’t have anything to do with special exams, I will crush Class A this year.»</p>
+<p>«…You’re not joking, are you?»</p>
+<p>«Sakayanagi won’t show us any openings but if we let Class A steamroll their way, any chances we have will disappear. I’ll drag them back with me and defeat them to smithereens, no matter how stubborn I have to be.»</p>
+<p>But well, I need to make sure of the timing and such at least.</p>
+<p>«What about Class B?»</p>
+<p>«They’ll just self-destruct if we leave them alone. They won’t use any dirty tricks.»</p>
+<p>In other words, they aren’t worth paying any attention to.</p>
+<p>«Oh yeah, we don’t need to be aware of them, right.»</p>
+<p>The only exception may be Kanzaki, but he isn’t worthy of being my opponent at this stage.</p>
+<p>Whether he only has the ability to bark or not will become apparent sooner or later.</p>
+<p>«That’s right, no need to pay them any attention, but—that’s why we must go out and finish them. To crush them so that they never can rise again.»</p>
+<p>And defeating all classes will send him a signal as well.</p>
+<p>1</p>
+<p>I was waiting for Ayanokouji to leave the café.</p>
+<p>If he wasn’t alone, I would have to wait for the next chance even though it was a bother.</p>
+<p>«You heard from Ishizaki that I would be here?»</p>
+<p>«Yeah, I came here searching for you, even wasting my time to greet you, you hear?»</p>
+<p>I looked at his face which lacked any expressions making it hard to figure him out.</p>
+<p>«You already do know my contact info I’m sure. Wouldn’t it have been better to contact me then?»</p>
+<p>«I thought it was better to speak up face to face to that dull face of yours.»</p>
+<p>I don’t know anything about how he feels, but that’s why I can’t evade meeting him straight on.</p>
+<p>To conquer him, breaking through that mental iron wall of his is of utmost importance.</p>
+<p>Anyway, there is something I must check with him.</p>
+<p>«What did you mean by ‘that’?»</p>
+<p>Even though I asked vaguely, he immediately understood.</p>
+<p>The thing I meant by ‘that’ was his message he made Hiyori tell me.</p>
+<p>I’d won 5 to 2 against Ichinose and crushed her during the last special exam of the year</p>
+<p>Her mental state as a leader had been shook thoroughly, the pressure to her classmates has continued, and some of her classmates couldn’t join the exam due to stomachaches caused by me.</p>
+<p>He knew about my methods and cheekily left a message for me: ‘I’d would have easily managed over 5 wins with a better method’.</p>
+<p>That move just made me want to talk to him whether he wanted it or not.</p>
+<p>It was as if I was being forced to obediently listen to his preaching from some god’s point of view.</p>
+<p>«Just as I said. I’d have done better than you.»</p>
+<p>«What methods I use is up to me alone.»</p>
+<p>If I’d use any other methods and won 5 times, it would still just be another 5 wins to me.</p>
+<p>No difference at all.</p>
+<p>«That isn’t definite. If you had to leave the school due to some blunder, I would be sad.»</p>
+<p>Some blunder? No way I was going to lose against Ichinose.</p>
+<p>I’d just follow this stupid joke of his.</p>
+<p>«Kuku, what’s up with this joke? Quite arrogant of you despite losing to Sakayanagi and getting demoted.»</p>
+<p>The match between Ayanokouji and Sakayanagi’s classes ended 4 to 3 with Sakayanagi leading her class to victory.</p>
+<p>But of course, there is no way he’s inferior to her.</p>
+<p>Since the peculiarity of that exam meant that the Keeps was limited in what they could do.</p>
+<p>No… if he’d been serious I’d bet he could win any exams.</p>
+<p>Which means he wasn’t serious or that someone interfered.</p>
+<p>«It’s true our class lost to hers. I have no excuse for that since I was the Keep. Whether Sakayanagi is superior to me or not is for you to find out later.»</p>
+<p>«What the heck— you looking down on me?»</p>
+<p>He easily acknowledged his loss, but that just irritated me even more.</p>
+<p>I came closer and peeked at his eyes which lacked any colours.</p>
+<p>«Someone who beat me once can never be be inferior to her.»</p>
+<p>«That’s flattering of you, but what if I really didn’t rest on my laurels during the exam?»</p>
+<p>«Too bad, I don’t believe it. You didn’t want to fight from the beginning then rather than you getting serious and losing…. or that some kind of accident occurred. That’s a hell lotta easier to believe. I’d believe it if the school wanted to maintain some image and planned for Class A to win anyway.»</p>
+<p>His strength isn’t on the level of a 1st year high schooler.</p>
+<p>I came to experience that during our fight in the first year with my own body.</p>
+<p>I even want to know what kind of life he’s led up until now to become this kind of monster.</p>
+<p>«And? What are you going to do now after your comeback, Ryuuen?»</p>
+<p>«You don’t get to decide whether I come back or not. I plan to enjoy this nice vacation for a bit longer.»</p>
+<p>Now is the best time to make those various moves behind the stages.</p>
+<p>«But… If I get bored of this vacation, I’ll crush Ichinose and Sakayanagi to warm up.»</p>
+<p>«That’s a big change of heart.»</p>
+<p>«Kukuku, certainly. I’m surprised too. I didn’t think I’d get this excited over a chance to take my revenge on you.»</p>
+<p>«I see.»</p>
+<p>No matter what he replied, there was no use trying to read into his intent.</p>
+<p>But what’s clear is that Ayanokouji isn’t an ally of Sakayanagi and Ichinose.</p>
+<p>No, it may be that even Suzune isn’t regarded as an ally by him either.</p>
+<p>«I’m grateful for that. If you could crush Ichinose and Sakayanagi first, it would be the best I could hope for. I can smoothly aim upwards.»</p>
+<p>«I thought you didn’t care about your class at all?»</p>
+<p>«It’s a bit different now. That class will be in a good position by the same time next year. Even if I won’t be there anymore.»</p>
+<p>«What?»</p>
+<p>Even if I won’t be there anymore?</p>
+<p>«I may be targeted from now on so it won’t be a surprise if someone managed to expel me. Right?»</p>
+<p>That’s a stupid thing to worry about.</p>
+<p>«Rest assured. If someone is expelling you, that will be me.»</p>
+<p>I can’t think of any others from any classes in any years who can expel him.</p>
+<p>I laughed silently due to my own thoughts.</p>
+<p>«But—»</p>
+<p>I said to him and suddenly closed the distance between us.</p>
+<p>Giving him no time for caution, as quick as I could, as fast, directly at him.</p>
+<p>«Raaahhh!!»</p>
+<p>I aimed for the space right in front of his eyes using my right foot with no hesitation.</p>
+<p>But that was the opening move.</p>
+<p>Even if you managed to deal with it, it wasn’t that important.</p>
+<p>It was just the first strike that came with any fight.</p>
+<p>But if he managed to dodge it, that would be his downfall.</p>
+<p>I proceeded to kick his head with all the power I could muster with my left foot.</p>
+<p>But—</p>
+<p>He calmly dodged the kick as if he’d known a second strike would come after the first.</p>
+<p>He wasn’t too early or too late.</p>
+<p>With just the neccessary movements.</p>
+<p>I had thought of a third strike, but the movements he showed dampened my intent and tension released from my muscles.</p>
+<p>«Hah, so even a surprise attack like this won’t do anything. What kind of monster are you?»</p>
+<p>No matter how this was repeated, he would easily defend against it.</p>
+<p>Any fights using force, in other words, brawls, won’t be able to defeat his intricacy.</p>
+<p>I have to relentlessly strike at him using some unorthodox methods or strategy or else it won’t work.</p>
+<p>«Quite the showman you are.»</p>
+<p>He must be telling me to be aware of my time and place, but that’s why I did it.</p>
+<p>The fact that a countless amount of cameras were installed here just made it clear I had to do it.</p>
+<p>«My heart is howling at me; to devour you.»</p>
+<p>If he was even a bit irritated by this surprise attack, I would gladly do it again.</p>
+<p>«Not striking back?»</p>
+<p>I tried provoking him, but he didn’t move of course.</p>
+<p>«I want to avoid any risks from fighting with you here. And it’s not the right time for that.»</p>
+<p>«Hah, the mercy of the strong? You saying it makes it seem so much real, this is getting exciting.»</p>
+<p>My muscles began to tension again.</p>
+<p>Maybe I shall strike him again now, I thought but…</p>
+<p>«You have potential. That’s why you should grow up properly, Ryuuen.»</p>
+<p>My tension turned into anger once I heard those words. That wasn’t the words used when dealing with an equal opponent, far from it.</p>
+<p>Venting my frustration, I punched at those damn walls.</p>
+<p>«Grow up properly, you say? When the fuck did you become my teacher?»</p>
+<p>«I’m just telling you the truth. But don’t let the carpet get so easily pulled from under you.»</p>
+<p>«What?»</p>
+<p>«It seems you did some dirty tricks using Ishizaki and the others. It wasn’t a bad idea to use the karaoke to mix in those stuff, but if there were any traces left you would have been finished. You would have been expelled on the spot. Even if you managed to feign ignorance, if something strange had happened during the exam, the school would be suspicious of you, of course. The fact Ichinose didn’t file a complaint was your only saving grace, Ryuuen.»</p>
+<p>«I used her good-naturedness in my calculations.»</p>
+<p>«If so that was naive of you. You will never be able to catch up to me at this rate.»</p>
+<p>«…Look at you.»</p>
+<p>He pinpointed out the naivity in my strategy.</p>
+<p>«Whether you heed my warning is for you to decide. But— if you remain as you are now, a rematch isn’t even on the table.»</p>
+<p>So he’s saying if I wanted to fight with him, I need to grow up?</p>
+<p>I’d kill everyone who tries to advise or warn me but…</p>
+<p>«I’ll listen to your stupid advice since we’re here right now. But I’ll crush you sooner or later.»</p>
+<p>Since he was the only exception I’d acknowledged, I’ll take it as an adult for now.</p>
+<p>«That’s the spirit, Ryuuen. Having you crush and expel me doesn’t sound too bad after all.»</p>
+<p>2</p>
+<p>«Having you crush and expel me doesn’t sound too bad, eh?»</p>
+<p>What an idiotic thing to say.</p>
+<p>If you so desire it, I’ll expel you.</p>
+<p>I usually would have said that straight to him, but even such a bluff wouldn’t work against him.</p>
+<p>I’ve always challenged any opponent I’ve met without any fear until now.</p>
+<p>Even an opponent such as Albert that I’ve lost to once would be devoured just like a snake and made obedient.</p>
+<p>I have confidence that I can discover the winning move against any and all humans.</p>
+<p>But he isn’t in the same dimension as those.</p>
+<p>Any physical attacks don’t seem to work on him, not even mentioning psychologic ones.</p>
+<p>And I don’t even need to say this, but I’ve never seen someone with such a sharp mind before either.</p>
+<p>«Makes me laugh when thinking of my old self.»</p>
+<p>Someone absurd has slipped into class D.</p>
+<p>But there is no need to panic.</p>
+<p>What’s important isn’t who is winning right now.</p>
+<p>If I’m the victor at the very moment we are graduating in two years, there’s no problem at all.</p>
+<p>It doesn’t matter whether we are in class A or Class D or whatever.</p>
+<p>Me and Ayanokouji. The hound or the bitch. Who is which? It’s fine, I just need to win.</p>
+<p>‘No matter the methods’ I have to use.</p>`,
+            6: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Person Who Became Dear to Me</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kei Karuizawa SS — Volume 11.5</p>
+
+<p>I finished changing my clothes and grabbed my phone, feeling a bit melancholic.</p>
+<p>«Good grief… what is it now?»</p>
+<p>I was preparing myself when I suddenly got a call.</p>
+<p>An unknown 11-digits phone number that wasn’t in my contact list.</p>
+<p>I obviously knew who it was. It was Kiyotaka.</p>
+<p>The scene of him and Hiyori-san on that date appeared before my eyes.</p>
+<p>He’s free to hang out with whoever, wherever he wants to, of course.</p>
+<p>Since our relationship wasn’t anything special after all.</p>
+<p>But still…</p>
+<p>«Ah, enough! Why do I have to feel so irritated and getting pushed around by someone like him!»</p>
+<p>I stopped thinking too deeply about it, dispelled my feelings and prepared to take the call.</p>
+<p>I planned to eat out with Ishikura-san and Sonoda-san today. I’m going to have fun today.</p>
+<p>«It’s me, sorry for calling you.»</p>
+<p>I restrained my voice which was about to burst and calmed myself down.</p>
+<p>«It’s fine. What?»</p>
+<p>«You sound like you have some complaints though.»</p>
+<p>«Not really. Not complaining, just wanted to confirm something with you.»</p>
+<p>«That I called you out recently and didn’t get in touch with you later?»</p>
+<p>If you understood that, so at least follow up, will you! Whoops, I should keep that to myself…</p>
+<p>«You seem to understand then, what? Just wanted to harass me?»</p>
+<p>«Could we meet up and talk about that?»</p>
+<p>«Eh?»</p>
+<p>«Remember the thing I said I would tell you if I remembered it? I just did. Could you come over?»</p>
+<p>What’s up with that?… You didn’t contact me after that and now you want to talk with me? And in your room?</p>
+<p>«Good grief… You always do it when it pleases you… I guess it’s fine. I’m not taking any responsibilities if someone sees me, okay?»</p>
+<p>It will become a problem if I were seen trying to enter a boy’s room alone.</p>
+<p>«Don’t worry about that.»</p>
+<p>I thought he would have some misgivings about that, but it seems I was wrong.</p>
+<p>Well, if he says he isn’t worried, then why should I?</p>
+<p>«Got it. Ah, I have something planned by 7pm so I can’t have you take too much time, okay?»</p>
+<p>«It will be short. Probably around 10 to 20 minutes.»</p>
+<p>«It’s alright for me then. See you later.»</p>
+<p>I ended the call and sighed.</p>
+<p>I felt relieved the call didn’t turn for the worse.</p>
+<p>«Why does my heart have to be pushed around by a guy like him?»</p>
+<p>I don’t feel like being toying around by him either, but well, it can’t be helped.</p>
+<p>This is a shield to protect myself.</p>
+<p>Yes, that’s why it can’t be helped.</p>
+<p>«…It wouldn’t be fair otherwise, right.»</p>
+<p>1</p>
+<p>I began to prepare myself before leaving for his room.</p>
+<p>A meal is waiting for me after this. So let’s be done with this quickly, that kind of feeling.</p>
+<p>But it was so quiet when I arrived.</p>
+<p>He was just looking at me, not delving into any important topics.</p>
+<p>«So, what is it?»</p>
+<p>Don’t even tell me he has forgotten the matter after I came here?</p>
+<p>His answer when I tried to cut through this awkwardness was…</p>
+<p>«What do you mean?»</p>
+<p>An evasive reply. I became a bit irritated by that.</p>
+<p>«What do you mean? Didn’t you just recall what you wanted to say?»</p>
+<p>«Now that you say it, yes, I suppose that’s true.»</p>
+<p>«……»</p>
+<p>I thought he would start talking again, but he became quiet and the silence returned.</p>
+<p>«Oh come on, what is it?»</p>
+<p>«Well, you don’t need to be so hasty.»</p>
+<p>«I’m pretty sure I mentioned it, didn’t I? I’m eating with my friends at 7PM at the Keyaki Mall. Understand?»</p>
+<p>«There still a lot of time. It’s going to be fine.»</p>
+<p>«Hmm, you kinda give me the goosebumps, you know? The way you just go on and on about nonsense.»</p>
+<p>He normally would keep things as short as neccessary, precisely to the point.</p>
+<p>That was my usual impression of him.</p>
+<p>I thought his usual self was impressive, honestly.</p>
+<p>How shall I say it? He was being so calm despite the fact we are the same age. Or rather cool. That part of him was somewhat attractive, so to say.</p>
+<p>No, no. I have to be angry now. What up with praising him now?</p>
+<p>«…Oh by the way. I have something I need to tell you, okay?»</p>
+<p>I didn’t like how he wasn’t himself so I changed the topic.</p>
+<p>«Something you need to tell me?»</p>
+<p>«Satou-san is suspecting my relationship with you, you know?»</p>
+<p>Even if he had the initiative, even I could influence it.</p>
+<p>That’s why I sometimes have to start the conversation myself. If not, something bad might occur.</p>
+<p>«I thought she might begin to hate me after I rejected her. What suspicions?»</p>
+<p>It would be easy to think she would dislike him after that. But his situation is totally different.</p>
+<p>He seems like he would need an explanation about romance from A to Z just for him to understand as he’s kind of distant, right?</p>
+<p>Unlike any middle schoolers I know of.</p>
+<p>That’s what giving me so much stress right now.</p>
+<p>«She thinks I might have broken up with Hirata to go out with you. She tried to ask me about it in a roundabout way.»</p>
+<p>It was about a boy she liked so of course she would notice something.</p>
+<p>And that—I really saw him differently from every other boy.</p>
+<p>«I refuted it of course, but I’m not sure how much she believed me.»</p>
+<p>I don’t think she would forgive me if she knew we were meeting up with each other like this.</p>
+<p>If we had changed positions, I would feel the same.</p>
+<p>«I see. I had a similar conversation too.»</p>
+<p>«What? Something similar?»</p>
+<p>There shouldn’t be anything similar to that as far as I know, except for Satou-san’s case.</p>
+<p>«Matsushita was a bit suspicious about you and me. Asked whether we were dating or not.»</p>
+<p>Eh? Matsushita? By Matsushita you mean the one from our class?</p>
+<p>My mind went into a panic from the sudden mention of her name.</p>
+<p>«Wha? What? No way, right? Really? You’re not joking?»</p>
+<p>He nodded slightly and talked about the events leading to that but…</p>
+<p>You mean, she started suspecting his real abilities during the special exam?</p>
+<p>«W-wait a bit! I can’t keep up with this!»</p>
+<p>It was bad enough with Satou alone. And now even Matsushita?</p>
+<p>I’m getting a headache…</p>
+<p>«I think it’s getting really bad, kinda… do you have something up your sleeve?»</p>
+<p>It should still be possible to calm down the situation if I just apologised once of twice.</p>
+<p>But what he replied back was…</p>
+<p>«I think it’s fine to ignore it?»</p>
+<p>He chose the worst option with that composed expression of his.</p>
+<p>«No, no, that’s no good!— And our relationship… isn’t anything special to begin with either!»</p>
+<p>I was the one who had the most to lose if I ignored it!</p>
+<p>«Do you dislike others thinking there may be something even when there’s nothing there? Even if, let’s say she spread a rumour, just let her say what she wants, right?»</p>
+<p>«What? Just let her say what she wants?…There’s no way I can do that. Tell it straight to her right now, that there is nothing between us!»</p>
+<p>Whatever the truth may be, the important thing is how to convey that to the other person.</p>
+<p>I want to avoid destroying the peace in my class at all costs.</p>
+<p>Does he think it will be fine as long as he protects me with his body?</p>
+<p>If he thinks so, he’s wrong. Peace of mind is also important.</p>
+<p>«It may have the opposite effect if I tried to explain it to Matsushita now.»</p>
+<p>«You should have known that from the start, didn’t you? Why make such a half-assed lie?»</p>
+<p>«No matter how I explained it, it wouldn’t change anything. Satou is suspecting there is something between us right? Since she is close to Matsushita, she will eventually tell her that our relationship isn’t normal. No, the possibility that she made a move after being told is pretty high.»</p>
+<p>«…You, may be right…»</p>
+<p>Rumours of our relationship being spread far and wide, even if it was a lie, would be a total loss for me.</p>
+<p>Or perhaps not. There would be a small saving grace. But just a small one, really.</p>
+<p>If we truly were going out then, well, I mean, we aren’t so…</p>
+<p>«I mean… won’t they think that I broke up with Hirata-kun to date you instead? I’m the one getting troubled if there’s even the slightest chance it spreads to our class, no, our whole school, you know.»</p>
+<p>«Why should that worry you?»</p>
+<p>He wouldn’t understand me no matter what.</p>
+<p>«Listen here—. If such a rumour was was out there, it would affect me from now on.»</p>
+<p>What’s going on inside this skull of this love-dead boy?</p>
+<p>That’s precisely why he didn’t notice Satou’s and my feelings for him.</p>
+<p>«Okay? Being approached by the opposite sex is hard if there is some scent of some other person there, understood?»</p>
+<p>I pointed my finger at him.</p>
+<p>«So you are saying you want to find a new love and that I’m in the way?»</p>
+<p>«…That’s how it is.»</p>
+<p>Honestly, I’m not thinking of getting a boyfriend now, but, that’s just how it is.</p>
+<p>I seemed to have gotten the message through so I proceeded forward.</p>
+<p>I was beginning to think he was pretending dumb after all this.</p>
+<p>But since we arrived at this topic, I once again recalled that scene.</p>
+<p>Hiyori-san and him discussing happily at the cafe.</p>
+<p>«Do you really understand? Right, care to listen?»</p>
+<p>Since we ended up here, I have to confirm something.</p>
+<p>He called me up saying he had something to discuss, yet made me look at that until the end.</p>
+<p>There’s no way I can leave without saying my piece of mind about that.</p>
+<p>«You…are you close to this Shiina?»</p>
+<p>«Shiina? Ah, you mean Hiyori?»</p>
+<p>«Hiyo…»</p>
+<p>He easily used her first name instead of her last.</p>
+<p>Well… he’s free to call other girls by their first names as he pleases, like me.</p>
+<p>Everyone in that group he’s so close to also uses their first name I hear.</p>
+<p>But, Shiina-san is well, not like that… not that I care.</p>
+<p>«We are certainly rather close. We both like to read books so our hobbies align. How about it?»</p>
+<p>S-same hobbies… r-reading books? Isn’t that like, the total opposite from me?…</p>
+<p>«Heee? The same hobby? Reading books… heee….heee. So completely different from me?»</p>
+<p>I slipped up, saying exactly what I thought.</p>
+<p>«And?»</p>
+<p>He nonchalantly faced me like he was asking why I wanted to hear about that in the first place.</p>
+<p>«…No, I mean… Argh! I forgot what to say!»</p>
+<p>I just didn’t have anything else I’d wanted to say for that matter.</p>
+<p>Anyway, I tried to squeeze out some words as if to compromise, still worrying.</p>
+<p>«If the rumours about you and I were to spread, I mean, it would be harder for you to get closer to Shiina-san, right?»</p>
+<p>There was some part of me that wanted him to deny it.</p>
+<p>«I see. That’s certainly a possibility.»</p>
+<p>But he didn’t deny it, instead he agreed with me in full honesty.</p>
+<p>«Not that I care really. You’re free to get close to whoever you want for that matter.»</p>
+<p>I turned my back towards him as if trying to run away.</p>
+<p>Hey, I can’t do this anymore. My feelings I had tried to hold in was about to burst forth.</p>
+<p>«Sorry but, could… we have leave this talk for later? I want to head for Keyaki mall a bit early. There may be some boys from other classes coming too. I’m going to chase away the rumours so I need to get into the mood. I don’t have the time to deal with you.»</p>
+<p>I wouldn’t know what else I could have ended up saying to him if I were to stay here.</p>
+<p>I don’t know what these depressing feeling are. I just don’t understand.</p>
+<p>«Mood?»</p>
+<p>«I’m looking for a new boyfriend since I broke up with Hirata-kun. Got a problem?»</p>
+<p>It was just a gathering of girls eating together, but I wanted to put on the airs.</p>
+<p>«Not at all.»</p>
+<p>«…Right? That’s why I’m leaving now.»</p>
+<p>He stood up as if trying to chase after me.</p>
+<p>«It’s fine.»</p>
+<p>Even if he were to see me out, it would just make me feel sick.</p>
+<p>«Kei.»</p>
+<p>He called me by my name.</p>
+<p>Why does my heart have to skip just like that?</p>
+<p>«What is it already?»</p>
+<p>Why am I the only one being pushed here and there by his words and actions?</p>
+<p>«It’s just, if you don’t like it, it’s fine for you to keep looking another way.»</p>
+<p>Why am I— the only one…who…</p>
+<p>«What?»</p>
+<p>«Will you go out with me?»</p>
+<p>«Eh?»</p>
+<p>I frowned and turned around, not sure I understood.</p>
+<p>«What did you say? Or, what is it?»</p>
+<p>He was listening to me when I said I didn’t have time, right?</p>
+<p>While I was thinking along those lines…</p>
+<p>«That’s not what I meant. I asked if, you wanted to go out with me.»</p>
+<p>Me going out with him?</p>
+<p>«No I mean— I don’t really… under…stand…»</p>
+<p>Going out?</p>
+<p>Hmm…?</p>
+<p>Eh, wait a bit. Wait a bit…?</p>
+<p>The way he looked at me, that gaze and presence.</p>
+<p>«W-ai, eh, wha, what!? What’s up with that joke, that’s bad taste even for you…!?»</p>
+<p>«If it was a joke.»</p>
+<p>Yes, if it was a joke, it wasn’t something I’ll ever forgive him for.</p>
+<p>Swaying my heart right and left, left and right and saying this after all that.</p>
+<p>«B-but—didn’t you mention getting closer to Shiina-san just now!?»</p>
+<p>«That was the joke.»</p>
+<p>«But—the other day—»</p>
+<p>Didn’t you get intimate with Shiina-san recently…!</p>
+<p>But Kiyotaka’s next words drowned out what I was about to say.</p>
+<p>«That was simply, well. I wanted to test whether you would became jealous or not, I suppose.»</p>
+<p>Then… so there really isn’t anything between him and Shiina-san?</p>
+<p>In other words, he wanted to see my reaction to watching that?</p>
+<p>So—well, Kiyotaka is, in other words, eh…</p>
+<p>«If this is a joke, this is the last chance to take it back… You do know that, don’t you?»</p>
+<p>If that was his idea of teasing, it would be a huge shame and disgrace on my part.</p>
+<p>Our relationship will most likely break apart at once.</p>
+<p>I became unable to reply.</p>
+<p>No, maybe I had wanted it to be a joke.</p>
+<p>Since—if he was serious, that would mean, that I have to answer him too—</p>
+<p>«Of course it’s not a joke. May I hear your reply?»</p>
+<p>It’s not… a joke?</p>
+<p>You mean… you were serious?</p>
+<p>So, in other words, Kiyotaka came to like me?</p>
+<p>My mind went blank for a second, then it began to overflow.</p>
+<p>«…Y, y-y-y-y-y-you are asking that of me!?»</p>
+<p>Something inside me broke out and I started panicking, making a quite the commotion.</p>
+<p>«As I said earlier, you can look away, reject me, you can do what you wish to.»</p>
+<p>«I didn’t say I was going to ignore you! B-but, why!?»</p>
+<p>«By ‘why’ you mean?»</p>
+<p>«Well, that is, me… I mean… by the way, why today…?»</p>
+<p>It was so abrupt. All the frustration built up until now was turned upside down in dramatical fashion.</p>
+<p>«I wonder why. I’m not sure I can explain it very well, but there is one thing I can explain. I wanted to stop any other guy from getting you as their girlfriend.»</p>
+<p>So my lie had taken form in a most unlikely way inside his heart?</p>
+<p>«So you mean— You, you like… like… me?»</p>
+<p>I tried putting it into words, trying to confirm it. There’s no way I wasn’t going to.</p>
+<p>I wanted to hear his answer directly with my ears.</p>
+<p>«Yes, I love Karuizawa Kei.»</p>
+<p>I love Karuizawa Kei.</p>
+<p>I love Karuizawa Kei.</p>
+<p>I love Karuizawa Kei.</p>
+<p>W-haaaaaaa!!</p>
+<p>His voice was reverberating inside my brain like a ringing bell.</p>
+<p>«You answer is?»</p>
+<p>A-answer? What’s an answer? What should I say back to someone who said they liked me?</p>
+<p>‘I love you too!’ Do I have to say something that embarrasing!?</p>
+<p>Eh, eh? If I answer him, wouldn’t our relationship change here and there!?</p>
+<p>I wanted to answer, but the panic, the agony, my head just shorted out.</p>
+<p>No that’s wrong. I, have to admit it. That I’ve loved Kiyotaka from way back.</p>
+<p>But still, I’d had thought our relationship didn’t change, wouldn’t change. But I was wrong.</p>
+<p>«—I-I’ll let you go out… with me.»</p>
+<p>I answered him as if confessing something.</p>
+<p>But, he was somehow calm, didn’t cry, didn’t show a smile, just showing strong will.</p>
+<p>«Can I take it as you also liking me?»</p>
+<p>But he didn’t seem satisfied or something, like he wanted something else.</p>
+<p>«You want me to say it!?»</p>
+<p>«Yes, I want you to.»</p>
+<p>N-no way. Ah, I haven’t even prepared for any confessions at all!</p>
+<p>If I knew it would turn like this, I would have made some more effort and done something!</p>
+<p>The only saving grace was that I was planning to go out to eat with some friends. I’m so glad for that…</p>
+<p>Being dressed up like this, I mean.</p>
+<p>But I have to answer him here.</p>
+<p>As a boy and a girl. It was important to answer to the other person’s feelings.</p>
+<p>«…Well, you know? I mean, you know—….I, I lik…kinda… kinda, sorta…»</p>
+<p>I was so trying to be cool, but the voice I managed was so low I doubt it was audible.</p>
+<p>I didn’t like that weakness of mine so I added some words as I continued.</p>
+<p>«I also… like… fell for… It’s frustrating but…I-I admit, I admit it!»</p>
+<p>Indeed. I looked at his eyes and said it. He then reached out his hands and gently grabbed both of mine.</p>
+<p>«W-wait!? D-don’t say you wanted to kiss!?»</p>
+<p>«No. I won’t do that. Not yet.»</p>
+<p>He won’t do it yet!?</p>
+<p>A-ahem. It’s certainly too early, I mean. A kiss now, when my heart isn’t calming down would be…right.</p>
+<p>«—Well, if it’s only this…»</p>
+<p>As he held me in his arms, I thought he had grown a bit from before.</p>
+<p>«Hey, haven’t you gotten a bit taller?»</p>
+<p>«I may have.»</p>
+<p>From today, he and I started walking on the path of lovers together, unbelievably enough.</p>
+<p>How far does this path of happiness stretch on?</p>
+<p>Will this path go on forever?…</p>
+<p>That’s—</p>`,
+            7: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Honami Ichinose’s Spring Vacation - The Final Day -</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Honami Ichinose SS — Volume 11.5</p>
+
+<p>The last day of spring vacation. I met up with Chihiro-chan and Mako-chan and we went to the Keyaki mall together. It felt refreshing since it had been such a long vacation in which I’d often spent thinking alone.</p>
+<p>«Honami-chan, are you feeling well? Are you okay?» Mako-chan asked. Since I was usually always acompanied by someone so seeing me shutting myself in my room so often and not seeing each other made her worry.</p>
+<p>«No, everything is fine. Sorry for that, even when you invited me so many times. I was thinking about strategies for the second year, you could say. So I just wanted to think about how to proceed from now.»</p>
+<p>«That’s well and all but… Honami-chan, don’t think too much by yourself, discuss it with us too, okay?» Chihiro, who had been following the conversation, continued.</p>
+<p>The final term exams were already over so that was surely why they were so sensitive right now.</p>
+<p>«Yes, I’m relying on you all so if something happens, I’ll definitely talk to you.»</p>
+<p>That was my true feelings. But it was also true that I didn’t want to worry them unneccesarily.</p>
+<p>Class 1-B was losing big thanks to me during the final exam. I was forced into making a big decision.</p>
+<p>But that’s precisely why I need to choose my words carefully. I could easily worry them by what I said and that would be a loss to me.</p>
+<p>«Oh, don’t worry, really. I’m hundred percent fine! Spring vacation had me fully charged!»</p>
+<p>This spring break had given me new energy. A spring vacation unlike anything before. It was far more remarkable.</p>
+<p>It was a bit different from the usual ones where I went out and played with my friends.</p>
+<p>Even now, my chest felt hotter by thinking of Ayanokouji-kun and what had transpired on that day.</p>
+<p>When I’d revealed my weakness in his room, something that had been weighting on me, just poof, disappeared.</p>
+<p>I can still fight.</p>
+<p>I felt I once again that I could fight with Sakayanagi-san, Ryuuen-kun and Horikita-san and the others.</p>
+<p>Of course, whether we could compete with them we wouldn’t know until we try. But at least I avoided the worst case scenario: losing my will fight even before it happens.</p>
+<p>This is without doubt, due to Ayanokouji-kun. I’m not sure I’d be here without him. A treasured friend… a very, a very important…</p>
+<p>Somehow, the next words didn’t appear to me.</p>
+<p>How should I express it properly? There was a part of me that just refused to think about it.</p>
+<p>That’s because there is something I must not forget.</p>
+<p>The fact that we are in different classes. It was an unchangeable fact that we couldn’t mingle and meet with each other. Unlike last year where we could cooperate due to our class points being vastly different, the gap had closed.</p>
+<p>As Horikita said face to face with me, we had become rivals competing with each other.</p>
+<p>In other words, if we end up fighting, we shouldn’t be affected by personal feelings.</p>
+<p>What if, what if he and I were in the same class…</p>
+<p>Then all my worries would disappear and I could fight without any hesitation.</p>
+<p>«Stop stop. Don’t think any further…!»</p>
+<p>I shook my head with great vigor in order to calm down the feelings deep within me.</p>
+<p>«W-what is it, Honami-chan?»</p>
+<p>Mako-chan was surprised by my sudden headshake looked at my worriedly.</p>
+<p>«Sorry, sorry. It’s nothing.»</p>
+<p>I tend to become too relaxed around my close friends no matter what.</p>
+<p>I have to get myself together. It’s the last day of spring vacation after all. My friends were looking forward to meet me so I should stop thinking about this anymore.</p>
+<p>I should focus on the first period of our 2nd year for now.</p>
+<p>I will have proper time to think about it once the situation has calmed down and I get some time.</p>
+<p>We are still Class B, but we have almost no more leeway left.</p>
+<p>I intend to follow through with the same goal I had ever since the entrance ceremony last year when we all stood line in line. Standing still is not an option.</p>
+<p>—Tomorrow, a new war will come for Class 2-B.</p>`,
+            8: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The First Phone Call / Volume 11.75</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — Volume 11.5</p>
+
+<p>The spring break was about to end as it was only a single day left.</p>
+<p>And even the sun was beginning to set before I noticed it. It was soon bedtime.</p>
+<p>I wonder what my classmates are feeling right as they spend this last evening of the break.</p>
+<p>The same melancholy as when the weekend ends and Monday begins? Or maybe they are filled with hope for a new year?</p>
+<p>If you ask me, I’d say something similar… I was more or less looking forward to going to school next morning.</p>
+<p>There was of course a lot of difficulties around each corner.</p>
+<p>I don’t need to mention the bet with Horikita, but there was also the high possibility that the first grader from the White Room that Tsukishiro had mentioned had already blended themselves in. The list goes on. A pain in the butt, all of them.</p>
+<p>But I’m generally spending my days living as a student at this school.</p>
+<p>It’s not a bad thing to spend your holidays as leisurely, but the things that makes me feel the most fulfilled are the stuff that’s expected of students: studying and doing sports.</p>
+<p>And above all else—</p>
+<p>Something that has changed from last year.</p>
+<p>At precisely 10PM in the evening, my phone rang.</p>
+<p>I don’t even need to confirm who it is.</p>
+<p>Karuizawa Kei.</p>
+<p>She was a classmate, and now someone who was more than a friend.</p>
+<p>In other words, a call from someone belonging to the category I can describe as my ‘girlfriend’.</p>
+<p>Even though we’d been a couple for a few days already, we hadn’t actually met or kept in touch with one another.</p>
+<p>It was probably due to the fact that Kei still hadn’t sorted out our relationship yet.</p>
+<p>I hadn’t contacted her on my end either and just waited for the spring break to end. But on the last day, meaning today, I received a message at noon saying she wanted to talk by phone at 10PM this evening.</p>
+<p>And then, the time has come.</p>
+<p>«…Ya-hoo!»</p>
+<p>Immediately after receiving the call, I clumsily replied after a short pause.</p>
+<p>«Ah.»</p>
+<p>«Yikes, that’s blunt.»</p>
+<p>«Really? No, perhaps it was.»</p>
+<p>If asked whether I believe it sounded like something a boyfriend would say, I’ll definitely say no.</p>
+<p>«I was waiting for your call.»</p>
+<p>Does this sound boyfriend-like?</p>
+<p>I believed it did so I tried saying it.</p>
+<p>«Eeeeh!?»</p>
+<p>From the other side, a large scream along with the sound of something being toppled over made its way through the phone.</p>
+<p>«What happened? Are you alright?»</p>
+<p>«I-I’m fine! I just tumbled and fell from by bed. Ow ow…»</p>
+<p>Can that be called being ‘fine’?</p>
+<p>It seems like she’d calmed herself down after a deep breath after readjusting her position.</p>
+<p>«Did you wait for me? For my call?»</p>
+<p>«It’s normal for a boyfriend to wait expectantly for a call from his lover, isn’t it?»</p>
+<p>«That’s, well, true but… well, it sort of doesn’t sound like anything you’d say at all.»</p>
+<p>«I think that counts for both of us.»</p>
+<p>We were facing each other for the first time. I as me. She as her.</p>
+<p>At times doing something unexpected, other times saying something rash.</p>
+<p>It was hard to control it all.</p>
+<p>Thus, I decide not to think too much about it.</p>
+<p>Am I saying this stuff naturally? What about my actions?</p>
+<p>But even those are just the pleasures of love that I will be surrendering myself to.</p>
+<p>«Hmm, yes. Perhaps. I still don’t feel like it’s real… we really are dating, aren’t we?»</p>
+<p>«Of course we are.»</p>
+<p>«… Right, of course. I already knew that but… I thought that, if I asked you about your confession again, you would say that there never was a confession to begin with. That’s why I was a bit late calling you, Kiyotaka.»</p>
+<p>It seems that is the reason she never called me before now.</p>
+<p>«You know, it would have been fine for you to call me too, don’t you agree?»</p>
+<p>«I kinda wanted to wait for that call of yours.»</p>
+<p>It was a bit unfair and it was conveyed to her since she still looked a bit glum.</p>
+<p>But the conversation soon shifted to the topics of everyday life.</p>
+<p>«Ah, have you heard this? I just went out to eat with my friends and—»</p>
+<p>It wasn’t a meaningful conversation by any means, but to me it felt so novel and fresh.</p>
+<p>Our relationship up until now had been that of the one who uses, and one who was being used. Not that of friends or lovers.</p>
+<p>Our names or numbers weren’t stored on either of our phones either. I was usually the one who contacted her, not her.</p>
+<p>People would probably say it was a distorted relationship.</p>
+<p>But still, that was certainly the only thing connecting both of us.</p>
+<p>But that has been muted. Another world was spreading out before my eyes.</p>
+<p>«Are you even listening to me?»</p>
+<p>She noticed my lack of adequate replies and asked about it.</p>
+<p>‘I hear you, I hear you’ was my answer, which satisfied her and she continued talking.</p>
+<p>It was a conversation without any real topics.</p>
+<p>It had no relation to me.</p>
+<p>But still. It was small surprise to me that I thought it was a bit fun.</p>
+<p>«And by the way, Kiyotaka. How do I say this, don’t you have anything to share too?»</p>
+<p>She wasn’t satisfied by the fact that she was the only one bringing up any topics it seems, thus her request.</p>
+<p>Even if you ask me of that, those kind of things are a bit too much for me. Or rather, I’m aware that I’m bad at this.</p>
+<p>No, that’s precisely why I had to challenge myself.</p>
+<p>«Let’s see…»</p>
+<p>I wonder how long I talked for after that?</p>
+<p>I’m a bit surprised at how much I talked about all this triffle stuff that I’d never done before.</p>
+<p>It was stuff that other people wouldn’t find any interesting.</p>
+<p>But Kei was listening, clearly enjoying herself no matter what.</p>
+<p>Sometimes she laughed, sometimes she made some quip back at me.</p>
+<p>And then the conversation shifted towards the unexpected.</p>
+<p>As the sandman was about to unleash his drowsiness upon me, I checked the clock. It was soon 11PM.</p>
+<p>Which means we must have talked for about an hour.</p>
+<p>It wasn’t a far stretch to say it had been the longest phone call we’ve done by far.</p>
+<p>«We should probably end this call soon.»</p>
+<p>It would be best to hang up soon, considering what’s laying in store for tomorrow.</p>
+<p>«That’s, true.»</p>
+<p>She also seemed to understand as she didn’t oppose it.</p>
+<p>«See you tomorrow. Good night, Kiyotaka.»</p>
+<p>«Good night, Kei.»</p>
+<p>We called it quits after calling each others’ names.</p>
+<p>«Well, then—». She said at last, but somehow she didn’t end the call.</p>
+<p>«What’s up?»</p>
+<p>«It’s, I feel it’s a bit hard for me to end it…»</p>
+<p>She expressed her reasoning for it.</p>
+<p>«…So, can you do it instead?»</p>
+<p>«Understood.»</p>
+<p>I tapped the button to end the call without hesitation.</p>
+<p>«Well then, time to prepare myself before going to bed.»</p>
+<p>That was my intention but…</p>
+<p>Kei called me again even though we’d ended the call mere seconds ago.</p>
+<p>Did she forget to tell me something?</p>
+<p>«What’s u——»</p>
+<p>«You didn’t even hesitate a bit, did you! Why!»</p>
+<p>An ear-splitting scream.</p>
+<p>I instinctly held my phone away from my ear, but I could still hear her loud and clear.</p>
+<p>«Shouldn’t you, you know, show some hesitation at least!?»</p>
+<p>«…I mean, isn’t that normal for ending a call?»</p>
+<p>The flow of the conversation went like, we had to prepare for tomorrow so let’s end the call. Both of us should have been on the same paper.</p>
+<p>But Kei didn’t seem to like how I ended the call it seems.</p>
+<p>«B-but, we had so much fun, didn’t we!»</p>
+<p>«Yes. It’s the first time I’d enjoyed myself like this.»</p>
+<p>«Then, how do I say this, don’t you feel a little bit sad to see it end as well?»</p>
+<p>If she meant that she wanted to talk more and the time permits it, then sure.</p>
+<p>«A bit.»</p>
+<p>«No way I sense that from you!»</p>
+<p>Not accepting my answer, she continued through grinded teeth.</p>
+<p>It was good I didn’t put my phone too close to my ear.</p>
+<p>I seemed to have hit the nail right on the head as she went on nitpicking everything.</p>
+<p>From where that good mood we had earlier had disappeared to, I don’t like this, I don’t like that, even our exciting conversation earlier.</p>
+<p>So this is what they call a woman’s heart.</p>
+<p>In that case, I’d need some more time to analyse it.</p>
+<p>«Huff, puff. … Ah, I feel so refreshed.»</p>
+<p>After venting all that and letting it all losse, she seemed to have regained control of her feelings.</p>
+<p>«So… what should I do?»</p>
+<p>«About what?»</p>
+<p>«It’s almost 11:15PM already, you know.»</p>
+<p>«Ah…»</p>
+<p>Ever since she tried to end the call, the clock never stopped and time continued to chug along.</p>
+<p>«Maybe you should end it after all, Kei.»</p>
+<p>«Maybe, so.»</p>
+<p>Perhaps she was worried about when I was going to end the call, but she somehow objected to that.</p>
+<p>«You should end it. Do it properly this time, okay?»</p>
+<p>«…Properly?»</p>
+<p>I just received an unexpected, unpleasant task.</p>
+<p>«That’s right. In a way that won’t rub me the wrong way. Won’t you fulfill this cute wish from your girlfriend?»</p>
+<p>She said impishly as if she’d just mounted me and taken the initiative.</p>
+<p>«A wish? Cute girlfriend?»</p>
+<p>«What? You have some complaints?»</p>
+<p>«No, not at all.»</p>
+<p>I stood up and headed for my computer.</p>
+<p>I might find some clues on the net.</p>
+<p>«Just so you know, browsing or anything similar won’t do you any good. I’m listening closely so I’ll know if you do.»</p>
+<p>She cornered me as if she’d read my moves.</p>
+<p>She sure isn’t some weak girl, I thought in admiration.</p>
+<p>In that case the only option for me is to pave out a way with my own strength.</p>
+<p>It’s a trial for me who wished for this relationship to begin with.</p>
+<p>«—Let’s see.»</p>
+<p>I’ll start after a short pause. The reason why I ended the call. Some kind of theory that won’t upset her.</p>
+<p>«It’s true I hanged up without hesitation. But, that wasn’t because I thought lightly of you.»</p>
+<p>What would be the best words to use in order to bring a call to an end?</p>
+<p>I said what I thought out loud.</p>
+<p>«It’s a bit sad to end the conversation, true. But that just means we can see each other tomorrow. Don’t you feel the same as well?»</p>
+<p>«…Yes. I also want to see you, Kiyotaka…»</p>
+<p>It has been some time since the confession.</p>
+<p>Naturally, the desire to meet one another would get stronger the time had passed.</p>
+<p>«That’s why we should let the time flow. That’s what I think. Taking our time and talk until late at night is fine for me as well. But then today will never end.</p>
+<p>«Yes…»</p>
+<p>«I want to see you. The reason I didn’t hesitate ending the call is because of those feelings I think.»</p>
+<p>«…I see, yes, that’s why…»</p>
+<p>«Do you follow me?»</p>
+<p>«Well, yeah. I’ll give you a pass for this time.»</p>
+<p>She didn’t seem that dissatisfied anymore. I could hear a soft, composed nod through the speaker.</p>
+<p>«Since you find it difficult, I’ll end the call for you. Fine with you?»</p>
+<p>«Got it. We may not… get the chance to talk tomorrow at school but… I’m looking forward to it.»</p>
+<p>«Indeed.»</p>
+<p>Following the flow of the conversation, I pressed the button to end the call.</p>
+<p>She didn’t call me again, obviously.</p>
+<p>Our relationship had changed, but Kei decided to keep it hidden for the time being.</p>
+<p>Our chances to talk openly at school will be limited until it goes public.</p>
+<p>But stealing glances at each other from time to time should be possible.</p>
+<p>At last, the spring break announced its leave, with nothing left undone.</p>
+<p>My new school life is starting tomorrow.</p>
+<p>If only it could be calm and peaceful.</p>
+<p>This wish of mine hasn’t changed even now.</p>
+<p>The best would be to leisurely ride down this riverbed in a small boat.</p>
+<p>Whether it’s academics, sports or love. There is no knowing where the current will start raging.</p>
+<p>That’s——the fun part of school life.</p>`
+        }
     }
 ];

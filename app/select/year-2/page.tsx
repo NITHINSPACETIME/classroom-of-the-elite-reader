@@ -2,6 +2,7 @@ import { volumes, shortStories, VolumeData } from "@/data/year2";
 import Year2Client from "./Year2Client";
 import { Suspense } from "react";
 
+
 export const dynamic = 'force-static';
 
 export default function Year2Page() {
