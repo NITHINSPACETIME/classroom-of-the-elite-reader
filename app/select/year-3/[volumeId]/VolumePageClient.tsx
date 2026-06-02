@@ -2,7 +2,7 @@
 
 import { volumes, shortStories } from "@/data/year3";
 import { getSpineIndex } from "@/lib/chapter-mappings";
-import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon, ArrowRight } from "lucide-react";
+import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon, ArrowRight, Lock } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
@@ -34,6 +34,43 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
     const [profileModalOpen, setProfileModalOpen] = useState(false);
 
     const [savedChapterIndex, setSavedChapterIndex] = useState<number>(0);
+
+    const [timeRemaining, setTimeRemaining] = useState("24:00:00");
+    const [isChapter6Locked, setIsChapter6Locked] = useState(true);
+
+    useEffect(() => {
+        if (volumeId !== 'y3v4') return;
+        
+        const storageKey = `lock-time-${volumeId}-ch6`;
+        let targetTime = localStorage.getItem(storageKey);
+        if (!targetTime) {
+            const newTarget = Date.now() + 24 * 60 * 60 * 1000;
+            localStorage.setItem(storageKey, newTarget.toString());
+            targetTime = newTarget.toString();
+        }
+        
+        const targetTimestamp = parseInt(targetTime);
+        
+        const updateTimer = () => {
+            const now = Date.now();
+            const diff = targetTimestamp - now;
+            if (diff <= 0) {
+                setTimeRemaining("00:00:00");
+                setIsChapter6Locked(false);
+            } else {
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                const pad = (num: number) => String(num).padStart(2, '0');
+                setTimeRemaining(`${pad(hours)}:${pad(minutes)}:${pad(seconds)}`);
+            }
+        };
+        
+        updateTimer();
+        const interval = setInterval(updateTimer, 1000);
+        return () => clearInterval(interval);
+    }, [volumeId]);
 
     useEffect(() => {
         if (!user || !volume) return;
@@ -341,6 +378,55 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                         const originalIndex = volume.chapters.indexOf(chapter);
                                         const { type, number, full } = getChapterDisplay(chapter, originalIndex);
                                         const isCurrent = hasStarted && originalIndex === savedChapterIndex;
+                                        const isLocked = volume.id === 'y3v4' && originalIndex === 6 && isChapter6Locked;
+
+                                        const itemContent = (
+                                            <div className={`group flex items-start justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 gap-3 ${
+                                                isLocked 
+                                                    ? 'bg-white/[0.02] border-white/5 opacity-50 cursor-not-allowed select-none' 
+                                                    : isCurrent 
+                                                        ? 'bg-emerald-900/10 border-emerald-900/30 cursor-pointer' 
+                                                        : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20 cursor-pointer'
+                                            }`}>
+                                                <div className="flex items-start gap-3 flex-1">
+                                                    <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${
+                                                        isLocked
+                                                            ? 'text-zinc-500 bg-zinc-950/40 border border-zinc-800/20'
+                                                            : type === 'CH' 
+                                                                ? (isCurrent ? 'text-emerald-200 bg-emerald-950/40' : 'text-emerald-200 bg-emerald-950/30') 
+                                                                : 'text-emerald-400 bg-emerald-950/50'
+                                                    }`}>
+                                                        {type === 'SS' ? `SS ${number}` : `${type} ${number}`}
+                                                    </span>
+                                                    <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${
+                                                        isLocked
+                                                            ? 'text-zinc-500'
+                                                            : isCurrent 
+                                                                ? 'text-emerald-200' 
+                                                                : 'text-gray-300 group-hover:text-white'
+                                                    }`}>
+                                                        {isSideStory && full.includes(" : ") ? (() => {
+                                                            const [narrator, title] = full.split(" : ");
+                                                            return (
+                                                                <span className="flex flex-col md:block">
+                                                                    <span className="font-bold text-emerald-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
+                                                                    <span className="text-gray-300">{title}</span>
+                                                                </span>
+                                                            );
+                                                        })() : full}
+                                                        {isCurrent && <span className="ml-2 text-xs text-emerald-400 font-normal animate-pulse">(Current)</span>}
+                                                    </span>
+                                                </div>
+                                                {isLocked ? (
+                                                    <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-xs md:text-sm shrink-0 mt-0.5">
+                                                        <Lock className="w-3.5 h-3.5" />
+                                                        <span>{timeRemaining}</span>
+                                                    </div>
+                                                ) : (
+                                                    <ArrowLeft className="shrink-0 w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
+                                                )}
+                                            </div>
+                                        );
 
                                         return (
                                             <motion.div
@@ -349,30 +435,15 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: 0.1 + (originalIndex * 0.03) }}
                                             >
-                                                <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
-                                                    <div className={`group flex items-start justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 cursor-pointer gap-3 ${isCurrent ? 'bg-emerald-900/10 border-emerald-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}>
-                                                        <div className="flex items-start gap-3 flex-1">
-                                                            <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-emerald-200 bg-emerald-950/40' : 'text-emerald-200 bg-emerald-950/30') : 'text-emerald-400 bg-emerald-950/50'}`}>
-                                                                {type === 'SS' ? `SS ${number}` : `${type} ${number}`}
-                                                            </span>
-                                                            <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-emerald-200' : 'text-gray-300 group-hover:text-white'}`}>
-                                                                {isSideStory && full.includes(" : ") ? (() => {
-                                                                    const [narrator, title] = full.split(" : ");
-                                                                    return (
-                                                                        <span className="flex flex-col md:block">
-                                                                            <span className="font-bold text-emerald-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
-                                                                            <span className="text-gray-300">{title}</span>
-                                                                        </span>
-                                                                    );
-                                                                })() : full}
-                                                                {isCurrent && <span className="ml-2 text-xs text-emerald-400 font-normal animate-pulse">(Current)</span>}
-                                                            </span>
-                                                        </div>
-                                                        <ArrowLeft className="shrink-0 w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
-                                                    </div>
-                                                </Link>
+                                                {isLocked ? (
+                                                    itemContent
+                                                ) : (
+                                                    <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
+                                                        {itemContent}
+                                                    </Link>
+                                                )}
                                             </motion.div>
-                                        )
+                                        );
                                     })
                                 ) : (
                                     <div className="text-center text-gray-500 py-10">
