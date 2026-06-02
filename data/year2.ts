@@ -2844,11 +2844,291 @@ export const shortStories: VolumeData[] = [
             "Hiyori Shiina : A Small Spark",
             "Ai Morishita : Atop the Cold Bench",
             "Arisu Sakayanagi : Feeling of Melancholy",
-            "Kiyotaka Ayanokōji : Ever Since That Time... / Year 2 Volume 10.25"
+            "[Special] Ichinose Honami : Ever Since That Time..."
         ],
-        characters: ["Suzune Horikita", "Hiyori Shiina", "Ai Morishita", "Arisu Sakayanagi", "Kiyotaka Ayanokōji"],
+        characters: ["Suzune Horikita", "Hiyori Shiina", "Ai Morishita", "Arisu Sakayanagi", "Kiyotaka Ayanokōji", "Honami Ichinose"],
         coverImage: "/assets/y2v10.jpg",
-        inProgress: true,
+        inProgress: false,
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Unconcious Awakening</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Suzune Horikita SS — 2nd Year Volume 10</p>
+
+<p>“It’s not something worth telling other people. There are things I’d like to keep to myself as well.”</p>
+<p>As for me, I harboured a strong interest in Ayanokouji-kun’s past, but it would indeed be considered untactful to pry any further.</p>
+<p>“It’d be better for us to have a breather and take it easy.”</p>
+<p>That’s certainly true. My throat was rather dry, and I was starting to feel a bit exhausted.</p>
+<p>“R-right.”</p>
+<p>As if to adhere to his advice, I took the coffee cup I had completely forgotten about into my hands.</p>
+<p>Bringing it to my mouth, the coffee I thought was still hot had chilled far beyond my expectations.</p>
+<p>“It has gotten cold.”</p>
+<p>“It’s cold.”</p>
+<p>As I unconsciously said that in a natural manner, Ayanokouji-kun too had simultaneously uttered something to the same effect.</p>
+<p>“Stop copying me.”</p>
+<p>“Don’t copy me.”</p>
+<p>When I found that displeasing and said that, once again similar words coincidentally overlapped one another.</p>
+<p>At that instant, I found the overlapping of words which I felt dissatisfied a moment ago, strangely comical.</p>
+<p>I ended up smiling.</p>
+<p>Sitting in front of me, he too smiled just a bit as if he found it comical as well.</p>
+<p>“Eh───?”</p>
+<p>“What’s wrong?”</p>
+<p>His expression was the same as usual.</p>
+<p>However, the visage he showed just a moment ago, how do I put it, it was just so refreshing……</p>
+<p>That it caused my eyes to burn the image into my mind so I wouldn't forget.</p>
+<p>With regards to the question he asked wonderingly, I wonder what’s the correct thing to answer.</p>
+<p>“No……um……It’s just……you smiled a bit just now, so……”</p>
+<p>“Hmm? And, what about it?”</p>
+<p>“I mean, that expression of yours, I feel like I haven't seen that even once throughout these two years……”</p>
+<p>“How rude. It’s not like I’m a baby who smiled for the first time.”</p>
+<p>The act of smiling is something ordinary. However, the person in front of me is none other than Ayanokouji-kun.</p>
+<p>It's just that those expressions don't suit him no matter what, that's why……</p>
+<p>“It might’ve indeed been something rare.”</p>
+<p>Per my pointing it out, Ayanokouki-kun ended up thinking about it seriously for some reason.</p>
+<p>“I wonder why I had smiled. Since you smiled as well, would you know why?”</p>
+<p>A serious countenance.</p>
+<p>I couldn't even imagine that there exists an individual who’d ask something so stupid seriously.</p>
+<p>At that moment, a mysterious sensation sprouted within me.</p>
+<p>Unable to look directly into his earnest eyes and question, I was hit with the urge of wanting to run away.</p>
+<p>“E-even if you ask me something like that with such a serious face, I wouldn't know.”</p>
+<p>So I ran away.</p>
+<p>You have to obey your instincts to flee right now, I listened to my brain issuing such a command.</p>
+<p>“So nothing especially funny or interesting had occurred. Is that what you mean?”</p>
+<p>Even so, he kept asking in pursuit. At this rate, I’m only left with the choice of forcefully cutting this conversation asunder.</p>
+<p>“……Like I said, I wouldn't know even if you asked me. Because of your strange way of thinking, it's making me out as an idiot for smiling as well……”</p>
+<p>Drinking the remaining water-like coffee that had lost all its taste, I decided to return home.</p>
+<p>I don't know the reason as to why, but I must’ve ended up feeling unpleasant.</p>
+<p>That must be it.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">A Small Spark</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Hiyori Shiina SS — 2nd Year Volume 10</p>
+
+<p>I honestly conveyed my uneasiness to Ayanokouji-kun.</p>
+<p>Normally, you wouldn't tell an individual from another class something related to your own class’s weakness.</p>
+<p>However, Ayanokouji-kun is a different case.</p>
+<p>I know he wasn’t the type of individual to take advantage of that uneasiness. Rather, he’s someone who would speak in consideration of me.</p>
+<p>“You can't exactly say it's a standard, straightforward tactic, after all. In terms of the class’s abilities, it's at a standstill.”</p>
+<p>As if to back that up, Ayanokouji-kun said whilst having a proper understanding.</p>
+<p>The uneasiness I’m feeling.</p>
+<p>A small spark.</p>
+<p>That being the internal problem my class bears.</p>
+<p>Katuragi-kun is probably the only other person who is aware of it. He’s someone who has things put together far better than I do, so he’s always by Ryueen-kun’s side and keeping an eye on him.</p>
+<p>Sharing both the good and the bad closely together, and giving suitable advice.</p>
+<p>“The piece that's necessary for us to rise to Class A, is simultaneously something that will hinder us. It's a pickle.”</p>
+<p>Two sides of the same coin. It's something you can't easily sever; a difficult problem.</p>
+<p>“If there are students that are aware of that, there still is hope.”</p>
+<p>Saying that, it seemed that Ayanokouji-kun understood the situation, as he tried to pull me up.</p>
+<p>“I plan on going to the library after this, so what about going together?”</p>
+<p>“No, I’ll pass. There’s something else that's caught my attention, after all.”</p>
+<p>“Ayanokouji-kun has a lot on his hands too, I see.”</p>
+<p>“I didn't really do anything that big of a deal, you know?”</p>
+<p>“Let's go together next time.”</p>
+<p>Parting ways with Ayanokouji-kun who nodded at that, I decided to head towards the library on my own.</p>
+<p>“…..I’m no good as well, aren't I?”</p>
+<p>Even though I should be thinking about the class as my central focus, merely meeting Ayanokouji-kun ended up making me have fun, that I almost forgot about that.</p>
+<p>In the first place, Ayanokouji-kun has a girlfriend-san that he should cherish.</p>
+<p>Even thinking this way made me feel apologetic.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Atop the Cold Bench</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Ai Morishita SS — 2nd Year Volume 10</p>
+
+<p>Today, I sat at a certain place to meet Ayanokouji Kiyotaka.</p>
+<p>The bench one must pass on the way back from school to Keyaki Mall.</p>
+<p>Sitting here, I didn't do much else but wait in silence.</p>
+<p>But out of nowhere, I started to feel a bit displeased with my posture.</p>
+<p>“Nn… I don't feel comfortable…”</p>
+<p>It was no good utilising the backrest of the bench, or even moving away from it and straightening my back.</p>
+<p>Just how will I be able to be released from this unpleasantness?</p>
+<p>As a result after trying various things out and engaging in trial and error, I ended up being liberated by lying face-down on the bench.</p>
+<p>“Ahh, I feel at ease…”</p>
+<p>The cool wooden plank touching my face, it was bueno.</p>
+<p>And now, I’ll just sit back and wait for his appearance.</p>
+<p>Ah, but I’m not sitting back, so…. lay back and wait?</p>
+<p>(TLN: she says 座して彼の登場を待つだけ｡ the common idiom is 座して〇〇を待つ but since she isnt sitting down she saying, “So is it 寝して〇〇を待つ?” So to give an easy-to-understand example, think about you saying break a leg to Sakayanagi, but correct yourself because her legs are already broken.)</p>
+<p>…Well, it doesn't matter.</p>
+<p>In any case, let’s continue to pass the time in this comfortable position.</p>
+<p>“Is she dead?”</p>
+<p>Finally hearing his voice, I felt relieved.</p>
+<p>Because if he had me wait any longer, I might've frozen to death.</p>
+<p>I was gradually feeling more floaty and was about to succumb to the invitation of drowsiness.</p>
+<p>“No way no way.”</p>
+<p>“Correct. I am not dead,” I said in response to Karuizawa Kei’s accurate answer.</p>
+<p>“What were you doing in a place like this?” she said.</p>
+<p>“Are you curious?”</p>
+<p>“It’ll be a lie if I said I’m not curious, bu───”</p>
+<p>“Then, let me explain. As a matter of fact, I had been waiting for Ayanokouji Kiyotaka.”</p>
+<p>Looking at the sequence of events thus far, I’m aware that he is no ordinary student.</p>
+<p>That's why I’d like to observe in an even closer vicinity.</p>
+<p>I’d like to confirm things with my own eyes.</p>
+<p>After all, there's nothing better than having many companions with whom you can share factual information.</p>
+<p>In order for Class A to continue being Class A.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Feeling of Melancholy</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — 2nd Year Volume 10</p>
+
+<p>“───I don't like it. This manner of speech of yours that says I have to receive your assistance.”</p>
+<p>I let those words fly in order to reject Ayanokouji-kun.</p>
+<p>“That’s why I’m here. I’m standing here right now in order to help you.”</p>
+<p>But he was completely unfazed, simply explaining the reason why he was here in an indifferent manner.</p>
+<p>Being able to say embarrassing things easily; things that even if were to come to one's mind, could not be put into words due to embarrassment.</p>
+<p>It truly was an action typical of Ayanokouji-kun.</p>
+<p>“Your miscalculation is Kamuro’s existence; she was a far bigger existence than what you’d thought on the surface level. You arbitrarily concluded that she was no different from the other trifling masses—no, you wanted to believe it was the case—and chose to make the decision with something like lots.”</p>
+<p>Even if I didn't want them to, his words continued to seep into my heart.</p>
+<p>An obvious manipulation of the heart and mind. Blunt statements that I’d normally be aversed to.</p>
+<p>And yet.…..they ended up resonating strongly in my heart. The words of none other than Ayanokouji-kun.</p>
+<p>“I……”</p>
+<p>He really is an awful person. It doesn't matter if one is remarkable or not, he ignores that and surpasses their defences without batting an eye. Finding a gap in my heart that I don't show anyone.</p>
+<p>“In all my years of elementary school, junior high, and compulsory education, I had never made a single friend, if I were to be frank. I just could never match my stride with those low-level, immature existences.”</p>
+<p>(TLN: That’s because your legs don't work lol)</p>
+<p>The things I sensed, the things I had understood but pretended I didn't realise.</p>
+<p>He barged in on them without batting an eye; things I didn't want other people to know[1]</p>
+<p>“It is the same at this school either. Masumi-san, Hashimoto-kun, Kitou-kun are no different. I had kept them close to me, but that was merely to have them as my arms and legs. I’d thought it was nothing more or less than that. I’d thought they were as good as strangers.”</p>
+<p>Before I knew it, I ended up talking about it. I ended up wanting him to know.</p>
+<p>A person who could easily understand me, whom nobody could understand.</p>
+<p>“That’s why I‘d thought it'd be the same no matter who disappears, but……”</p>
+<p>In this special exam, I had made a mistake. And he had prepared a stage for me to repent for that.</p>
+<p>“It would seem that I’d come to consider Masumi-san as a friend without me realising.”</p>
+<p>By putting it into words, I gradually felt more alleviated.</p>
+<p>Really───he’s an awful person. [2]</p>
+<p>Repeatedly, I looked at Ayanokouji-kun and thought as such.</p>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Ever Since That Time...</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Ichinose Honami SS — 2nd Year Volume 10.25 (Special)</p>
+
+<p>AFTER THE SURVIVAL and elimination special exam ended, the first break arrived.</p>
+<div class="my-8 flex justify-center">
+  <img src="/assets/y2v10_special.jpg" alt="Ichinose Honami - Ever Since That Time..." class="rounded-lg shadow-2xl max-w-full md:max-w-xl border border-gray-800 transition-transform duration-300 hover:scale-105" loading="lazy" decoding="async" />
+</div>
+<p>I went to the gym without anyone telling me to.</p>
+<p>After training alone for a while and sweating it out, I headed to the rest area. Sitting on a chair, partly to cool down, I remembered something and took out my phone.</p>
+<p>Then, I searched for a certain word.</p>
+<p>"…I see."</p>
+<p>I could only be convinced after looking at the article that came up.</p>
+<p>While admiring the photos in the article alone, I heard…</p>
+<p>"Good morning, Ayanokouji-kun."</p>
+<p>"Morning."</p>
+<p>The ones who appeared in the rest area were Ichinose and Amikura. They seemed to have come to the gym.</p>
+<p>"Oh, that's a cute photo. It's a red panda, right?"</p>
+<p>Amikura squinted and asked, having seen my phone screen.</p>
+<p>"Yeah. I was just doing some research."</p>
+<p>I turned off the screen as if to dodge the question, but Ichinose seemed to have some insight.</p>
+<p>"Is it related to the exam question? Ayanokouji-kun, you got it wrong, didn't you?"</p>
+<p>It was the special exam from the other day.</p>
+<p>It was a memorable moment, so there was no way they would’ve forgotten, even if it was about another class.</p>
+<p>"Now that you mention it, you got the tapioca question wrong too. Are you surprisingly that ignorant of the world?"</p>
+<p>Hearing Ichinose's words, Amikura also seemed to understand and asked.</p>
+<p>"I can't deny it. Probably because I hardly ever watch TV."</p>
+<p>I offered the most common excuse, but both of them just smiled wryly.</p>
+<p>"Honestly, I didn't think not liking TV would backfire like that."</p>
+<p>"Is that really the problem? These things garnered quite a buzz on the internet too, didn't they?"</p>
+<p>Amikura expressed her doubt; perhaps my not-watching-TV excuse wasn’t persuasive enough.</p>
+<p>"We've discovered an unexpected weakness, huh?"</p>
+<p>Ichinose chuckled at my confused expression.</p>
+<p>Right after, Akiyama, a member of the gym staff, appeared and called out to Ichinose.</p>
+<p>There seemed to be a mistake in some paperwork she had filled out, and she was asked to rewrite it, so they both headed toward the counter.</p>
+<p>They’d probably be back soon, but for the moment, it was just me and Amikura left to ourselves.</p>
+<p>Feeling it’d be strange to leave just then, I decided to either wait until Ichinose came back or leave on my own once Amikura left.</p>
+<p>Since we came to the gym together, Amikura probably intended to wait for Ichinose to return as well.</p>
+<p>I sat down on a chair, leaving one empty next to me.</p>
+<p>"Honami-chan’s really changed, huh? It's like, unimaginable when you think about how she was like a few months ago…"</p>
+<p>"Is that so?"</p>
+<p>Indeed. Recently, Ichinose started showing a side of herself that she hadn't before.</p>
+<p>But to say it was achieved after only a few months was an exaggeration.</p>
+<p>It wasn't surprising, as the changes in Ichinose that Amikura mentioned weren't about the current situation.</p>
+<p>"It was right after our second-year deserted island exam ended, and the second term had just started, I think."</p>
+<p>Amikura began to speak, smiling as if recalling something funny.</p>
+<p>"Back then, Honami-chan seemed unstable, or rather, she was often lost in thought."</p>
+<p>"The deserted island exam, huh?"</p>
+<p>Hearing that, I caught up with Amikura's story.</p>
+<p>That was when I received an unexpected confession from Ichinose and told her about Kei.</p>
+<p>Considering Ichinose's feelings, it wasn't surprising that she seemed unstable to others.</p>
+<p>"Right around that time, a little incident happened in the class… Oh, but keep this story between us, okay? Don't tell Honami-chan."</p>
+<p>I don't intend to tell, but it felt like this might turn into something I'd have to bear a bit of responsibility for hearing.</p>
+<p>"I don't think he had any malicious intentions, but there was a time when a boy in the class accidentally overheard a rumor that Honami-chan might like you. Well, it all started with a message that Honami-chan sent by mistake…"</p>
+<p>Apps were convenient since you could send messages with just a press of a button. Therefore, it wasn’t uncommon to mistakenly send a message to someone other than the intended recipient due to a misclick. Even if you could delete your message, sometimes the message gets seen before it can be retracted.</p>
+<p>For a while after the deserted island exam, Ichinose was going through a mentally unstable period.</p>
+<p>It wouldn't be surprising if she made a small mistake.</p>
+<p>"I didn't see the text myself, but I think it was something like, 'I want to calm down and talk. Can we meet in person?' Taken out of context, it sounds quite meaningful, right?"</p>
+<p>"Yeah, that's true. So, the classmate Ichinose mistakenly sent her message to was a boy?"</p>
+<p>"Different class. Though, the problem lies in who she accidentally sent it to. That person was Ishizaki-kun, and during the break, he came to our class and boldly asked, 'What does this message mean?' while showing the screen."</p>
+<p>Apparently, that caused a stir. The fact that the misdirected recipient was Ishizaki meant the message wasn't taken too seriously, which was a relief, but on the other hand, it was problematic that he thoughtlessly came to check the message with the person involved.</p>
+<p>However, it wasn’t unusual for Ichinose to be on casual messaging terms with Ishizaki.</p>
+<p>"Honami-chan was flustered but immediately corrected it, telling him it was a missent message. Ishizaki-kun was convinced and went back to his class, but the difficulties was what followed. The fact that it was a mistakenly sent message meant that she intended to send that important message to someone else."</p>
+<p>That might’ve sparked the rumors among the boys in the class.</p>
+<p>"But why does that lead to me?"</p>
+<p>"You'd understand if you saw it, right?"</p>
+<p>For some reason, I was met with a somewhat forceful smile.</p>
+<p>"Well, that's limited to those with sharp intuition… The boys started making noise for a different reason. Ayanokouji-kun, maybe it’s because your 'A' and Ishizaki-kun's 'I' are close in the contact list, which is arranged in alphabetical order. There are other names close by, but you and Honami-chan are often seen together…"</p>
+<p>The accumulation of past events and the missent message to Ishizaki led to such speculation.</p>
+<p>"Honami-chan is always bright and composed, but she gets quite flustered when it comes to matters concerning herself. Maybe she couldn't come up with a good excuse at that time, and she turned pale with her eyes drawn to the floor."</p>
+<p>It seemed to be another difficult situation.</p>
+<p>Somehow, I could picture the scene at that time.</p>
+<p>I can't tell the truth.</p>
+<p>But I can't pin it on just anyone either.</p>
+<p>And since I just said it was sent to the wrong person, I can’t pretend it never happened.</p>
+<p>Even though I wandered into this myself, it feels like I’ve approached a dead end.</p>
+<p>"Catching sight of the scene, from our point of view, it was very rare to see Honami-chan like that."</p>
+<p>Basically, Ichinose was a very capable person.</p>
+<p>She’d usually overcome most things and could resolve situations herself.</p>
+<p>However, as Amikura described, this was a period when she was in poor condition.</p>
+<p>"We were watching over her for a while, but it gradually started to feel heavy. Boys who didn't think it was you started to wonder if she was planning to confess to someone."</p>
+<p>She couldn't sort it out by herself, and the situation only worsened with her silence.</p>
+<p>"How did she get through that predicament?"</p>
+<p>It wasn’t easy to imagine Ichinose pulling off a miraculous recovery from there.</p>
+<p>"Like me, the girls knew who Honami-chan intended to send it to. We secretly discussed how to help and stepped in to support her."</p>
+<p>Apparently, they managed to get through the situation by working together.</p>
+<p>There was a girl who had sought love advice from Ichinose, and she had been thinking of a reply to her.</p>
+<p>The message was mistakenly sent during that exchange.</p>
+<p>The silence was out of consideration for the possibility of it leading back to that girl.</p>
+<p>It was a result of her trying to protect that girl's privacy.</p>
+<p>With testimonies from several people, most of the boys immediately corrected their misunderstanding.</p>
+<p>"There was nothing to do but accept it, right?"</p>
+<p>"Yeah."</p>
+<p>It would be different if the girls were putting on a bad act, making it obvious they were covering for her, but judging from their tone, they must have handled it well.</p>
+<p>"Are you responsible for returning Honami-chan back to normal?"</p>
+<p>"I didn't do anything special. Ichinose just recovered with her own strength."</p>
+<p>"I see… but still, thank you."</p>
+<p>"You're thanking someone who didn't do anything?"</p>
+<p>"I just assume you're being modest. That's why I'm grateful."</p>
+<p>Whether I admit it or not, the truth seemed irrelevant.</p>
+<p>"But why tell me this? Is it because you thought I was the one who helped?"</p>
+<p>"No, it's a different matter."</p>
+<p>Amikura had been calm throughout, but her expression stiffened slightly.</p>
+<p>"You can tell if you look, but even now, Honami-chan sees you as someone very special. You’re the only one in this school who can have a strong influence on her, that's why."</p>
+<p>I realized that she wasn't just standing idly by while being friends with Ichinose.</p>
+<p>She understood her nature; she knew Ichinose Honami well.</p>
+<p>"I'm telling you this because… I don't want you to make Honami-chan sad or hurt her."</p>
+<p>She said this with a bit of difficulty, but her words were clear.</p>
+<p>"I don't intend to intentionally hurt her, but that's quite a difficult request."</p>
+<p>"Right."</p>
+<p>Amikura agreed without denying it.</p>
+<p>"Of course, I understand your position. It's not about whether you're dating. I just don't want her to be unnecessarily hurt."</p>
+<p>Upon answering, Amikura chuckled wryly and continued, muttering.</p>
+<p>"It's tough for Honami-chan, falling for a guy who has a girlfriend."</p>
+<p>"You're pretty straightforward, aren't you?"</p>
+<p>"I have a vague idea of you too. I figure you aren’t flustered, right?"</p>
+<p>"Maybe."</p>
+<p>Even if it wasn't today, Amikura must've been planning to have this conversation with me sooner or later.</p>
+<p>As gym buddies, a chance to be alone together would’ve come at some point.</p>
+<p>"I understand what you want to say. I'll deal with it well."</p>
+<p>I couldn't say anything for certain, so I asked for her understanding.</p>
+<p>"I'm sorry, it's not my place to tell you this as a third party."</p>
+<p>Amikura knew this, so she didn't press the issue too hard.</p>
+<p>"You can't just abandon her as a friend. It's not a bad thing."</p>
+<p>I showed my understanding, and Ichinose returned.</p>
+<p>"Sorry to keep you both waiting,"</p>
+<p>"No, not at all."</p>
+<p>Considering it was a conversation that was embarrassing for the person involved, Amikura was momentarily flustered.</p>
+<p>Ichinose, who had returned, didn't change her expression at all, but it wouldn't be surprising if she had realized something with her keen eyes.</p>
+<p>However, she didn't ask what we were talking about.</p>
+<p>Maybe it was just speculation, but perhaps Ichinose didn't want to make Amikura tell a clumsy lie.</p>
+<p>"Well then, I'm going to head home soon. See you two later."</p>
+<p>I said my goodbyes to Ichinose and Amikura and left the gym.</p>
+<p>I was unexpectedly told about a situation that occurred in Ichinose's class, but as soon as I stepped outside, I received a message.</p>
+<p>[Were you having another private talk with Mako-chan? About me?]</p>
+<p>She only came to check with me to avoid negatively impacting Amikura.</p>
+<p>Moreover, it seemed she was able to guess that we were talking about an issue concerning her.</p>
+<p>She was probably curious about what we talked about, but I couldn’t tell her because of the promise I made to Amikura.</p>
+<p>[Looks like you've got a good best friend.]</p>
+<p>So, I decided to reply with that.</p>
+<p>There was nothing to worry about, and it certainly wouldn't lower Amikura's position.</p>
+<p>Ichinose sent back a sticker with an illustration labeled 'super happy' in response to my message.</p>
+<p>: The Japanese “Alphabet” is ordered by the Gojuuon—this places the vowels あ(a) and い(i) directly next to each other.</p>`
+        }
     },
     {
         id: "ss-y2-v11",
@@ -2865,7 +3145,127 @@ export const shortStories: VolumeData[] = [
         ],
         characters: ["Sae Chabashira", "Hiyori Shiina", "Ai Morishita"],
         coverImage: "/assets/y2v11.jpg",
-        inProgress: true,
+        inProgress: false,
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Student Before Me</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Sae Chabashira SS — 2nd Year Volume 11</p>
+
+<p>After school, with the student-teacher meeting with Kouenji Rokusuke concluded, the counselling room regained its quietude.</p>
+<p>“Phew… Kouenji sure is a real piece of work?”</p>
+<p>The conversation didn't make any sense, and the sections I, the teacher, was supposed to fill out had become a total mess.</p>
+<p>Staring at the tablet screen that made me want to look away, I let out a sigh.</p>
+<p>His desired career path is to be a free spirit, he doesn't require interpersonal relationships, his concerns are body-building related, and so on.</p>
+<p>"Yeah, if I submit something like this, I can only imagine what I'll get back from the higher-ups."</p>
+<p>That being said, it's not like I can just falsify the contents with lies either.</p>
+<p>I guess I‘ll just have to clean up the wording a bit before submitting it as is.</p>
+<p>"If Kouenji was the only weirdo, it would certainly be a lot easier on me..."</p>
+<p>The last remaining student, Ayanokouji, has the potential to be just as difficult as Kouenji.</p>
+<p>Honestly, I can't even picture what our one-on-one is going to be like.</p>
+<p>As I was adjusting Kouenji's profile, there was a knock at the career counselling room door.</p>
+<p>"Excuse me."</p>
+<p>Along with that polite voice, Ayanokouji entered.</p>
+<p>"You've come, huh? Have a seat."</p>
+<p>I switched from Kouenji's profile to Ayanokouji's, displaying a blank list.</p>
+<p>I wonder just how much of this I'll be able to fill out after this meeting.</p>
+<p>“You look busy.”</p>
+<p>"As a homeroom teacher, I’d be busy this time of the year no matter what. That being said, I do feel a bit better knowing that the individual meetings are gonna be done today, though. Leaving the two weirdoes for last was the right call.”</p>
+<p>First off, let me instruct Ayanokouji to take a seat across from me.</p>
+<p>"The two weirdoes...you say?"</p>
+<p>"What, are you shocked being lumped in the same category as Kouenji?"</p>
+<p>Their demeanours are totally different, but there’s no denying that they're both weirdoes.</p>
+<p>“I’d be lying if I said I didn't feel anything about that.”</p>
+<p>"You think Kouenji's the bigger wierdo? Well, I get feeling that way, but to me, there's not much difference between you two. You're quite the weirdo yourself."</p>
+<p>Well, one thing's for sure—he didn't want to be compared to him.</p>
+<p>"Now then. Chances to talk with each student individually don't come around often. Before discussing your future plans, let me ask about your school life. If you’ve got anything you wish the school would improve, let me know."</p>
+<p>"I don’t particularly have anything. Personally, I’m satisfied."</p>
+<p>"I see. Any troubles or concerns with friendships you want to discuss?"</p>
+<p>“There is none.”</p>
+<p>He really is a weirdo, after all. Unlike Kouenji, he’s concise and straight to the point, but they’re the same in that the contents of their words are hollow.</p>
+<p>"Most students would voice an opinion or two, or at least look like they're thinking about it. Not that I think you're holding back..."</p>
+<p>I tried prodding him a bit as a teacher, but Ayanokouji's response was unwavering.</p>
+<p>"I simply have no dissatisfactions."</p>
+<p>"Well, if that's the case, can't argue with that... You really don't have a single thing?"</p>
+<p>"None. I'm satisfied with my school life and haven't had any particular troubles."</p>
+<p>"I see... If that's the case, then that's really good."</p>
+<p>"You've changed quite a bit yourself, Chabashira-sensei."</p>
+<p>The hand I was inputting with on the tablet stopped.</p>
+<p>Because, for some reason, I got the sense that I was the one being counseled by Ayanokouji.</p>
+<p>"I don't think I've changed. I've just become more true to myself than before, you could say."</p>
+<p>The student before me is over a decade younger than me. Yet why do I sometimes see him as my age, or even older?</p>
+<p>It takes courage for me to accept this feeling directly</p>
+<p>If there are those that are struggling, I must lend a hand. If there are those that are mistaken, I must correct them.</p>
+<p>A teacher must always treat the students in their class equally.</p>
+<p>And yet...</p>
+<p>Ayanokouji calmly transcends that boundary.</p>
+<p>There are times I feel like I want him to know my own weaknesses.</p>
+<p>Even though that's an emotion students should hope to receive from teachers, not the other way around.</p>
+<p>"...Ahem. Anyway. If anything concerns you about school life going forward, don't hesitate to let me know."</p>
+<p>I cleared my throat to dispel the stray thoughts.</p>
+<p>The one before me now is a precious student.</p>
+<p>Nothing more, nothing less.</p>
+<p>"Let me know if you've decided on pursuing higher education or employment after graduating."</p>
+<p>I decided to steer the conversation along to shake off the strange feeling.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Memories I Don't Want to Forget</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Hiyori Shiina SS — 2nd Year Volume 11</p>
+
+<p>Morishita-san, with a single card in her left hand, swiftly thrusted her arms towards me.</p>
+<p>In her right hand, she held onto four cards.</p>
+<p>"Here you are, Shiina Hiyori. Please, feel free to select any card you desire."</p>
+<p>In this game, the individual who ends up with the Joker last is deemed the loser.</p>
+<p>Thus... could it be that the card in her left hand is indeed the suspicious one?</p>
+<p>"Somehow... I find myself intrigued by that particular card."</p>
+<p>"Is that so? This is the result of a highly advanced strategy I have devised."</p>
+<p>However, would she truly be so overt in her presentation of the Joker?</p>
+<p>"What should I do..."</p>
+<p>Instinctively, I felt compelled to choose one card from among four. Yet, Morishita-san's composed demeanor was undeniably palpable. Instead of letting me draw from a selection of five, by singling out a safe card, perhaps she is engineering the odds towards a one out of four chance.</p>
+<p>No, perhaps that's precisely her scheme, and this one card is indeed the Joker.</p>
+<p>───I have absolutely no clue.</p>
+<p>As I earnestly deliberated, my gaze inadvertently shifted towards Ayanokouji-kun, seated behind Morishita-san, his eyes fixated on her cards.</p>
+<p>It was in that moment...</p>
+<p>Though, it wasn't like anything emerged on his expression, and yet…</p>
+<p>I’d succumbed to an inexplicable sensation that I could discern his feelings.</p>
+<p>That, the solitary card Morishita-san held was indeed the Joker.</p>
+<p>That's the impression it left upon me.</p>
+<p>"Please, choose one of your liking."</p>
+<p>Thus, feeling somewhat as though I were bending the rules, I found myself unable to choose amongst the four cards. Inevitably, I drew a single card.</p>
+<p>And upon flipping it over... it revealed itself to be the Joker.</p>
+<p>Though I certainly was a bit shocked, more than that, I felt relieved.</p>
+<p>Because it felt as if it was proof that what I felt from Ayanokouji-kun wasn't incorrect.</p>
+<p>After that, I continued to enjoy the game.</p>
+<p>School life, precious time with friends I couldn't have imagined when I first enrolled.</p>
+<p>Precious time spent with someone I’m interested in.</p>
+<p>Memories I don't want to forget.</p>
+<p>I wish that our life at this school would continue even just a day longer. I couldn’t help but hope as such.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Please Listen In My Stead</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Ai Morishita SS — 2nd Year Volume 11</p>
+
+<p>The networking event has already entered its third day.</p>
+<p>I've been keeping an eye on Ayanokouji Kiyotaka to track Hashimoto Masayoshi's movements, and by chance, I ended up in the same group as him. Yet, I'm troubled by the dearth of opportunities coming my way to gather information.</p>
+<p>Have those two connected?</p>
+<p>Have they decided to join hands, or is it merely my baseless concern?</p>
+<p>That's what I yearn to ascertain.</p>
+<p>Not to safeguard Sakayanagi Arisu or to protect Class A.</p>
+<p>But for myself.</p>
+<p>And to satiate this looming thirst for validation.</p>
+<p>Undoubtedly, detectives who stumble upon murder scenes grapple with such impulses daily.</p>
+<p>“It's almost time for the networking event.”</p>
+<p>A voice came from behind.</p>
+<p>“Morishita?”</p>
+<p>As I remain silent, my name is called.</p>
+<p>However, I ignored it and placed my hand upon the tree, seeking to attune myself to its voice from the part I've touched.</p>
+<p>“Could you please maintain a modicum of silence? Right now, I was───listening to the voice of the forest.” I deflected the distraction from behind and concentrated my consciousness.</p>
+<p>'”…Huh? The voice of the forest, you say?” He’s a noisy one, isn't he?</p>
+<p>It appears he's gratefully fallen into my trap, but his presence currently is an inconvenience.</p>
+<p>“Do you not comprehend? The forest is alive” I continue to explain clearly. “Place your hand upon the great oak as I have, close your eyes, steady your mind, and listen. Then, perhaps you'll understand my words.”</p>
+<p>“... I see?”</p>
+<p>It seems like I didn't quite get through to him.</p>
+<p>Well, that's acceptable. It appears I've successfully lured him out, after all.</p>
+<p>Ayanokouki Kiyotaka is an extremely intriguing existence.</p>
+<p>No matter how close I get, Ihis true essence as a human eludes me.</p>
+<p>I struggle to discern his line between earnestness and jest.</p>
+<p>I want to know. I want to know more about him. I'm dying to know.</p>
+<p>But for now, let's have him heed the voice of the forest and have it listen to its opinions in my stead.</p>`
+        }
     },
     {
         id: "ss-y2-v12",
@@ -2883,7 +3283,138 @@ export const shortStories: VolumeData[] = [
         ],
         characters: ["Kakeru Ryūen", "Suzune Horikita", "Arisu Sakayanagi", "Honami Ichinose"],
         coverImage: "/assets/y2v12.jpg",
-        inProgress: true,
+        inProgress: false,
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">True Intentions</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kakeru Ryūen SS — 2nd Year Volume 12</p>
+
+<p>In the karaoke room enveloped in silence, I waited for the fucker. During that time, my eyes wandered to the grape juice on the table, and I imagined throwing it.</p>
+<p>If he doesn't pay attention to the juice's existence, I plan to make my move.</p>
+<p>Nine out of ten times he’d notice it, but I wouldn’t do it then.</p>
+<p>If I set traps every time, his guard will only increase, after all.</p>
+<p>Then the fucker appeared, with that straight face that makes he look stupid.</p>
+<p>"None of your lackeys are around today, huh?"</p>
+<p>"Well, ain’t that a surprise. You wanted things to get lively up in here or somethin’?"</p>
+<p>"I was just thinking that if Ibuki or Ishizaki were here, then they would've been able to do something about this tense expression."</p>
+<p>He doesn't change his expression at all even when he’s dealing with me. He was infuriatingly composed and upfront.</p>
+<p>"That's quite a thing to say when you're the one who invited me."</p>
+<p>"You sure are spewing a lot of shit being the one who called me out here."</p>
+<p>“Well, you’re right.”</p>
+<p>"Well, it's fine. I was planning to contact you this time anyway. I'll let it slide."</p>
+<p>Thanks to saving the trouble, we won't waste time.</p>
+<p>"In that case, it seems we'll be discussing similar topics."</p>
+<p>As the conversation began, I urged him to sit in the booth.</p>
+<p>"Feel free to take a seat."</p>
+<p>"I'd rather not. Are you planning to spill grape juice on me this time?"</p>
+<p>Tch, so he noticed after all. At this point, I clear the possibility of execution from my mind.</p>
+<p>"You're overthinking it. Besides, you could avoid it anytime if you wanted to, right?"</p>
+<p>While continuing this pointless conversation, I was preparing to speak my true intentions to Ayanokouji.</p>
+<p>There's something I need to tell this man.</p>
+<p>Staking everything on the battle with Sakayanagi isn't a big deal.</p>
+<p>What's important is what comes after, making him acknowledge me through the results.</p>
+<p>There's nothing wrong with taking any measures necessary for that.</p>
+<p>But for this time only, that would be a hindrance.</p>
+<p>"I'll show Sakayanagi, and you my true power. It‘s doesn’t suit me, but I'll defeat her fair and square."</p>
+<p>I'll make it clear which of us has the higher potential.</p>
+<p>That's the most important thing.</p>
+<p>For that reason, this vow here holds significant meaning. I'm conveying my undeniable true intentions. Towards Ayanokouji, who my revenge against awaits beyond this.</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Everyday I’ve Become Familiar With</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Suzune Horikita SS — 2nd Year Volume 12</p>
+
+<p>After class, at the cafe. At this pace, which is usually relaxing, my heart is bestirring ever so slightly faster.</p>
+<p>It must be because of the announcement of the end-of-year special exam.</p>
+<p>While optimism can be dangerous, depending on how things unfold, we might move up to Class A.</p>
+<p>When I first learned the meaning of being in Class D, I wondered what I should make of this, but we've made it this far.</p>
+<p>I believe I've contributed to the class in my own way. But I mustn't be conceited.</p>
+<p>The achievements up to this point are largely thanks to the significant cooperation of my classmates.</p>
+<p>As the promised time approached, he arrived.</p>
+<p>"Is something wrong?"</p>
+<p>The first words he uttered were unexpectedly these.</p>
+<p>"...Wrong? What do you mean?"</p>
+<p>"No, I just felt like something was bothering you. If I'm mistaken, that's fine."</p>
+<p>It seems my contemplation had shown on my face.</p>
+<p>"Is it showing in my attitude?"</p>
+<p>"It sure is."</p>
+<p>"I see. No, I was just thinking a bit about next week's exam. I'm sorry if it concerned you."</p>
+<p>I apologise and try to regain my composure.</p>
+<p>"So you're already nervous at this stage?"</p>
+<p>"Can you blame me? The class point fluctuations will be significant. It's a major turning point that will determine whether our class moves up or down.”</p>
+<p>I can’t not think about the exam. But continuing to dwell on it here won't help me calm down so... I search for a different topic.</p>
+<p>"By the way... have you noticed there aren't many first-years around?"</p>
+<p>"Ah, yes. I guess the trial of the end-of-year special exam is finally upon our juniors too."</p>
+<p>"Time flows so slowly, yet passes in the blink of an eye. To think they've already been at this school for a year."</p>
+<p>Two years ago, I too jumped into this school, chasing after my brother. Back then, I hadn't even considered making friends or having fun. I only intended to pursue my own grades. And yet, I've been spending more and more time with Kushida-san and Ibuki-san lately, even though it's unproductive.</p>
+<p>Well... I'm not so sure if I should count those two as friends, though.</p>
+<p>And I feel like I've been spending a lot of time with Ayanokouji-kun in front of me too.</p>
+<p>I can now say without hesitation that this familiar daily life has become indispensable to me.</p>
+<p>I felt a little embarrassed, yet proud of how I’ve changed.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Wavelength</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — 2nd Year Volume 12</p>
+
+<p>I slipped my sleepy body into bed and placed my phone by my ear.</p>
+<p>“Fufu…”</p>
+<p>Even before the call started, a smile crept onto my face unbidden.</p>
+<p>There’s no hiding it, it’s because I’m looking forward to my time with Ayanokouji-kun.</p>
+<p>I made the call, and soon he answered.</p>
+<p>“I apologise for calling so late. Is it fine to talk right now?”</p>
+<p>“Yeah, it’s fine.”</p>
+<p>His voice was the same as always.</p>
+<p>Why is it that just hearing his voice puts my heart at ease?</p>
+<p>A perfect wavelength. There's no other way to put it.</p>
+<p>“You said you had something you wanted to discuss—” I said.</p>
+<p>It doesn't matter how trivial it is. Just having this opportunity to talk with him makes me happy.</p>
+<p>“Frankly. I heard you accepted a challenge from Ryueen with expulsion on the line.”</p>
+<p>“So that’s what this is about. I thought it was only a matter of time before it reached your ears, but who told you about this? No, I suppose it's uncouth to ask.”</p>
+<p>I won't be surprised no matter where he obtained this information.</p>
+<p>If he puts his mind to it, he can probably accomplish anything, after all.</p>
+<p>“Considering Class A’s position and status of possession of protection point, it’s a special condition,” he said.</p>
+<p>“It may seem so if you only look at the conditions. However, there is no chance that I’d lose to him, so he’s simply tightening the noose around his own neck.”</p>
+<p>No matter what special exam it is, my superiority is unshaken.</p>
+<p>It’s because I’m certain of that, that I can maintain my composure.</p>
+<p>“I suppose this call isn't out of concern for me?”</p>
+<p>“Is there a need for concern?”</p>
+<p>“Of course not. Just witnessing the outcome of this battle should suffice.”</p>
+<p>Still, I wouldn't mind if Ayanokouji-kun worried about me.</p>
+<p>I’ve always envisioned it. The day we’d face off against each other seriously, ever since we reunited in this school. A mutually desired confrontation, giving our all to compete and see who’s superior.</p>
+<p>That day is surely drawing near.</p>
+<p>But I won't verbalise it, not now. I’ll have to first defeat Ryuuen-kun and lay the groundwork, after all.</p>
+<p>But when that’s all finished, I’d like to express my feelings head-on.</p>
+<p>Feeling happiness through the phone, I gradually succumbed to the slumberness.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Approaching Promise</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Honami Ichinose SS — 2nd Year Volume 12</p>
+
+<p>Morning. I arrived earlier than our meeting time and sat on a bench.</p>
+<p>Later today, I’ll have a bit of time to talk with Ayanokouji-kun.</p>
+<p>Just thinking about him fills my heart with happiness.</p>
+<p>But that isn't really okay for me to do.</p>
+<p>Right now, Ayanokouji-kun has a girlfriend in Karuizawa-san.</p>
+<p>As a person, I need to accept that and maintain a calm judgment.</p>
+<p>So just within my heart, I’ll enjoy it as a date.</p>
+<p>I can savor the feeling of being a lover waiting for the one I love.</p>
+<p>"Kiyotaka-kun..."</p>
+<p>I whispered on the empty bench.</p>
+<p>If we were lovers, we'd become much closer and call each other by our first names.</p>
+<p>Ayanokouji-kun would probably call me "Honami" too.</p>
+<p>Just imagining it makes my heart flutter.</p>
+<p>I never thought I’d change so much, when I wasn’t even aware I was in love in the first place.</p>
+<p>The only problem is—how long can I suppress this one-sided love.</p>
+<p>I spot him in the distance.</p>
+<p>I took a moment to clear my mind, straightening my back so I don't lose myself</p>
+<p>"Good morning."</p>
+<p>Ayanokouji-kun greets me, and I respond.</p>
+<p>"Good morning, Ayanokouji-kun. Is it okay?Calling me out to a place like this."</p>
+<p>"What do you mean?"</p>
+<p>"It's a public place. If Karuizawa-san or other people around see us, wont they get the wrong idea?"</p>
+<p>Truthfully, I want someone to see us.</p>
+<p>Such feelings interfere, but that's not right.</p>
+<p>"No need to worry. I've told Kei about today. Unwarranted secrets and clumsy lies only become obstacles in relationships, after all."</p>
+<p>"Ayanokoujj-kun... what are you planning for the special exam?"</p>
+<p>After this, I had a brief conversation with Ayanokouji-kun about the special exam.</p>
+<p>After all, we're in a position to compete.</p>
+<p>After all, we're shouldering a battle we can't afford to lose.</p>
+<p>After all, that fact must be sealed away during the exam.</p>
+<p>So at least for now, I want to feel happy, I wish quietly.</p>`
+        }
     },
     {
         id: "ss-y2-v12.5",
@@ -2896,13 +3427,358 @@ export const shortStories: VolumeData[] = [
         chapters: [
             "Hiyori Shiina : Friend?",
             "Honami Ichinose : The Other Side of the Promise",
-            "What is Really Being Observed",
+            "Miki Yamamura : What is Really Being Observed",
             "Sae Chabashira : How Long Has It Been...",
-            "First Contact",
-            "Behind the Scenes"
+            "Mio Ibuki : Behind the Scenes"
         ],
-        characters: ["Hiyori Shiina", "Honami Ichinose", "Sae Chabashira"],
+        characters: ["Hiyori Shiina", "Honami Ichinose", "Miki Yamamura", "Sae Chabashira", "Mio Ibuki"],
         coverImage: "/assets/y2v12.5.jpg",
-        inProgress: true,
+        inProgress: false,
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Friend?</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Hiyori Shiina SS — 2nd Year Volume 12.5</p>
+
+<p>Ishizaki-kun was seriously thinking about ways to get Ayanokouji-kun to join their group.</p>
+<p>While I also hoped for that, I couldn't help but think it would be difficult.</p>
+<p>"That's it...! If that's the case, let's do this!"</p>
+<p>"Let's do what?"</p>
+<p>Ishizaki-kun showed a smile, as if he'd just had another flash of inspiration.</p>
+<p>I couldn't predict what he was about to say, so I was looking forward to it a bit.</p>
+<p>"If you come to our class, you can date Shiina! How about that!"</p>
+<p>Suddenly, Ishizaki-kun grabbed both my and Ayanokouji-kun's hands and tried to force them together in a handshake.</p>
+<p>"Eh, eh...?</p>
+<p>I couldn't understand what was happening, but before I knew it, I was holding his hand.</p>
+<p>"What kind of proposal is that...?"</p>
+<p>"It's something your class doesn't have but ours does!"</p>
+<p>"I already have a girlfriend though?"</p>
+<p>"So what? You can just break up with Karuizawa when you switch classes!"</p>
+<p>The warmth of Ayanokouji-kun's palm. As if responding to that warmth, I could feel my hand unconsciously growing warmer, which made me feel somewhat embarrassed.</p>
+<p>Moreover, how did things even end up like this...? My mind is in a panic from how quickly the situation had changed.</p>
+<p>"That's absurd."</p>
+<p>"Then do you dislike Shiina?"</p>
+<p>At Ishizaki-kun's words about disliking me, I couldn't help but look at Ayanokoji-kun.</p>
+<p>"I don't dislike her."</p>
+<p>First, relief. Then, despite my panic, happiness began to well up inside me.</p>
+<p>I need to somehow properly process this situation and stay calm...</p>
+<p>After all, Ayanokouji-kun is a precious friend, nothing more and nothing less.</p>
+<p>"Then there's no problem, right? Shiina, you like Ayanokouji too, don't you?"</p>
+<p>Just when I thought I might be able to calm my heart, Ishizaki-kun goes and says something else unpredictable.</p>
+<p>"Eh...!?"</p>
+<p>Ayanokouji-kun said he doesn't dislike me, and that was fine.</p>
+<p>But now it's about... my feelings...?</p>
+<p>If we're talking about like or dislike, of course I like him, but...</p>
+<p>Because Ayanokouji-kun is... so...</p>
+<p>I fail to stop my emotions, which I had almost suceeded to control, from running wild again.</p>
+<p>"That's enough, Ishizaki. You shouldn't trouble Hiyori. It's cruel to make someone express whether they have feelings for someone right in front of them. Only a handful of people can say they dislike someone to their face."</p>
+<p>"But Shiina's usually pretty straightforward about saying what she thinks, you know..."</p>
+<p>It's true that normally, I try to speak my mind relatively openly.</p>
+<p>But, still, this... feels like something I shouldn't say out loud...</p>
+<p>"Um... this is troubling."</p>
+<p>Perhaps Ayanokouji-kun has noticed these pathetic feelings of mine.</p>
+<p>Noticing while pretending not to notice--I wonder if he is being considerate of me.</p>
+<p>He gently releases my hand, which had grown warm. If only he would come to our class... Like Ishizaki, I can't help but think that way.</p>
+<p>And to suppress these strange feelings too, I need to change my mindset...</p>
+<p>"...Hiyori?"</p>
+<p>"Um, even though it's no good, may I say just one thing...?"</p>
+<p>Hiding my feelings of like or dislike, I decided to invite Ayanokouji-kun one more time.</p>
+<p>Because I felt that no one could match how much I wanted us to be in the same class--</p>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Other Side of the Promise</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Honami Ichinose SS — 2nd Year Volume 12.5</p>
+
+<p>In a dark world where only rain could be heard, the chime rang.</p>
+<p>Still hugging my knees and hanging my head, I closed my eyes and exhaled slowly.</p>
+<p>The time has come—</p>
+<p>Though I felt this, I deliberately didn't move to respond to the chime.</p>
+<p>Soon, the cell phone on my bed lit up.</p>
+<p>The phone vibrated faintly, three times, four times.</p>
+<p>I listened to the sound, but still didn't move.</p>
+<p>And then came a gentle knock on my door.</p>
+<p>"It's me. The day of our promised is about to end. I'm here becaue of that."</p>
+<p>Ayanokouji-kun's voice.</p>
+<p>I knew I would hear it today.</p>
+<p>I knew that this moment would come when the day of our promise is about to end.</p>
+<p>Because I'd been ignoring his messages all day since morning.</p>
+<p>He came to tell me his conclusion before midnight.</p>
+<p>'I'll wait three more minutes. If there's no answer, I'll leave, so don't worry.'</p>
+<p>This was his final notice.</p>
+<p>If I don't answer now, he'll leave from beyond that door.</p>
+<p>But if I respond, he will surely answer.</p>
+<p>I reach for my phone, placed just within arm's reach, and type a message.</p>
+<p>'Why did you come?'</p>
+<p>'I told you. Today is the day of our promise.'</p>
+<p>'It's late already. Past curfew.'</p>
+<p>I hint that he should leave, testing his reaction.</p>
+<p>'I don't have the courage to go to your room right now. I'm sorry.'</p>
+<p>'I know. That's why I came here.'</p>
+<p>As I thought, he won't leave.</p>
+<p>I knew that too.</p>
+<p>'I'll wait one more minute. If the door doesn't open by then, let's pretend that promise never existed.'</p>
+<p>I won't run away.</p>
+<p>Meeting Ayanokouji-kun today. That's a promise I must keep.</p>
+<p>However—</p>
+<p>Not in his room.</p>
+<p>'The door is unlocked, you can come in.'</p>
+<p>In my room, I'll fulfil the promise made a year ago.</p>
+<p>Not because I lack the courage to go to him.</p>
+<p>But because I thought meeting here would be best for me.</p>
+<p>My premonition has turned into certainty.</p>
+<p>What Ayanokouji-kun wants to tell me.</p>
+<p>What I must tell Ayanokouji-kun.</p>
+<p>I understand it all now, after all.</p>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">What is Really Being Observed</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Miki Yamamura SS — 2nd Year Volume 12.5</p>
+
+<p>Morishita continues to crawl along the ground, intensely studying the soil through a magnifying glass.</p>
+<p>Yamamura has been watching this bizarre scene in stunned silence for over twenty minutes now.</p>
+<p>"Shouldn't we head to the meeting spot...?"</p>
+<p>"Not yet. Please wait quietly and don't interfere."</p>
+<p>"But... we're already way past the meeting time, you know...?"</p>
+<p>"Let him wait. Back in the day, women did all the waiting. Now it's the men's turn."</p>
+<p>"...Is... is that, so...?"</p>
+<p>Yamamura's question falls on deaf ears as Morishita continues her observation.</p>
+<p>While anxiously checking the time on her phone, it finally rings--Ayanokouji calling.</p>
+<p>"Ah, um, I'm sorry we're late!"</p>
+<p>Just as Yamamura looks at Morishita as if to say they should hurry, Morishita shoots her a stern glare.</p>
+<p>She then makes an aggressive gesture indicating to hang up.</p>
+<p>"Eh... you want me to hang up? But... we're already past the promised time, so shouldn't we..."</p>
+<p>'Is Morishita with you?'</p>
+<p>Perhaps irritated by the ongoing conversation, Morishita stands up and approaches Yamamura.</p>
+<p>"Y-yes. Um, please come to the back of the dormitory- ah, my phone--"</p>
+<p>Morishita forcefully grabs the phone from Yamamura's hand and ends the call.</p>
+<p>"Um, I think Ayanokouji-kun might be troubled by this..."</p>
+<p>"That's exactly what we want, Yamamura Miki. I'm testing Ayanokouji Kiyotaka."</p>
+<p>"T-testing...?"</p>
+<p>Morishita returns the confiscated phone and goes back to her bug hunt.</p>
+<p>"Yes, testing. How he reacts to being made to wait, what gestures he makes, how he approaches us. I want to know all the details."</p>
+<p>"...W-why would you do something like that?"</p>
+<p>"Something smells fishy about Ayanokouji Kiyotaka. It seems like he's trying to use us for something. Plus, I heard a little something from Sakayanagi Arisu... Oh, that's a secret, okay?"</p>
+<p>After this response, Morishita falls silent.</p>
+<p>Her bottom wiggles as she moves about.</p>
+<p>She's so absorbed that her underwear occasionally shows from under her skirt.</p>
+<p>"I don't really understand..."</p>
+<p>Though Yamamura had many questions, Morishita offered no further answers.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">How Long Has It Been...</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Sae Chabashira SS — 2nd Year Volume 12.5</p>
+
+<p>I was waiting for Ayanokouji near the Keyaki Mall. A consultation from a student.</p>
+<p>A few years ago, this would have been almost unthinkable, honestly.</p>
+<p>It was probably because I kept students at a distance with my cold demeanour.</p>
+<p>In such a state, no one would open their hearts to consult with me about anything.</p>
+<p>But recently, little by little, students have started opening up to me.</p>
+<p>About their future paths, employment, friendships.</p>
+<p>After experiencing the light and darkness of the past and this recent unanimous special exam, I was able to change.</p>
+<p>That was undoubtedly thanks to Ayanokouji.</p>
+<p>I've become able to face myself and face my students. "But, still..."</p>
+<p>Meeting with a male student one-on-one on a day off was definitely not something I had in mind.</p>
+<p>If it weren't for a consultation from Ayanokouji, to whom I owe so much, I probably wouldn't have permitted this.</p>
+<p>I don't intend to show mix personal feelings with work, but... yes, this time is special.</p>
+<p>"Sorry to keep you waiting."</p>
+<p>My awaited person arrives shortly. Did he make me wait? Let me check the time just in case.</p>
+<p>"Don't worry, there's still some time until our appointment."</p>
+<p>Still, this one-on-one situation makes me uncomfortable.</p>
+<p>“To think I’d end up meeting a student at Keyaki Mall like this.”</p>
+<p>“Has this never happened before? Not even once?” “Of course not.”</p>
+<p>Meeting someone of the opposite sex on a holiday--this hasn't happened since my student days.</p>
+<p>Those memories have already faded, and they weren't particularly good ones anyway, but...</p>
+<p>No, that's completely different matter, huh.</p>
+<p>What Ayanokouji is talking about is between teacher and student.</p>
+<p>In other words, when I was cold and distant, I never had opportunities like this.</p>
+<p>"Ah, right. The previous you deliberately kept your distance from students--"</p>
+<p>He tramples into my thoughts without mercy.</p>
+<p>"Ayanokouji. That's quite brazen of you."</p>
+<p>"I apologise."</p>
+<p>"An apology isn't enough, you know?"</p>
+<p>"...Was it really necessary to meet at Keyaki Mall?"</p>
+<p>If we move from here, we'll inevitably be seen by students.</p>
+<p>Honestly, it's not an ideal situation.</p>
+<p>"I understand your concerns, sensei, but I judged this to be the best meeting place."</p>
+<p>"I'd like to hear the reasoning behind that judgment."</p>
+<p>After all, Ayanokouji is my student, nothing more.</p>
+<p>Considering the Maezono incident, this is an emergency.</p>
+<p>For the class to continue aiming higher, Ayanokouji's presence is indispensable.</p>
+<p>As a teacher, I must attend to his emotional well-being--</p>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Behind the Scenes</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Mio Ibuki SS — 2nd Year Volume 12.75 (Commemorative)</p>
+
+<p>March 30th.</p>
+<p>Ibuki was irritated.</p>
+<p>Needless to say, the cause was unmistakably the not-so-entertaining movie and the idiotic couple, in other words Ayanokouji and Karuizawa, seated next to her.</p>
+<p>Quickly leaving behind the theater that had serve to pile up her frustration, Ibuki let out a sigh.</p>
+<p>She then took out her phone, checking the balance of her private points.</p>
+<p>"...I hardly have any left."</p>
+<p>The monthly private points allowance is more than sufficient as pocket money for a second-year high school student. Due to this, normally, saving money shouldn’t be difficult</p>
+<p>However, Ibuki has a tendency to spend everything she gets without thinking of the consequences, and as a result, is always tight on finances. That's precisely why, recalling how the time she’d been looking forward to was ruined, her irritation began to build up again.</p>
+<p>While private points would be replenished when the month changes, naturally, the end of the month is always a struggle.</p>
+<p>How would I get through today, how would I get through tomorrow; she’s forced to confront this sort of battle.</p>
+<p>If only the movie had been satisfying—</p>
+<p>The emotions she tried to suppress start bubbling up.</p>
+<p>"Ahh, this is so annoying."</p>
+<p>How could she let out this irritation.</p>
+<p>Harbouring this sentiment, what Ibuki found was a certain object.</p>
+<p>That being, a trash can installed at Keyaki Mall.</p>
+<p>She approached it without concern for the people around and kicked it.</p>
+<p>She thought kicking it would make her feel a little better after all.</p>
+<p>However...</p>
+<p>Though it wobbled, since it contained more trash than she’d expected, it didn’t fall over.</p>
+<p>It was also because her kick was somewhat half-hearted; not weak, but not strong either.</p>
+<p>"......Are you trying to irritate me too?"</p>
+<p>As if mocking her, the trash can only shifted position slightly, standing there with a faux innocent look.</p>
+<p>The action Ibuki thought would help her vent actually had the opposite effect.</p>
+<p>What started as just wanting to kick it shifted to wanting to knock it over.</p>
+<p>If she could spill its contents dramatically, she'd surely feel better.</p>
+<p>"You little——!"</p>
+<p>This time, stronger, faster than before.</p>
+<p>She imagines the trash can as someone she dislikes.</p>
+<p>She was about to deliver a kick with enough force to certainly knock Ayanokouji…… or rather, the trash can over.</p>
+<p>"What are you doing, Ibuki?"</p>
+<p>"…!?"</p>
+<p>Just before completing her motion, a somewhat angry male voice reaches her.</p>
+<p>Her body freezes, and she turns toward the voice.</p>
+<p>There stood Katsuragi with his arms crossed, frowning with a puzzled expression.</p>
+<p>"Why are you here......?"</p>
+<p>"What do you mean why; there's nothing strange about me walking around Keyaki Mall on my day off, is there.”</p>
+<p>"Well, that's true, but..."</p>
+<p>"You seem pretty irritated from what I can see, but I can’t say kicking trash cans is commenda le. If you don’t strive to act with moderation, it won’t benefit our class.”</p>
+<p>"What do you mean 'benefit our class'. What's the big deal if I kick a trash can a little?"</p>
+<p>She displays an attitude indicating she doesn't think she did anything wrong.</p>
+<p>In response, Katsuragi closes the distance between them slightly.</p>
+<p>"If you engage in behavior unbecoming of a student and the school discovers it, you’ll receive a negative evaluation. Whether it's a weekday, weekend, or even spring break, the consequences remain the same. I’d thought you’d have more than suffiencrly learned that during these two years."</p>
+<p>"Acting so high and mighty..."</p>
+<p>"High and mighty? I wasn't being high and mighty. I merely stated common sense, decency expected of a student. Besides, Ibuki, you——"</p>
+<p>As Katsuragi began his lengthy lecture, Ibuki didn’t even try to conceal her tongue-clicking.</p>
+<p>The feeling that she had been caught by a troublesome person began to dominate her thoughts.</p>
+<p>Seeing Katauragi continue to ramble on, Ibuki interrupts him with a wave of her hand.</p>
+<p>"Yes, yes. I was wrong, okay, okay then bye..."</p>
+<p>As if to run away, Ibuki began walking and attempted to pass by Katsuragi, but was grabbed by the arm.</p>
+<p>"What are you doing."</p>
+<p>"The trash can didn't fall over, but it's out of position. You need to fix that."</p>
+<p>"Haa? So what about the position. As if anyone cares about that."</p>
+<p>"At the very least, I care. And the fact that I care means the school might care as well."</p>
+<p>Saying this, Katsuragi pointed at a surveillance camera.</p>
+<p>"You're seriously such a stickler. The school isn't watching all the time, much less a place like this. Or rather, who cares about the position of a trash can."</p>
+<p>"Of course, I would hope that's the case. But, it's better safe than sorry.."</p>
+<p>Saying this, Katsuragi brings Ibuki back to the trash can.</p>
+<p>"...How ridiculous."</p>
+<p>With the desire to be released quickly taking priority, Ibuki reluctantly picked up the trash can.</p>
+<p>"There, is this good enough?"</p>
+<p>"No, it's not. The original position was about 20 centimeters more to the right."</p>
+<p>"Haaa?"</p>
+<p>"About 20 centimeters more to the right."</p>
+<p>Katsuragi repeats, instructing her to return it to its proper place.</p>
+<p>Although Ibuki was getting irritated again, she lifted the trash can with an exasperated breath and moved it about 20 centimeters.</p>
+<p>"Is. This. Okay. Now!?"</p>
+<p>"Yes. Well, this should be good enough."</p>
+<p>Satisfied, Katsuragi turned toward the surveillance camera and gave a slight bow.</p>
+<p>"Are you stupid?"</p>
+<p>Though these words escaped from her mouth involuntarily at his overly courteous behavior, Katsuragi was unbothered and began walking away.</p>
+<p>Ibuki was about to watch him leave, but there’s something she was caught up on.</p>
+<p>"Haven't you already accomplished your goal."</p>
+<p>"Goal?"</p>
+<p>"Sakayanagi lost to Ryueen and was expelled. There’s no need for you to be so eager anymore, is there."</p>
+<p>"...I see. Certainly, that was one of my goals. However, I would have preferred to accomplish it with my own hands though…..."</p>
+<p>Katsuragi stopped, folded his arms, and reflected alone on the year-end special exam.</p>
+<p>"But that doesn't mean my goals have disappeared. There’s the goal of graduating from Class A."</p>
+<p>"So you want those privileges too, huh."</p>
+<p>"Naturally. Those who don't desire such privileges are probably in the minority. But what's important isn't just that. Not just me individually, but winning Class A with all of our classmates; that's the critical part."</p>
+<p>Katsuragi wasn't originally in Ryueen’s class.</p>
+<p>In fact, the period they were adversaries was still slightly longer than their current relationship.</p>
+<p>But right now, he answered without any embarrassment that he was thinking about his class more than anyone else. At this demeanour, Ibuki felt it was a false goodwill, in other words, it was faux benevelonce.</p>
+<p>"Are you serious?"</p>
+<p>"Of course, I'm serious."</p>
+<p>In other words, it's not sanctimonious.</p>
+<p>He answered firmly that he currently has the resolve to move forward with Ryueen, with the class.</p>
+<p>"Is that why you're going around teaching those idiots how to study?"</p>
+<p>"The expression, Going around teaching, isn't quite accurate. There's also an aspect of responding to their requests for help. I can't leave people like that alone; it's in my nature, you see."</p>
+<p>"So if someone asks for help, you'll help them?"</p>
+<p>"Well——I suppose there's no harm in putting it that way."</p>
+<p>"Then let me kick you."</p>
+<p>"I don't understand what you mean."</p>
+<p>"It's exactly what it sounds like. I'm feeling incredibly irritated right now. So I’m really iching to kick something, you see."</p>
+<p>"What a troublesome personality. But unfortunately, I'm not inclined to let you kick me."</p>
+<p>"Then who should I kick?"</p>
+<p>"You shouldn't kick anyone, but if you absolutely must kick someone, then I suppose there’s no other choice other than finding someone who would enjoy being kicked or someone who would benefit from being kicked. If such an odd person exists, that is."</p>
+<p>"I see...... well, that makes sense."</p>
+<p>"Apart from that, if there's anything else I can help you with, I'm willing to lend a hand."</p>
+<p>"Hmm......?"</p>
+<p>Setting aside whether Katsuragi's actions were benevolent or faux benevelent, it was unmistakable that he’s considerate and looks after people.</p>
+<p>Having reached this peculiar conclusion, Ibuki makes a proposal.</p>
+<p>"Then buy me a meal."</p>
+<p>"How did we go from kicking and not kicking to this?"</p>
+<p>"You said you'd help me, right? I'm troubled because I don't have any money. Look."</p>
+<p>She displays her private points balance on her phone screen.</p>
+<p>"......You should have more than this even at the beginning of enrollment."</p>
+<p>"I’m bragging, but I’m seriously broke."</p>
+<p>"Don't brag about that."</p>
+<p>"So with that said, feed me something. Eating something delicious should help let out my stress."</p>
+<p>"I see, I understand."</p>
+<p>Katsuragi folds his arms and nods once, then opens his eyes.</p>
+<p>"I refuse."</p>
+<p>"Wait, why. Aren't you supposed to extend a helping hand to troubled classmates!?"</p>
+<p>"Only if they're truly troubled."</p>
+<p>"Come on, I am genuinely troubled. I have almost no private points left!"</p>
+<p>"If you're broke, you can eat the vegetable set. The school provides proper relief measures. It's not like you're in a state where you can't eat anything. Besides, your private points will be replenished in April. I don't see any need for me to help at this point."</p>
+<p>Faced with Katsuragi's frank attitude, Ibuki glared at him.</p>
+<p>"But I want to eat something better."</p>
+<p>"Then from next month, you should straighten yourself up, and learn how to save a little."</p>
+<p>"I already am saving here. It’s just that girls have various expenses that it can’t be helped.”</p>
+<p>She made an excuse that didn't apply to her at all.</p>
+<p>"I see. Then as man, there's not much I can help with. You should seek advice from another woman who knows how to save money."</p>
+<p>If she could ask such a person for advice, she wouldn't be struggling in the first place.</p>
+<p>She tried to retort, but Katsuragi had already started walking away.</p>
+<p>She regretted even momentarily thinking that he might be considerate and looks after people.</p>
+<p>"What's with him..... Ah jeez, getting angry made me hungry......"</p>
+<p>After glaring at him until his back disappeared from view, Ibuki holds her stomach.</p>
+<p>"Let's go home..."</p>
+<p>Deciding there was no point in staying at Keyaki Mall, she immediately returned to the dormitory.</p>
+<p>1</p>
+<p>Instead of returning to her own room, she visits a certain room and knocks firmly.</p>
+<p>"What business may you have?"</p>
+<p>The one who came out looking annoyed was a student from another class, Horikita Suzune.</p>
+<p>"Can I come in for a bit?"</p>
+<p>"What if I say no?"</p>
+<p>"......Then fine."</p>
+<p>Ibuki immediately turned her back at her dissatisfied attitude, but Horikita quickly stopped her.</p>
+<p>"I'm joking. You can come in."</p>
+<p>"Then you should have said so from the beginning."</p>
+<p>Ibuki returns and enters Horikita's room.</p>
+<p>"Let me guess; you're planning to eat dinner here anyway, right? It's the end of the month after all.”</p>
+<p>"Quit arbitrarily jumping to conclusions"</p>
+<p>"Then am I wrong?"</p>
+<p>"......Well, not this time."</p>
+<p>After letting Ibuki in, Horikita begins preparing tea.</p>
+<p>"The timing is a bit half-baked, so relax for a while. I'll call Kushida-san later too."</p>
+<p>"Her too? Every time, she just keeps going on and on; it's annoying."</p>
+<p>Due to having lots of school information, Kushida has no shortage of topics and her chatter is lengthy.</p>
+<p>"You're annoying too, you know."</p>
+<p>Although in a different way, Ibuki is the same; Horikita points out.</p>
+<p>"Huh? Don't lump me together with her."</p>
+<p>Despite saying this, about an hour later, Kushida also arrived at Horikita's room to join them.</p>
+<p>Ibuki, Horikita, and Kushida.</p>
+<p>Recently, these three have been spending more time together.</p>
+<p>Even though for Ibuki, or rather, for each of them, this should be an unpleasant time, that is.</p>
+<p>"If it weren't for the free meals, I wouldn’t come to a place like this..."</p>
+<p>Ibuki muttered quietly.</p>
+<p>"Did you say something?"</p>
+<p>Horikita turns around from the kitchen, but Ibuki bluntly answers that it was nothing.</p>
+<p>Then, she flops down on the floor.</p>
+<p>While staring at the ceiling of Horikita's room which she’d become quite familiar with, she thinks.</p>
+<p>That she shouldn’t keep living like this.</p>
+<p>That she can't keep hanging around here.</p>
+<p>That’s right. Ibuki didn't want to admit it.</p>
+<p>The fact that she was getting closer to Horikita and Kushida, whom both she detested.</p>
+<p>The fact that she’d begun to understand that this was becoming a comfortable space for her.</p>
+<p>So it would be better to distance herself before it's too late.</p>
+<p>Being alone would surely make her happier at the end after all.</p>
+<p>That's the kind of person she is, she thought.</p>
+<p>Even if she doesn't distance herself, Horikita and Kushida will eventually leave her anyway.</p>
+<p>She understands.</p>
+<p>That it's only natural, given her difficult personality.</p>
+<p>She should leave immediately.</p>
+<p>She should never come back.</p>
+<p>Though she thought this momentarily, as soon as the delicious smell of food began wafting through the air, she stopped thinking about it.</p>
+<p>Since she's broke right now, it can't be helped.</p>
+<p>After all, she thought that distancing herself could wait until another time.</p>
+<p>Ibuki's irritation mysteriously disappeared along with the meal.</p>`
+        }
     }
 ];

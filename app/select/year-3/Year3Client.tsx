@@ -316,7 +316,7 @@ export default function Year3Client({ volumes, shortStories }: Year3ClientProps)
                                 <div className="flex flex-col items-center gap-2">
                                     <div className="w-full text-center">
                                         <h3 className="text-xl font-serif font-bold text-gray-500 mb-1">To Be Continued...</h3>
-                                        <p className="text-sm text-gray-600">More Year 3 volumes will be added as they release.</p>
+                                        <p className="text-sm text-gray-600">More volumes will be added as they release.</p>
                                     </div>
                                 </div>
                             </div>
