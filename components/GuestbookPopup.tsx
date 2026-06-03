@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { BookOpen, Send, PenLine, Loader2, X } from "lucide-react"
+import { BookOpen, Loader2, X } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 
 interface GuestbookEntry {
@@ -42,7 +42,6 @@ export function GuestbookPopup() {
     const [count, setCount] = useState(0)
     const listRef = useRef<HTMLDivElement>(null)
 
-    
     useEffect(() => {
         async function fetchCount() {
             const { count } = await supabase
@@ -52,6 +51,17 @@ export function GuestbookPopup() {
         }
         fetchCount()
     }, [])
+
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = ""
+        }
+        return () => {
+            document.body.style.overflow = ""
+        }
+    }, [open])
 
     const visible = pathname === '/' || pathname === '/select'
 
@@ -110,6 +120,7 @@ export function GuestbookPopup() {
                 setEntries(prev => [data, ...prev])
                 setCount(prev => prev + 1)
                 setMessage("")
+                setName("")
                 listRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
             }
         } catch {
@@ -132,12 +143,12 @@ export function GuestbookPopup() {
                         exit={{ scale: 0, opacity: 0 }}
                         transition={{ type: "spring", stiffness: 260, damping: 20 }}
                         onClick={handleOpen}
-                        className="fixed bottom-6 right-6 z-50 w-12 h-12 md:w-14 md:h-14 rounded-full bg-amber-700/90 hover:bg-amber-600 text-white shadow-[0_4px_24px_rgba(180,120,40,0.4)] hover:shadow-[0_4px_32px_rgba(180,120,40,0.6)] flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                        className="fixed bottom-6 right-6 z-50 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-zinc-950 border border-amber-400/40 shadow-[0_4px_24px_rgba(217,119,6,0.35)] hover:shadow-[0_0_30px_rgba(217,119,6,0.6)] flex items-center justify-center transition-all duration-300 hover:scale-105 group cursor-pointer"
                         aria-label="Open Guestbook"
                     >
-                        <BookOpen className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-[-6deg] transition-transform" />
+                        <BookOpen className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-[-6deg] transition-transform text-zinc-950" />
                         {count > 0 && (
-                            <span className="absolute -top-1 -right-1 min-w-5 h-5 flex items-center justify-center rounded-full bg-red-500 text-white text-[10px] font-bold px-1 shadow-[0_2px_8px_rgba(239,68,68,0.5)]">
+                            <span className="absolute -top-1.5 -right-1.5 min-w-5 h-5 flex items-center justify-center rounded-full bg-red-600 text-white text-[9px] font-mono font-bold px-1.5 border border-red-500/40 shadow-[0_0_10px_rgba(220,38,38,0.6)]">
                                 {count > 99 ? '99+' : count}
                             </span>
                         )}
@@ -153,7 +164,7 @@ export function GuestbookPopup() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+                        className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
                         onClick={() => setOpen(false)}
                     />
                 )}
@@ -167,107 +178,115 @@ export function GuestbookPopup() {
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: "100%", opacity: 0 }}
                         transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                        className="fixed top-0 right-0 bottom-0 z-[60] w-full max-w-md bg-[#0a0908] border-l border-amber-900/20 shadow-[-8px_0_40px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden"
+                        className="fixed top-0 right-0 bottom-0 z-[60] w-full max-w-md bg-[#0c0907] border-l border-amber-900/30 shadow-[-12px_0_50px_rgba(0,0,0,0.95)] flex flex-col overflow-hidden select-text"
                     >
+                        {/* Glowing Background Light */}
+                        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-b from-amber-600/10 via-transparent to-transparent blur-[100px] pointer-events-none select-none z-0" />
+
                         {/* Header */}
-                        <div className="flex items-center justify-between px-5 py-4 border-b border-white/5 shrink-0">
-                            <div className="flex items-center gap-2.5">
-                                <BookOpen className="w-5 h-5 text-amber-500/80" />
-                                <h2 className="text-lg font-serif font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-200 to-amber-100/70">
-                                    Guestbook
-                                </h2>
-                                <span className="text-[10px] text-neutral-600 bg-white/5 px-1.5 py-0.5 rounded-full tabular-nums">
-                                    {entries.length}
-                                </span>
+                        <div className="relative z-10 flex flex-col px-6 pt-6 pb-4 border-b border-amber-900/20 shrink-0 bg-gradient-to-b from-black/40 to-transparent">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-baseline gap-2">
+                                    <h2 className="text-2xl font-serif font-bold text-zinc-100 tracking-wide uppercase">
+                                        Guestbook
+                                    </h2>
+                                </div>
+                                <button
+                                    onClick={() => setOpen(false)}
+                                    className="p-1.5 rounded-xl hover:bg-white/5 text-zinc-500 hover:text-zinc-200 transition-all cursor-pointer hover:rotate-90 duration-300"
+                                    aria-label="Close Guestbook"
+                                >
+                                    <X className="w-4 h-4" />
+                                </button>
                             </div>
-                            <button
-                                onClick={() => setOpen(false)}
-                                className="p-2 rounded-lg hover:bg-white/5 text-neutral-500 hover:text-white transition-colors"
-                                aria-label="Close Guestbook"
-                            >
-                                <X className="w-5 h-5" />
-                            </button>
+                            <p className="text-zinc-400/80 font-serif italic text-xs mt-1.5 leading-relaxed">
+                                Leave a message to show you were here.
+                            </p>
+                            
+                            <div className="flex justify-between items-center mt-3 pt-2 border-t border-double border-amber-900/20 text-[10px] font-mono tracking-widest text-zinc-400/60 uppercase">
+                                <span>Signatures</span>
+                                <span className="text-amber-500/80 font-semibold">{count} entries</span>
+                            </div>
                         </div>
 
                         {/* Form */}
-                        <form onSubmit={handleSubmit} className="px-5 py-4 border-b border-white/5 shrink-0">
-                            <div className="flex items-center gap-2 mb-3 text-amber-600/60">
-                                <PenLine className="w-3.5 h-3.5" />
-                                <span className="text-[10px] uppercase tracking-widest font-medium">Sign the book</span>
-                            </div>
+                        <form onSubmit={handleSubmit} className="relative z-10 px-6 py-5 border-b border-amber-900/20 shrink-0 bg-black/20">
+                            <div className="space-y-4">
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder="Sign your name..."
+                                        value={name}
+                                        onChange={e => setName(e.target.value)}
+                                        maxLength={30}
+                                        className="w-full bg-transparent border-b border-zinc-700/60 focus:border-amber-500/80 py-2 text-sm text-zinc-200 placeholder:text-zinc-500/60 placeholder:italic focus:outline-none transition-all duration-300 font-serif"
+                                    />
+                                </div>
 
-                            <input
-                                type="text"
-                                placeholder="Your name (optional)"
-                                value={name}
-                                onChange={e => setName(e.target.value)}
-                                maxLength={30}
-                                className="w-full bg-white/[0.03] border border-white/5 rounded-lg px-3.5 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-700/40 transition-all mb-2.5"
-                            />
+                                <div>
+                                    <textarea
+                                        placeholder="Write your message..."
+                                        value={message}
+                                        onChange={e => setMessage(e.target.value)}
+                                        maxLength={500}
+                                        rows={3}
+                                        required
+                                        className="w-full bg-transparent border-b border-zinc-700/60 focus:border-amber-500/80 py-2 text-sm text-zinc-200 placeholder:text-zinc-500/60 placeholder:italic focus:outline-none transition-all duration-300 resize-none font-serif leading-relaxed"
+                                    />
+                                </div>
 
-                            <div className="flex gap-2.5">
-                                <textarea
-                                    placeholder="Write something..."
-                                    value={message}
-                                    onChange={e => setMessage(e.target.value)}
-                                    maxLength={500}
-                                    rows={2}
-                                    required
-                                    className="flex-1 bg-white/[0.03] border border-white/5 rounded-lg px-3.5 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-700/40 transition-all resize-none font-serif leading-relaxed"
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={submitting || !message.trim()}
-                                    className="self-end px-4 py-2 bg-amber-700/80 hover:bg-amber-600/90 text-white rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-[0_0_16px_rgba(180,120,40,0.15)] hover:shadow-[0_0_24px_rgba(180,120,40,0.25)] shrink-0"
-                                >
-                                    {submitting ? (
-                                        <Loader2 className="w-4 h-4 animate-spin" />
-                                    ) : (
-                                        <Send className="w-4 h-4" />
-                                    )}
-                                </button>
-                            </div>
-
-                            <div className="flex items-center justify-between mt-1.5">
-                                <span className="text-[10px] text-neutral-600">{message.length}/500</span>
-                                {error && <span className="text-[10px] text-red-400">{error}</span>}
+                                <div className="flex items-center justify-between pt-1">
+                                    <span className="text-[10px] text-zinc-500 font-mono tracking-wide">
+                                        {message.length} / 500 characters
+                                    </span>
+                                    
+                                    <button
+                                        type="submit"
+                                        disabled={submitting || !message.trim()}
+                                        className="px-6 py-2 bg-amber-950/40 border border-amber-600/50 hover:bg-amber-600/10 hover:border-amber-400 text-amber-400 hover:text-amber-300 font-serif italic text-xs tracking-widest uppercase transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer rounded active:scale-[0.98]"
+                                    >
+                                        {submitting ? "Signing..." : "Sign Guestbook"}
+                                    </button>
+                                </div>
+                                {error && (
+                                    <div className="text-xs font-serif italic text-red-400 bg-red-950/10 border border-red-900/20 px-3 py-2 rounded mt-2">
+                                        {error}
+                                    </div>
+                                )}
                             </div>
                         </form>
 
                         {/* Entries list */}
-                        <div ref={listRef} className="flex-1 overflow-y-auto px-5 py-3 space-y-2.5">
+                        <div ref={listRef} className="relative z-10 flex-1 overflow-y-auto px-6 py-4 space-y-2 scroll-smooth divide-y divide-amber-900/10">
                             {loading ? (
-                                <div className="flex items-center justify-center py-12">
-                                    <Loader2 className="w-5 h-5 animate-spin text-amber-600/60" />
+                                <div className="flex items-center justify-center py-20">
+                                    <Loader2 className="w-5 h-5 animate-spin text-amber-500/50" />
                                 </div>
                             ) : entries.length === 0 ? (
-                                <div className="text-center py-12 text-neutral-600">
-                                    <BookOpen className="w-8 h-8 mx-auto mb-2 opacity-30" />
-                                    <p className="text-xs">No entries yet. Be the first!</p>
+                                <div className="text-center py-20 text-zinc-500 font-serif italic">
+                                    <p className="text-sm">No messages yet. Be the first to sign the guestbook.</p>
                                 </div>
                             ) : (
                                 <AnimatePresence mode="popLayout">
                                     {entries.map((entry, i) => (
                                         <motion.div
                                             key={entry.id}
-                                            initial={{ opacity: 0, y: 8 }}
+                                            initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, scale: 0.95 }}
-                                            transition={{ duration: 0.25, delay: i < 8 ? i * 0.03 : 0 }}
-                                            className="group relative bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.04] hover:border-amber-800/20 rounded-xl px-4 py-3 transition-all duration-300"
+                                            exit={{ opacity: 0, scale: 0.98 }}
+                                            transition={{ duration: 0.35, delay: i < 8 ? i * 0.04 : 0 }}
+                                            className="group py-5 first:pt-2 transition-all duration-300"
                                         >
-                                            <div className="absolute left-0 top-2.5 bottom-2.5 w-[2px] rounded-full bg-amber-700/20 group-hover:bg-amber-600/40 transition-colors" />
-
-                                            <div className="flex items-baseline justify-between mb-1">
-                                                <span className="text-sm font-semibold text-amber-200/80 font-serif">
+                                            <div className="flex justify-between items-baseline gap-4 mb-2">
+                                                <span className="font-serif text-sm font-bold text-amber-300/90 italic group-hover:text-amber-250 transition-colors">
                                                     {entry.name}
                                                 </span>
-                                                <span className="text-[10px] text-neutral-600 tabular-nums">
+                                                <span className="text-[9px] text-zinc-500 font-mono tracking-widest uppercase tabular-nums">
                                                     {timeAgo(entry.created_at)}
                                                 </span>
                                             </div>
-                                            <p className="text-sm text-neutral-400 leading-relaxed font-serif whitespace-pre-wrap break-words">
-                                                {entry.message}
+                                            <p className="text-zinc-300 leading-relaxed font-serif text-sm pl-4 border-l border-zinc-850 group-hover:border-amber-500/40 group-hover:text-zinc-200 transition-all duration-300 whitespace-pre-wrap break-words">
+                                                &ldquo;{entry.message}&rdquo;
                                             </p>
                                         </motion.div>
                                     ))}

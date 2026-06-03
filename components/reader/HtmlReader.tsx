@@ -1,13 +1,13 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 import React from 'react';
 import { useEffect, useState, useMemo, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowLeft, ArrowRight, Settings, Home, Menu, Minimize, Maximize, X, Search, Download, MessageSquare, Printer, FileDown, Plus, Minus, RotateCcw, MoreVertical, ArrowUp, ArrowDown, Heart, MessageCircle, Keyboard } from "lucide-react"
+import { ArrowLeft, ArrowRight, Settings, Home, Menu, Minimize, Maximize, X, Search, Download, Printer, FileDown, Plus, Minus, RotateCcw, MoreVertical, ArrowUp, ArrowDown, Heart, MessageCircle, Keyboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { CustomComments } from "@/components/comments/CustomComments"
 import { UserMenu } from "@/components/auth/UserMenu"
 import { AuthModal } from "@/components/auth/AuthModal"
@@ -15,6 +15,9 @@ import { ProfileModal } from "@/components/auth/ProfileModal"
 import { ShortcutsModal } from "./ShortcutsModal"
 import { useReadingProgress } from "@/hooks/useReadingProgress"
 import AdBanner from "@/components/AdBanner"
+
+export type ReaderTheme = 'dark' | 'light' | 'sepia' | 'slatedark' | 'midnight' | 'forest' | 'oled' | 'espresso' | 'gray';
+export type ReaderFontFamily = 'serif' | 'sans' | 'merriweather' | 'roboto' | 'lora';
 
 interface ReaderProps {
     content: string;
@@ -37,11 +40,14 @@ interface ReaderProps {
 export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId, chapterIndex, toc, volumeTitle, epubSource, detailsLink = "/select", returnLink, currentSpineIndex, nextVolumeLink, nextVolumeTitle, debugInfo }: ReaderProps) {
     const router = useRouter();
 
+    const isRezero = detailsLink?.startsWith('/rezero');
+    const baseReadPath = isRezero ? `/rezero/read` : `/read`;
 
-    const [theme, setTheme] = useState<'dark' | 'light' | 'sepia' | 'slatedark' | 'midnight' | 'forest' | 'oled' | 'espresso' | 'gray'>('dark');
+
+    const [theme, setTheme] = useState<ReaderTheme>('dark');
     const [fontSize, setFontSize] = useState(18);
     const [lineHeight, setLineHeight] = useState(1.8);
-    const [fontFamily, setFontFamily] = useState<'serif' | 'sans'>('serif');
+    const [fontFamily, setFontFamily] = useState<ReaderFontFamily>('serif');
     const [fontWeight, setFontWeight] = useState(400);
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -159,11 +165,11 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 // Navigation
                 case 'arrowleft':
                 case 'h':
-                    if (prevChapter) router.push(`/read/${prevChapter.volumeId}/${prevChapter.chapter}`);
+                    if (prevChapter) router.push(`${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`);
                     break;
                 case 'arrowright':
                 case 'l':
-                    if (nextChapter) router.push(`/read/${nextChapter.volumeId}/${nextChapter.chapter}`);
+                    if (nextChapter) router.push(`${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`);
                     break;
 
                 // Interface Toggles
@@ -263,7 +269,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const filteredToc = useMemo(() => {
         if (!toc) return [];
 
-        let relevantItems = toc.filter(item => {
+        const relevantItems = toc.filter(item => {
             const label = item.label?.toLowerCase() || "";
             return !label.startsWith("classroom of the elite");
         });
@@ -274,7 +280,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     }, [toc, searchQuery]);
 
     const themeMap = {
-        dark: "bg-[#14151b] text-[#b6bccc]",
+        dark: isRezero ? "bg-[#05030a] text-[#f4f4f5]" : "bg-[#14151b] text-[#b6bccc]",
         light: "bg-white text-gray-900",
         sepia: "bg-[#f4ecd8] text-[#5b4636]",
         slatedark: "bg-[#0d1117] text-[#c9d1d9]",
@@ -305,10 +311,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
         const savedFontFamily = localStorage.getItem('cote-fontFamily');
         const savedFontWeight = localStorage.getItem('cote-fontWeight');
 
-        if (savedTheme) setTheme(savedTheme as any);
+        if (savedTheme) setTheme(savedTheme as ReaderTheme);
         if (savedFontSize) setFontSize(parseInt(savedFontSize));
         if (savedLineHeight) setLineHeight(parseFloat(savedLineHeight));
-        if (savedFontFamily) setFontFamily(savedFontFamily as any);
+        if (savedFontFamily) setFontFamily(savedFontFamily as ReaderFontFamily);
         if (savedFontWeight) setFontWeight(parseInt(savedFontWeight));
 
         setIsInitialized(true);
@@ -319,9 +325,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     useEffect(() => {
         if (nextChapter) {
-            router.prefetch(`/read/${nextChapter.volumeId}/${nextChapter.chapter}`);
+            router.prefetch(`${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`);
         }
-    }, [nextChapter, router]);
+    }, [nextChapter, router, baseReadPath]);
 
 
     useEffect(() => {
@@ -354,7 +360,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
         if (anchor) {
             const href = anchor.getAttribute('href');
-            if (href && href.startsWith('/read/')) {
+            if (href && (href.startsWith('/read/') || href.startsWith('/rezero/read/'))) {
                 e.preventDefault();
                 router.push(href);
             }
@@ -551,7 +557,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                             ].map((font) => (
                                                 <button
                                                     key={font.id}
-                                                    onClick={() => setFontFamily(font.id as any)}
+                                                    onClick={() => setFontFamily(font.id as ReaderFontFamily)}
                                                     className={cn(
                                                         "text-xs py-1.5 rounded transition-colors truncate px-1",
                                                         fontFamily === font.id
@@ -664,12 +670,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             return (
                                 <Link
                                     key={i}
-                                    href={`/read/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
+                                    href={`${baseReadPath}/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
                                     onClick={() => setSidebarOpen(false)}
                                     className={cn(
                                         "block px-3 py-2 rounded-md text-sm transition-colors line-clamp-2",
                                         (currentSpineIndex ? item.index === currentSpineIndex : item.index === chapterIndex)
-                                            ? "bg-red-500/10 text-red-500 font-medium"
+                                            ? (isRezero ? "bg-violet-500/10 text-violet-400 font-medium" : "bg-red-500/10 text-red-500 font-medium")
                                             : theme === 'light' ? "hover:bg-gray-200/50" : "hover:bg-white/5 opacity-80 hover:opacity-100",
 
                                         volumeId === 'v0' && item.label.startsWith('Part ') && "pl-8 border-l-2 border-transparent hover:border-white/10 ml-2"
@@ -874,6 +880,23 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 margin-bottom: 2rem !important;
                                 font-family: var(--font-serif) !important;
                             }
+
+                            /* Re:Zero Volume Big Titles */
+                            .theme-rezero h1,
+                            .reader-content[data-volume^="rezero"] h1,
+                            .reader-content.theme-rezero h1 {
+                                text-align: center !important;
+                                font-size: clamp(2.2em, 7vw, 3em) !important;
+                                line-height: 1.3 !important;
+                                margin-top: 4rem !important;
+                                margin-bottom: 4rem !important;
+                                font-weight: 800 !important;
+                                color: #ffffff !important;
+                                font-family: var(--font-serif) !important;
+                                text-shadow: 0 0 20px rgba(139, 92, 246, 0.4) !important;
+                                border-bottom: 1px solid rgba(139, 92, 246, 0.2) !important;
+                                padding-bottom: 1.5rem !important;
+                            }
                         `}</style>
 
 
@@ -891,12 +914,17 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
                     <div className="max-w-4xl mx-auto px-6 pb-20 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 print:hidden">
                         {prevChapter ? (
-                            <Link href={`/read/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
+                            <Link href={`${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group",
-                                    theme === 'light' ? "bg-white border-gray-200 hover:border-red-300 hover:shadow-md" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10"
+                                    theme === 'light' 
+                                        ? (isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                        : (isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                 )}>
-                                    <div className="flex items-center gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold text-red-500 group-hover:text-red-400">
+                                    <div className={cn(
+                                        "flex items-center gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
+                                        isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
+                                    )}>
                                         <ArrowLeft className="w-3 h-3" /> Previous Chapter
                                     </div>
                                     <div className="text-sm sm:text-base font-serif font-bold truncate">
@@ -909,12 +937,17 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
 
                         {nextChapter ? (
-                            <Link href={`/read/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
+                            <Link href={`${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group text-left sm:text-right",
-                                    theme === 'light' ? "bg-white border-gray-200 hover:border-red-300 hover:shadow-md" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10"
+                                    theme === 'light' 
+                                        ? (isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                        : (isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                 )}>
-                                    <div className="flex items-center justify-start sm:justify-end gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold text-red-500 group-hover:text-red-400">
+                                    <div className={cn(
+                                        "flex items-center justify-start sm:justify-end gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
+                                        isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
+                                    )}>
                                         Next Chapter <ArrowRight className="h-3 w-3" />
                                     </div>
                                     <div className="text-sm sm:text-base font-serif font-bold truncate">
@@ -1011,7 +1044,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     </Button>
                 </div >
 
-                <Link href="/select">
+                <Link href={detailsLink}>
                     <Button
                         size="icon"
                         className={cn(

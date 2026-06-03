@@ -93,6 +93,18 @@
     --ring: 350 80% 50%;
   }
 
+  .theme-cote {
+    --primary: 156 72% 38%; 
+    --ring: 156 72% 38%;
+  }
+
+  .theme-rezero {
+    --primary: 263 80% 58%;
+    --ring: 263 80% 58%;
+    --accent: 263 30% 15%;
+    --accent-foreground: 263 80% 85%;
+  }
+
   * {
     @apply border-border;
   }

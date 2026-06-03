@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
@@ -10,19 +11,12 @@ import { ArrowRight } from "lucide-react"
 export function Hero() {
     const isReducedMotionHook = useReducedMotion()
     const [mounted, setMounted] = useState(false)
-    const [copied, setCopied] = useState(false)
 
     useEffect(() => {
         setMounted(true)
     }, [])
 
     const shouldReduceMotion = mounted ? isReducedMotionHook : false
-
-    const handleCopy = () => {
-        navigator.clipboard.writeText("http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion")
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-    }
 
     const fadeIn = shouldReduceMotion
         ? { initial: {}, animate: {}, transition: {} }
@@ -40,37 +34,7 @@ export function Hero() {
                 {...fadeIn}
                 className="z-10 flex flex-col items-center gap-6 max-w-4xl"
             >
-                <motion.a
-                    href="https://discord.gg/3zAsapzwmv"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={shouldReduceMotion ? {} : { opacity: 0, y: -10 }}
-                    animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-                    transition={shouldReduceMotion ? {} : { delay: 0.1, duration: 0.5 }}
-                    className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#5865F2]/40 bg-[#5865F2]/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-[#c4c9ff] hover:text-white hover:bg-[#5865F2]/20 shadow-[0_0_15px_rgba(88,101,242,0.3)] hover:shadow-[0_0_25px_rgba(88,101,242,0.6)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm"
-                >
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5865F2] opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#5865F2]"></span>
-                    </span>
-                    Join Discord for Updates
-                </motion.a>
-
-                <motion.button
-                    onClick={handleCopy}
-                    initial={shouldReduceMotion ? {} : { opacity: 0, y: -10 }}
-                    animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-                    transition={shouldReduceMotion ? {} : { delay: 0.2, duration: 0.5 }}
-                    className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-emerald-100 hover:text-white hover:bg-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm"
-                >
-                    <span className="relative flex h-2 w-2 shrink-0">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    {copied ? "URL Copied to Clipboard!" : "Also available on Darkweb"}
-                </motion.button>
-
-                <div className="relative h-40 w-full max-w-xl md:h-52">
+                <div className="relative h-40 w-full max-w-xl md:h-52 mt-6">
                     <Image
                         src="/assets/logo.png"
                         alt="Classroom of the Elite"
@@ -97,7 +61,7 @@ export function Hero() {
                     className="relative mt-4 max-w-2xl"
                 >
                     <p className="font-serif text-xl italic text-muted-foreground md:text-2xl">
-                        "All people are nothing but tools. It doesn't matter how it's done. It doesn't matter what needs to be sacrificed. In this world, winning is everything."
+                        &quot;All people are nothing but tools. It doesn&apos;t matter how it&apos;s done. It doesn&apos;t matter what needs to be sacrificed. In this world, winning is everything.&quot;
                     </p>
                     <p className="mt-2 text-sm text-primary/80 font-bold tracking-widest uppercase">- Ayanokouji Kiyotaka</p>
                 </motion.div>
