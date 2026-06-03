@@ -51,14 +51,15 @@ export const rezeroVolumes: RezeroVolumeData[] = [
     coverImage: "/assets/covers/rezero/v2.jpg",
     synopsis: "After surviving the trials at the capital, Subaru wakes up in Roswaal's luxurious mansion. He meets the twin maids Rem and Ram, the librarian Beatrice, and decides to work as a butler to stay close to Emilia.",
     chapters: [
+      "Illustrations",
       "Prologue: Unseen Hand",
-      "Chapter 1: Self-Awareness of a Second Life",
-      "Chapter 2: The Promised Morning is Still Far",
+      "Chapter 1: Self-Conscious Feelings",
+      "Chapter 2: The Promised Morn Grows Distant",
       "Chapter 3: The Sound of the Chain",
-      "Chapter 4: Re-start in the Mansion",
-      "Epilogue: A Day in the Roswaal Mansion"
-    ],
-    inProgress: true
+      "Chapter 4: A Deadly Game of Tag",
+      "Chapter 5: The Morning He Yearned For",
+      "Afterword"
+    ]
   },
   {
     id: "v3",
@@ -72,13 +73,17 @@ export const rezeroVolumes: RezeroVolumeData[] = [
     coverImage: "/assets/covers/rezero/v3.jpg",
     synopsis: "The terrifying loop at the mansion intensifies as Subaru is targeted by a mysterious curse and a deadly chain-wielder. To break the tragic curse, Subaru must resolve the misunderstandings within the mansion and venture into the cursed forest.",
     chapters: [
-      "Chapter 1: Subaru's Choices",
-      "Chapter 2: The Crying Red Oni",
-      "Chapter 3: Beast of the Forest",
-      "Chapter 4: A Battle of Zeroes",
-      "Epilogue: Starting Life in Another World from Zero"
-    ],
-    inProgress: true
+      "Illustrations",
+      "Chapter 1: Subaru Natsuki's Restart",
+      "Chapter 2: I Cried and Screamed and Will Cry No More",
+      "Chapter 3: The Meaning of Courage",
+      "Chapter 4: The Demonic Method",
+      "Interlude: Rem",
+      "Chapter 5: All In",
+      "Epilogue: Talking about the Future",
+      "Interlude: A Private Chat Under the Moon",
+      "Afterword"
+    ]
   },
   {
     id: "v4",
