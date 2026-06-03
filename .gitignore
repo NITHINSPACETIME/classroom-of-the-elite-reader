@@ -47,3 +47,13 @@ next-env.d.ts
 # scratch files
 /scratch
 
+# scraped caches & assets
+/data/rezero-cache/
+/public/assets/covers/
+/public/assets/images/
+/public/assets/rezero_bg_*.png
+/public/assets/rezero_logo_transparent.png
+/public/assets/re.png
+
+# untracked scraper scripts
+/scripts/
