@@ -449,13 +449,13 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
 
                         <div className="w-full mt-4 flex flex-col gap-2">
                           {progressMap[vol.id] ? (
-                            <Link href={`/orv/read/${progressMap[vol.id].chapterIndex}`} className="w-full">
+                            <Link href={`/orv/read?c=${progressMap[vol.id].chapterIndex}`} className="w-full">
                               <Button className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold text-xs tracking-widest uppercase cursor-pointer rounded-xl py-6 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all">
                                 CONTINUE READING
                               </Button>
                             </Link>
                           ) : (
-                            <Link href={`/orv/read/${vol.startChapter}`} className="w-full">
+                            <Link href={`/orv/read?c=${vol.startChapter}`} className="w-full">
                               <Button className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold text-xs tracking-widest uppercase cursor-pointer rounded-xl py-6 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all">
                                 BEGIN READING
                               </Button>
@@ -597,7 +597,7 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                     return (
                       <Link
                         key={ch.id}
-                        href={`/orv/read/${ch.id}`}
+                        href={`/orv/read?c=${ch.id}`}
                         className={`flex flex-col items-center justify-center p-3 transition-all text-center select-none active:scale-95 group shadow-sm rounded-lg border border-cyan-950/20 bg-black/40 hover:bg-cyan-950/10 hover:border-cyan-500/30`}
                       >
                         <span className="font-mono text-sm font-bold text-zinc-300 group-hover:text-cyan-400 transition-colors">
@@ -610,7 +610,7 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                   return (
                     <Link
                       key={ch.id}
-                      href={`/orv/read/${ch.id}`}
+                      href={`/orv/read?c=${ch.id}`}
                       className={`flex flex-col items-center justify-center p-4 transition-all text-center select-none active:scale-95 group shadow-md ${isSide ? "rounded-2xl border border-white/10 bg-zinc-950/30 hover:border-cyan-400/80 hover:bg-cyan-950/10 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)]" : "rounded-xl border border-cyan-950/20 bg-black/40 hover:bg-cyan-950/10 hover:border-cyan-500/30"}`}
                     >
                       <span className={`text-zinc-300 group-hover:text-cyan-400 transition-colors ${isSide ? "font-sans text-xs md:text-sm font-medium tracking-wide" : "font-mono text-sm font-bold"}`}>
@@ -667,13 +667,13 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
 
                   <div className="w-full flex flex-col gap-2">
                     {progressMap[selectedVolume.id] ? (
-                      <Link href={`/orv/read/${progressMap[selectedVolume.id].chapterIndex}`} className="w-full">
+                      <Link href={`/orv/read?c=${progressMap[selectedVolume.id].chapterIndex}`} className="w-full">
                         <Button className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold py-3 text-xs tracking-widest uppercase cursor-pointer">
                           CONTINUE
                         </Button>
                       </Link>
                     ) : (
-                      <Link href={`/orv/read/${selectedVolume.startChapter}`} className="w-full">
+                      <Link href={`/orv/read?c=${selectedVolume.startChapter}`} className="w-full">
                         <Button className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold py-3 text-xs tracking-widest uppercase cursor-pointer">
                           START READ
                         </Button>
@@ -705,7 +705,7 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                           return (
                             <Link
                               key={ch.id}
-                              href={`/orv/read/${ch.id}`}
+                              href={`/orv/read?c=${ch.id}`}
                               className="flex items-center p-4 rounded-2xl border border-white/10 bg-zinc-950/30 hover:bg-cyan-950/10 hover:border-cyan-400/80 hover:shadow-[0_0_20px_rgba(6,182,212,0.25)] transition-all duration-300 w-full group mb-2.5 last:mb-0"
                             >
                               <span className="text-sm md:text-base text-zinc-200 group-hover:text-cyan-400 transition-colors font-sans font-medium tracking-wide">
@@ -718,7 +718,7 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                         return (
                           <Link
                             key={ch.id}
-                            href={`/orv/read/${ch.id}`}
+                            href={`/orv/read?c=${ch.id}`}
                             className="flex items-center justify-between p-3 rounded-lg border border-cyan-950/10 bg-black/30 hover:bg-cyan-950/10 hover:border-cyan-500/25 transition-all group"
                           >
                             <span className="text-sm text-zinc-300 group-hover:text-cyan-400 transition-colors font-medium">

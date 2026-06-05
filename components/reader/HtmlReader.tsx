@@ -166,11 +166,11 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 // Navigation
                 case 'arrowleft':
                 case 'h':
-                    if (prevChapter) router.push(`${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`);
+                    if (prevChapter) router.push(isOrv ? `${baseReadPath}?c=${prevChapter.chapter}` : `${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`);
                     break;
                 case 'arrowright':
                 case 'l':
-                    if (nextChapter) router.push(`${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`);
+                    if (nextChapter) router.push(isOrv ? `${baseReadPath}?c=${nextChapter.chapter}` : `${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`);
                     break;
 
                 // Interface Toggles
@@ -679,7 +679,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             return (
                                 <Link
                                     key={i}
-                                    href={isOrv ? `${baseReadPath}/${item.href}` : `${baseReadPath}/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
+                                    href={isOrv ? `${baseReadPath}?c=${item.href}` : `${baseReadPath}/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
                                     onClick={() => setSidebarOpen(false)}
                                     className={cn(
                                         "block px-3 py-2 rounded-md text-sm transition-colors line-clamp-2",
@@ -940,7 +940,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
                     <div className="max-w-4xl mx-auto px-6 pb-20 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 print:hidden">
                         {prevChapter ? (
-                            <Link href={isOrv ? `${baseReadPath}/${prevChapter.chapter}` : `${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
+                            <Link href={isOrv ? `${baseReadPath}?c=${prevChapter.chapter}` : `${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group",
                                     theme === 'light' 
@@ -963,7 +963,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
 
                         {nextChapter ? (
-                            <Link href={isOrv ? `${baseReadPath}/${nextChapter.chapter}` : `${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
+                            <Link href={isOrv ? `${baseReadPath}?c=${nextChapter.chapter}` : `${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group text-left sm:text-right",
                                     theme === 'light' 
