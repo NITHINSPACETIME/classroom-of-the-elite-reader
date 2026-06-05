@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display, Merriweather, Roboto, Lora } from "next/font/google";
+import { Inter, Playfair_Display, Merriweather, Roboto, Lora, Cinzel, Cinzel_Decorative } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -32,6 +32,19 @@ const roboto = Roboto({
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
+  display: "swap",
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  display: "swap",
+});
+
+const cinzelDeco = Cinzel_Decorative({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-cinzel-deco",
   display: "swap",
 });
 
@@ -117,7 +130,7 @@ export default function RootLayout({
       <head />
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${playfair.variable} ${merriweather.variable} ${roboto.variable} ${lora.variable} font-sans antialiased bg-background text-foreground selection:bg-primary selection:text-primary-foreground`}
+        className={`${inter.variable} ${playfair.variable} ${merriweather.variable} ${roboto.variable} ${lora.variable} ${cinzel.variable} ${cinzelDeco.variable} font-sans antialiased bg-background text-foreground selection:bg-primary selection:text-primary-foreground`}
       >
         {/* Google AdSense */}
         <Script

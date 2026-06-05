@@ -8,7 +8,7 @@ import { Github, Heart, BookOpen } from "lucide-react";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | null>(null);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion");
@@ -21,11 +21,15 @@ export default function Home() {
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none fixed">
         {/* Left Side Crimson Glow */}
-        <div className={`absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-red-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
+        <div className={`absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-red-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
           hoveredCard === "cote" ? "opacity-90 scale-110 bg-red-900/20" : "opacity-40"
         }`} />
+        {/* Center Cyan Glow */}
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-950/10 rounded-full blur-[150px] transition-all duration-1000 ${
+          hoveredCard === "orv" ? "opacity-90 scale-125 bg-cyan-900/25" : "opacity-20"
+        }`} />
         {/* Right Side Violet Glow */}
-        <div className={`absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-violet-950/20 rounded-full blur-[150px] transition-all duration-1000 ${
+        <div className={`absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-violet-950/20 rounded-full blur-[150px] transition-all duration-1000 ${
           hoveredCard === "rezero" ? "opacity-90 scale-110 bg-violet-900/25" : "opacity-40"
         }`} />
         {/* Center Subtler Ambient Light */}
@@ -162,13 +166,54 @@ export default function Home() {
           </motion.div>
         </Link>
 
+        {/* ORV Squircle Window */}
+        <Link 
+          href="/orv" 
+          className="group w-full max-w-[340px] lg:max-w-[380px] relative"
+          onMouseEnter={() => setHoveredCard("orv")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-cyan-700 to-blue-650 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            whileHover={{ y: -8 }}
+            className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-cyan-500/30 group-hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] flex flex-col justify-end p-8"
+          >
+            {/* Background cover image */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/assets/orv/covers/orv.webp"
+                alt="Omniscient Reader's Viewpoint Cover"
+                fill
+                priority
+                className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                sizes="(max-width: 768px) 100vw, 380px"
+              />
+              {/* Fade Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#020204] via-[#020204]/40 to-transparent" />
+            </div>
+
+            {/* Squircle Window Content */}
+            <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+              <h3 className="font-serif text-2xl lg:text-3xl font-semibold tracking-wide text-zinc-150 group-hover:text-cyan-200 transition-colors duration-300">
+                Omniscient Reader
+              </h3>
+              <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
+                Follow Kim Dokja as he navigates the scenario challenges of a webnovel turned reality.
+              </p>
+            </div>
+          </motion.div>
+        </Link>
+
       </div>
 
       {/* Crawlable Structured SEO Elements (Invisible to UI, fully crawlable by Googlebot) */}
       <div className="sr-only">
-        <h1>Read Classroom of the Elite and Re:Zero Light Novels Online</h1>
+        <h1>Read Classroom of the Elite, Re:Zero and Omniscient Reader&apos;s Viewpoint Light Novels Online</h1>
         <p>
-          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE) and Re:Zero - Starting Life in Another World online.
+          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE), Re:Zero - Starting Life in Another World, and Omniscient Reader&apos;s Viewpoint (ORV) online.
           Immersive reading experience, complete translations, and ad-free interfaces.
         </p>
       </div>

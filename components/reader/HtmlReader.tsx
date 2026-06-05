@@ -24,8 +24,8 @@ interface ReaderProps {
     title: string;
     volumeId: string;
     chapterIndex: number;
-    prevChapter?: { volumeId: string, chapter: number, title?: string };
-    nextChapter?: { volumeId: string, chapter: number, title?: string };
+    prevChapter?: { volumeId: string, chapter: string | number, title?: string };
+    nextChapter?: { volumeId: string, chapter: string | number, title?: string };
     toc?: { label: string, href: string, index: number }[];
     volumeTitle?: string;
     epubSource?: string;
@@ -41,7 +41,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const router = useRouter();
 
     const isRezero = detailsLink?.startsWith('/rezero');
-    const baseReadPath = isRezero ? `/rezero/read` : `/read`;
+    const isOrv = detailsLink?.startsWith('/orv');
+    const baseReadPath = isOrv ? `/orv/read` : (isRezero ? `/rezero/read` : `/read`);
 
 
     const [theme, setTheme] = useState<ReaderTheme>('dark');
@@ -280,7 +281,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     }, [toc, searchQuery]);
 
     const themeMap = {
-        dark: isRezero ? "bg-[#05030a] text-[#f4f4f5]" : "bg-[#14151b] text-[#b6bccc]",
+        dark: isOrv ? "bg-[#020204] text-[#e2e8f0]" : (isRezero ? "bg-[#05030a] text-[#f4f4f5]" : "bg-[#14151b] text-[#b6bccc]"),
         light: "bg-white text-gray-900",
         sepia: "bg-[#f4ecd8] text-[#5b4636]",
         slatedark: "bg-[#0d1117] text-[#c9d1d9]",
@@ -372,6 +373,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
         return <div className="min-h-screen bg-black" />;
     }
 
+    const activeBorderClass = isOrv 
+        ? "border-cyan-500 bg-cyan-500/10 text-white" 
+        : (isRezero ? "border-violet-500 bg-violet-500/10 text-white" : "border-red-500 bg-red-500/10 text-white");
+
     return (
         <div className={cn("min-h-screen flex flex-col transition-colors duration-300 print:bg-white print:text-black", themeMap[theme])}
             style={{
@@ -400,8 +405,11 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         <Menu className="h-4 w-4" />
                     </Button>
                     <div className="flex flex-col min-w-0 flex-1 ml-1">
-                        <span className="font-medium text-sm leading-tight truncate">{volumeTitle}</span>
-                        <button onClick={() => setSidebarOpen(true)} className="text-xs opacity-50 truncate text-left hover:opacity-80 transition-opacity">
+                        <span className={cn("font-medium text-sm leading-tight truncate", isOrv && "font-cinzel tracking-widest text-cyan-400 text-shadow-cyan uppercase text-xs")}>{volumeTitle}</span>
+                        <button 
+                            onClick={() => setSidebarOpen(true)} 
+                            className={cn("text-xs opacity-50 truncate text-left hover:opacity-80 transition-opacity", isOrv && "font-cinzel tracking-wide text-zinc-200 opacity-90 text-[10px]")}
+                        >
                             {title}
                         </button>
                     </div>
@@ -486,39 +494,39 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 <h3 className="font-semibold mb-4 text-xs uppercase tracking-wider text-gray-500">Theme</h3>
 
                                 <div className="grid grid-cols-3 gap-2 mb-6">
-                                    <button onClick={() => setTheme('dark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'dark' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('dark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'dark' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-[#14151b] border border-gray-600" />
                                         Dark
                                     </button>
-                                    <button onClick={() => setTheme('light')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'light' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('light')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'light' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-white border border-gray-300" />
                                         Light
                                     </button>
-                                    <button onClick={() => setTheme('slatedark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'slatedark' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('slatedark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'slatedark' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-[#0d1117] border border-gray-600" />
                                         Tokyo
                                     </button>
-                                    <button onClick={() => setTheme('sepia')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'sepia' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('sepia')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'sepia' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-[#f4ecd8] border border-[#eaddcf]" />
                                         Sepia
                                     </button>
-                                    <button onClick={() => setTheme('midnight')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'midnight' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('midnight')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'midnight' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-[#0f172a] border border-slate-600" />
                                         Midnight
                                     </button>
-                                    <button onClick={() => setTheme('forest')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'forest' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('forest')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'forest' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-[#1a2321] border border-[#2a3633]" />
                                         Forest
                                     </button>
-                                    <button onClick={() => setTheme('oled')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'oled' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('oled')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'oled' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-black border border-gray-700" />
                                         OLED
                                     </button>
-                                    <button onClick={() => setTheme('espresso')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'espresso' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('espresso')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'espresso' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-[#2b2523] border border-[#403632]" />
                                         Espresso
                                     </button>
-                                    <button onClick={() => setTheme('gray')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'gray' ? "border-red-500 bg-red-500/10 text-white" : "border-gray-700 hover:bg-white/5")}>
+                                    <button onClick={() => setTheme('gray')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'gray' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
                                         <div className="w-6 h-6 rounded-full bg-[#27272a] border border-zinc-600" />
                                         Gray
                                     </button>
@@ -655,7 +663,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className={cn(
-                                    "w-full rounded-md border text-sm pl-8 pr-3 py-2 outline-none focus:ring-1 focus:ring-red-500 transition-all",
+                                    "w-full rounded-md border text-sm pl-8 pr-3 py-2 outline-none focus:ring-1 transition-all",
+                                    isOrv ? "focus:ring-cyan-500" : isRezero ? "focus:ring-violet-500" : "focus:ring-red-500",
                                     theme === 'light'
                                         ? "bg-white border-gray-300 text-black placeholder:text-gray-400"
                                         : "bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:bg-white/10"
@@ -670,12 +679,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             return (
                                 <Link
                                     key={i}
-                                    href={`${baseReadPath}/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
+                                    href={isOrv ? `${baseReadPath}/${item.href}` : `${baseReadPath}/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
                                     onClick={() => setSidebarOpen(false)}
                                     className={cn(
                                         "block px-3 py-2 rounded-md text-sm transition-colors line-clamp-2",
                                         (currentSpineIndex ? item.index === currentSpineIndex : item.index === chapterIndex)
-                                            ? (isRezero ? "bg-violet-500/10 text-violet-400 font-medium" : "bg-red-500/10 text-red-500 font-medium")
+                                            ? (isOrv ? "bg-cyan-500/10 text-cyan-400 font-medium" : isRezero ? "bg-violet-500/10 text-violet-400 font-medium" : "bg-red-500/10 text-red-500 font-medium")
                                             : theme === 'light' ? "hover:bg-gray-200/50" : "hover:bg-white/5 opacity-80 hover:opacity-100",
 
                                         volumeId === 'v0' && item.label.startsWith('Part ') && "pl-8 border-l-2 border-transparent hover:border-white/10 ml-2"
@@ -897,6 +906,23 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 border-bottom: 1px solid rgba(139, 92, 246, 0.2) !important;
                                 padding-bottom: 1.5rem !important;
                             }
+
+                            /* ORV Chapter Titles */
+                            .theme-orv h1,
+                            .reader-content[data-volume^="orv"] h1,
+                            .reader-content.theme-orv h1 {
+                                text-align: center !important;
+                                font-size: clamp(2.0em, 6vw, 2.6em) !important;
+                                line-height: 1.3 !important;
+                                margin-top: 3rem !important;
+                                margin-bottom: 3.5rem !important;
+                                font-weight: 700 !important;
+                                color: #ffffff !important;
+                                font-family: var(--font-playfair), var(--font-lora), ui-serif, Georgia, serif !important;
+                                text-shadow: 0 0 15px rgba(6, 182, 212, 0.3) !important;
+                                border-bottom: 1px solid rgba(6, 182, 212, 0.15) !important;
+                                padding-bottom: 1.5rem !important;
+                            }
                         `}</style>
 
 
@@ -914,16 +940,16 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
                     <div className="max-w-4xl mx-auto px-6 pb-20 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 print:hidden">
                         {prevChapter ? (
-                            <Link href={`${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
+                            <Link href={isOrv ? `${baseReadPath}/${prevChapter.chapter}` : `${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group",
                                     theme === 'light' 
-                                        ? (isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
-                                        : (isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
+                                        ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                        : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                 )}>
                                     <div className={cn(
                                         "flex items-center gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
-                                        isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
+                                        isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
                                     )}>
                                         <ArrowLeft className="w-3 h-3" /> Previous Chapter
                                     </div>
@@ -937,16 +963,16 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
 
                         {nextChapter ? (
-                            <Link href={`${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
+                            <Link href={isOrv ? `${baseReadPath}/${nextChapter.chapter}` : `${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group text-left sm:text-right",
                                     theme === 'light' 
-                                        ? (isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
-                                        : (isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
+                                        ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                        : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                 )}>
                                     <div className={cn(
                                         "flex items-center justify-start sm:justify-end gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
-                                        isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
+                                        isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
                                     )}>
                                         Next Chapter <ArrowRight className="h-3 w-3" />
                                     </div>
@@ -961,11 +987,20 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     <div className={cn(
                                         "flex flex-col items-center justify-center gap-1 p-4 rounded-xl border transition-all cursor-pointer hover:scale-[1.02] group relative overflow-hidden",
                                         theme === 'light'
-                                            ? "bg-gradient-to-br from-red-50 to-white border-red-200 text-red-900 shadow-sm hover:shadow-md hover:border-red-300"
-                                            : "bg-gradient-to-br from-red-900/20 to-red-900/10 border-red-500/30 text-red-100 hover:border-red-500/50 hover:from-red-900/30 hover:to-red-900/20"
+                                            ? (isOrv 
+                                                ? "bg-gradient-to-br from-cyan-50 to-white border-cyan-200 text-cyan-900 shadow-sm hover:shadow-md hover:border-cyan-300"
+                                                : "bg-gradient-to-br from-red-50 to-white border-red-200 text-red-900 shadow-sm hover:shadow-md hover:border-red-300"
+                                              )
+                                            : (isOrv
+                                                ? "bg-gradient-to-br from-cyan-950/20 to-cyan-950/10 border-cyan-500/30 text-cyan-100 hover:border-cyan-500/50 hover:from-cyan-950/30 hover:to-cyan-950/20"
+                                                : "bg-gradient-to-br from-red-900/20 to-red-900/10 border-red-500/30 text-red-100 hover:border-red-500/50 hover:from-red-900/30 hover:to-red-900/20"
+                                              )
                                     )}>
 
-                                        <div className="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                        <div className={cn(
+                                            "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                                            isOrv ? "bg-cyan-500/5" : "bg-red-500/5"
+                                        )} />
 
                                         <div className="relative z-10 flex flex-col items-center gap-1">
                                             <span className="font-serif font-bold flex items-center gap-2 text-lg">
@@ -979,7 +1014,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 <Link href={returnLink || detailsLink} className="flex-1">
                                     <div className={cn(
                                         "flex flex-col items-center justify-center gap-1 p-4 rounded-xl border transition-all cursor-pointer hover:scale-[1.02]",
-                                        theme === 'light' ? "bg-red-50 border-red-200 text-red-800" : "bg-red-900/20 border-red-500/50 text-red-200"
+                                        theme === 'light' 
+                                            ? (isOrv ? "bg-cyan-50 border-cyan-200 text-cyan-800" : "bg-red-50 border-red-200 text-red-800") 
+                                            : (isOrv ? "bg-cyan-950/20 border-cyan-500/50 text-cyan-200" : "bg-red-900/20 border-red-500/50 text-red-200")
                                     )}>
                                         <span className="font-serif font-bold">Return to Library</span>
                                         <span className="text-xs opacity-70">Select Year</span>
@@ -1002,8 +1039,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 className={cn(
                                     "rounded-full gap-2 pl-4 pr-6 h-10 transition-all duration-300 group hover:scale-105 shadow-sm",
                                     theme === 'light'
-                                        ? "bg-white border-red-100 hover:border-red-300 text-gray-600 hover:text-red-600"
-                                        : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-red-500/10 text-gray-300 hover:text-red-400"
+                                        ? (isOrv ? "bg-white border-cyan-100 hover:border-cyan-300 text-gray-600 hover:text-cyan-600" : "bg-white border-red-100 hover:border-red-300 text-gray-600 hover:text-red-600")
+                                        : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 text-gray-300 hover:text-cyan-400" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-red-500/10 text-gray-300 hover:text-red-400")
                                 )}
                             >
                                 <Heart className="w-4 h-4 transition-colors group-hover:fill-current" />
@@ -1074,10 +1111,20 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 }
 
 const ReaderContent = React.memo(({ content, volumeId }: { content: string, volumeId: string }) => {
+    const isOrv = volumeId.startsWith('orv-');
+    const isRezero = !isOrv && (volumeId.startsWith('v') || volumeId.startsWith('ss-'));
+
     return (
         <div
             data-volume={volumeId}
-            className="reader-content prose prose-lg max-w-none dark:prose-invert leading-relaxed break-words prose-a:text-red-600 dark:prose-a:text-red-400 prose-a:font-medium hover:prose-a:underline cursor-text prose-headings:text-center prose-h1:text-4xl md:prose-h1:text-5xl prose-h2:text-3xl md:prose-h2:text-4xl prose-headings:font-serif prose-headings:font-bold prose-headings:mt-10 prose-headings:mb-10 text-justify"
+            className={cn(
+                "reader-content prose prose-lg max-w-none dark:prose-invert leading-relaxed break-words prose-a:font-medium hover:prose-a:underline cursor-text prose-headings:text-center prose-h1:text-4xl md:prose-h1:text-5xl prose-h2:text-3xl md:prose-h2:text-4xl prose-headings:font-serif prose-headings:font-bold prose-headings:mt-10 prose-headings:mb-10 text-justify",
+                isOrv 
+                    ? "prose-a:text-cyan-400 dark:prose-a:text-cyan-400" 
+                    : isRezero 
+                        ? "prose-a:text-violet-400 dark:prose-a:text-violet-400" 
+                        : "prose-a:text-red-600 dark:prose-a:text-red-400"
+            )}
             dangerouslySetInnerHTML={{ __html: content }}
         />
     );

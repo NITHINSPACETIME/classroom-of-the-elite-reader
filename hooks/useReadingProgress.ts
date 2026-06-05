@@ -21,7 +21,7 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
     // Load progress on mount
     useEffect(() => {
         async function loadProgress() {
-            if (!user) {
+            if (!user || volumeId.startsWith('orv')) {
                 setLoading(false)
                 return
             }
@@ -58,7 +58,7 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
 
     // Save progress function 
     const saveProgress = useCallback(async (newChapterIndex: number, scrollPercentage: number = 0) => {
-        if (!user) return
+        if (!user || volumeId.startsWith('orv')) return
 
 
         const hasChapterChanged = newChapterIndex !== lastSavedRef.current.chapter
@@ -105,6 +105,7 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
 
     // Save scroll position 
     const saveScrollPosition = useCallback((scrollPercentage: number) => {
+        if (volumeId.startsWith('orv')) return
         if (saveTimeoutRef.current) {
             clearTimeout(saveTimeoutRef.current)
         }

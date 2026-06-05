@@ -30,6 +30,9 @@
   --color-ring: hsl(var(--ring));
 
   --radius: 0.5rem;
+
+  --font-cinzel: var(--font-cinzel), serif;
+  --font-cinzel-deco: var(--font-cinzel-deco), serif;
 }
 
 @layer base {
@@ -103,6 +106,13 @@
     --ring: 263 80% 58%;
     --accent: 263 30% 15%;
     --accent-foreground: 263 80% 85%;
+  }
+
+  .theme-orv {
+    --primary: 195 100% 50%; /* neon cyan #00f0ff */
+    --ring: 195 100% 50%;
+    --accent: 195 30% 12%;
+    --accent-foreground: 195 100% 85%;
   }
 
   * {
@@ -191,4 +201,207 @@
 
 img {
   content-visibility: auto;
+}
+
+/* ORV Custom Sci-Fi System / Star Stream Styles */
+.theme-orv {
+  background-color: #020204 !important;
+}
+
+.reader-content .orv-system-window {
+  background-color: rgba(2, 2, 4, 0.95) !important;
+  border: 1px solid rgba(6, 182, 212, 0.35) !important;
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.2) !important;
+  border-radius: 8px !important;
+  color: #22d3ee !important;
+  font-family: var(--font-roboto), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+.reader-content .orv-system-window:hover {
+  box-shadow: 0 0 40px rgba(6, 182, 212, 0.3) !important;
+  border-color: rgba(6, 182, 212, 0.55) !important;
+}
+
+.reader-content .orv-system-window h4 {
+  font-family: var(--font-cinzel), serif !important;
+  letter-spacing: 0.15em !important;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4) !important;
+  color: #22d3ee !important;
+  border-bottom-color: rgba(6, 182, 212, 0.2) !important;
+}
+
+.reader-content .orv-system-alert {
+  background-color: rgba(6, 182, 212, 0.04) !important;
+  border-left: 3px solid #22d3ee !important;
+  border-radius: 0 8px 8px 0 !important;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.05) !important;
+  color: #22d3ee !important;
+  font-family: var(--font-roboto), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  text-shadow: 0 0 5px rgba(6, 182, 212, 0.2) !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.reader-content .orv-constellation-msg {
+  position: relative !important;
+  display: block !important;
+  max-width: 650px !important;
+  margin: 2.5rem auto !important;
+  padding: 0.75rem 2.5rem !important;
+  text-align: center !important;
+  font-family: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+  color: inherit !important;
+  text-shadow: none !important;
+  line-height: 1.7 !important;
+}
+
+.reader-content .orv-constellation-msg::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 14px !important;
+  border-left: 2px solid currentColor !important;
+  border-top: 2px solid currentColor !important;
+  border-bottom: 2px solid currentColor !important;
+  border-top-left-radius: 6px !important;
+  border-bottom-left-radius: 6px !important;
+  opacity: 0.5 !important;
+}
+
+.reader-content .orv-constellation-msg::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 14px !important;
+  border-right: 2px solid currentColor !important;
+  border-top: 2px solid currentColor !important;
+  border-bottom: 2px solid currentColor !important;
+  border-top-right-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+  opacity: 0.5 !important;
+}
+
+.orv-outergod-msg {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+}
+
+.reader-content .orv-quote {
+  font-family: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 1rem 2.5rem !important;
+  color: inherit !important;
+  font-style: italic !important;
+  margin: 2.25rem auto !important;
+  text-align: center !important;
+  max-width: 700px !important;
+  position: relative !important;
+}
+
+.reader-content .orv-quote p {
+  text-align: center !important;
+  font-family: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif !important;
+  font-style: italic !important;
+  color: inherit !important;
+  margin-bottom: 0 !important;
+}
+
+.reader-content .orv-quote::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 15px !important;
+  background: 
+    linear-gradient(to right, currentColor, currentColor) no-repeat left top / 15px 1.5px,
+    linear-gradient(to bottom, currentColor, currentColor) no-repeat left top / 1.5px 15px,
+    linear-gradient(to right, currentColor, currentColor) no-repeat left bottom / 15px 1.5px,
+    linear-gradient(to bottom, currentColor, currentColor) no-repeat left bottom / 1.5px 15px !important;
+  opacity: 0.45 !important;
+}
+
+.reader-content .orv-quote::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 15px !important;
+  background: 
+    linear-gradient(to left, currentColor, currentColor) no-repeat right top / 15px 1.5px,
+    linear-gradient(to bottom, currentColor, currentColor) no-repeat right top / 1.5px 15px,
+    linear-gradient(to left, currentColor, currentColor) no-repeat right bottom / 15px 1.5px,
+    linear-gradient(to bottom, currentColor, currentColor) no-repeat right bottom / 1.5px 15px !important;
+  opacity: 0.45 !important;
+}
+
+.reader-content .orv-translator-note {
+  font-family: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif !important;
+  font-style: italic !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0.25rem 0 !important;
+  margin: 1rem 0 !important;
+  color: inherit !important;
+  opacity: 0.85 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.5rem !important;
+}
+
+.reader-content .orv-translator-note p {
+  font-family: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif !important;
+  font-style: italic !important;
+  color: inherit !important;
+  margin-bottom: 0 !important;
+}
+
+.reader-content .orv-translator-note span.text-cyan-500 {
+  font-size: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.reader-content .orv-translator-note span.text-cyan-500::before {
+  content: "ⓘ Note:" !important;
+  font-size: 0.875rem !important;
+  font-family: var(--font-lora), var(--font-playfair), ui-serif, Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 600 !important;
+  color: #0284c7 !important; /* sky-600 for light/sepia themes */
+  margin-right: 0.25rem !important;
+}
+
+.dark .reader-content .orv-translator-note span.text-cyan-500::before,
+.theme-orv .reader-content .orv-translator-note span.text-cyan-500::before {
+  color: #22d3ee !important; /* neon cyan for dark theme */
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.2) !important;
+}
+
+.orv-illustration img {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(6, 182, 212, 0.05);
+}
+
+.text-shadow-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+
+/* Disable Tailwind Typography default blockquote pseudo-quotes */
+.reader-content blockquote::before,
+.reader-content blockquote::after,
+.reader-content blockquote p::before,
+.reader-content blockquote p::after {
+  content: none !important;
 }
