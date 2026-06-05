@@ -97,6 +97,7 @@ export const volumes: VolumeData[] = [
         isbnJP: "-",
         isbnEN: "-",
         chapters: [
+            "Illustrations",
             "Prologue: Ibuki Mio's Monologue",
             "Chapter 1: Token Collection Special Exam",
             "Chapter 2: From a Subtle Rift",
