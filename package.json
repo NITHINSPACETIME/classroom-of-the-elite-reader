@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsx lib/generate-mappings.ts && tsx scripts/extract-images.ts && next build",
     "start": "next start",
     "lint": "eslint",
-    "extract-images": "tsx scripts/extract-images.ts"
+    "extract-images": "tsx scripts/extract-images.ts",
+    "build": "tsx lib/generate-mappings.ts && tsx scripts/extract-images.ts && next build && tsx scripts/clean-build.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.90.1",
