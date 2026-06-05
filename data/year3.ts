@@ -103,7 +103,11 @@ export const volumes: VolumeData[] = [
             "Chapter 3: The Approaching Tasks",
             "Chapter 4: Nanase and Amasawa's Private Pool Time",
             "Chapter 5: The Candidates",
-            "Chapter 6: I'll Do Anything You Want"
+            "Chapter 6: I'll Do Anything You Want",
+            "Chapter 7: Intertwining Strategies",
+            "Chapter 8: Fragments of Thought",
+            "Epilogue: A Special Existence",
+            "Afterword"
         ],
         characters: ["Kiyotaka Ayanokoji", "Mio Ibuki"],
         coverImage: "/assets/y3v4.jpg", 

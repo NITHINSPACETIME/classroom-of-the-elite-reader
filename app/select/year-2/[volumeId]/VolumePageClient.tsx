@@ -86,6 +86,12 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
         if (isSideStory) {
             return { type: 'SS', number: (index + 1).toString(), full: chapter };
         }
+        if (chapter === "Illustrations") {
+            return { type: 'ILL', number: '', full: chapter };
+        }
+        if (chapter.toLowerCase() === "afterword") {
+            return { type: 'AFT', number: '', full: chapter };
+        }
 
         const isSpecial = volume.id === 'y2v0' || volume.volumeNumber === 'V0' || volume.volumeNumber === '0';
 
@@ -392,7 +398,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                     <div className={`group flex items-start justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 cursor-pointer gap-3 ${isCurrent ? 'bg-blue-900/10 border-blue-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}>
                                                         <div className="flex items-start gap-3 flex-1">
                                                             <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')}`}>
-                                                                {type === 'SS' ? `SS ${number}` : `${type} ${number}`}
+                                                                {type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
                                                             </span>
                                                             <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-blue-200' : 'text-gray-300 group-hover:text-white'}`}>
                                                                 {isSideStory && full.includes(" : ") ? (() => {
