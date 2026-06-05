@@ -42,7 +42,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     const isRezero = detailsLink?.startsWith('/rezero');
     const isOrv = detailsLink?.startsWith('/orv');
-    const baseReadPath = isOrv ? `/orv/read` : (isRezero ? `/rezero/read` : `/read`);
+    const isBunnyGirl = detailsLink?.startsWith('/bunny-girl');
+    const baseReadPath = isOrv ? `/orv/read` : (isRezero ? `/rezero/read` : (isBunnyGirl ? `/bunny-girl/read` : `/read`));
 
 
     const [theme, setTheme] = useState<ReaderTheme>('dark');
@@ -281,7 +282,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     }, [toc, searchQuery]);
 
     const themeMap = {
-        dark: isOrv ? "bg-[#020204] text-[#e2e8f0]" : (isRezero ? "bg-[#05030a] text-[#f4f4f5]" : "bg-[#14151b] text-[#b6bccc]"),
+        dark: isOrv ? "bg-[#020204] text-[#e2e8f0]" : (isRezero ? "bg-[#05030a] text-[#f4f4f5]" : (isBunnyGirl ? "bg-[#0b0816] text-[#ece2f9]" : "bg-[#14151b] text-[#b6bccc]")),
         light: "bg-white text-gray-900",
         sepia: "bg-[#f4ecd8] text-[#5b4636]",
         slatedark: "bg-[#0d1117] text-[#c9d1d9]",
@@ -322,7 +323,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     }, []);
 
 
-    const processedContent = content;
+    const processedContent = useMemo(() => {
+        if (!isBunnyGirl) return content;
+        // Format standalone section numbers (like 1, 2, 3...) to be large, italicized, and centered
+        return content.replace(/<p[^>]*>\s*(\d+)\s*<\/p>/g, (match, num) => {
+            return `<p class="text-center text-4xl font-serif font-light italic text-purple-300/95 my-16 tracking-widest block w-full select-none">${num}</p>`;
+        });
+    }, [content, isBunnyGirl]);
 
     useEffect(() => {
         if (nextChapter) {
@@ -375,7 +382,11 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     const activeBorderClass = isOrv 
         ? "border-cyan-500 bg-cyan-500/10 text-white" 
-        : (isRezero ? "border-violet-500 bg-violet-500/10 text-white" : "border-red-500 bg-red-500/10 text-white");
+        : (isRezero 
+            ? "border-violet-500 bg-violet-500/10 text-white" 
+            : (isBunnyGirl 
+                ? "border-purple-400 bg-purple-500/10 text-white" 
+                : "border-red-500 bg-red-500/10 text-white"));
 
     return (
         <div className={cn("min-h-screen flex flex-col transition-colors duration-300 print:bg-white print:text-black", themeMap[theme])}
@@ -664,7 +675,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className={cn(
                                     "w-full rounded-md border text-sm pl-8 pr-3 py-2 outline-none focus:ring-1 transition-all",
-                                    isOrv ? "focus:ring-cyan-500" : isRezero ? "focus:ring-violet-500" : "focus:ring-red-500",
+                                    isOrv ? "focus:ring-cyan-500" : isBunnyGirl ? "focus:ring-purple-400" : isRezero ? "focus:ring-violet-500" : "focus:ring-red-500",
                                     theme === 'light'
                                         ? "bg-white border-gray-300 text-black placeholder:text-gray-400"
                                         : "bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:bg-white/10"
@@ -684,7 +695,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     className={cn(
                                         "block px-3 py-2 rounded-md text-sm transition-colors line-clamp-2",
                                         (currentSpineIndex ? item.index === currentSpineIndex : item.index === chapterIndex)
-                                            ? (isOrv ? "bg-cyan-500/10 text-cyan-400 font-medium" : isRezero ? "bg-violet-500/10 text-violet-400 font-medium" : "bg-red-500/10 text-red-500 font-medium")
+                                            ? (isOrv 
+                                                ? "bg-cyan-500/10 text-cyan-400 font-medium" 
+                                                : isBunnyGirl 
+                                                    ? "bg-purple-500/10 text-purple-300 font-medium" 
+                                                    : isRezero 
+                                                        ? "bg-violet-500/10 text-violet-400 font-medium" 
+                                                        : "bg-red-500/10 text-red-500 font-medium")
                                             : theme === 'light' ? "hover:bg-gray-200/50" : "hover:bg-white/5 opacity-80 hover:opacity-100",
 
                                         volumeId === 'v0' && item.label.startsWith('Part ') && "pl-8 border-l-2 border-transparent hover:border-white/10 ml-2"
@@ -923,6 +940,23 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 border-bottom: 1px solid rgba(6, 182, 212, 0.15) !important;
                                 padding-bottom: 1.5rem !important;
                             }
+
+                            /* Bunny Girl Chapter Titles */
+                            .theme-bunny-girl h1,
+                            .reader-content[data-volume^="bunny-girl"] h1,
+                            .reader-content.theme-bunny-girl h1 {
+                                text-align: center !important;
+                                font-size: clamp(2.2em, 7vw, 3em) !important;
+                                line-height: 1.3 !important;
+                                margin-top: 4rem !important;
+                                margin-bottom: 4rem !important;
+                                font-weight: 800 !important;
+                                color: #ffffff !important;
+                                font-family: var(--font-serif) !important;
+                                text-shadow: 0 0 20px rgba(168, 85, 247, 0.4) !important;
+                                border-bottom: 1px solid rgba(168, 85, 247, 0.2) !important;
+                                padding-bottom: 1.5rem !important;
+                            }
                         `}</style>
 
 
@@ -931,7 +965,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <ReaderContent content={processedContent} volumeId={volumeId} />
+                             <ReaderContent content={processedContent} volumeId={volumeId} isRezero={isRezero} isBunnyGirl={isBunnyGirl} />
                         </motion.div>
 
                         <AdBanner />
@@ -944,12 +978,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group",
                                     theme === 'light' 
-                                        ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
-                                        : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
+                                        ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isBunnyGirl ? "bg-white border-gray-200 hover:border-purple-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                        : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isBunnyGirl ? "bg-[#100b1e] border-purple-950/40 hover:border-purple-500/50 hover:bg-purple-950/20" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                 )}>
                                     <div className={cn(
                                         "flex items-center gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
-                                        isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
+                                        isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isBunnyGirl ? "text-purple-400 group-hover:text-purple-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
                                     )}>
                                         <ArrowLeft className="w-3 h-3" /> Previous Chapter
                                     </div>
@@ -967,12 +1001,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group text-left sm:text-right",
                                     theme === 'light' 
-                                        ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
-                                        : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
+                                        ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isBunnyGirl ? "bg-white border-gray-200 hover:border-purple-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                        : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isBunnyGirl ? "bg-[#100b1e] border-purple-950/40 hover:border-purple-500/50 hover:bg-purple-950/20" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                 )}>
                                     <div className={cn(
                                         "flex items-center justify-start sm:justify-end gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
-                                        isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
+                                        isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isBunnyGirl ? "text-purple-400 group-hover:text-purple-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : "text-red-500 group-hover:text-red-400"
                                     )}>
                                         Next Chapter <ArrowRight className="h-3 w-3" />
                                     </div>
@@ -989,17 +1023,25 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                         theme === 'light'
                                             ? (isOrv 
                                                 ? "bg-gradient-to-br from-cyan-50 to-white border-cyan-200 text-cyan-900 shadow-sm hover:shadow-md hover:border-cyan-300"
-                                                : "bg-gradient-to-br from-red-50 to-white border-red-200 text-red-900 shadow-sm hover:shadow-md hover:border-red-300"
+                                                : isBunnyGirl
+                                                    ? "bg-gradient-to-br from-purple-50 to-white border-purple-200 text-purple-900 shadow-sm hover:shadow-md hover:border-purple-300"
+                                                    : isRezero
+                                                        ? "bg-gradient-to-br from-violet-50 to-white border-violet-200 text-violet-900 shadow-sm hover:shadow-md hover:border-violet-300"
+                                                        : "bg-gradient-to-br from-red-50 to-white border-red-200 text-red-900 shadow-sm hover:shadow-md hover:border-red-300"
                                               )
                                             : (isOrv
                                                 ? "bg-gradient-to-br from-cyan-950/20 to-cyan-950/10 border-cyan-500/30 text-cyan-100 hover:border-cyan-500/50 hover:from-cyan-950/30 hover:to-cyan-950/20"
-                                                : "bg-gradient-to-br from-red-900/20 to-red-900/10 border-red-500/30 text-red-100 hover:border-red-500/50 hover:from-red-900/30 hover:to-red-900/20"
+                                                : isBunnyGirl
+                                                    ? "bg-gradient-to-br from-[#1b102e]/30 to-[#1b102e]/10 border-purple-500/30 text-purple-100 hover:border-purple-500/50 hover:from-[#1b102e]/40 hover:to-[#1b102e]/20"
+                                                    : isRezero
+                                                        ? "bg-gradient-to-br from-violet-950/20 to-violet-950/10 border-violet-500/30 text-violet-100 hover:border-violet-500/50 hover:from-violet-950/30 hover:to-violet-950/20"
+                                                        : "bg-gradient-to-br from-red-900/20 to-red-900/10 border-red-500/30 text-red-100 hover:border-red-500/50 hover:from-red-900/30 hover:to-red-900/20"
                                               )
                                     )}>
 
                                         <div className={cn(
                                             "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                                            isOrv ? "bg-cyan-500/5" : "bg-red-500/5"
+                                            isOrv ? "bg-cyan-500/5" : isBunnyGirl ? "bg-purple-500/5" : isRezero ? "bg-violet-500/5" : "bg-red-500/5"
                                         )} />
 
                                         <div className="relative z-10 flex flex-col items-center gap-1">
@@ -1015,11 +1057,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     <div className={cn(
                                         "flex flex-col items-center justify-center gap-1 p-4 rounded-xl border transition-all cursor-pointer hover:scale-[1.02]",
                                         theme === 'light' 
-                                            ? (isOrv ? "bg-cyan-50 border-cyan-200 text-cyan-800" : "bg-red-50 border-red-200 text-red-800") 
-                                            : (isOrv ? "bg-cyan-950/20 border-cyan-500/50 text-cyan-200" : "bg-red-900/20 border-red-500/50 text-red-200")
+                                            ? (isOrv ? "bg-cyan-50 border-cyan-200 text-cyan-800" : isBunnyGirl ? "bg-purple-50 border-purple-200 text-purple-800" : isRezero ? "bg-violet-50 border-violet-200 text-violet-800" : "bg-red-50 border-red-200 text-red-800") 
+                                            : (isOrv ? "bg-cyan-950/20 border-cyan-500/50 text-cyan-200" : isBunnyGirl ? "bg-[#1b102e] border-purple-500/30 text-purple-200" : isRezero ? "bg-violet-950/20 border-violet-500/30 text-violet-200" : "bg-red-900/20 border-red-500/50 text-red-200")
                                     )}>
                                         <span className="font-serif font-bold">Return to Library</span>
-                                        <span className="text-xs opacity-70">Select Year</span>
+                                        <span className="text-xs opacity-70">
+                                            {isOrv ? "Select Scenario" : (isRezero || isBunnyGirl) ? "Select Volume" : "Select Year"}
+                                        </span>
                                     </div>
                                 </Link>
                             )
@@ -1110,9 +1154,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     );
 }
 
-const ReaderContent = React.memo(({ content, volumeId }: { content: string, volumeId: string }) => {
+const ReaderContent = React.memo(({ content, volumeId, isRezero, isBunnyGirl }: { content: string, volumeId: string, isRezero?: boolean, isBunnyGirl?: boolean }) => {
     const isOrv = volumeId.startsWith('orv-');
-    const isRezero = !isOrv && (volumeId.startsWith('v') || volumeId.startsWith('ss-'));
 
     return (
         <div
@@ -1121,9 +1164,11 @@ const ReaderContent = React.memo(({ content, volumeId }: { content: string, volu
                 "reader-content prose prose-lg max-w-none dark:prose-invert leading-relaxed break-words prose-a:font-medium hover:prose-a:underline cursor-text prose-headings:text-center prose-h1:text-4xl md:prose-h1:text-5xl prose-h2:text-3xl md:prose-h2:text-4xl prose-headings:font-serif prose-headings:font-bold prose-headings:mt-10 prose-headings:mb-10 text-justify",
                 isOrv 
                     ? "prose-a:text-cyan-400 dark:prose-a:text-cyan-400" 
-                    : isRezero 
-                        ? "prose-a:text-violet-400 dark:prose-a:text-violet-400" 
-                        : "prose-a:text-red-600 dark:prose-a:text-red-400"
+                    : isBunnyGirl
+                        ? "prose-a:text-purple-400 dark:prose-a:text-purple-400"
+                        : isRezero 
+                            ? "prose-a:text-violet-400 dark:prose-a:text-violet-400" 
+                            : "prose-a:text-red-600 dark:prose-a:text-red-400"
             )}
             dangerouslySetInnerHTML={{ __html: content }}
         />

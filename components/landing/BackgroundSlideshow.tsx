@@ -14,9 +14,10 @@ const backgroundImages = [
 interface BackgroundSlideshowProps {
     images?: string[];
     interval?: number;
+    imageOpacity?: number;
 }
 
-export function BackgroundSlideshow({ images = backgroundImages, interval = 6000 }: BackgroundSlideshowProps) {
+export function BackgroundSlideshow({ images = backgroundImages, interval = 6000, imageOpacity = 0.6 }: BackgroundSlideshowProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
@@ -43,7 +44,8 @@ export function BackgroundSlideshow({ images = backgroundImages, interval = 6000
                         alt=""
                         fill
                         sizes="100vw"
-                        className="object-cover opacity-60"
+                        className="object-cover"
+                        style={{ opacity: imageOpacity }}
                         priority={currentImageIndex === 0}
                         loading={currentImageIndex === 0 ? "eager" : "lazy"}
                         quality={50}
