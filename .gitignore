@@ -49,11 +49,17 @@ next-env.d.ts
 
 # scraped caches & assets
 /data/rezero-cache/
-/public/assets/covers/
-/public/assets/images/
+/public/assets/covers/rezero/
+/public/assets/images/rezero/
 /public/assets/rezero_bg_*.png
 /public/assets/rezero_logo_transparent.png
 /public/assets/re.png
+/public/assets/test.webp
+/public/assets/wiki_y3v4/
+/public/assets/y3v4_ch7_1_old_color.webp
 
-# untracked scraper scripts
-/scripts/
+# untracked scraper scripts 
+/scripts/*
+!/scripts/clean-build.ts
+!/scripts/extract-images.ts
+!/scripts/scrape-y3v4.ts
