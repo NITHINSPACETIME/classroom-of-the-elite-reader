@@ -326,7 +326,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const processedContent = useMemo(() => {
         if (!isBunnyGirl) return content;
         // Format standalone section numbers (like 1, 2, 3...) to be large, italicized, and centered
-        return content.replace(/<p[^>]*>\s*(\d+)\s*<\/p>/g, (match, num) => {
+        return content.replace(/<(p|h3|h2|h4)[^>]*>(?:\s*<[a-zA-Z]+[^>]*>)*\s*(\d+)\s*(?:<\/[a-zA-Z]+>\s*)*<\/\1>/g, (match, tagName, num) => {
             return `<p class="text-center text-4xl font-serif font-light italic text-purple-300/95 my-16 tracking-widest block w-full select-none">${num}</p>`;
         });
     }, [content, isBunnyGirl]);
