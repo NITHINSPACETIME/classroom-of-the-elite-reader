@@ -139,11 +139,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {/* Adsterra Social Bar */}
-        <Script 
-          src='//pl29389303.profitablecpmratenetwork.com/22/16/63/221663704df730d47d3c9c66e9efbe7a.js'
-          strategy="lazyOnload"
-        />
         <RedirectPagesDev />
         <AuthProvider>
           <GlobalContinueReading />
