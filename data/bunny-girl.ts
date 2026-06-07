@@ -282,7 +282,7 @@ export const bunnyGirlVolumes: BunnyGirlVolumeData[] = [
   {
     id: "ss-extra",
     volumeNumber: "16 (Extra Special)",
-    title: "Rascal Does Not Dream of Extra Stories",
+    title: "Rascal Does Not Dream of a Beach Queen+",
     releaseDateJP: "2020",
     releaseDateEN: "(only in japan exclusive)",
     coverImage: "/assets/images/bunny-girl/ss-extra/cover.jpg",
