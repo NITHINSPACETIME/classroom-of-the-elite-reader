@@ -278,6 +278,23 @@ export const bunnyGirlVolumes: BunnyGirlVolumeData[] = [
       "Last Chapter: Hello, Good-bye",
       "Afterword"
     ]
+  },
+  {
+    id: "ss-extra",
+    volumeNumber: "16",
+    title: "Rascal Does Not Dream of Extra Stories",
+    releaseDateJP: "2020",
+    releaseDateEN: "N/A",
+    coverImage: "/assets/images/bunny-girl/ss-extra/cover.jpg",
+    synopsis: "A special compilation volume of extra short stories, containing 'Rascal Does Not Dream of a Beach Queen', 'Rascal Does Not Dream of a White Christmas', and 'Rascal Does Not Dream of a Tropical Summer'.",
+    chapters: [
+      "Illustrations",
+      "Rascal Does Not Dream of a Beach Queen",
+      "Rascal Does Not Dream of a White Christmas",
+      "Rascal Does Not Dream of a Tropical Summer",
+      "Afterword"
+    ],
+    tag: "Extra Special"
   }
 ];
 
@@ -332,22 +349,5 @@ export const bunnyGirlSideStories: BunnyGirlVolumeData[] = [
       "Part 5",
       "Part 6"
     ]
-  },
-  {
-    id: "ss-extra",
-    volumeNumber: "SS Extra",
-    title: "Rascal Does Not Dream of Extra Stories",
-    releaseDateJP: "2020",
-    releaseDateEN: "N/A",
-    coverImage: "/assets/images/bunny-girl/ss-extra/cover.jpg",
-    synopsis: "A special compilation volume of extra short stories, containing 'Rascal Does Not Dream of a Beach Queen', 'Rascal Does Not Dream of a White Christmas', and 'Rascal Does Not Dream of a Tropical Summer'.",
-    chapters: [
-      "Illustrations",
-      "Rascal Does Not Dream of a Beach Queen",
-      "Rascal Does Not Dream of a White Christmas",
-      "Rascal Does Not Dream of a Tropical Summer",
-      "Afterword"
-    ],
-    tag: "Special"
   }
 ];
