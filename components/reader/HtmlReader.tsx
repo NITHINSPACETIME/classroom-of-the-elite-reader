@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import React from 'react';
 import { useEffect, useState, useMemo, useRef } from "react"
@@ -56,6 +57,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const [settingsOpen, setSettingsOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [hasFullscreenSupport, setHasFullscreenSupport] = useState(true);
 
 
     const [commentsOpen, setCommentsOpen] = useState(false);
@@ -133,13 +135,56 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    useEffect(() => {
+        const support = typeof document !== 'undefined' && 
+            (document.fullscreenEnabled || 
+             (document.documentElement as any).webkitRequestFullscreen || 
+             (document.documentElement as any).msRequestFullscreen);
+        setHasFullscreenSupport(!!support);
+
+        const handleFullscreenChange = () => {
+            setIsFullscreen(!!document.fullscreenElement);
+        };
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('msfullscreenchange', handleFullscreenChange);
+        
+        return () => {
+            document.removeEventListener('fullscreenchange', handleFullscreenChange);
+            document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+        };
+    }, []);
+
     const toggleFullscreen = () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(() => { });
-            setIsFullscreen(true);
+        if (hasFullscreenSupport) {
+            if (!document.fullscreenElement) {
+                const docEl = document.documentElement as any;
+                const requestFS = docEl.requestFullscreen || 
+                                  docEl.webkitRequestFullscreen || 
+                                  docEl.msRequestFullscreen;
+                if (requestFS) {
+                    requestFS.call(docEl).then(() => {
+                        setIsFullscreen(true);
+                    }).catch(() => {
+                        // Fallback to pseudo-fullscreen on failure
+                        setIsFullscreen(true);
+                    });
+                } else {
+                    setIsFullscreen(true);
+                }
+            } else {
+                const exitFS = document.exitFullscreen || 
+                               (document as any).webkitExitFullscreen || 
+                               (document as any).msExitFullscreen;
+                if (exitFS) {
+                    exitFS.call(document);
+                }
+                setIsFullscreen(false);
+            }
         } else {
-            document.exitFullscreen();
-            setIsFullscreen(false);
+            // Pseudo-fullscreen fallback for iOS / iPhone Safari
+            setIsFullscreen(prev => !prev);
         }
         setMobileMenuOpen(false);
     };
@@ -389,7 +434,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 : "border-red-500 bg-red-500/10 text-white"));
 
     return (
-        <div className={cn("min-h-screen flex flex-col transition-colors duration-300 print:bg-white print:text-black", themeMap[theme])}
+        <div className={cn(
+            isFullscreen && !hasFullscreenSupport 
+                ? "fixed inset-0 z-50 overflow-y-auto flex flex-col transition-colors duration-300 print:bg-white print:text-black" 
+                : "min-h-screen flex flex-col transition-colors duration-300 print:bg-white print:text-black", 
+            themeMap[theme]
+        )}
             style={{
                 fontSize: `${fontSize}px`,
                 lineHeight: lineHeight,
@@ -404,240 +454,241 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
 
             {/* Simple, header */}
-            <header className={cn("sticky top-0 z-50 flex h-12 items-center gap-3 border-b px-3 print:hidden", headerStyle)}>
-
-                <div className="flex items-center gap-1 flex-1 min-w-0">
-                    <Link href={detailsLink} title="Back to Volume">
-                        <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Back">
-                            <ArrowLeft className="h-4 w-4" />
-                        </Button>
-                    </Link>
-                    <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="h-9 w-9" aria-label="Menu">
-                        <Menu className="h-4 w-4" />
-                    </Button>
-                    <div className="flex flex-col min-w-0 flex-1 ml-1">
-                        <span className={cn("font-medium text-sm leading-tight truncate", isOrv && "font-cinzel tracking-widest text-cyan-400 text-shadow-cyan uppercase text-xs")}>{volumeTitle}</span>
-                        <button 
-                            onClick={() => setSidebarOpen(true)} 
-                            className={cn("text-xs opacity-50 truncate text-left hover:opacity-80 transition-opacity", isOrv && "font-cinzel tracking-wide text-zinc-200 opacity-90 text-[10px]")}
-                        >
-                            {title}
-                        </button>
-                    </div>
-                </div>
-
-
-                <div className="flex items-center gap-0.5 flex-shrink-0">
-                    {/* Desktop actions */}
-                    <div className="hidden sm:flex items-center gap-0.5">
-                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={toggleFullscreen} title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}>
-                            {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
-                        </Button>
-
-                        <div className="relative" ref={downloadRef}>
-                            <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setDownloadMenuOpen(!downloadMenuOpen)} title="Download">
-                                <Download className="h-4 w-4" />
+            {!(isFullscreen && !hasFullscreenSupport) && (
+                <header className={cn("sticky top-0 z-50 flex h-12 items-center gap-3 border-b px-3 print:hidden", headerStyle)}>
+                    <div className="flex items-center gap-1 flex-1 min-w-0">
+                        <Link href={detailsLink} title="Back to Volume">
+                            <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Back">
+                                <ArrowLeft className="h-4 w-4" />
                             </Button>
-                            {downloadMenuOpen && (
-                                <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border bg-popover p-1 shadow-lg">
+                        </Link>
+                        <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="h-9 w-9" aria-label="Menu">
+                            <Menu className="h-4 w-4" />
+                        </Button>
+                        <div className="flex flex-col min-w-0 flex-1 ml-1">
+                            <span className={cn("font-medium text-sm leading-tight truncate", isOrv && "font-cinzel tracking-widest text-cyan-400 text-shadow-cyan uppercase text-xs")}>{volumeTitle}</span>
+                            <button 
+                                onClick={() => setSidebarOpen(true)} 
+                                className={cn("text-xs opacity-50 truncate text-left hover:opacity-80 transition-opacity", isOrv && "font-cinzel tracking-wide text-zinc-200 opacity-90 text-[10px]")}
+                            >
+                                {title}
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div className="flex items-center gap-0.5 flex-shrink-0">
+                        {/* Desktop actions */}
+                        <div className="hidden sm:flex items-center gap-0.5">
+                            <Button variant="ghost" size="icon" className="h-9 w-9" onClick={toggleFullscreen} title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}>
+                                {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
+                            </Button>
+
+                            <div className="relative" ref={downloadRef}>
+                                <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setDownloadMenuOpen(!downloadMenuOpen)} title="Download">
+                                    <Download className="h-4 w-4" />
+                                </Button>
+                                {downloadMenuOpen && (
+                                    <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border bg-popover p-1 shadow-lg">
+                                        <button onClick={handlePrint} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
+                                            <Printer className="h-4 w-4" /> Print
+                                        </button>
+                                        <button onClick={handleDownload} disabled={!epubSource} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors disabled:opacity-40 text-left">
+                                            <FileDown className="h-4 w-4" /> Download EPUB
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+
+                            <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setShortcutsOpen(true)} title="Shortcuts">
+                                <Keyboard className="h-4 w-4" />
+                            </Button>
+
+                            <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setCommentsOpen(true)} title="Discussions">
+                                <MessageCircle className="h-4 w-4" />
+                            </Button>
+                        </div>
+
+                        {/* Mobile menu */}
+                        <div className="sm:hidden relative" ref={mobileMenuRef}>
+                            <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                                <MoreVertical className="h-4 w-4" />
+                            </Button>
+                            {mobileMenuOpen && (
+                                <div className="absolute right-0 top-full mt-1 w-40 rounded-lg shadow-lg border bg-popover p-1 z-50">
+                                    <button onClick={toggleFullscreen} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
+                                        {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
+                                        {isFullscreen ? "Exit Full" : "Fullscreen"}
+                                    </button>
+                                    <button onClick={() => { setCommentsOpen(true); setMobileMenuOpen(false); }} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
+                                        <MessageCircle className="h-4 w-4" /> Discuss
+                                    </button>
                                     <button onClick={handlePrint} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
                                         <Printer className="h-4 w-4" /> Print
                                     </button>
                                     <button onClick={handleDownload} disabled={!epubSource} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors disabled:opacity-40 text-left">
-                                        <FileDown className="h-4 w-4" /> Download EPUB
+                                        <FileDown className="h-4 w-4" /> Download
                                     </button>
                                 </div>
                             )}
                         </div>
 
-                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setShortcutsOpen(true)} title="Shortcuts">
-                            <Keyboard className="h-4 w-4" />
-                        </Button>
 
-                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setCommentsOpen(true)} title="Discussions">
-                            <MessageCircle className="h-4 w-4" />
-                        </Button>
-                    </div>
+                        <UserMenu
+                            onSignIn={() => setAuthModalOpen(true)}
+                            onProfile={() => setProfileModalOpen(true)}
+                        />
 
-                    {/* Mobile menu */}
-                    <div className="sm:hidden relative" ref={mobileMenuRef}>
-                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                            <MoreVertical className="h-4 w-4" />
-                        </Button>
-                        {mobileMenuOpen && (
-                            <div className="absolute right-0 top-full mt-1 w-40 rounded-lg shadow-lg border bg-popover p-1 z-50">
-                                <button onClick={toggleFullscreen} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
-                                    {isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
-                                    {isFullscreen ? "Exit Full" : "Fullscreen"}
-                                </button>
-                                <button onClick={() => { setCommentsOpen(true); setMobileMenuOpen(false); }} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
-                                    <MessageCircle className="h-4 w-4" /> Discuss
-                                </button>
-                                <button onClick={handlePrint} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors text-left">
-                                    <Printer className="h-4 w-4" /> Print
-                                </button>
-                                <button onClick={handleDownload} disabled={!epubSource} className="flex w-full items-center gap-2 rounded px-3 py-2 text-sm hover:bg-accent transition-colors disabled:opacity-40 text-left">
-                                    <FileDown className="h-4 w-4" /> Download
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                        <ShortcutsModal
+                            isOpen={shortcutsOpen}
+                            onClose={() => setShortcutsOpen(false)}
+                        />
+
+                        <div className="relative">
+                            <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setSettingsOpen(!settingsOpen)}>
+                                <Settings className="h-4 w-4" />
+                            </Button>
 
 
-                    <UserMenu
-                        onSignIn={() => setAuthModalOpen(true)}
-                        onProfile={() => setProfileModalOpen(true)}
-                    />
+                            {settingsOpen && (
+                                <div className="absolute right-0 top-full mt-2 w-80 p-5 rounded-xl shadow-2xl border bg-[#1a1b26] text-gray-200 z-50 border-gray-800 max-h-[80vh] overflow-y-auto">
+                                    <h3 className="font-semibold mb-4 text-xs uppercase tracking-wider text-gray-500">Theme</h3>
 
-                    <ShortcutsModal
-                        isOpen={shortcutsOpen}
-                        onClose={() => setShortcutsOpen(false)}
-                    />
+                                    <div className="grid grid-cols-3 gap-2 mb-6">
+                                        <button onClick={() => setTheme('dark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'dark' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-[#14151b] border border-gray-600" />
+                                            Dark
+                                        </button>
+                                        <button onClick={() => setTheme('light')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'light' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-white border border-gray-300" />
+                                            Light
+                                        </button>
+                                        <button onClick={() => setTheme('slatedark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'slatedark' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-[#0d1117] border border-gray-600" />
+                                            Tokyo
+                                        </button>
+                                        <button onClick={() => setTheme('sepia')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'sepia' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-[#f4ecd8] border border-[#eaddcf]" />
+                                            Sepia
+                                        </button>
+                                        <button onClick={() => setTheme('midnight')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'midnight' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-[#0f172a] border border-slate-600" />
+                                            Midnight
+                                        </button>
+                                        <button onClick={() => setTheme('forest')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'forest' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-[#1a2321] border border-[#2a3633]" />
+                                            Forest
+                                        </button>
+                                        <button onClick={() => setTheme('oled')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'oled' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-black border border-gray-700" />
+                                            OLED
+                                        </button>
+                                        <button onClick={() => setTheme('espresso')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'espresso' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-[#2b2523] border border-[#403632]" />
+                                            Espresso
+                                        </button>
+                                        <button onClick={() => setTheme('gray')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'gray' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
+                                            <div className="w-6 h-6 rounded-full bg-[#27272a] border border-zinc-600" />
+                                            Gray
+                                        </button>
+                                    </div>
 
-                    <div className="relative">
-                        <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setSettingsOpen(!settingsOpen)}>
-                            <Settings className="h-4 w-4" />
-                        </Button>
+                                    <div className="space-y-5">
+
+                                        <div>
+                                            <div className="flex justify-between items-center mb-2">
+                                                <label className="text-xs text-gray-400">Font Size</label>
+                                                <span className="text-xs font-mono">{fontSize}px</span>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontSize(Math.max(12, fontSize - 1))}>
+                                                    <Minus className="h-4 w-4" />
+                                                </Button>
+                                                <div className="flex-1 h-8 flex items-center justify-center bg-black/20 rounded border border-gray-800 font-bold text-sm">
+                                                    {Math.round((fontSize / 18) * 100)}%
+                                                </div>
+                                                <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontSize(Math.min(32, fontSize + 1))}>
+                                                    <Plus className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        </div>
 
 
-                        {settingsOpen && (
-                            <div className="absolute right-0 top-full mt-2 w-80 p-5 rounded-xl shadow-2xl border bg-[#1a1b26] text-gray-200 z-50 border-gray-800 max-h-[80vh] overflow-y-auto">
-                                <h3 className="font-semibold mb-4 text-xs uppercase tracking-wider text-gray-500">Theme</h3>
+                                        <div>
+                                            <label className="text-xs text-gray-400 mb-2 block">Font Family</label>
+                                            <div className="grid grid-cols-3 gap-2 bg-black/20 p-1 rounded-lg border border-gray-800">
+                                                {[
+                                                    { id: 'serif', label: 'Serif', font: 'font-serif' },
+                                                    { id: 'sans', label: 'Sans', font: 'font-sans' },
+                                                    { id: 'merriweather', label: 'Merriweather', font: 'font-merriweather' },
+                                                    { id: 'roboto', label: 'Roboto', font: 'font-roboto' },
+                                                    { id: 'lora', label: 'Lora', font: 'font-lora' },
+                                                ].map((font) => (
+                                                    <button
+                                                        key={font.id}
+                                                        onClick={() => setFontFamily(font.id as ReaderFontFamily)}
+                                                        className={cn(
+                                                            "text-xs py-1.5 rounded transition-colors truncate px-1",
+                                                            fontFamily === font.id
+                                                                ? "bg-gray-700 text-white shadow-sm"
+                                                                : "hover:bg-white/5 text-gray-400"
+                                                        )}
+                                                        style={{ fontFamily: font.id === 'merriweather' ? 'var(--font-merriweather)' : font.id === 'roboto' ? 'var(--font-roboto)' : font.id === 'lora' ? 'var(--font-lora)' : undefined }}
+                                                    >
+                                                        {font.label}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
 
-                                <div className="grid grid-cols-3 gap-2 mb-6">
-                                    <button onClick={() => setTheme('dark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'dark' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-[#14151b] border border-gray-600" />
-                                        Dark
-                                    </button>
-                                    <button onClick={() => setTheme('light')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'light' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-white border border-gray-300" />
-                                        Light
-                                    </button>
-                                    <button onClick={() => setTheme('slatedark')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'slatedark' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-[#0d1117] border border-gray-600" />
-                                        Tokyo
-                                    </button>
-                                    <button onClick={() => setTheme('sepia')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'sepia' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-[#f4ecd8] border border-[#eaddcf]" />
-                                        Sepia
-                                    </button>
-                                    <button onClick={() => setTheme('midnight')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'midnight' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-[#0f172a] border border-slate-600" />
-                                        Midnight
-                                    </button>
-                                    <button onClick={() => setTheme('forest')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'forest' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-[#1a2321] border border-[#2a3633]" />
-                                        Forest
-                                    </button>
-                                    <button onClick={() => setTheme('oled')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'oled' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-black border border-gray-700" />
-                                        OLED
-                                    </button>
-                                    <button onClick={() => setTheme('espresso')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'espresso' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-[#2b2523] border border-[#403632]" />
-                                        Espresso
-                                    </button>
-                                    <button onClick={() => setTheme('gray')} className={cn("flex flex-col items-center gap-1 p-2 rounded-lg border transition-all text-xs", theme === 'gray' ? activeBorderClass : "border-gray-700 hover:bg-white/5")}>
-                                        <div className="w-6 h-6 rounded-full bg-[#27272a] border border-zinc-600" />
-                                        Gray
-                                    </button>
+
+                                        <div>
+                                            <div className="flex justify-between items-center mb-2">
+                                                <label className="text-xs text-gray-400">Line Height</label>
+                                                <span className="text-xs font-mono">{lineHeight.toFixed(1)}</span>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setLineHeight(Math.max(1.0, parseFloat((lineHeight - 0.1).toFixed(1))))}>
+                                                    <Minus className="h-4 w-4" />
+                                                </Button>
+                                                <div className="flex-1 h-8 flex items-center justify-center bg-black/20 rounded border border-gray-800 font-bold text-sm">
+                                                    {lineHeight}
+                                                </div>
+                                                <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setLineHeight(Math.min(3.0, parseFloat((lineHeight + 0.1).toFixed(1))))}>
+                                                    <Plus className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        </div>
+
+
+                                        <div>
+                                            <div className="flex justify-between items-center mb-2">
+                                                <label className="text-xs text-gray-400">Font Weight</label>
+                                                <span className="text-xs font-mono">{fontWeight}</span>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontWeight(Math.max(100, fontWeight - 100))}>
+                                                    <Minus className="h-4 w-4" />
+                                                </Button>
+                                                <div className="flex-1 h-8 flex items-center justify-center bg-black/20 rounded border border-gray-800 font-bold text-sm">
+                                                    {fontWeight}
+                                                </div>
+                                                <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontWeight(Math.min(900, fontWeight + 100))}>
+                                                    <Plus className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        </div>
+
+                                        <Button onClick={resetSettings} variant="destructive" className="w-full h-9 text-xs gap-2">
+                                            <RotateCcw className="h-3 w-3" /> Reset to Defaults
+                                        </Button>
+                                    </div>
                                 </div>
-
-                                <div className="space-y-5">
-
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="text-xs text-gray-400">Font Size</label>
-                                            <span className="text-xs font-mono">{fontSize}px</span>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontSize(Math.max(12, fontSize - 1))}>
-                                                <Minus className="h-4 w-4" />
-                                            </Button>
-                                            <div className="flex-1 h-8 flex items-center justify-center bg-black/20 rounded border border-gray-800 font-bold text-sm">
-                                                {Math.round((fontSize / 18) * 100)}%
-                                            </div>
-                                            <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontSize(Math.min(32, fontSize + 1))}>
-                                                <Plus className="h-4 w-4" />
-                                            </Button>
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <label className="text-xs text-gray-400 mb-2 block">Font Family</label>
-                                        <div className="grid grid-cols-3 gap-2 bg-black/20 p-1 rounded-lg border border-gray-800">
-                                            {[
-                                                { id: 'serif', label: 'Serif', font: 'font-serif' },
-                                                { id: 'sans', label: 'Sans', font: 'font-sans' },
-                                                { id: 'merriweather', label: 'Merriweather', font: 'font-merriweather' },
-                                                { id: 'roboto', label: 'Roboto', font: 'font-roboto' },
-                                                { id: 'lora', label: 'Lora', font: 'font-lora' },
-                                            ].map((font) => (
-                                                <button
-                                                    key={font.id}
-                                                    onClick={() => setFontFamily(font.id as ReaderFontFamily)}
-                                                    className={cn(
-                                                        "text-xs py-1.5 rounded transition-colors truncate px-1",
-                                                        fontFamily === font.id
-                                                            ? "bg-gray-700 text-white shadow-sm"
-                                                            : "hover:bg-white/5 text-gray-400"
-                                                    )}
-                                                    style={{ fontFamily: font.id === 'merriweather' ? 'var(--font-merriweather)' : font.id === 'roboto' ? 'var(--font-roboto)' : font.id === 'lora' ? 'var(--font-lora)' : undefined }}
-                                                >
-                                                    {font.label}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="text-xs text-gray-400">Line Height</label>
-                                            <span className="text-xs font-mono">{lineHeight.toFixed(1)}</span>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setLineHeight(Math.max(1.0, parseFloat((lineHeight - 0.1).toFixed(1))))}>
-                                                <Minus className="h-4 w-4" />
-                                            </Button>
-                                            <div className="flex-1 h-8 flex items-center justify-center bg-black/20 rounded border border-gray-800 font-bold text-sm">
-                                                {lineHeight}
-                                            </div>
-                                            <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setLineHeight(Math.min(3.0, parseFloat((lineHeight + 0.1).toFixed(1))))}>
-                                                <Plus className="h-4 w-4" />
-                                            </Button>
-                                        </div>
-                                    </div>
-
-
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <label className="text-xs text-gray-400">Font Weight</label>
-                                            <span className="text-xs font-mono">{fontWeight}</span>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontWeight(Math.max(100, fontWeight - 100))}>
-                                                <Minus className="h-4 w-4" />
-                                            </Button>
-                                            <div className="flex-1 h-8 flex items-center justify-center bg-black/20 rounded border border-gray-800 font-bold text-sm">
-                                                {fontWeight}
-                                            </div>
-                                            <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent border-gray-700 hover:bg-white/5" onClick={() => setFontWeight(Math.min(900, fontWeight + 100))}>
-                                                <Plus className="h-4 w-4" />
-                                            </Button>
-                                        </div>
-                                    </div>
-
-                                    <Button onClick={resetSettings} variant="destructive" className="w-full h-9 text-xs gap-2">
-                                        <RotateCcw className="h-3 w-3" /> Reset to Defaults
-                                    </Button>
-                                </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
-                </div>
-            </header>
+                </header>
+            )}
 
 
 
@@ -1148,6 +1199,23 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 chapterTitle={title}
                 onSignInRequest={() => setAuthModalOpen(true)}
             />
+            {/* Pseudo Fullscreen exit floating button (iOS Safari) */}
+            {isFullscreen && !hasFullscreenSupport && (
+                <div className="fixed bottom-6 left-6 z-[60] print:hidden">
+                    <Button
+                        size="icon"
+                        onClick={toggleFullscreen}
+                        className={cn(
+                            "h-12 w-12 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-110",
+                            theme === 'light' ? "bg-white text-black hover:bg-gray-100" : "bg-black/80 text-white hover:bg-black border border-white/10"
+                        )}
+                        title="Exit Fullscreen"
+                    >
+                        <Minimize className="h-5 w-5" />
+                    </Button>
+                </div>
+            )}
+
             < AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
             < ProfileModal isOpen={profileModalOpen} onClose={() => setProfileModalOpen(false)} />
         </div >

@@ -85,13 +85,13 @@ export default function Home() {
         </p>
       </motion.div>
 
-      {/* Portal Windows (Squircles) Grid */}
-      <div className="z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-items-center w-full max-w-7xl px-4">
+      {/* Portal Windows (Squircles) Grid / Horizontal Scroll on Mobile */}
+      <div className="z-10 flex flex-row overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 w-full px-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8 sm:justify-items-center sm:w-full sm:max-w-7xl sm:px-4">
         
         {/* COTE Squircle Window */}
         <Link 
           href="/cote" 
-          className="group w-full max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("cote")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -132,7 +132,7 @@ export default function Home() {
         {/* Re:Zero Squircle Window */}
         <Link 
           href="/rezero" 
-          className="group w-full max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("rezero")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -173,7 +173,7 @@ export default function Home() {
         {/* ORV Squircle Window */}
         <Link 
           href="/orv" 
-          className="group w-full max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("orv")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -214,7 +214,7 @@ export default function Home() {
         {/* Bunny Girl Squircle Window */}
         <Link 
           href="/bunny-girl" 
-          className="group w-full max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("bunny-girl")}
           onMouseLeave={() => setHoveredCard(null)}
         >

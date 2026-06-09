@@ -102,6 +102,7 @@ export const viewport: Viewport = {
 
 import { AuthProvider } from "@/context/AuthContext";
 import { GlobalContinueReading } from "@/components/GlobalContinueReading";
+import { GlobalFullscreenToggle } from "@/components/GlobalFullscreenToggle";
 import { GuestbookPopup } from "@/components/GuestbookPopup";
 import RedirectPagesDev from "@/components/RedirectPagesDev";
 
@@ -142,6 +143,7 @@ export default function RootLayout({
         <RedirectPagesDev />
         <AuthProvider>
           <GlobalContinueReading />
+          <GlobalFullscreenToggle />
           <GuestbookPopup />
           <script
             type="application/ld+json"
