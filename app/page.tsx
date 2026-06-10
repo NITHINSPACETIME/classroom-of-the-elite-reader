@@ -8,7 +8,7 @@ import { Github, Heart, BookOpen } from "lucide-react";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | null>(null);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion");
@@ -35,6 +35,10 @@ export default function Home() {
         {/* Soft Twilight Glow for Bunny Girl */}
         <div className={`absolute top-1/2 right-[10%] -translate-y-1/2 w-[500px] h-[500px] bg-purple-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
           hoveredCard === "bunny-girl" ? "opacity-90 scale-110 bg-purple-900/20" : "opacity-0"
+        }`} />
+        {/* Emerald Magic Glow for Mushoku Tensei */}
+        <div className={`absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
+          hoveredCard === "mushoku-tensei" ? "opacity-90 scale-110 bg-emerald-900/20" : "opacity-0"
         }`} />
         {/* Center Subtler Ambient Light */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-950/30 via-transparent to-transparent opacity-60" />
@@ -86,7 +90,7 @@ export default function Home() {
       </motion.div>
 
       {/* Portal Windows (Squircles) Grid / Horizontal Scroll on Mobile */}
-      <div className="z-10 flex flex-row overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 w-full px-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8 sm:justify-items-center sm:w-full sm:max-w-7xl sm:px-4">
+      <div className="z-10 flex flex-row overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 w-full px-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 sm:gap-6 lg:gap-8 sm:justify-items-center sm:w-full sm:max-w-7xl sm:px-4">
         
         {/* COTE Squircle Window */}
         <Link 
@@ -252,13 +256,54 @@ export default function Home() {
           </motion.div>
         </Link>
 
+        {/* Mushoku Tensei Squircle Window */}
+        <Link 
+          href="/mushoku-tensei" 
+          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          onMouseEnter={() => setHoveredCard("mushoku-tensei")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-emerald-700 to-teal-650 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            whileHover={{ y: -8 }}
+            className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-emerald-500/30 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] flex flex-col justify-end p-8"
+          >
+            {/* Background cover image */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/assets/images/mushoku-tensei/v1/CoverDesign.jpg"
+                alt="Mushoku Tensei Cover"
+                fill
+                priority
+                className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                sizes="(max-width: 768px) 100vw, 380px"
+              />
+              {/* Fade Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/45 to-transparent" />
+            </div>
+
+            {/* Squircle Window Content */}
+            <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+              <h3 className="font-serif text-2xl lg:text-3xl font-semibold tracking-wide text-zinc-150 group-hover:text-emerald-250 transition-colors duration-300">
+                Mushoku Tensei
+              </h3>
+              <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
+                &ldquo;One who obtains the wings of freedom loses both legs in exchange.&rdquo;
+              </p>
+            </div>
+          </motion.div>
+        </Link>
+
       </div>
 
       {/* Crawlable Structured SEO Elements (Invisible to UI, fully crawlable by Googlebot) */}
       <div className="sr-only">
-        <h1>Read Classroom of the Elite, Re:Zero, Omniscient Reader, and Rascal Does Not Dream Light Novels Online</h1>
+        <h1>Read Classroom of the Elite, Re:Zero, Omniscient Reader, Rascal Does Not Dream, and Mushoku Tensei Light Novels Online</h1>
         <p>
-          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE), Re:Zero - Starting Life in Another World, Omniscient Reader&apos;s Viewpoint (ORV), and Rascal Does Not Dream (Aobuta) online.
+          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE), Re:Zero - Starting Life in Another World, Omniscient Reader&apos;s Viewpoint (ORV), Rascal Does Not Dream (Aobuta), and Mushoku Tensei: Jobless Reincarnation online.
           Immersive reading experience, complete translations, and ad-free interfaces.
         </p>
       </div>
@@ -311,7 +356,7 @@ export default function Home() {
               NITHINSPACETIME
             </a>
           </p>
-          <p className="text-xs text-zinc-500/70">Not affiliated with the official Classroom of the Elite, Re:Zero, or Seishun Buta Yarou franchises.</p>
+          <p className="text-xs text-zinc-500/70">Not affiliated with the official Classroom of the Elite, Re:Zero, Seishun Buta Yarou, or Mushoku Tensei franchises.</p>
         </div>
       </footer>
     </main>

@@ -6,6 +6,7 @@ import { List, ArrowLeft, LayoutGrid, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 import { BunnyGirlVolumeData, bunnyGirlSideStories } from "@/data/bunny-girl";
 import { UserMenu } from "@/components/auth/UserMenu";
@@ -381,7 +382,7 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="relative w-full max-w-3xl max-h-[85vh] bg-[#0c0817] border border-purple-900/40 rounded-2xl shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-[#ece2f9] select-text"
+                className="relative w-full max-w-3xl max-h-[85vh] bg-[#0c0817] border border-purple-900/40 rounded-[36px] shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-[#ece2f9] select-text"
               >
                 {/* Close Button */}
                 <button
@@ -390,6 +391,20 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                 >
                   ✕
                 </button>
+
+                {/* Header Section (Title & Subtitle) */}
+                <div className="col-span-full flex flex-col gap-4">
+                  <div className="pr-8">
+                    <h3 className="font-serif text-2xl md:text-3xl font-extralight text-white tracking-wide border-b border-purple-900/20 pb-2">
+                      {selectedVolume.title}
+                    </h3>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-purple-400 mt-2 font-mono uppercase tracking-widest">
+                      <span>Volume {selectedVolume.volumeNumber}</span>
+                      <span className="text-purple-900/60">|</span>
+                      <span>{selectedVolume.chapters.length} Chapters</span>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Left Panel: Cover image and entry button */}
                 <div className="flex flex-col items-center gap-4">
@@ -428,17 +443,8 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                   )}
                 </div>
 
-                {/* Right Panel: Metadata & Chapters TOC list with Grid / Detailed Toggle */}
+                {/* Right Panel: Metadata & Chapters TOC list */}
                 <div className="flex flex-col gap-5">
-                  <div>
-                    <h3 className="font-serif text-3xl font-extralight text-white tracking-wide border-b border-purple-900/20 pb-2">{selectedVolume.title}</h3>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-purple-400 mt-2 font-mono uppercase tracking-widest">
-                      <span>Volume {selectedVolume.volumeNumber}</span>
-                      <span className="text-purple-900">|</span>
-                      <span>{selectedVolume.id.startsWith("ss-") ? "Side Story Series" : "15 Volumes Sequence"}</span>
-                    </div>
-                  </div>
-
                   {/* Synopsis */}
                   <div>
                     <h4 className="font-bold text-[10px] uppercase tracking-widest text-purple-400 mb-1.5">Synopsis</h4>
@@ -488,7 +494,7 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                           initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
-                          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 max-h-[200px] overflow-y-auto pr-1"
+                          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 max-h-[350px] md:max-h-[220px] overflow-y-auto pr-1"
                         >
                           {selectedVolume.chapters.map((chap, i) => {
                             const label = getCompactChapterLabel(chap, i + 1);
@@ -507,7 +513,7 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                           initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
-                          className="text-sm text-zinc-400 space-y-1.5 max-h-[200px] overflow-y-auto pr-2 border-l border-purple-950 pl-3.5"
+                          className="text-sm text-zinc-400 space-y-1.5 max-h-[350px] md:max-h-[220px] overflow-y-auto pr-2 border-l border-purple-950 pl-3.5"
                         >
                           {selectedVolume.chapters.map((chap, i) => (
                             <li key={i} className="flex justify-between items-center py-1.5 border-b border-purple-950/20 last:border-b-0">

@@ -108,6 +108,13 @@
     --accent-foreground: 263 80% 85%;
   }
 
+  .theme-mushoku-tensei {
+    --primary: 150 80% 40%;
+    --ring: 150 80% 40%;
+    --accent: 150 30% 12%;
+    --accent-foreground: 150 80% 85%;
+  }
+
   .theme-orv {
     --primary: 195 100% 50%; /* neon cyan #00f0ff */
     --ring: 195 100% 50%;

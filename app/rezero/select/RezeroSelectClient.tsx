@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 import { RezeroVolumeData } from "@/data/rezero";
 import { UserMenu } from "@/components/auth/UserMenu";
@@ -283,6 +284,7 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
 
     const [selectedVolume, setSelectedVolume] = useState<RezeroVolumeData | null>(null);
     const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string }>>({});
+
     
     const [authModalOpen, setAuthModalOpen] = useState(false);
     const [profileModalOpen, setProfileModalOpen] = useState(false);
@@ -659,121 +661,126 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                 </AnimatePresence>
 
                 {/* Details Drawer / Overlay Modal */}
-                <AnimatePresence>
-                    {selectedVolume && (
-                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                className="relative w-full max-w-3xl max-h-[85vh] bg-[#0c0817] border border-violet-900/40 rounded-lg shadow-2xl overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-zinc-100 select-text"
-                            >
-                                {/* Close Button */}
-                                <button
-                                    onClick={() => setSelectedVolume(null)}
-                                    className="absolute top-4 right-4 text-zinc-400 hover:text-white hover:bg-violet-950/30 rounded-full p-2 w-10 h-10 flex items-center justify-center z-50 text-xl font-bold cursor-pointer"
-                                >
-                                    ✕
-                                </button>
+        <AnimatePresence>
+            {selectedVolume && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="relative w-full max-w-3xl max-h-[85vh] bg-[#0c0817] border border-violet-900/40 rounded-[36px] shadow-2xl overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-zinc-100 select-text"
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setSelectedVolume(null)}
+                            className="absolute top-4 right-4 text-zinc-400 hover:text-white hover:bg-violet-950/30 rounded-full p-2 w-10 h-10 flex items-center justify-center z-50 text-xl font-bold cursor-pointer"
+                        >
+                            ✕
+                        </button>
 
-                                {/* Cover Column */}
-                                <div className="flex flex-col items-center gap-4">
-                                    <div className="relative w-full max-w-[180px] aspect-[2/3] shadow-2xl border border-violet-900/30 rounded overflow-hidden">
-                                        <Image
-                                            src={selectedVolume.coverImage}
-                                            alt={selectedVolume.title}
-                                            fill
-                                            className="object-cover"
-                                            sizes="180px"
-                                        />
-                                    </div>
-
-                                    {/* Action Buttons */}
-                                    <div className="w-full flex flex-col gap-2">
-                                        {selectedVolume.inProgress ? (
-                                            <Button disabled className="w-full bg-zinc-900 text-zinc-500 border border-zinc-800 font-bold uppercase tracking-wider text-xs py-3 cursor-not-allowed">
-                                                IN PROGRESS
-                                            </Button>
-                                        ) : (
-                                            <Link href={`/rezero/read/${selectedVolume.id}/1`} className="w-full">
-                                                <Button className="w-full bg-violet-700 hover:bg-violet-600 text-white font-bold font-serif py-3 tracking-widest text-xs uppercase shadow-[0_0_15px_rgba(139,92,246,0.3)]">
-                                                    BEGIN READING
-                                                </Button>
-                                            </Link>
-                                        )}
-                                        
-                                        <Button
-                                            variant="outline"
-                                            onClick={(e) => handleDownloadCover(selectedVolume, e)}
-                                            className="w-full border-violet-900/30 hover:bg-violet-950/20 text-zinc-400 hover:text-white text-xs"
-                                        >
-                                            Save Cover Art
-                                        </Button>
-                                    </div>
+                        {/* Header Section (Title & Subtitle) */}
+                        <div className="col-span-full flex flex-col gap-4">
+                            <div className="pr-8">
+                                <h3 className="font-serif text-2xl md:text-3xl font-bold text-white tracking-wide border-b border-violet-900/20 pb-2">
+                                    {selectedVolume.title}
+                                </h3>
+                                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-violet-400 mt-2 font-mono uppercase tracking-wider">
+                                    <span>Volume {selectedVolume.volumeNumber}</span>
+                                    <span className="text-zinc-650">|</span>
+                                    <span>Arc: {selectedVolume.arcId.replace('arc-', 'Arc ')}</span>
                                 </div>
-
-                                {/* Metadata Details Column */}
-                                <div className="flex flex-col gap-4">
-                                    <div>
-                                        <h3 className="font-serif text-3xl font-bold text-white tracking-wide border-b border-violet-900/20 pb-2">{selectedVolume.title}</h3>
-                                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-violet-400 mt-2 font-mono uppercase tracking-wider">
-                                            <span>Volume {selectedVolume.volumeNumber}</span>
-                                            <span className="text-zinc-600">|</span>
-                                            <span>Arc: {selectedVolume.arcId.replace('arc-', 'Arc ')}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Archival Synopsis */}
-                                    <div>
-                                        <h4 className="font-bold text-xs uppercase tracking-widest text-violet-400 mb-1.5">Volume Synopsis</h4>
-                                        <p className="text-sm text-zinc-300 leading-relaxed font-serif bg-violet-950/10 border border-violet-950/30 p-4 rounded">{selectedVolume.synopsis}</p>
-                                    </div>
-
-                                    {/* Key Details */}
-                                    <div className="grid grid-cols-2 gap-4 text-xs bg-black/35 p-3 rounded border border-violet-950/20">
-                                        <div>
-                                            <span className="text-zinc-500 font-bold block mb-1">JP Publication Date</span>
-                                            <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateJP}</span>
-                                        </div>
-                                        <div>
-                                            <span className="text-zinc-500 font-bold block mb-1">EN Publication Date</span>
-                                            <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateEN}</span>
-                                        </div>
-                                        <div className="border-t border-violet-950/20 pt-2">
-                                            <span className="text-zinc-500 font-bold block mb-1">ISBN JP Identifier</span>
-                                            <span className="text-zinc-400 font-mono">{selectedVolume.isbnJP}</span>
-                                        </div>
-                                        <div className="border-t border-violet-950/20 pt-2">
-                                            <span className="text-zinc-500 font-bold block mb-1">ISBN EN Identifier</span>
-                                            <span className="text-zinc-400 font-mono">{selectedVolume.isbnEN}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Chapters TOC inside details modal */}
-                                    <div>
-                                        <h4 className="font-bold text-xs uppercase tracking-widest text-violet-400 mb-2">Chapters List</h4>
-                                        <ul className="text-sm text-zinc-400 space-y-1.5 max-h-[180px] overflow-y-auto pr-2 border-l-2 border-violet-950/50 pl-3">
-                                            {selectedVolume.chapters.map((chap, i) => (
-                                                <li key={i} className="flex justify-between items-center py-0.5 border-b border-violet-950/10 last:border-b-0">
-                                                    <span className="font-serif text-zinc-300 pr-4">{chap}</span>
-                                                    {selectedVolume.chapterUrls && selectedVolume.chapterUrls[i] ? (
-                                                        <a href={selectedVolume.chapterUrls[i]} target="_blank" rel="noopener noreferrer" className="text-[10px] text-violet-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">
-                                                            Translate ↗
-                                                        </a>
-                                                    ) : !selectedVolume.inProgress ? (
-                                                        <Link href={`/rezero/read/${selectedVolume.id}/${i + 1}`}>
-                                                            <span className="text-[10px] text-violet-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">Read →</span>
-                                                        </Link>
-                                                    ) : null}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </motion.div>
+                            </div>
                         </div>
-                    )}
-                </AnimatePresence>
+
+                        {/* Cover Column */}
+                        <div className="flex flex-col items-center gap-4">
+                            <div className="relative w-full max-w-[180px] aspect-[2/3] shadow-2xl border border-violet-900/30 rounded overflow-hidden">
+                                <Image
+                                    src={selectedVolume.coverImage}
+                                    alt={selectedVolume.title}
+                                    fill
+                                    className="object-cover"
+                                    sizes="180px"
+                                />
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="w-full flex flex-col gap-2">
+                                {selectedVolume.inProgress ? (
+                                    <Button disabled className="w-full bg-zinc-900 text-zinc-500 border border-zinc-800 font-bold uppercase tracking-wider text-xs py-3 cursor-not-allowed">
+                                        IN PROGRESS
+                                    </Button>
+                                ) : (
+                                    <Link href={`/rezero/read/${selectedVolume.id}/1`} className="w-full">
+                                        <Button className="w-full bg-violet-700 hover:bg-violet-600 text-white font-bold font-serif py-3 tracking-widest text-xs uppercase shadow-[0_0_15px_rgba(139,92,246,0.3)]">
+                                            BEGIN READING
+                                        </Button>
+                                    </Link>
+                                )}
+                                
+                                <Button
+                                    variant="outline"
+                                    onClick={(e) => handleDownloadCover(selectedVolume, e)}
+                                    className="w-full border-violet-900/30 hover:bg-violet-950/20 text-zinc-400 hover:text-white text-xs"
+                                >
+                                    Save Cover Art
+                                </Button>
+                            </div>
+                        </div>
+
+                        {/* Metadata Details Column */}
+                        <div className="flex flex-col gap-4">
+                            {/* Archival Synopsis */}
+                            <div>
+                                <h4 className="font-bold text-xs uppercase tracking-widest text-violet-400 mb-1.5">Volume Synopsis</h4>
+                                <p className="text-sm text-zinc-300 leading-relaxed font-serif bg-violet-950/10 border border-violet-950/30 p-4 rounded">{selectedVolume.synopsis}</p>
+                            </div>
+
+                            {/* Key Details */}
+                            <div className="grid grid-cols-2 gap-4 text-xs bg-black/35 p-3 rounded border border-violet-950/20">
+                                <div>
+                                    <span className="text-zinc-500 font-bold block mb-1">JP Publication Date</span>
+                                    <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateJP}</span>
+                                </div>
+                                <div>
+                                    <span className="text-zinc-500 font-bold block mb-1">EN Publication Date</span>
+                                    <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateEN}</span>
+                                </div>
+                                <div className="border-t border-violet-950/20 pt-2">
+                                    <span className="text-zinc-500 font-bold block mb-1">ISBN JP Identifier</span>
+                                    <span className="text-zinc-400 font-mono">{selectedVolume.isbnJP}</span>
+                                </div>
+                                <div className="border-t border-violet-950/20 pt-2">
+                                    <span className="text-zinc-500 font-bold block mb-1">ISBN EN Identifier</span>
+                                    <span className="text-zinc-400 font-mono">{selectedVolume.isbnEN}</span>
+                                </div>
+                            </div>
+
+                            {/* Chapters TOC inside details modal */}
+                            <div>
+                                <h4 className="font-bold text-xs uppercase tracking-widest text-violet-400 mb-2">Chapters List</h4>
+                                <ul className="text-sm text-zinc-400 space-y-1.5 max-h-[300px] md:max-h-[180px] overflow-y-auto pr-2 border-l-2 border-violet-950/50 pl-3">
+                                    {selectedVolume.chapters.map((chap, i) => (
+                                        <li key={i} className="flex justify-between items-center py-0.5 border-b border-violet-950/10 last:border-b-0">
+                                            <span className="font-serif text-zinc-300 pr-4">{chap}</span>
+                                            {selectedVolume.chapterUrls && selectedVolume.chapterUrls[i] ? (
+                                                <a href={selectedVolume.chapterUrls[i]} target="_blank" rel="noopener noreferrer" className="text-[10px] text-violet-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">
+                                                    Translate ↗
+                                                </a>
+                                            ) : !selectedVolume.inProgress ? (
+                                                <Link href={`/rezero/read/${selectedVolume.id}/${i + 1}`}>
+                                                    <span className="text-[10px] text-violet-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">Read →</span>
+                                                </Link>
+                                            ) : null}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
+        </AnimatePresence>
             </motion.div>
 
             {/* Toggle Button for Grid / Detailed View Modes */}

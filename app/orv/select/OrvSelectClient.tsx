@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 import { OrvVolumeData } from "@/data/orv";
 import { UserMenu } from "@/components/auth/UserMenu";
@@ -643,7 +644,7 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="relative w-full max-w-3xl max-h-[85vh] bg-[#020204] border border-cyan-900/30 rounded-2xl shadow-2xl overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-zinc-100 select-text"
+                className="relative w-full max-w-3xl max-h-[85vh] bg-[#020204] border border-cyan-900/30 rounded-[36px] shadow-2xl overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-zinc-100 select-text"
               >
                 {/* Close Button */}
                 <button
@@ -652,6 +653,18 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                 >
                   ✕
                 </button>
+
+                {/* Header Section (Title & Subtitle) */}
+                <div className="col-span-full flex flex-col gap-4">
+                  <div className="pr-8">
+                    <h3 className="font-serif text-xl md:text-2xl font-bold text-white leading-tight">
+                      {selectedVolume.title}
+                    </h3>
+                    <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase mt-1 block">
+                      {selectedVolume.partName}
+                    </span>
+                  </div>
+                </div>
 
                 {/* Left: Cover Art Details */}
                 <div className="flex flex-col items-center gap-4 border-b md:border-b-0 md:border-r border-cyan-950/15 pb-6 md:pb-0 md:pr-6">
@@ -689,14 +702,28 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                   </div>
                 </div>
 
-                {/* Right: Chapters Index Scroll List */}
+                {/* Right: Chapters Index Scroll List & About Details */}
                 <div className="flex flex-col overflow-hidden min-h-[300px]">
-                  <div className="mb-4">
-                    <h3 className="font-serif text-xl font-bold text-white leading-tight">{selectedVolume.title}</h3>
-                    <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase mt-1 block">{selectedVolume.partName}</span>
+                  {/* Synopsis / Info */}
+                  <div className="flex flex-col gap-4 mb-4">
+                    <h4 className="font-bold text-[10px] uppercase tracking-widest text-cyan-400">Synopsis</h4>
+                    <p className="text-sm text-zinc-300 leading-relaxed font-sans bg-cyan-950/5 border border-cyan-950/15 p-4 rounded-xl">
+                      {selectedVolume.synopsis}
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 text-xs bg-black/35 p-4 rounded-xl border border-cyan-950/20">
+                      <div>
+                        <span className="text-cyan-500/60 font-bold block mb-1 uppercase tracking-wider text-[9px] font-mono">Chapters Included</span>
+                        <span className="text-zinc-300 font-serif">{selectedVolume.chaptersRange}</span>
+                      </div>
+                      <div>
+                        <span className="text-cyan-500/60 font-bold block mb-1 uppercase tracking-wider text-[9px] font-mono">Release Date</span>
+                        <span className="text-zinc-300 font-serif">{selectedVolume.releaseDate}</span>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="flex-1 overflow-y-auto space-y-1.5 pr-2 max-h-[45vh]">
+                    <h4 className="font-bold text-[10px] uppercase tracking-widest text-cyan-400 mb-2 border-b border-cyan-950/20 pb-1">Chapters Index</h4>
                     {allChapters
                       .filter(ch => ch.volId === selectedVolume.id)
                       .map((ch) => {
