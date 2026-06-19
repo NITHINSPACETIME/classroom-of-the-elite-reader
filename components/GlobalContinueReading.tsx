@@ -27,8 +27,14 @@ export function GlobalContinueReading() {
 
     const isHidden =
         pathname.startsWith('/read/') ||
+        pathname.startsWith('/cote/read/') ||
+        pathname.startsWith('/rezero/read/') ||
+        pathname.startsWith('/orv/read/') ||
+        pathname.startsWith('/bunny-girl/read/') ||
+        pathname.startsWith('/mushoku-tensei/read/') ||
         pathname.startsWith('/auth/') ||
         (pathname.startsWith('/select/year-') && pathname.split('/').length > 3) ||
+        (pathname.startsWith('/cote/select/year-') && pathname.split('/').length > 4) ||
         !user;
 
     useEffect(() => {
@@ -94,7 +100,7 @@ export function GlobalContinueReading() {
                             <X className="w-3 h-3" />
                         </button>
 
-                        <Link href={`/read/${lastRead.volumeId}/${getSpineIndex(lastRead.volumeId, lastRead.chapterIndex)}`}>
+                        <Link href={`/cote/read/${lastRead.volumeId}/${getSpineIndex(lastRead.volumeId, lastRead.chapterIndex)}`}>
                             <div className="flex items-center gap-4 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full p-2 pl-3 pr-6 shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:shadow-[0_0_30px_rgba(220,38,38,0.7)] hover:scale-105 transition-all duration-200 cursor-pointer ring-1 ring-white/20">
                                 {/* Small Cover Preview */}
                                 <div className="h-10 w-8 rounded overflow-hidden shrink-0 border border-white/20">

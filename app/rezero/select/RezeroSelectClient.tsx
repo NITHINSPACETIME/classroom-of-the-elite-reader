@@ -711,11 +711,11 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                                         IN PROGRESS
                                     </Button>
                                 ) : (
-                                    <Link href={`/rezero/read/${selectedVolume.id}/1`} className="w-full">
+                                    <a href={`/rezero/read/${selectedVolume.id}/1`} className="w-full">
                                         <Button className="w-full bg-violet-700 hover:bg-violet-600 text-white font-bold font-serif py-3 tracking-widest text-xs uppercase shadow-[0_0_15px_rgba(139,92,246,0.3)]">
                                             BEGIN READING
                                         </Button>
-                                    </Link>
+                                    </a>
                                 )}
                                 
                                 <Button
@@ -768,9 +768,9 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                                                     Translate ↗
                                                 </a>
                                             ) : !selectedVolume.inProgress ? (
-                                                <Link href={`/rezero/read/${selectedVolume.id}/${i + 1}`}>
+                                                <a href={`/rezero/read/${selectedVolume.id}/${i + 1}`}>
                                                     <span className="text-[10px] text-violet-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">Read →</span>
-                                                </Link>
+                                                </a>
                                             ) : null}
                                         </li>
                                     ))}

@@ -1,6 +1,6 @@
 "use client"
 
-import { volumes, shortStories } from "@/data/year2";
+import { volumes, shortStories } from "@/data/year1";
 import { getSpineIndex } from "@/lib/chapter-mappings";
 import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -13,8 +13,10 @@ import { use, useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
 import { UserMenu } from "@/components/auth/UserMenu";
-import { AuthModal } from "@/components/auth/AuthModal";
-import { ProfileModal } from "@/components/auth/ProfileModal";
+import dynamic from "next/dynamic";
+
+const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
+const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
 
 
 
@@ -30,10 +32,9 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
     const [hasStarted, setHasStarted] = useState(false);
+    const [savedChapterIndex, setSavedChapterIndex] = useState<number>(0);
     const [authModalOpen, setAuthModalOpen] = useState(false);
     const [profileModalOpen, setProfileModalOpen] = useState(false);
-
-    const [savedChapterIndex, setSavedChapterIndex] = useState<number>(0);
 
     useEffect(() => {
         if (!user || !volume) return;
@@ -76,16 +77,11 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
         };
     }, [user, volume]);
 
-
     const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
 
     const isSideStory = volume.volumeNumber === 'SS' || volume.id.startsWith('ss-');
 
     const getChapterDisplay = (chapter: string, index: number) => {
-
-        if (isSideStory) {
-            return { type: 'SS', number: (index + 1).toString(), full: chapter };
-        }
         if (chapter === "Illustrations") {
             return { type: 'ILL', number: '', full: chapter };
         }
@@ -93,48 +89,42 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
             return { type: 'AFT', number: '', full: chapter };
         }
 
-        const isSpecial = volume.id === 'y2v0' || volume.volumeNumber === 'V0' || volume.volumeNumber === '0';
+        let cleanTitle = chapter;
+        let typeLabel = '';
 
-        if (isSpecial) {
-            const match = chapter.match(/^(?:Chapter\s+(\d+)|(Prologue)|(Epilogue))/i);
-            if (match) {
-                if (match[1]) return { type: 'CH', number: match[1], full: `Chapter ${match[1]} : ${chapter.replace(/^Chapter\s+\d+[:\s]*/i, '')}` };
-                if (match[2]) return { type: 'PRO', number: '', full: chapter.replace(/^Prologue[:\s]*/i, 'Prologue - ') };
-                if (match[3]) return { type: 'EPI', number: '', full: chapter.replace(/^Epilogue[:\s]*/i, 'Epilogue - ') };
+        const match = chapter.match(/^(?:Chapter\s+(\d+)|(Prologue)|(Epilogue))/i);
+
+        if (match) {
+            if (match[1]) {
+                cleanTitle = chapter.replace(/^Chapter\s+\d+[:\s]*/i, '');
+            } else if (match[2]) {
+                cleanTitle = chapter.replace(/^Prologue[:\s]*/i, '');
+                typeLabel = 'Prologue';
+            } else if (match[3]) {
+                cleanTitle = chapter.replace(/^Epilogue[:\s]*/i, '');
+                typeLabel = 'Epilogue';
             }
-            return { type: 'CH', number: (index + 1).toString(), full: `Chapter ${index + 1} : ${chapter}` };
-        } else {
-
-            let cleanTitle = chapter;
-            let typeLabel = '';
-
-            const match = chapter.match(/^(?:Chapter\s+(\d+)|(Prologue)|(Epilogue))/i);
-
-            if (match) {
-                if (match[1]) {
-                    cleanTitle = chapter.replace(/^Chapter\s+\d+[:\s]*/i, '');
-                } else if (match[2]) {
-                    cleanTitle = chapter.replace(/^Prologue[:\s]*/i, '');
-                    typeLabel = 'Prologue';
-                } else if (match[3]) {
-                    cleanTitle = chapter.replace(/^Epilogue[:\s]*/i, '');
-                    typeLabel = 'Epilogue';
-                }
-            }
-
-            const displayNum = (index + 1).toString();
-            let fullTitle = `Chapter ${displayNum} : ${cleanTitle}`;
-            if (typeLabel) {
-                fullTitle = `Chapter ${displayNum} - ${typeLabel} : ${cleanTitle}`;
-            }
-
-            return {
-                type: 'CH',
-                number: displayNum,
-                full: fullTitle
-            };
         }
+
+        const displayNum = (index + 1).toString();
+
+        let fullTitle = `Chapter ${displayNum} : ${cleanTitle}`;
+        let type = 'CH';
+
+        if (isSideStory) {
+            fullTitle = `${cleanTitle}`;
+            type = 'SS';
+        } else if (typeLabel) {
+            fullTitle = `Chapter ${displayNum} - ${typeLabel} : ${cleanTitle}`;
+        }
+
+        return {
+            type,
+            number: displayNum,
+            full: fullTitle
+        };
     };
+
 
     const filteredChapters = volume.chapters.filter((chapter, index) => {
         const { number, full } = getChapterDisplay(chapter, index);
@@ -199,15 +189,15 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
     };
 
     return (
-        <div className="min-h-screen w-full bg-[#0a0a0a] text-white selection:bg-blue-900/50">
+        <div className="min-h-screen w-full bg-[#0a0a0a] text-white selection:bg-red-900/50">
+            <div className="fixed inset-0 z-0 bg-gradient-to-br from-red-950/20 via-black to-black pointer-events-none" />
 
-            <div className="fixed inset-0 z-0 bg-gradient-to-br from-blue-950/20 via-black to-black pointer-events-none" />
 
             <nav className="relative z-50 p-6 flex items-center justify-between">
-                <Link href={isSideStory ? "/select/year-2?contentType=shortStories" : "/select/year-2"}>
+                <Link href={isSideStory ? "/cote/select/year-1?contentType=shortStories" : "/cote/select/year-1"}>
                     <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-white/5 gap-2">
                         <ArrowLeft className="w-5 h-5" />
-                        Back to Year 2
+                        Back to Year 1
                     </Button>
                 </Link>
 
@@ -218,7 +208,6 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
             </nav>
 
             <main className="relative z-10 container mx-auto px-4 lg:px-8 pb-20 pt-4">
-
                 <div className="lg:hidden mb-6 space-y-2">
                     <h1 className="text-3xl font-bold font-serif tracking-tight text-white/90">
                         Classroom of the Elite: {volume.title}
@@ -226,7 +215,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                     <h2 className="text-xl text-gray-400 font-light">{volume.title}</h2>
                     <div className="flex flex-wrap gap-2 pt-2">
                         {volume.characters.map((char) => (
-                            <div key={char} className="px-3 py-1 rounded-full bg-blue-950/30 border border-blue-900/30 text-blue-200 text-xs flex items-center gap-2">
+                            <div key={char} className="px-3 py-1 rounded-full bg-red-950/30 border border-red-900/30 text-red-200 text-xs flex items-center gap-2">
                                 <Users className="w-3 h-3" />
                                 {char}
                             </div>
@@ -235,13 +224,12 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 lg:gap-12 items-start">
-
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         className="flex flex-col gap-6 lg:sticky lg:top-8"
                     >
-                        <div className="relative aspect-[2/3] w-full max-w-[300px] lg:max-w-none mx-auto lg:mx-0 rounded-lg overflow-hidden shadow-[0_0_50px_rgba(37,99,235,0.15)] border border-white/10 group">
+                        <div className="relative aspect-[2/3] w-full max-w-[300px] lg:max-w-none mx-auto lg:mx-0 rounded-lg overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.15)] border border-white/10 group">
                             <img
                                 src={volume.coverImage}
                                 alt={volume.title}
@@ -252,14 +240,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                 sizes="(max-width: 1024px) 100vw, 400px"
                                 fetchPriority="high"
                             />
-
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                            {volume.id === 'v0' && (
-                                <div className="absolute top-3 right-3 bg-blue-600/90 backdrop-blur-sm px-3 py-1 text-center text-[10px] font-bold text-white uppercase tracking-widest shadow-[0_0_10px_rgba(37,99,235,0.5)] rounded-sm z-10 border border-blue-400/30">
-                                    Fan Translation
-                                </div>
-                            )}
 
                             <div className="absolute top-3 right-3 z-30 opacity-100">
                                 <div className="relative">
@@ -298,13 +279,14 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                             </div>
                         </div>
 
-                        <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, hasStarted ? savedChapterIndex : 0)}`} className="w-full">
-                            <Button className="w-full h-14 text-lg bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:scale-[1.02]">
-                                <BookOpen className="mr-2 w-5 h-5" />
-                                {hasStarted ? "Continue Reading" : "Start Reading"}
-                            </Button>
-                        </Link>
-
+                        <div className="flex flex-col gap-3">
+                            <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, hasStarted ? savedChapterIndex : 0)}`} className="w-full">
+                                <Button className="w-full h-14 text-lg bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-900/20 transition-all duration-300 hover:scale-[1.02]">
+                                    <BookOpen className="mr-2 w-5 h-5" />
+                                    {hasStarted ? "Continue Reading" : "Start Reading"}
+                                </Button>
+                            </a>
+                        </div>
 
                         <div className="grid grid-cols-2 gap-3">
                             <div className="bg-white/5 rounded-lg p-3 border border-white/5">
@@ -322,14 +304,12 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                         </div>
                     </motion.div>
 
-
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                         className="flex flex-col gap-8"
                     >
-
                         <div className="hidden lg:block space-y-4 border-b border-white/10 pb-8">
                             <h1 className="text-4xl md:text-5xl font-bold font-serif tracking-tight text-white/90">
                                 Classroom of the Elite: {volume.title}
@@ -338,7 +318,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
 
                             <div className="flex flex-wrap gap-3 pt-2">
                                 {volume.characters.map((char) => (
-                                    <div key={char} className="px-3 py-1 rounded-full bg-blue-950/30 border border-blue-900/30 text-blue-200 text-sm flex items-center gap-2">
+                                    <div key={char} className="px-3 py-1 rounded-full bg-red-950/30 border border-red-900/30 text-red-200 text-sm flex items-center gap-2">
                                         <Users className="w-3 h-3" />
                                         {char}
                                     </div>
@@ -346,7 +326,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                             </div>
                         </div>
 
-                        {/* Chapter List */}
+
                         <div>
                             {isSideStory && (
                                 <h3 className="text-xl font-medium text-white/80 mb-4 px-1">
@@ -381,10 +361,6 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                     sortedChapters.map((chapter) => {
                                         const originalIndex = volume.chapters.indexOf(chapter);
                                         const { type, number, full } = getChapterDisplay(chapter, originalIndex);
-
-
-                                        const linkIndex = originalIndex + 1;
-
                                         const isCurrent = hasStarted && originalIndex === savedChapterIndex;
 
                                         return (
@@ -394,28 +370,28 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: 0.1 + (originalIndex * 0.03) }}
                                             >
-                                                <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
-                                                    <div className={`group flex items-start justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 cursor-pointer gap-3 ${isCurrent ? 'bg-blue-900/10 border-blue-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}>
+                                                <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
+                                                    <div className={`group flex items-start justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 cursor-pointer gap-3 ${isCurrent ? 'bg-red-900/10 border-red-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}>
                                                         <div className="flex items-start gap-3 flex-1">
-                                                            <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')}`}>
+                                                            <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-red-200 bg-red-950/40' : 'text-gray-600 bg-black/40') : 'text-amber-500 bg-amber-950/30'}`}>
                                                                 {type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
                                                             </span>
-                                                            <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-blue-200' : 'text-gray-300 group-hover:text-white'}`}>
+                                                            <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-red-200' : 'text-gray-300 group-hover:text-white'}`}>
                                                                 {isSideStory && full.includes(" : ") ? (() => {
                                                                     const [narrator, title] = full.split(" : ");
                                                                     return (
                                                                         <span className="flex flex-col md:block">
-                                                                            <span className="font-bold text-blue-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
+                                                                            <span className="font-bold text-red-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
                                                                             <span className="text-gray-300">{title}</span>
                                                                         </span>
                                                                     );
                                                                 })() : full}
-                                                                {isCurrent && <span className="ml-2 text-xs text-blue-400 font-normal animate-pulse">(Current)</span>}
+                                                                {isCurrent && <span className="ml-2 text-xs text-red-400 font-normal animate-pulse">(Current)</span>}
                                                             </span>
                                                         </div>
                                                         <ArrowLeft className="shrink-0 w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
                                                     </div>
-                                                </Link>
+                                                </a>
                                             </motion.div>
                                         )
                                     })
@@ -436,16 +412,16 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     className="fixed bottom-6 left-0 right-0 z-50 flex justify-center pointer-events-none"
                 >
-                    <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, savedChapterIndex)}`} className="pointer-events-auto">
+                    <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, savedChapterIndex)}`} className="pointer-events-auto">
                         <Button className="h-14 px-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white font-medium shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
-                            <BookOpen className="mr-2 w-5 h-5 text-blue-400 group-hover:text-blue-300" />
+                            <BookOpen className="mr-2 w-5 h-5 text-red-400 group-hover:text-red-300" />
                             <span className="flex flex-col items-start leading-none gap-1">
                                 <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Continue Reading</span>
                                 <span className="text-sm">Chapter {savedChapterIndex + 1}</span>
                             </span>
                             <ArrowRight className="ml-4 w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                    </Link>
+                    </a>
                 </motion.div>
             )}
             <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />

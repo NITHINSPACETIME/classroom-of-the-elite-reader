@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-import { VolumeData } from "@/data/year2";
+import { VolumeData } from "@/data/year3";
 import { UserMenu } from "@/components/auth/UserMenu";
 import { BackgroundSlideshow } from "@/components/landing/BackgroundSlideshow";
 import dynamic from "next/dynamic";
@@ -16,12 +16,12 @@ import dynamic from "next/dynamic";
 const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
 const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
 
-interface Year2ClientProps {
+interface Year3ClientProps {
     volumes: VolumeData[];
     shortStories: VolumeData[];
 }
 
-export default function Year2Client({ volumes, shortStories }: Year2ClientProps) {
+export default function Year3Client({ volumes, shortStories }: Year3ClientProps) {
     const searchParams = useSearchParams();
     const [viewMode, setViewMode] = useState<"detailed" | "compact">("detailed");
     const initialContentType = searchParams.get("contentType") as "volumes" | "shortStories" | null;
@@ -86,22 +86,22 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
             <div className="absolute inset-0 z-0 select-none pointer-events-none fixed">
                 <div className="absolute inset-0 bg-black/70 z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
-                <BackgroundSlideshow images={[
-                    '/assets/y2v1.jpg',
-                    '/assets/y2v2.jpg',
-                    '/assets/y2v3.jpg',
-                ]} interval={6000} />
+                <img
+                    src="/assets/bg-slide-3.jpg"
+                    alt="Background"
+                    className="w-full h-full object-cover opacity-50 blur-sm"
+                />
             </div>
             <div className="absolute inset-0 z-0 opacity-10 bg-[url('/assets/grid.svg')] mix-blend-overlay fixed pointer-events-none z-20" />
 
             {/* Top Bar */}
             <div className="sticky top-0 left-0 w-full z-50 p-6 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm flex items-center">
-                <Link href="/select">
+                <Link href="/cote/select">
                     <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
                         <ArrowLeft className="w-6 h-6" />
                     </Button>
                 </Link>
-                <h1 className="ml-4 text-2xl font-serif font-bold text-white tracking-widest">Year 2 Arc</h1>
+                <h1 className="ml-4 text-2xl font-serif font-bold text-white tracking-widest">Year 3 Arc</h1>
             </div>
 
             <motion.div
@@ -167,7 +167,7 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                     className="bg-zinc-900/50 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden shadow-2xl"
                                 >
                                     {/* Header Row */}
-                                    <div className={`grid grid-cols-[60px_1fr] ${contentType === "shortStories" ? "md:grid-cols-[100px_1fr_300px]" : "md:grid-cols-[100px_1fr_1fr_300px]"} bg-gradient-to-r from-blue-900/40 to-black border-b border-white/10 divide-x divide-white/10 text-center`}>
+                                    <div className={`grid grid-cols-[60px_1fr] ${contentType === "shortStories" ? "md:grid-cols-[100px_1fr_300px]" : "md:grid-cols-[100px_1fr_1fr_300px]"} bg-gradient-to-r from-emerald-900/40 to-black border-b border-white/10 divide-x divide-white/10 text-center`}>
                                         <div className="p-3 flex items-center justify-center font-bold text-lg md:text-xl text-white">
                                             {vol.volumeNumber}
                                         </div>
@@ -198,7 +198,7 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                                         return (
                                                             <li key={idx} className="leading-snug">
                                                                 <div className="flex items-start">
-                                                                    <span className="shrink-0 font-bold text-blue-400">{narrator} <span className="text-gray-500 font-normal">:</span>&nbsp;</span>
+                                                                    <span className="shrink-0 font-bold text-emerald-400">{narrator} <span className="text-gray-500 font-normal">:</span>&nbsp;</span>
                                                                     <span className="text-gray-300">{title}</span>
                                                                 </div>
                                                             </li>
@@ -211,11 +211,11 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                         </div>
 
                                         {/* Characters (Middle) */}
-                                        <div className="p-4 bg-gradient-to-b from-purple-900/10 to-transparent">
+                                        <div className="p-4 bg-gradient-to-b from-green-900/10 to-transparent">
                                             <h4 className="font-bold text-white mb-2 border-b border-white/10 pb-1">
                                                 {contentType === "shortStories" ? "Narrators:" : "Cover Characters:"}
                                             </h4>
-                                            <ul className="text-sm text-purple-400 space-y-1 font-semibold">
+                                            <ul className="text-sm text-green-400 space-y-1 font-semibold">
                                                 {vol.characters.map((char, idx) => (
                                                     <li key={idx}>{char}</li>
                                                 ))}
@@ -227,19 +227,19 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                             <div className="absolute inset-0 flex items-center justify-center p-4">
                                                 <Link
                                                     prefetch={false}
-                                                    href={vol.inProgress ? "#" : `/select/year-2/${vol.id}`}
+                                                    href={vol.inProgress ? "#" : `/cote/select/year-3/${vol.id}`}
                                                     className={`block relative z-10 w-full max-w-[240px] ${vol.inProgress ? "cursor-not-allowed" : ""}`}
                                                     onClick={(e) => vol.inProgress && e.preventDefault()}
                                                 >
                                                     {vol.coverImage ? (
-                                                        <div className="relative w-full aspect-[2/3] shadow-2xl transition-transform duration-500 cursor-pointer">
+                                                        <div className="relative w-full aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-500 cursor-pointer">
                                                             <Image
                                                                 src={vol.coverImage}
                                                                 alt={vol.title}
                                                                 fill
-                                                                priority={index < 3}
                                                                 className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                                                                 sizes="(max-width: 768px) 300px, 240px"
+                                                                priority={index < 3}
                                                             />
                                                         </div>
                                                     ) : (
@@ -263,7 +263,7 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                                             IN PROGRESS
                                                         </Button>
                                                     ) : (
-                                                        <Link prefetch={false} href={`/select/year-2/${vol.id}`} className="w-full">
+                                                        <Link prefetch={false} href={`/cote/select/year-3/${vol.id}`} className="w-full">
                                                             <Button variant="default" className="w-full bg-red-600 hover:bg-red-700 text-white shadow-lg font-bold tracking-wide">
                                                                 VIEW DETAILS
                                                             </Button>
@@ -291,7 +291,7 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                                                     onClick={(e) => { e.stopPropagation(); handleDownloadCover(vol); }}
                                                                     className="flex items-center gap-3 w-full px-3 py-3 text-sm font-medium text-left text-gray-200 hover:bg-white/10 rounded-lg transition-all active:scale-95 border-b border-transparent"
                                                                 >
-                                                                    <ImageIcon className="h-4 w-4 text-blue-400" />
+                                                                    <ImageIcon className="h-4 w-4 text-emerald-400" />
                                                                     <span className="flex-1">Save Cover</span>
                                                                 </button>
                                                                 <button
@@ -310,6 +310,16 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                     </div>
                                 </div>
                             ))}
+
+
+                            <div className="bg-zinc-900/30 backdrop-blur-sm border border-white/5 rounded-lg overflow-hidden p-8 flex items-center justify-center text-center opacity-60">
+                                <div className="flex flex-col items-center gap-2">
+                                    <div className="w-full text-center">
+                                        <h3 className="text-xl font-serif font-bold text-gray-500 mb-1">To Be Continued...</h3>
+                                        <p className="text-sm text-gray-600">More volumes will be added as they release.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </motion.div>
                     ) : (
                         <motion.div
@@ -324,7 +334,7 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
 
                                 <Link
                                     prefetch={false}
-                                    href={vol.inProgress ? "#" : `/select/year-2/${vol.id}`}
+                                    href={vol.inProgress ? "#" : `/cote/select/year-3/${vol.id}`}
                                     key={vol.id}
                                     className={`flex flex-col gap-2 group relative ${vol.inProgress ? "cursor-not-allowed" : "cursor-pointer"}`}
                                     onClick={(e) => vol.inProgress && e.preventDefault()}
@@ -347,6 +357,12 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                             </div>
                                         )}
 
+                                        {/* Chapter Count Badge */}
+                                        <div className="absolute top-2 left-2 bg-black/60 text-white text-[10px] font-bold px-1.5 py-0.5 rounded backdrop-blur-sm border border-white/10 z-20 flex items-center gap-1 shadow-sm pointer-events-none">
+                                            <List className="w-3 h-3" />
+                                            {vol.chapters.length}
+                                        </div>
+
                                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                         {vol.inProgress && (
                                             <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/80 backdrop-blur-sm border-t border-red-500/50 py-1.5 pointer-events-none">
@@ -355,12 +371,6 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                                 </div>
                                             </div>
                                         )}
-                                    </div>
-
-                                    {/* Chapter Count Badge */}
-                                    <div className="absolute top-2 right-2 bg-black/60 text-white text-[10px] font-bold px-1.5 py-0.5 rounded backdrop-blur-sm border border-white/10 z-10 flex items-center gap-1 shadow-sm pointer-events-none">
-                                        <List className="w-3 h-3" />
-                                        {vol.chapters.length}
                                     </div>
 
 
@@ -380,13 +390,13 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                             </Button>
 
                                             {downloadMenuOpen === vol.id && (
-                                                <div className="absolute right-0 top-full mt-2 w-56 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col p-2 gap-1 text-gray-200 ring-1 ring-black/50">
+                                                <div className="absolute right-0 top-full mt-2 w-40 bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col p-2 gap-1 text-gray-200 ring-1 ring-black/50">
                                                     <button
                                                         onClick={(e) => { e.stopPropagation(); handleDownloadCover(vol); }}
                                                         className="flex items-center gap-3 w-full px-3 py-3 text-xs font-medium text-left hover:bg-white/10 rounded-lg transition-all active:scale-95"
                                                     >
-                                                        <ImageIcon className="h-4 w-4 text-blue-400" />
-                                                        <span className="flex-1">Save Cover Image</span>
+                                                        <ImageIcon className="h-4 w-4 text-emerald-400" />
+                                                        <span className="flex-1">Save Cover</span>
                                                     </button>
                                                     <button
                                                         onClick={(e) => { e.stopPropagation(); handleDownloadEpub(vol); }}
@@ -401,7 +411,7 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                     </div>
 
                                     <div className="text-center">
-                                        <div className="font-bold text-white text-sm md:text-base group-hover:text-blue-400 transition-colors">
+                                        <div className="font-bold text-white text-sm md:text-base group-hover:text-emerald-400 transition-colors">
                                             {vol.volumeNumber}
                                         </div>
                                         <div className="text-xs text-gray-400 truncate">
@@ -410,16 +420,32 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                     </div>
                                 </Link>
                             ))}
+
+                            {/*  for Future Volumes */}
+                            <div className="flex flex-col gap-2 opacity-50 select-none">
+                                <div className="w-full aspect-[2/3] rounded-md border-2 border-dashed border-white/20 flex items-center justify-center bg-white/5">
+                                    <span className="text-white/30 font-serif text-4xl font-bold">...</span>
+                                </div>
+                                <div className="text-center">
+                                    <div className="font-bold text-gray-500 text-sm md:text-base">
+                                        Coming Soon
+                                    </div>
+                                    <div className="text-xs text-gray-600">
+                                        More volumes yet to be released...
+                                    </div>
+                                </div>
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
             </motion.div>
 
+
            
             <div className="fixed bottom-8 right-8 z-[100]">
                 <Button
                     onClick={() => setViewMode(prev => prev === "detailed" ? "compact" : "detailed")}
-                    className="rounded-full w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white shadow-[0_0_20px_rgba(37,99,235,0.5)] border border-blue-400/20 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+                    className="rounded-full w-14 h-14 bg-emerald-600 hover:bg-emerald-700 text-white shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-400/20 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
                 >
                     <AnimatePresence mode="wait" initial={false}>
                         <motion.div

@@ -40,7 +40,7 @@ export default function NotFound() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                    <Link href="/select">
+                    <Link href="/cote/select">
                         <Button variant="default" className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-900/20 hover:shadow-red-900/40 transition-all duration-300">
                             <Home className="mr-2 w-4 h-4" /> Return to Library
                         </Button>

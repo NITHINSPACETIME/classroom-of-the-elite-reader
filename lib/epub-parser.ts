@@ -578,7 +578,7 @@ export async function getChapterContent(volumeId: string, chapterIndex: number, 
             if (linkIndex !== -1) {
                 linksToReplace.push({
                     original: href,
-                    newHref: `/read/${volumeId}/${linkIndex + 1}`
+                    newHref: `/cote/read/${volumeId}/${linkIndex + 1}`
                 });
             }
         }

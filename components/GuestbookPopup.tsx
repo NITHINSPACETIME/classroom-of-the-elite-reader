@@ -63,7 +63,7 @@ export function GuestbookPopup() {
         }
     }, [open])
 
-    const visible = pathname === '/' || pathname === '/select'
+    const visible = pathname === '/' || pathname === '/select' || pathname === '/cote/select'
 
     const fetchEntries = async () => {
         if (fetched) return

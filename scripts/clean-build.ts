@@ -32,8 +32,8 @@ function pruneNextPrefetchFiles(dir: string) {
                 }
             }
         } else {
-            // Check if file is a Next.js prefetch chunk
-            if (file.includes('__next.') || file.startsWith('__next.')) {
+            // Check if file is a Next.js prefetch chunk inside a reader directory
+            if (fullPath.includes('/read/') && (file.includes('__next.') || file.startsWith('__next.'))) {
                 try {
                     fs.unlinkSync(fullPath);
                     deletedPrefetchCount++;

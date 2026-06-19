@@ -174,7 +174,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
             <div className="fixed inset-0 z-0 bg-gradient-to-br from-emerald-950/20 via-black to-black pointer-events-none" />
 
             <nav className="relative z-50 p-6 flex items-center justify-between">
-                <Link href={isSideStory ? "/select/year-3?contentType=shortStories" : "/select/year-3"}>
+                <Link href={isSideStory ? "/cote/select/year-3?contentType=shortStories" : "/cote/select/year-3"}>
                     <Button variant="ghost" className="text-gray-400 hover:text-white hover:bg-white/5 gap-2">
                         <ArrowLeft className="w-5 h-5" />
                         Back to Year 3
@@ -265,12 +265,12 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                             </div>
                         </div>
 
-                        <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, hasStarted ? savedChapterIndex : 0)}`} className="w-full">
+                        <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, hasStarted ? savedChapterIndex : 0)}`} className="w-full">
                             <Button className="w-full h-14 text-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-900/20 transition-all duration-300 hover:scale-[1.02]">
                                 <BookOpen className="mr-2 w-5 h-5" />
                                 {hasStarted ? "Continue Reading" : "Start Reading"}
                             </Button>
-                        </Link>
+                        </a>
 
                         <div className="grid grid-cols-2 gap-3">
                             <div className="bg-white/5 rounded-lg p-3 border border-white/5">
@@ -391,9 +391,9 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: 0.1 + (originalIndex * 0.03) }}
                                             >
-                                                <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
+                                                <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
                                                     {itemContent}
-                                                </Link>
+                                                 </a>
                                             </motion.div>
                                         );
                                     })
@@ -427,7 +427,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     className="fixed bottom-6 left-0 right-0 z-50 flex justify-center pointer-events-none"
                 >
-                    <Link href={`/read/${volume.id}/${getSpineIndex(volume.id, savedChapterIndex)}`} className="pointer-events-auto">
+                    <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, savedChapterIndex)}`} className="pointer-events-auto">
                         <Button className="h-14 px-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white font-medium shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
                             <BookOpen className="mr-2 w-5 h-5 text-emerald-400 group-hover:text-emerald-300" />
                             <span className="flex flex-col items-start leading-none gap-1">
@@ -436,7 +436,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                             </span>
                             <ArrowRight className="ml-4 w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                    </Link>
+                    </a>
                 </motion.div>
             )}
             <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />

@@ -6,7 +6,7 @@ import { List, ArrowLeft, LayoutGrid, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
-import { cn } from "@/lib/utils";
+
 
 import { MushokuTenseiVolumeData, mushokuTenseiSideStories, mushokuTenseiRedundancy } from "@/data/mushoku-tensei";
 import { UserMenu } from "@/components/auth/UserMenu";
@@ -449,11 +449,11 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
                         COMING SOON
                       </Button>
                     ) : (
-                      <Link href={`/mushoku-tensei/read/${selectedVolume.id}/1`} className="w-full">
+                      <a href={`/mushoku-tensei/read/${selectedVolume.id}/1`} className="w-full">
                         <Button className="w-full bg-emerald-750 hover:bg-emerald-650 text-white font-bold font-serif py-3 tracking-widest text-xs uppercase shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all">
                           BEGIN READING
                         </Button>
-                      </Link>
+                      </a>
                     )}
                   </div>
 
@@ -527,11 +527,11 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
                             {selectedVolume.chapters.map((chap, i) => {
                               const label = getCompactChapterLabel(chap, i + 1);
                               return (
-                                <Link key={i} href={`/mushoku-tensei/read/${selectedVolume.id}/${i + 1}`}>
+                                <a key={i} href={`/mushoku-tensei/read/${selectedVolume.id}/${i + 1}`}>
                                   <div className="flex items-center justify-center p-3 text-center rounded-lg border border-emerald-950/30 bg-black/35 hover:bg-emerald-900/20 hover:border-emerald-500/30 text-xs font-serif text-zinc-200 hover:text-emerald-250 transition-all cursor-pointer truncate active:scale-95">
                                     {label}
                                   </div>
-                                </Link>
+                                </a>
                               );
                             })}
                           </motion.div>
@@ -546,9 +546,9 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
                             {selectedVolume.chapters.map((chap, i) => (
                               <li key={i} className="flex justify-between items-center py-1.5 border-b border-emerald-950/20 last:border-b-0">
                                 <span className="font-serif text-zinc-300 pr-4">{chap}</span>
-                                <Link href={`/mushoku-tensei/read/${selectedVolume.id}/${i + 1}`}>
+                                <a href={`/mushoku-tensei/read/${selectedVolume.id}/${i + 1}`}>
                                   <span className="text-[10px] text-emerald-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">Read →</span>
-                                </Link>
+                                </a>
                               </li>
                             ))}
                           </motion.ul>

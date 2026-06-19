@@ -20,6 +20,30 @@ import AdBanner from "@/components/AdBanner"
 export type ReaderTheme = 'dark' | 'light' | 'sepia' | 'slatedark' | 'midnight' | 'forest' | 'oled' | 'espresso' | 'gray';
 export type ReaderFontFamily = 'serif' | 'sans' | 'merriweather' | 'roboto' | 'lora';
 
+interface SmartLinkProps {
+    href: string;
+    className?: string;
+    onClick?: () => void;
+    children: React.ReactNode;
+    title?: string;
+    isOrv?: boolean;
+}
+
+const SmartLink = ({ href, className, onClick, children, title, isOrv }: SmartLinkProps) => {
+    if (isOrv) {
+        return (
+            <Link href={href} className={className} onClick={onClick} title={title}>
+                {children}
+            </Link>
+        );
+    }
+    return (
+        <a href={href} className={className} onClick={onClick} title={title}>
+            {children}
+        </a>
+    );
+};
+
 interface ReaderProps {
     content: string;
     title: string;
@@ -44,7 +68,21 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const isRezero = detailsLink?.startsWith('/rezero');
     const isOrv = detailsLink?.startsWith('/orv');
     const isBunnyGirl = detailsLink?.startsWith('/bunny-girl');
-    const baseReadPath = isOrv ? `/orv/read` : (isRezero ? `/rezero/read` : (isBunnyGirl ? `/bunny-girl/read` : `/read`));
+    const isMushokuTensei = detailsLink?.startsWith('/mushoku-tensei');
+    const baseReadPath = isOrv 
+        ? `/orv/read` 
+        : (isRezero 
+            ? `/rezero/read` 
+            : (isBunnyGirl 
+                ? `/bunny-girl/read` 
+                : (isMushokuTensei 
+                    ? `/mushoku-tensei/read` 
+                    : `/cote/read`
+                  )
+              )
+          );
+
+
 
 
     const [theme, setTheme] = useState<ReaderTheme>('dark');
@@ -377,10 +415,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     }, [content, isBunnyGirl]);
 
     useEffect(() => {
-        if (nextChapter) {
-            router.prefetch(`${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`);
+        if (nextChapter && isOrv) {
+            router.prefetch(`${baseReadPath}?c=${nextChapter.chapter}`);
         }
-    }, [nextChapter, router, baseReadPath]);
+    }, [nextChapter, router, baseReadPath, isOrv]);
 
 
     useEffect(() => {
@@ -413,7 +451,14 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
         if (anchor) {
             const href = anchor.getAttribute('href');
-            if (href && (href.startsWith('/read/') || href.startsWith('/rezero/read/'))) {
+            if (href && (
+                href.startsWith('/read/') ||
+                href.startsWith('/cote/read/') ||
+                href.startsWith('/rezero/read/') ||
+                href.startsWith('/bunny-girl/read/') ||
+                href.startsWith('/mushoku-tensei/read/') ||
+                href.startsWith('/orv/read/')
+            )) {
                 e.preventDefault();
                 router.push(href);
             }
@@ -457,11 +502,11 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
             {!(isFullscreen && !hasFullscreenSupport) && (
                 <header className={cn("sticky top-0 z-50 flex h-12 items-center gap-3 border-b px-3 print:hidden", headerStyle)}>
                     <div className="flex items-center gap-1 flex-1 min-w-0">
-                        <Link href={detailsLink} title="Back to Volume">
+                        <SmartLink isOrv={isOrv} href={detailsLink} title="Back to Volume">
                             <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Back">
                                 <ArrowLeft className="h-4 w-4" />
                             </Button>
-                        </Link>
+                        </SmartLink>
                         <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)} className="h-9 w-9" aria-label="Menu">
                             <Menu className="h-4 w-4" />
                         </Button>
@@ -739,7 +784,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         {filteredToc?.map((item, i) => {
 
                             return (
-                                <Link
+                                <SmartLink
+                                    isOrv={isOrv}
                                     key={i}
                                     href={isOrv ? `${baseReadPath}?c=${item.href}` : `${baseReadPath}/${volumeId}/${item.index}${item.href && item.href.includes('#') ? '#' + item.href.split('#')[1] : ''}`}
                                     onClick={() => setSidebarOpen(false)}
@@ -759,7 +805,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     )}
                                 >
                                     {item.label || `Chapter ${item.index}`}
-                                </Link>
+                                </SmartLink>
                             );
                         })}
 
@@ -1025,7 +1071,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
                     <div className="max-w-4xl mx-auto px-6 pb-20 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 print:hidden">
                         {prevChapter ? (
-                            <Link href={isOrv ? `${baseReadPath}?c=${prevChapter.chapter}` : `${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
+                            <SmartLink isOrv={isOrv} href={isOrv ? `${baseReadPath}?c=${prevChapter.chapter}` : `${baseReadPath}/${prevChapter.volumeId}/${prevChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group",
                                     theme === 'light' 
@@ -1042,13 +1088,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                         {prevChapter.title || `Chapter ${prevChapter.chapter}`}
                                     </div>
                                 </div>
-                            </Link>
+                            </SmartLink>
                         ) : <div className="flex-1" />}
 
 
 
                         {nextChapter ? (
-                            <Link href={isOrv ? `${baseReadPath}?c=${nextChapter.chapter}` : `${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
+                            <SmartLink isOrv={isOrv} href={isOrv ? `${baseReadPath}?c=${nextChapter.chapter}` : `${baseReadPath}/${nextChapter.volumeId}/${nextChapter.chapter}`} className="flex-1">
                                 <div className={cn(
                                     "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group text-left sm:text-right",
                                     theme === 'light' 
@@ -1065,10 +1111,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                         {nextChapter.title || `Chapter ${nextChapter.chapter}`}
                                     </div>
                                 </div>
-                            </Link>
+                            </SmartLink>
                         ) : (
                             nextVolumeLink ? (
-                                <Link href={nextVolumeLink} className="flex-1">
+                                <SmartLink isOrv={isOrv} href={nextVolumeLink} className="flex-1">
                                     <div className={cn(
                                         "flex flex-col items-center justify-center gap-1 p-4 rounded-xl border transition-all cursor-pointer hover:scale-[1.02] group relative overflow-hidden",
                                         theme === 'light'
@@ -1102,9 +1148,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                             <span className="text-xs opacity-70 uppercase tracking-widest font-semibold">Continue the Story</span>
                                         </div>
                                     </div>
-                                </Link>
+                                </SmartLink>
                             ) : (
-                                <Link href={returnLink || detailsLink} className="flex-1">
+                                <SmartLink isOrv={isOrv} href={returnLink || detailsLink} className="flex-1">
                                     <div className={cn(
                                         "flex flex-col items-center justify-center gap-1 p-4 rounded-xl border transition-all cursor-pointer hover:scale-[1.02]",
                                         theme === 'light' 
@@ -1116,7 +1162,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                             {isOrv ? "Select Scenario" : (isRezero || isBunnyGirl) ? "Select Volume" : "Select Year"}
                                         </span>
                                     </div>
-                                </Link>
+                                </SmartLink>
                             )
                         )}
                     </div>
@@ -1176,7 +1222,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     </Button>
                 </div >
 
-                <Link href={detailsLink}>
+                <SmartLink isOrv={isOrv} href={detailsLink}>
                     <Button
                         size="icon"
                         className={cn(
@@ -1187,7 +1233,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     >
                         <Home className="h-5 w-5" />
                     </Button>
-                </Link>
+                </SmartLink>
             </div >
 
 

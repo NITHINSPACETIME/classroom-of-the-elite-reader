@@ -58,13 +58,13 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
         const chapterTitle = volume.chapters[index - 1] || `Chapter ${index}`;
 
 
-        let detailsLink = "/select";
+        let detailsLink = "/cote/select";
         if (y1ss.some(v => v.id === volumeId)) {
-            detailsLink = `/select/year-1/${volumeId}`;
+            detailsLink = `/cote/select/year-1/${volumeId}`;
         } else if (y2ss.some(v => v.id === volumeId)) {
-            detailsLink = `/select/year-2/${volumeId}`;
+            detailsLink = `/cote/select/year-2/${volumeId}`;
         } else if (y3ss.some(v => v.id === volumeId)) {
-            detailsLink = `/select/year-3/${volumeId}`;
+            detailsLink = `/cote/select/year-3/${volumeId}`;
         }
 
 
@@ -89,11 +89,11 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
                 chapterIndex={index}
                 prevChapter={index > 1 && volume.customChapters[index - 1] ? { volumeId, chapter: index - 1, title: volume.chapters[index - 2] } : undefined}
                 nextChapter={volume.customChapters[index + 1] ? { volumeId, chapter: index + 1, title: volume.chapters[index] } : undefined}
-                toc={volume.chapters.map((ch, i) => ({ label: ch, href: `/read/${volumeId}/${i + 1}?logical=true`, index: i + 1 }))}
+                toc={volume.chapters.map((ch, i) => ({ label: ch, href: `/cote/read/${volumeId}/${i + 1}?logical=true`, index: i + 1 }))}
                 volumeTitle={volume.title}
                 epubSource={undefined}
                 detailsLink={detailsLink}
-                returnLink="/select"
+                returnLink="/cote/select"
                 currentSpineIndex={index}
                 nextVolumeLink={undefined}
                 nextVolumeTitle={undefined}
@@ -103,33 +103,33 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
 
     const data = await getChapterContent(volumeId, index, false);
 
-    let detailsLink = "/select";
-    let returnLink = "/select";
+    let detailsLink = "/cote/select";
+    let returnLink = "/cote/select";
     if (volume) {
         if (y1.some(v => v.id === volume.id)) {
-            detailsLink = `/select/year-1/${volume.id}`;
-            returnLink = `/select`;
+            detailsLink = `/cote/select/year-1/${volume.id}`;
+            returnLink = `/cote/select`;
         }
         else if (y2.some(v => v.id === volume.id)) {
-            detailsLink = `/select/year-2/${volume.id}`;
-            returnLink = `/select`;
+            detailsLink = `/cote/select/year-2/${volume.id}`;
+            returnLink = `/cote/select`;
         }
         else if (y3.some(v => v.id === volume.id)) {
-            detailsLink = `/select/year-3/${volume.id}`;
-            returnLink = `/select`;
+            detailsLink = `/cote/select/year-3/${volume.id}`;
+            returnLink = `/cote/select`;
         }
         
         else if (y1ss.some(v => v.id === volume.id)) {
-            detailsLink = `/select/year-1/${volume.id}`;
-            returnLink = `/select/year-1?contentType=shortStories`;
+            detailsLink = `/cote/select/year-1/${volume.id}`;
+            returnLink = `/cote/select/year-1?contentType=shortStories`;
         }
         else if (y2ss.some(v => v.id === volume.id)) {
-            detailsLink = `/select/year-2/${volume.id}`;
-            returnLink = `/select/year-2?contentType=shortStories`;
+            detailsLink = `/cote/select/year-2/${volume.id}`;
+            returnLink = `/cote/select/year-2?contentType=shortStories`;
         }
         else if (y3ss.some(v => v.id === volume.id)) {
-            detailsLink = `/select/year-3/${volume.id}`;
-            returnLink = `/select/year-3?contentType=shortStories`;
+            detailsLink = `/cote/select/year-3/${volume.id}`;
+            returnLink = `/cote/select/year-3?contentType=shortStories`;
         }
     }
 
@@ -156,13 +156,13 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
 
 
             if (isY1 && nextIsY1) {
-                nextVolumeLink = `/select/year-1/${nextVol.id}`;
+                nextVolumeLink = `/cote/select/year-1/${nextVol.id}`;
                 nextVolumeTitleVal = nextVol.title;
             } else if (isY2 && nextIsY2) {
-                nextVolumeLink = `/select/year-2/${nextVol.id}`;
+                nextVolumeLink = `/cote/select/year-2/${nextVol.id}`;
                 nextVolumeTitleVal = nextVol.title;
             } else if (isY3 && nextIsY3) {
-                nextVolumeLink = `/select/year-3/${nextVol.id}`;
+                nextVolumeLink = `/cote/select/year-3/${nextVol.id}`;
                 nextVolumeTitleVal = nextVol.title;
             } else {
 
@@ -175,13 +175,13 @@ export default async function ReadPage({ params }: { params: Promise<{ volumeId:
                 const nextIsY3SS = y3ss.some(v => v.id === nextVol.id);
 
                 if (isY1SS && nextIsY1SS) {
-                    nextVolumeLink = `/select/year-1/${nextVol.id}`;
+                    nextVolumeLink = `/cote/select/year-1/${nextVol.id}`;
                     nextVolumeTitleVal = nextVol.title;
                 } else if (isY2SS && nextIsY2SS) {
-                    nextVolumeLink = `/select/year-2/${nextVol.id}`;
+                    nextVolumeLink = `/cote/select/year-2/${nextVol.id}`;
                     nextVolumeTitleVal = nextVol.title;
                 } else if (isY3SS && nextIsY3SS) {
-                    nextVolumeLink = `/select/year-3/${nextVol.id}`;
+                    nextVolumeLink = `/cote/select/year-3/${nextVol.id}`;
                     nextVolumeTitleVal = nextVol.title;
                 }
             }

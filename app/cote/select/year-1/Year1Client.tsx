@@ -117,7 +117,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
             {/* Top Bar */}
             <div className="sticky top-0 left-0 w-full z-50 p-6 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm flex items-center justify-between">
                 <div className="flex items-center">
-                    <Link href="/select">
+                    <Link href="/cote/select">
                         <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
                             <ArrowLeft className="w-6 h-6" />
                         </Button>
@@ -259,7 +259,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                             <div className="absolute inset-0 flex items-center justify-center p-4">
                                                 <Link
                                                     prefetch={false}
-                                                    href={vol.inProgress ? "#" : `/select/year-1/${vol.id}`}
+                                                    href={vol.inProgress ? "#" : `/cote/select/year-1/${vol.id}`}
                                                     className={`block relative z-10 w-full max-w-[240px] ${vol.inProgress ? "cursor-not-allowed" : ""}`}
                                                     onClick={(e) => vol.inProgress && e.preventDefault()}
                                                 >
@@ -295,7 +295,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                                             IN PROGRESS
                                                         </Button>
                                                     ) : (
-                                                        <Link prefetch={false} href={`/select/year-1/${vol.id}`} className="w-full">
+                                                        <Link prefetch={false} href={`/cote/select/year-1/${vol.id}`} className="w-full">
                                                             <Button variant="default" className="w-full bg-red-600 hover:bg-red-700 text-white shadow-lg font-bold tracking-wide">
                                                                 VIEW DETAILS
                                                             </Button>
@@ -368,7 +368,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
 
                                 <Link
                                     prefetch={false}
-                                    href={vol.inProgress ? "#" : `/select/year-1/${vol.id}`}
+                                    href={vol.inProgress ? "#" : `/cote/select/year-1/${vol.id}`}
                                     key={vol.id}
                                     className={`flex flex-col gap-2 group relative ${vol.inProgress ? "cursor-not-allowed" : "cursor-pointer"}`}
                                     onClick={(e) => vol.inProgress && e.preventDefault()}

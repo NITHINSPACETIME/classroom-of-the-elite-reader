@@ -16,25 +16,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
-            url: `${baseUrl}/select`,
+            url: `${baseUrl}/cote/select`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/select/year-1`,
+            url: `${baseUrl}/cote/select/year-1`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/select/year-2`,
+            url: `${baseUrl}/cote/select/year-2`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/select/year-3`,
+            url: `${baseUrl}/cote/select/year-3`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.8,
@@ -50,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
 
     const volumeRoutes = allVolumes.map((vol) => ({
-        url: `${baseUrl}/read/${vol.id}`,
+        url: `${baseUrl}/cote/read/${vol.id}`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
         priority: 0.6,

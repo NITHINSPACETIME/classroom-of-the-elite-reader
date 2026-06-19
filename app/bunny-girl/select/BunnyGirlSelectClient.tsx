@@ -424,11 +424,11 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                         IN PROGRESS
                       </Button>
                     ) : (
-                      <Link href={`/bunny-girl/read/${selectedVolume.id}/1`} className="w-full">
+                      <a href={`/bunny-girl/read/${selectedVolume.id}/1`} className="w-full">
                         <Button className="w-full bg-purple-750 hover:bg-purple-650 text-white font-bold font-serif py-3 tracking-widest text-xs uppercase shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all">
                           BEGIN READING
                         </Button>
-                      </Link>
+                      </a>
                     )}
                   </div>
 
@@ -499,11 +499,11 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                           {selectedVolume.chapters.map((chap, i) => {
                             const label = getCompactChapterLabel(chap, i + 1);
                             return (
-                              <Link key={i} href={`/bunny-girl/read/${selectedVolume.id}/${i + 1}`}>
+                              <a key={i} href={`/bunny-girl/read/${selectedVolume.id}/${i + 1}`}>
                                 <div className="flex items-center justify-center p-3 text-center rounded-lg border border-purple-950/30 bg-black/35 hover:bg-purple-900/20 hover:border-purple-500/30 text-xs font-serif text-zinc-200 hover:text-purple-200 transition-all cursor-pointer truncate active:scale-95">
                                   {label}
                                 </div>
-                              </Link>
+                              </a>
                             );
                           })}
                         </motion.div>
@@ -518,9 +518,9 @@ export default function BunnyGirlSelectClient({ volumes }: BunnyGirlSelectClient
                           {selectedVolume.chapters.map((chap, i) => (
                             <li key={i} className="flex justify-between items-center py-1.5 border-b border-purple-950/20 last:border-b-0">
                               <span className="font-serif text-zinc-300 pr-4">{chap}</span>
-                              <Link href={`/bunny-girl/read/${selectedVolume.id}/${i + 1}`}>
+                              <a href={`/bunny-girl/read/${selectedVolume.id}/${i + 1}`}>
                                 <span className="text-[10px] text-purple-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">Read →</span>
-                              </Link>
+                              </a>
                             </li>
                           ))}
                         </motion.ul>
