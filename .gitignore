@@ -58,10 +58,7 @@ next-env.d.ts
 /public/assets/wiki_y3v4/
 /public/assets/y3v4_ch7_1_old_color.webp
 
-# LOTM & font assets
-/data/lotm-cache/
-/public/assets/images/lotm/
-/public/fonts/
+
 
 
 # untracked scraper scripts 
