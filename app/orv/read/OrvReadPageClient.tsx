@@ -137,7 +137,7 @@ export default function OrvReadPageClient() {
       }
     : undefined;
 
-  const htmlContent = `<div class="theme-orv select-text w-full"><h1>${chapterData.title}</h1>\n${chapterData.contentHtml}</div>`;
+  const htmlContent = `<div class="theme-orv select-text w-full">\n${chapterData.contentHtml}</div>`;
 
   return (
     <HtmlReader
@@ -150,8 +150,8 @@ export default function OrvReadPageClient() {
       toc={toc}
       volumeTitle={volume?.title || "Omniscient Reader's Viewpoint"}
       epubSource={undefined}
-      detailsLink="/orv/select"
-      returnLink="/orv/select"
+      detailsLink={`/orv/select/${volumeId}`}
+      returnLink={`/orv/select/${volumeId}`}
       currentSpineIndex={currentIndex + 1}
     />
   );

@@ -1,14 +1,38 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Github, Heart, BookOpen } from "lucide-react";
+import { Github, Heart, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | "lotm" | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [guestbookCount, setGuestbookCount] = useState(0);
+
+  useEffect(() => {
+    async function fetchCount() {
+      const { count } = await supabase
+        .from('guestbook')
+        .select('*', { count: 'exact', head: true });
+      if (count !== null) setGuestbookCount(count);
+    }
+    fetchCount();
+  }, []);
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const scrollAmount = window.innerWidth < 640 ? window.innerWidth * 0.85 : 340;
+      container.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText("http://nithin7q24zhuov3zepzearfvu3fgsmfsl7nffvewsh5x4jdektbv4qd.onion");
@@ -40,6 +64,10 @@ export default function Home() {
         <div className={`absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
           hoveredCard === "mushoku-tensei" ? "opacity-90 scale-110 bg-emerald-900/20" : "opacity-0"
         }`} />
+        {/* Cosmic Indigo Glow for Lord of the Mysteries */}
+        <div className={`absolute top-1/2 left-[40%] -translate-y-1/2 w-[500px] h-[500px] bg-indigo-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
+          hoveredCard === "lotm" ? "opacity-90 scale-110 bg-indigo-900/20" : "opacity-0"
+        }`} />
         {/* Center Subtler Ambient Light */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-950/30 via-transparent to-transparent opacity-60" />
       </div>
@@ -53,30 +81,55 @@ export default function Home() {
         className="z-10 flex flex-col items-center gap-4 mb-8 md:mb-12 text-center"
       >
         {/* Badges Container */}
-        <div className="flex flex-wrap gap-3 items-center justify-center mb-2">
+        <div className="flex flex-wrap gap-2 sm:gap-3 items-center justify-center mb-2">
           <a
             href="https://discord.gg/3zAsapzwmv"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/30 px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:border-[#5865F2]/40 hover:bg-[#5865F2]/10 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(88,101,242,0.25)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm group"
+            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-zinc-800 bg-zinc-900/30 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-xs font-medium text-zinc-400 hover:text-white hover:border-[#5865F2]/40 hover:bg-[#5865F2]/10 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(88,101,242,0.25)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm group"
           >
-            <span className="relative flex h-1.5 w-1.5">
+            <span className="relative flex h-1.5 w-1.5 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-650 opacity-75 group-hover:bg-[#5865F2]"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-zinc-500 group-hover:bg-[#5865F2] transition-colors"></span>
             </span>
-            Join Discord for Updates
+            <span className="hidden sm:inline">Join Discord for Updates</span>
+            <span className="inline sm:hidden">Discord</span>
           </a>
 
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/30 px-4 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm cursor-pointer group"
+            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-zinc-800 bg-zinc-900/30 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-xs font-medium text-zinc-400 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/10 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm cursor-pointer group"
           >
             <span className="relative flex h-1.5 w-1.5 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-650 opacity-75 group-hover:bg-emerald-500"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-zinc-500 group-hover:bg-emerald-500 transition-colors"></span>
             </span>
-            {copied ? "URL Copied to Clipboard!" : "Also available on Darkweb"}
+            {copied ? (
+              <>
+                <span className="hidden sm:inline">URL Copied to Clipboard!</span>
+                <span className="inline sm:hidden">Copied!</span>
+              </>
+            ) : (
+              <>
+                <span className="hidden sm:inline">Also available on Darkweb</span>
+                <span className="inline sm:hidden">Darkweb</span>
+              </>
+            )}
           </button>
+
+          <a
+            href="https://github.com/NITHINSPACETIME/novels-reader"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-zinc-800 bg-zinc-900/30 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-xs font-medium text-zinc-400 hover:text-white hover:border-amber-500/40 hover:bg-amber-500/10 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(245,158,11,0.25)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm group"
+          >
+            <span className="relative flex h-1.5 w-1.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-650 opacity-75 group-hover:bg-amber-500"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-zinc-500 group-hover:bg-amber-500 transition-colors"></span>
+            </span>
+            <span className="hidden sm:inline">Star this project</span>
+            <span className="inline sm:hidden">Star Project</span>
+          </a>
         </div>
 
         <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-extralight tracking-[0.22em] bg-gradient-to-b from-zinc-100 via-white to-zinc-500 bg-clip-text text-transparent uppercase transition-all duration-700 select-none">
@@ -89,13 +142,27 @@ export default function Home() {
         </p>
       </motion.div>
 
-      {/* Portal Windows (Squircles) Grid / Horizontal Scroll on Mobile */}
-      <div className="z-10 flex flex-row overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 w-full px-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 sm:gap-6 lg:gap-8 sm:justify-items-center sm:w-full sm:max-w-7xl sm:px-4">
+      {/* Portal Windows Wrapper */}
+      <div className="relative w-full z-10 flex items-center justify-center">
+        {/* Left Arrow Button */}
+        <button
+          onClick={() => handleScroll("left")}
+          className="absolute left-2 z-20 flex sm:hidden h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 text-white/80 hover:text-white shadow-[0_4px_30px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-90"
+          aria-label="Scroll Left"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        {/* Portal Windows (Squircles) Grid / Horizontal Scroll on Mobile */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex flex-row overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 w-full px-[7vw] sm:px-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 sm:gap-6 lg:gap-8 sm:justify-items-center sm:w-full sm:max-w-7xl xl:max-w-[1450px] 2xl:max-w-[1650px]"
+        >
         
         {/* COTE Squircle Window */}
         <Link 
           href="/cote" 
-          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("cote")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -104,39 +171,41 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            whileHover={{ y: -8 }}
-            className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-red-500/30 group-hover:shadow-[0_0_50px_rgba(239,68,68,0.2)] flex flex-col justify-end p-8"
+            className="hover-3d relative cursor-pointer w-full"
           >
-            {/* Background cover image */}
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/assets/landing-bg-2.jpg"
-                alt="Classroom of the Elite Cover"
-                fill
-                priority
-                className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
-                sizes="(max-width: 768px) 100vw, 380px"
-              />
-              {/* Fade Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/40 to-transparent" />
-            </div>
+            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-red-500/30 group-hover:shadow-[0_0_50px_rgba(239,68,68,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
+              {/* Background cover image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/landing-bg-2.jpg"
+                  alt="Classroom of the Elite Cover"
+                  fill
+                  priority
+                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+                {/* Fade Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/40 to-transparent" />
+              </div>
 
-            {/* Squircle Window Content */}
-            <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-              <h3 className="font-serif text-2xl lg:text-3xl font-semibold tracking-wide text-zinc-150 group-hover:text-red-200 transition-colors duration-300">
-                Classroom of the Elite
-              </h3>
-              <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                Follow Kiyotaka Ayanokōji through Years 1, 2, and 3 at the Advanced Nurturing High School.
-              </p>
+              {/* Squircle Window Content */}
+              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-red-200 transition-colors duration-300">
+                  Classroom of the Elite
+                </h3>
+                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
+                  Follow Kiyotaka Ayanokōji through Years 1, 2, and 3 at the Advanced Nurturing High School.
+                </p>
+              </div>
             </div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
           </motion.div>
         </Link>
 
         {/* Re:Zero Squircle Window */}
         <Link 
           href="/rezero" 
-          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("rezero")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -145,39 +214,41 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            whileHover={{ y: -8 }}
-            className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-violet-500/30 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.2)] flex flex-col justify-end p-8"
+            className="hover-3d relative cursor-pointer w-full"
           >
-            {/* Background cover image */}
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/assets/rezero_v1_cover.png"
-                alt="Re:Zero Cover"
-                fill
-                priority
-                className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
-                sizes="(max-width: 768px) 100vw, 380px"
-              />
-              {/* Fade Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/40 to-transparent" />
-            </div>
+            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-violet-500/30 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
+              {/* Background cover image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/rezero_v1_cover.png"
+                  alt="Re:Zero Cover"
+                  fill
+                  priority
+                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+                {/* Fade Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/40 to-transparent" />
+              </div>
 
-            {/* Squircle Window Content */}
-            <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-              <h3 className="font-serif text-2xl lg:text-3xl font-semibold tracking-wide text-zinc-150 group-hover:text-violet-200 transition-colors duration-300">
-                Re:Zero
-              </h3>
-              <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                Subaru Natsuki is summoned to a dark fantasy world to face death and loop with memory intact.
-              </p>
+              {/* Squircle Window Content */}
+              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-violet-200 transition-colors duration-300">
+                  Re:Zero
+                </h3>
+                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
+                  Subaru Natsuki is summoned to a dark fantasy world to face death and loop with memory intact.
+                </p>
+              </div>
             </div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
           </motion.div>
         </Link>
 
         {/* ORV Squircle Window */}
         <Link 
           href="/orv" 
-          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("orv")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -186,39 +257,41 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ y: -8 }}
-            className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-cyan-500/30 group-hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] flex flex-col justify-end p-8"
+            className="hover-3d relative cursor-pointer w-full"
           >
-            {/* Background cover image */}
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/assets/orv/covers/orv.webp"
-                alt="Omniscient Reader's Viewpoint Cover"
-                fill
-                priority
-                className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
-                sizes="(max-width: 768px) 100vw, 380px"
-              />
-              {/* Fade Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020204] via-[#020204]/40 to-transparent" />
-            </div>
+            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-cyan-500/30 group-hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
+              {/* Background cover image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/orv/covers/orv.webp"
+                  alt="Omniscient Reader's Viewpoint Cover"
+                  fill
+                  priority
+                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+                {/* Fade Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020204] via-[#020204]/40 to-transparent" />
+              </div>
 
-            {/* Squircle Window Content */}
-            <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-              <h3 className="font-serif text-2xl lg:text-3xl font-semibold tracking-wide text-zinc-150 group-hover:text-cyan-200 transition-colors duration-300">
-                Omniscient Reader
-              </h3>
-              <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                Follow Kim Dokja as he navigates the scenario challenges of a webnovel turned reality.
-              </p>
+              {/* Squircle Window Content */}
+              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-cyan-200 transition-colors duration-300">
+                  Omniscient Reader
+                </h3>
+                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
+                  Follow Kim Dokja as he navigates the scenario challenges of a webnovel turned reality.
+                </p>
+              </div>
             </div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
           </motion.div>
         </Link>
 
         {/* Bunny Girl Squircle Window */}
         <Link 
           href="/bunny-girl" 
-          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("bunny-girl")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -227,39 +300,41 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ y: -8 }}
-            className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-purple-500/30 group-hover:shadow-[0_0_50px_rgba(168,85,247,0.2)] flex flex-col justify-end p-8"
+            className="hover-3d relative cursor-pointer w-full"
           >
-            {/* Background cover image */}
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/assets/images/bunny-girl/v1/cover.jpg"
-                alt="Rascal Does Not Dream Cover"
-                fill
-                priority
-                className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
-                sizes="(max-width: 768px) 100vw, 380px"
-              />
-              {/* Fade Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/45 to-transparent" />
-            </div>
+            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-purple-500/30 group-hover:shadow-[0_0_50px_rgba(168,85,247,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
+              {/* Background cover image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/images/bunny-girl/v1/cover.jpg"
+                  alt="Rascal Does Not Dream Cover"
+                  fill
+                  priority
+                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+                {/* Fade Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/45 to-transparent" />
+              </div>
 
-            {/* Squircle Window Content */}
-            <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-              <h3 className="font-serif text-xl lg:text-2xl font-semibold tracking-wide text-zinc-150 group-hover:text-purple-200 transition-colors duration-300 leading-tight">
-                Rascal Does Not Dream Of Bunny Girl Senpai
-              </h3>
-              <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                Follow Sakuta Azusagawa as he resolves supernatural cases of the mysterious Adolescence Syndrome.
-              </p>
+              {/* Squircle Window Content */}
+              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                <h3 className="font-serif text-lg sm:text-xl xl:text-[22px] font-semibold tracking-wide text-zinc-150 group-hover:text-purple-200 transition-colors duration-300 leading-tight">
+                  Rascal Does Not Dream Of Bunny Girl Senpai
+                </h3>
+                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
+                  Follow Sakuta Azusagawa as he resolves supernatural cases of the mysterious Adolescence Syndrome.
+                </p>
+              </div>
             </div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
           </motion.div>
         </Link>
 
         {/* Mushoku Tensei Squircle Window */}
         <Link 
           href="/mushoku-tensei" 
-          className="group w-[82vw] max-w-[300px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
           onMouseEnter={() => setHoveredCard("mushoku-tensei")}
           onMouseLeave={() => setHoveredCard(null)}
         >
@@ -268,42 +343,97 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            whileHover={{ y: -8 }}
-            className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-emerald-500/30 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] flex flex-col justify-end p-8"
+            className="hover-3d relative cursor-pointer w-full"
           >
-            {/* Background cover image */}
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/assets/images/mushoku-tensei/v1/CoverDesign.jpg"
-                alt="Mushoku Tensei Cover"
-                fill
-                priority
-                className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
-                sizes="(max-width: 768px) 100vw, 380px"
-              />
-              {/* Fade Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/45 to-transparent" />
-            </div>
+            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-emerald-500/30 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
+              {/* Background cover image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/images/mushoku-tensei/v1/CoverDesign.jpg"
+                  alt="Mushoku Tensei Cover"
+                  fill
+                  priority
+                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+                {/* Fade Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/45 to-transparent" />
+              </div>
 
-            {/* Squircle Window Content */}
-            <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-              <h3 className="font-serif text-2xl lg:text-3xl font-semibold tracking-wide text-zinc-150 group-hover:text-emerald-250 transition-colors duration-300">
-                Mushoku Tensei
-              </h3>
-              <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
-                &ldquo;One who obtains the wings of freedom loses both legs in exchange.&rdquo;
-              </p>
+              {/* Squircle Window Content */}
+              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-emerald-250 transition-colors duration-300">
+                  Mushoku Tensei
+                </h3>
+                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
+                  &ldquo;One who obtains the wings of freedom loses both legs in exchange.&rdquo;
+                </p>
+              </div>
             </div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
           </motion.div>
         </Link>
 
+        {/* Lord of the Mysteries Squircle Window */}
+        <Link 
+          href="/lotm" 
+          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          onMouseEnter={() => setHoveredCard("lotm")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-indigo-750 to-indigo-600 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="hover-3d relative cursor-pointer w-full"
+          >
+            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_50px_rgba(99,102,241,0.25)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
+              {/* Background cover image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/images/lotm/v1/ff.jpg"
+                  alt="Lord of the Mysteries Cover"
+                  fill
+                  priority
+                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+                {/* Fade Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020204] via-[#020204]/45 to-transparent" />
+              </div>
+
+              {/* Squircle Window Content */}
+              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-indigo-250 transition-colors duration-300">
+                  Lord of the Mysteries
+                </h3>
+                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
+                  &ldquo;We are guardians, but also a bunch of miserable wretches that are constantly fighting against danger and madness.&rdquo;
+                </p>
+              </div>
+            </div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          </motion.div>
+        </Link>
+
+        </div>
+
+        {/* Right Arrow Button */}
+        <button
+          onClick={() => handleScroll("right")}
+          className="absolute right-2 z-20 flex sm:hidden h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 text-white/80 hover:text-white shadow-[0_4px_30px_rgba(0,0,0,0.4)] backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-90"
+          aria-label="Scroll Right"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Crawlable Structured SEO Elements (Invisible to UI, fully crawlable by Googlebot) */}
       <div className="sr-only">
-        <h1>Read Classroom of the Elite, Re:Zero, Omniscient Reader, Rascal Does Not Dream, and Mushoku Tensei Light Novels Online</h1>
+        <h1>Read Classroom of the Elite, Re:Zero, Omniscient Reader, Rascal Does Not Dream, Mushoku Tensei, and Lord of the Mysteries Light Novels Online</h1>
         <p>
-          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE), Re:Zero - Starting Life in Another World, Omniscient Reader&apos;s Viewpoint (ORV), Rascal Does Not Dream (Aobuta), and Mushoku Tensei: Jobless Reincarnation online.
+          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE), Re:Zero - Starting Life in Another World, Omniscient Reader&apos;s Viewpoint (ORV), Rascal Does Not Dream (Aobuta), Mushoku Tensei: Jobless Reincarnation, and Lord of the Mysteries online.
           Immersive reading experience, complete translations, and ad-free interfaces.
         </p>
       </div>
@@ -331,7 +461,7 @@ export default function Home() {
 
           <Link
             href="/guestbook"
-            className="p-3 rounded-2xl bg-zinc-950/40 border border-zinc-800/80 text-zinc-400 hover:text-amber-355 hover:border-amber-500/40 hover:bg-amber-500/10 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300 hover:scale-110 group"
+            className="p-3 rounded-2xl bg-zinc-950/40 border border-zinc-800/80 text-zinc-400 hover:text-amber-355 hover:border-amber-500/40 hover:bg-amber-500/10 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300 hover:scale-110 group relative"
           >
             <BookOpen className="w-5 h-5 text-white/80 group-hover:text-amber-400 transition-all duration-300" />
           </Link>
@@ -356,7 +486,7 @@ export default function Home() {
               NITHINSPACETIME
             </a>
           </p>
-          <p className="text-xs text-zinc-500/70">Not affiliated with the official Classroom of the Elite, Re:Zero, Seishun Buta Yarou, or Mushoku Tensei franchises.</p>
+          <p className="text-xs text-zinc-500/70">Not affiliated with the official Classroom of the Elite, Re:Zero, Seishun Buta Yarou, Mushoku Tensei, or Lord of the Mysteries franchises.</p>
         </div>
       </footer>
     </main>

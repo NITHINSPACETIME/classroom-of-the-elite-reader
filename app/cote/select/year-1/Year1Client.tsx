@@ -40,6 +40,50 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
     const [authModalOpen, setAuthModalOpen] = useState(false);
     const [profileModalOpen, setProfileModalOpen] = useState(false);
 
+    const handleResetVolume = (volId: string) => {
+        localStorage.removeItem(`cote-progress-meta-${volId}`);
+        localStorage.removeItem(`cote-progress-${volId}`);
+        
+        const readKey = "cote-read-chapters";
+        const readData = localStorage.getItem(readKey);
+        if (readData) {
+            try {
+                const readMap = JSON.parse(readData);
+                const prefix = `${volId}-`;
+                const updated = Object.keys(readMap).reduce((acc, key) => {
+                    if (!key.startsWith(prefix)) {
+                        acc[key] = readMap[key];
+                    }
+                    return acc;
+                }, {} as Record<string, boolean>);
+                localStorage.setItem(readKey, JSON.stringify(updated));
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        import("@/lib/supabase").then(({ supabase }) => {
+            supabase.auth.getUser().then(({ data: { user } }) => {
+                if (user) {
+                    supabase
+                        .from('reading_progress')
+                        .delete()
+                        .eq('user_id', user.id)
+                        .eq('volume_id', volId)
+                        .then(({ error }) => {
+                            if (error) console.error("Failed to delete progress from Supabase:", error);
+                        });
+                }
+            });
+        });
+
+        setProgressMap(prev => {
+            const copy = { ...prev };
+            delete copy[volId];
+            return copy;
+        });
+    };
+
     const handleDownloadEpub = (vol: any) => {
         if (!vol.epubSource) return;
         let filename = "Classroom_of_the_Elite.epub";
@@ -77,8 +121,15 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
     };
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && window.innerWidth < 768) {
-            setViewMode("compact");
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem("global-view-mode") as "detailed" | "compact" | null;
+            if (saved === "detailed" || saved === "compact") {
+                setViewMode(saved);
+            } else if (window.innerWidth < 768) {
+                setViewMode("compact");
+            } else {
+                setViewMode("detailed");
+            }
         }
 
         const progress: Record<string, any> = {};
@@ -98,6 +149,17 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
         });
         setProgressMap(progress);
 
+    }, []);
+
+    useEffect(() => {
+        const handleViewModeChange = (e: Event) => {
+            const customEvent = e as CustomEvent<"detailed" | "compact">;
+            if (customEvent.detail === "detailed" || customEvent.detail === "compact") {
+                setViewMode(customEvent.detail);
+            }
+        };
+        window.addEventListener("change-view-mode", handleViewModeChange);
+        return () => window.removeEventListener("change-view-mode", handleViewModeChange);
     }, []);
 
     return (
@@ -124,6 +186,39 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                     </Link>
                     <h1 className="ml-4 text-2xl font-serif font-bold text-white tracking-widest hidden sm:block">Year 1 Arc</h1>
                     <h1 className="ml-4 text-xl font-serif font-bold text-white tracking-widest sm:hidden">Year 1</h1>
+                    {Object.keys(progressMap).length > 0 && (
+                        <button
+                            onClick={() => {
+                                if (confirm("Are you sure you want to reset all progress for Year 1?")) {
+                                    accurateVolumes.forEach(vol => {
+                                        localStorage.removeItem(`cote-progress-meta-${vol.id}`);
+                                        localStorage.removeItem(`cote-progress-${vol.id}`);
+                                    });
+                                    localStorage.removeItem("cote-read-chapters");
+                                    setProgressMap({});
+                                    
+                                    import("@/lib/supabase").then(({ supabase }) => {
+                                        supabase.auth.getUser().then(({ data: { user } }) => {
+                                            if (user) {
+                                                const volIds = accurateVolumes.map(v => v.id);
+                                                supabase
+                                                    .from('reading_progress')
+                                                    .delete()
+                                                    .eq('user_id', user.id)
+                                                    .in('volume_id', volIds)
+                                                    .then(({ error }) => {
+                                                        if (error) console.error("Failed to delete progress from Supabase:", error);
+                                                    });
+                                            }
+                                        });
+                                    });
+                                }
+                            }}
+                            className="text-[10px] text-white bg-red-600 hover:bg-red-700 font-mono tracking-widest uppercase ml-4 border-none px-3 py-1.5 rounded-full cursor-pointer transition-all active:scale-95 flex-shrink-0 shadow-md"
+                        >
+                            Reset All
+                        </button>
+                    )}
                 </div>
 
                 <UserMenu
@@ -264,15 +359,18 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                                     onClick={(e) => vol.inProgress && e.preventDefault()}
                                                 >
                                                     {vol.coverImage ? (
-                                                        <div className="relative w-full aspect-[2/3] shadow-2xl skew-x-1 group-hover:skew-x-0 transition-transform duration-300 cursor-pointer">
-                                                            <Image
-                                                                src={vol.coverImage}
-                                                                alt={vol.title}
-                                                                fill
-                                                                className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                                                                sizes="(max-width: 768px) 300px, 240px"
-                                                                priority={index < 3}
-                                                            />
+                                                        <div className="hover-3d relative cursor-pointer w-full max-w-[240px]">
+                                                            <div className="relative w-full aspect-[2/3] shadow-2xl overflow-hidden rounded-sm border border-white/10">
+                                                                <Image
+                                                                    src={vol.coverImage}
+                                                                    alt={vol.title}
+                                                                    fill
+                                                                    className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                                                                    sizes="(max-width: 768px) 300px, 240px"
+                                                                    priority={index < 3}
+                                                                />
+                                                            </div>
+                                                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                                                         </div>
                                                     ) : (
                                                         <div className="w-full max-w-[240px] aspect-[2/3] bg-neutral-800 flex items-center justify-center border border-white/10 cursor-pointer">
@@ -304,14 +402,29 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
 
                                                     {/* Progress Info */}
                                                     {progressMap[vol.id] && (
-                                                        <div className="bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 w-full text-center">
-                                                            <div className="text-xs font-bold text-white mb-0.5 truncate">
-                                                                {progressMap[vol.id].chapterTitle || "Chapter Unknown"}
+                                                        <>
+                                                            <div className="bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 w-full text-center">
+                                                                <div className="text-xs font-bold text-white mb-0.5 truncate">
+                                                                    {progressMap[vol.id].chapterTitle || "Chapter Unknown"}
+                                                                </div>
+                                                                <div className="text-[10px] text-gray-300">
+                                                                    {Math.round(progressMap[vol.id].percentage * 100)}% Complete
+                                                                </div>
                                                             </div>
-                                                            <div className="text-[10px] text-gray-300">
-                                                                {Math.round(progressMap[vol.id].percentage * 100)}% Complete
-                                                            </div>
-                                                        </div>
+                                                            <Button
+                                                                variant="outline"
+                                                                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold tracking-wide transition-all duration-300 text-xs py-2 mt-2 cursor-pointer border-none rounded"
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    e.stopPropagation();
+                                                                    if (confirm(`Reset progress for ${vol.title}?`)) {
+                                                                        handleResetVolume(vol.id);
+                                                                    }
+                                                                }}
+                                                            >
+                                                                Reset Progress
+                                                            </Button>
+                                                        </>
                                                     )}
 
                                                     {/* Download Button (Detailed View) */}
@@ -373,48 +486,68 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
                                     className={`flex flex-col gap-2 group relative ${vol.inProgress ? "cursor-not-allowed" : "cursor-pointer"}`}
                                     onClick={(e) => vol.inProgress && e.preventDefault()}
                                 >
-                                    <div className="w-full aspect-[2/3] rounded-md overflow-hidden shadow-lg border border-white/10 relative z-0">
-                                        {vol.coverImage ? (
-                                            <div className="relative w-full h-full">
-                                                <Image
-                                                    src={vol.coverImage}
-                                                    alt={vol.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02] opacity-90 group-hover:opacity-100"
-                                                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                                                    priority={index < 6}
-                                                />
-                                            </div>
-                                        ) : (
-                                            <div className="w-full h-full bg-neutral-800 flex items-center justify-center">
-                                                <span className="text-white/20 font-serif text-4xl font-bold">?</span>
-                                            </div>
-                                        )}
-                                        {vol.inProgress && (
-                                            <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/80 backdrop-blur-sm border-t border-red-500/50 py-1.5 pointer-events-none">
-                                                <div className="text-red-400 font-black text-xs text-center tracking-widest uppercase animate-pulse">
-                                                    IN PROGRESS
+                                    <div className="hover-3d relative cursor-pointer w-full">
+                                        <div className="w-full aspect-[2/3] rounded-md overflow-hidden shadow-lg border border-white/10 relative z-10">
+                                            {vol.coverImage ? (
+                                                <div className="relative w-full h-full">
+                                                    <Image
+                                                        src={vol.coverImage}
+                                                        alt={vol.title}
+                                                        fill
+                                                        className="object-cover opacity-90 group-hover:opacity-100"
+                                                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                                                        priority={index < 6}
+                                                    />
                                                 </div>
-                                            </div>
-                                        )}
-
-
-                                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-20">
-                                            {progressMap[vol.id] && (
-                                                <span className="bg-red-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md">
-                                                    RESUME
-                                                </span>
+                                            ) : (
+                                                <div className="w-full h-full bg-neutral-800 flex items-center justify-center">
+                                                    <span className="text-white/20 font-serif text-4xl font-bold">?</span>
+                                                </div>
                                             )}
-                                        </div>
+                                            {vol.inProgress && (
+                                                <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/80 backdrop-blur-sm border-t border-red-500/50 py-1.5 pointer-events-none">
+                                                    <div className="text-red-400 font-black text-xs text-center tracking-widest uppercase animate-pulse">
+                                                        IN PROGRESS
+                                                    </div>
+                                                </div>
+                                            )}
 
-                                        {progressMap[vol.id] && (
-                                            <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/50 backdrop-blur-sm z-20 pointer-events-none">
-                                                <div
-                                                    className="h-full bg-red-500 transition-all duration-300"
-                                                    style={{ width: `${Math.min(100, Math.max(0, progressMap[vol.id].percentage * 100))}%` }}
-                                                />
+
+                                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-20">
+                                                {progressMap[vol.id] && (
+                                                    <span className="bg-red-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md">
+                                                        RESUME
+                                                    </span>
+                                                )}
                                             </div>
-                                        )}
+
+                                            {progressMap[vol.id] && (
+                                                 <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                                                     <span className="text-[9px] font-mono font-bold" style={{ color: 'var(--primary-color, #ef4444)' }}>
+                                                         {Math.round(progressMap[vol.id].percentage * 100)}%
+                                                     </span>
+                                                     <svg className="absolute w-8 h-8 transform -rotate-90 text-red-500" viewBox="0 0 36 36" style={{ color: 'var(--primary-color, #ef4444)' }}>
+                                                         <path
+                                                             className="text-zinc-800"
+                                                             strokeWidth="3.5"
+                                                             stroke="currentColor"
+                                                             fill="none"
+                                                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                         />
+                                                         <path
+                                                             className="text-primary transition-all duration-300"
+                                                             strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
+                                                             strokeWidth="3.5"
+                                                             strokeLinecap="round"
+                                                             stroke="currentColor"
+                                                             fill="none"
+                                                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                         />
+                                                     </svg>
+                                                 </div>
+                                             )}
+                                        </div>
+                                        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                                     </div>
 
                                     {/* Chapter Count Badge */}
@@ -486,25 +619,7 @@ export default function Year1Client({ volumes: accurateVolumes, shortStories }: 
 
             </motion.div >
 
-            {/* Toggle Button */}
-            <div className="fixed bottom-8 right-8 z-[100]">
-                <Button
-                    onClick={() => setViewMode(prev => prev === "detailed" ? "compact" : "detailed")}
-                    className="rounded-full w-14 h-14 bg-red-600 hover:bg-red-700 text-white shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-400/20 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-                >
-                    <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                            key={viewMode}
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            {viewMode === "detailed" ? <LayoutGrid className="w-6 h-6" /> : <List className="w-6 h-6" />}
-                        </motion.div>
-                    </AnimatePresence>
-                </Button>
-            </div>
+
 
             <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
             <ProfileModal isOpen={profileModalOpen} onClose={() => setProfileModalOpen(false)} />

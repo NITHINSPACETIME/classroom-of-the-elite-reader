@@ -6,6 +6,7 @@ import { List, ArrowLeft, LayoutGrid, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 
 import { MushokuTenseiVolumeData, mushokuTenseiSideStories, mushokuTenseiRedundancy } from "@/data/mushoku-tensei";
@@ -41,9 +42,10 @@ const getCompactChapterLabel = (title: string, index: number) => {
 };
 
 export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSelectClientProps) {
+  const router = useRouter();
   const [viewMode, setViewMode] = useState<"detailed" | "compact">("compact");
-  const [selectedVolume, setSelectedVolume] = useState<MushokuTenseiVolumeData | null>(null);
-  const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string }>>({});
+  const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string; chapterIndex?: number }>>({});
+  const [readChapters, setReadChapters] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<"main" | "redundancy" | "side">("main");
   
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -51,15 +53,19 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
   
   const [searchQuery, setSearchQuery] = useState("");
   const [chaptersViewMode, setChaptersViewMode] = useState<"grid" | "detailed">("detailed");
-
   useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth >= 768) {
-      setTimeout(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("global-view-mode") as "detailed" | "compact" | null;
+      if (saved === "detailed" || saved === "compact") {
+        setViewMode(saved);
+      } else if (window.innerWidth >= 768) {
         setViewMode("detailed");
-      }, 0);
+      } else {
+        setViewMode("compact");
+      }
     }
 
-    const progress: Record<string, { percentage: number; chapterTitle: string }> = {};
+    const progress: Record<string, { percentage: number; chapterTitle: string; chapterIndex?: number }> = {};
     const allVols = [...volumes, ...mushokuTenseiRedundancy, ...mushokuTenseiSideStories];
     allVols.forEach(vol => {
       const savedMeta = localStorage.getItem(`mushoku-tensei-progress-meta-${vol.id}`);
@@ -70,25 +76,79 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
       } else {
         const savedCfi = localStorage.getItem(`mushoku-tensei-progress-${vol.id}`);
         if (savedCfi) {
-          progress[vol.id] = { percentage: 0, chapterTitle: "Continue Reading" };
+          progress[vol.id] = { percentage: 0, chapterTitle: "Continue Reading", chapterIndex: parseInt(savedCfi) || 1 };
         }
       }
     });
+    const readData = localStorage.getItem("mushoku-tensei-read-chapters");
+    if (readData) {
+      try {
+        setReadChapters(JSON.parse(readData));
+      } catch {}
+    }
+
     setTimeout(() => {
       setProgressMap(progress);
     }, 0);
+
+    const handleViewModeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<"detailed" | "compact">;
+      if (customEvent.detail === "detailed" || customEvent.detail === "compact") {
+        setViewMode(customEvent.detail);
+      }
+    };
+    window.addEventListener('change-view-mode', handleViewModeChange);
+    return () => {
+      window.removeEventListener('change-view-mode', handleViewModeChange);
+    };
   }, [volumes]);
 
-  useEffect(() => {
-    if (selectedVolume) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+
+
+  const handleResetVolume = (volId: string) => {
+    localStorage.removeItem(`mushoku-tensei-progress-meta-${volId}`);
+    localStorage.removeItem(`mushoku-tensei-progress-${volId}`);
+    
+    const readKey = "mushoku-tensei-read-chapters";
+    const readData = localStorage.getItem(readKey);
+    if (readData) {
+      try {
+        const readMap = JSON.parse(readData);
+        const prefix = `${volId}-`;
+        const updated = Object.keys(readMap).reduce((acc, key) => {
+          if (!key.startsWith(prefix)) {
+            acc[key] = readMap[key];
+          }
+          return acc;
+        }, {} as Record<string, boolean>);
+        localStorage.setItem(readKey, JSON.stringify(updated));
+        setReadChapters(updated);
+      } catch (e) {
+        console.error(e);
+      }
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [selectedVolume]);
+
+    setProgressMap(prev => {
+      const copy = { ...prev };
+      delete copy[volId];
+      return copy;
+    });
+  };
+
+
+
+  const handleResetAll = () => {
+    if (confirm("Are you sure you want to reset all reading progress for Mushoku Tensei?")) {
+      const allVols = [...volumes, ...mushokuTenseiRedundancy, ...mushokuTenseiSideStories];
+      allVols.forEach(vol => {
+        localStorage.removeItem(`mushoku-tensei-progress-meta-${vol.id}`);
+        localStorage.removeItem(`mushoku-tensei-progress-${vol.id}`);
+      });
+      localStorage.removeItem("mushoku-tensei-read-chapters");
+      setProgressMap({});
+      setReadChapters({});
+    }
+  };
 
   const currentVolumesList = useMemo(() => {
     if (activeTab === "main") return volumes;
@@ -133,10 +193,19 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
           </h1>
         </div>
 
-        <UserMenu
-          onSignIn={() => setAuthModalOpen(true)}
-          onProfile={() => setProfileModalOpen(true)}
-        />
+        <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            onClick={handleResetAll}
+            className="text-xs font-serif font-bold text-white bg-red-600 hover:bg-red-700 border-none rounded-full px-4 h-9 cursor-pointer transition-all active:scale-95 shadow-md"
+          >
+            Reset All
+          </Button>
+          <UserMenu
+            onSignIn={() => setAuthModalOpen(true)}
+            onProfile={() => setProfileModalOpen(true)}
+          />
+        </div>
       </header>
 
       {/* Main Body */}
@@ -296,38 +365,73 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
                     {/* Right Pane - Cover Image Card & Navigation */}
                     <div className="flex flex-col items-center justify-center p-6 bg-emerald-950/5">
                       <div
-                        onClick={() => setSelectedVolume(vol)}
-                        className="relative w-full max-w-[140px] aspect-[2/3] shadow-2xl rounded-lg border border-emerald-950/40 overflow-hidden cursor-pointer transform hover:scale-[1.03] transition-transform duration-300"
+                        onClick={() => !vol.inProgress && router.push(`/mushoku-tensei/select/${vol.id}`)}
+                        className="hover-3d relative cursor-pointer w-full max-w-[140px]"
                       >
-                        <Image
-                          src={vol.coverImage}
-                          alt={vol.title}
-                          fill
-                          className="object-cover opacity-90 hover:opacity-100 transition-opacity"
-                          sizes="140px"
-                        />
-                        {vol.inProgress && (
-                          <div className="absolute inset-0 bg-black/80 flex items-center justify-center border-t border-emerald-500/25">
-                            <span className="text-emerald-300 font-mono font-bold text-[10px] tracking-widest uppercase animate-pulse">Coming Soon</span>
-                          </div>
-                        )}
-                        {progressMap[vol.id] && (
-                          <div className="absolute bottom-0 left-0 right-0 h-1 bg-emerald-950/45 z-20">
-                            <div
-                              className="h-full bg-emerald-450 shadow-[0_0_8px_#10b981]"
-                              style={{ width: `${Math.min(100, Math.max(0, progressMap[vol.id].percentage * 100))}%` }}
-                            />
-                          </div>
-                        )}
+                        <div className="relative w-full aspect-[2/3] shadow-2xl rounded-lg border border-emerald-950/40 overflow-hidden">
+                          <Image
+                            src={vol.coverImage}
+                            alt={vol.title}
+                            fill
+                            className="object-cover opacity-90 hover:opacity-100 transition-opacity"
+                            sizes="140px"
+                          />
+                          {vol.inProgress && (
+                            <div className="absolute inset-0 bg-black/80 flex items-center justify-center border-t border-emerald-500/25">
+                              <span className="text-emerald-300 font-mono font-bold text-[10px] tracking-widest uppercase animate-pulse">Coming Soon</span>
+                            </div>
+                          )}
+                          {progressMap[vol.id] && (
+                            <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                              <span className="text-[9px] font-mono font-bold" style={{ color: 'var(--primary-color, #10b981)' }}>
+                                {Math.round(progressMap[vol.id].percentage * 100)}%
+                              </span>
+                              <svg className="absolute w-8 h-8 transform -rotate-90 text-emerald-500" viewBox="0 0 36 36" style={{ color: 'var(--primary-color, #10b981)' }}>
+                                <path
+                                  className="text-zinc-800"
+                                  strokeWidth="3.5"
+                                  stroke="currentColor"
+                                  fill="none"
+                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                                <path
+                                  className="text-primary transition-all duration-300"
+                                  strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
+                                  strokeWidth="3.5"
+                                  strokeLinecap="round"
+                                  stroke="currentColor"
+                                  fill="none"
+                                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                       </div>
 
                       <div className="w-full mt-5 flex flex-col gap-2">
                         <Button
-                          onClick={() => setSelectedVolume(vol)}
+                          onClick={() => !vol.inProgress && router.push(`/mushoku-tensei/select/${vol.id}`)}
                           className="w-full bg-emerald-900/40 hover:bg-emerald-800/60 text-emerald-200 border border-emerald-800/30 font-serif font-bold text-xs tracking-wider cursor-pointer"
+                          disabled={vol.inProgress}
                         >
-                          EXPAND CHAPTERS
+                          {vol.inProgress ? "COMING SOON" : "EXPAND CHAPTERS"}
                         </Button>
+                        {progressMap[vol.id] && (
+                          <Button
+                            variant="outline"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (confirm(`Reset progress for Volume ${vol.volumeNumber}?`)) {
+                                handleResetVolume(vol.id);
+                              }
+                            }}
+                            className="w-full bg-red-600 hover:bg-red-700 text-white border-none text-[10px] tracking-wider py-1.5 cursor-pointer rounded-xl transition-all active:scale-95 shadow-md"
+                          >
+                            RESET PROGRESS
+                          </Button>
+                        )}
                       </div>
                     </div>
 
@@ -347,40 +451,65 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
               {filteredVolumes.map((vol) => (
                 <div
                   key={vol.id}
-                  onClick={() => setSelectedVolume(vol)}
+                  onClick={() => !vol.inProgress && router.push(`/mushoku-tensei/select/${vol.id}`)}
                   className="flex flex-col gap-2.5 group cursor-pointer relative"
                 >
-                  <div className="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-2xl border border-emerald-900/20 relative z-10">
-                    {vol.tag && (
-                      <div className="absolute top-2.5 right-2.5 bg-emerald-950/90 text-emerald-300 border border-emerald-500/30 text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-20 shadow-[0_0_12px_rgba(16,185,129,0.2)]">
-                        {vol.tag}
+                  <div className="hover-3d relative cursor-pointer w-full">
+                    <div className="relative w-full aspect-[2/3] rounded-xl overflow-hidden shadow-2xl border border-emerald-900/20">
+                      {vol.tag && (
+                        <div className="absolute top-2.5 right-2.5 bg-emerald-950/90 text-emerald-300 border border-emerald-500/30 text-[8px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full z-20 shadow-[0_0_12px_rgba(16,185,129,0.2)]">
+                          {vol.tag}
+                        </div>
+                      )}
+                      <Image
+                        src={vol.coverImage}
+                        alt={vol.title}
+                        fill
+                        className="object-cover transition-transform duration-350 opacity-90 group-hover:opacity-100"
+                        sizes="(max-width: 768px) 50vw, 180px"
+                      />
+                      {vol.inProgress && (
+                        <div className="absolute inset-0 bg-black/80 flex items-center justify-center text-center p-2 z-20">
+                          <span className="text-emerald-400 font-mono font-bold text-[9px] tracking-widest uppercase animate-pulse">Coming Soon</span>
+                        </div>
+                      )}
+                      {progressMap[vol.id] && (
+                        <>
+                          <div className="absolute top-2.5 left-2.5 bg-emerald-950/80 backdrop-blur-sm px-2 py-0.5 rounded border border-emerald-500/30 text-[9px] font-bold text-emerald-300 z-20 pointer-events-none">
+                            RESUME
+                          </div>
+                          <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                            <span className="text-[9px] font-mono font-bold" style={{ color: 'var(--primary-color, #10b981)' }}>
+                              {Math.round(progressMap[vol.id].percentage * 100)}%
+                            </span>
+                            <svg className="absolute w-8 h-8 transform -rotate-90 text-emerald-500" viewBox="0 0 36 36" style={{ color: 'var(--primary-color, #10b981)' }}>
+                              <path
+                                className="text-zinc-800"
+                                strokeWidth="3.5"
+                                stroke="currentColor"
+                                fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                              />
+                              <path
+                                className="text-primary transition-all duration-300"
+                                strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
+                                strokeWidth="3.5"
+                                strokeLinecap="round"
+                                stroke="currentColor"
+                                fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                              />
+                            </svg>
+                          </div>
+                        </>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-20 flex items-end justify-center pb-3 pointer-events-none">
+                        <span className="bg-emerald-600/90 text-white text-[9px] font-bold font-mono tracking-widest px-2.5 py-0.5 rounded-full shadow-md">
+                          EXPAND
+                        </span>
                       </div>
-                    )}
-                    <Image
-                      src={vol.coverImage}
-                      alt={vol.title}
-                      fill
-                      className="object-cover transition-transform duration-350 group-hover:scale-[1.03] opacity-90 group-hover:opacity-100"
-                      sizes="(max-width: 768px) 50vw, 180px"
-                    />
-                    {vol.inProgress && (
-                      <div className="absolute inset-0 bg-black/80 flex items-center justify-center text-center p-2 z-20">
-                        <span className="text-emerald-400 font-mono font-bold text-[9px] tracking-widest uppercase animate-pulse">Coming Soon</span>
-                      </div>
-                    )}
-                    {progressMap[vol.id] && (
-                      <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-emerald-950/40 z-20">
-                        <div
-                          className="h-full bg-emerald-400 shadow-[0_0_8px_#10b981]"
-                          style={{ width: `${Math.min(100, Math.max(0, progressMap[vol.id].percentage * 100))}%` }}
-                        />
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-20 flex items-end justify-center pb-3 pointer-events-none">
-                      <span className="bg-emerald-600/90 text-white text-[9px] font-bold font-mono tracking-widest px-2.5 py-0.5 rounded-full shadow-md">
-                        EXPAND
-                      </span>
                     </div>
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                   </div>
 
                   <div className="text-center mt-1 px-1">
@@ -398,190 +527,9 @@ export default function MushokuTenseiSelectClient({ volumes }: MushokuTenseiSele
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Selected Volume Details Drawer / Overlay Modal */}
-        <AnimatePresence>
-          {selectedVolume && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="relative w-full max-w-3xl max-h-[85vh] bg-[#050605] border border-emerald-900/40 rounded-[36px] shadow-[0_0_50px_rgba(16,185,129,0.15)] overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-[#e2f9ec] select-text"
-              >
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedVolume(null)}
-                  className="absolute top-4 right-4 text-emerald-300 hover:text-white hover:bg-emerald-950/30 rounded-full p-2 w-10 h-10 flex items-center justify-center z-50 text-xl font-bold cursor-pointer transition-all"
-                >
-                  ✕
-                </button>
-
-                {/* Header Section (Title & Subtitle) */}
-                <div className="col-span-full flex flex-col gap-4">
-                  <div className="pr-8">
-                    <h3 className="font-serif text-2xl md:text-3xl font-extralight text-white tracking-wide border-b border-emerald-900/20 pb-2">
-                      {selectedVolume.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-emerald-400 mt-2 font-mono uppercase tracking-widest">
-                      <span>Volume {selectedVolume.volumeNumber}</span>
-                      <span className="text-emerald-900/60">|</span>
-                      <span>{selectedVolume.chapters.length} Chapters</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Left Panel: Cover image and entry button */}
-                <div className="flex flex-col items-center gap-4">
-                  <div className="relative w-full max-w-[170px] aspect-[2/3] shadow-2xl border border-emerald-900/30 rounded-lg overflow-hidden">
-                    <Image
-                      src={selectedVolume.coverImage}
-                      alt={selectedVolume.title}
-                      fill
-                      className="object-cover"
-                      sizes="170px"
-                    />
-                  </div>
-                  
-                  <div className="w-full flex flex-col gap-2">
-                    {selectedVolume.inProgress ? (
-                      <Button disabled className="w-full bg-zinc-900 text-zinc-500 border border-zinc-800 font-bold uppercase tracking-wider text-xs py-3 cursor-not-allowed">
-                        COMING SOON
-                      </Button>
-                    ) : (
-                      <a href={`/mushoku-tensei/read/${selectedVolume.id}/1`} className="w-full">
-                        <Button className="w-full bg-emerald-750 hover:bg-emerald-650 text-white font-bold font-serif py-3 tracking-widest text-xs uppercase shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all">
-                          BEGIN READING
-                        </Button>
-                      </a>
-                    )}
-                  </div>
-
-                  {progressMap[selectedVolume.id] && (
-                    <div className="w-full bg-emerald-950/10 border border-emerald-900/20 rounded-xl p-3 text-center">
-                      <div className="text-[10px] text-emerald-400 font-bold tracking-wider uppercase mb-1">Last Read Location</div>
-                      <div className="text-xs text-zinc-200 font-medium truncate mb-1.5">{progressMap[selectedVolume.id].chapterTitle}</div>
-                      <div className="w-full bg-black/40 rounded-full h-1 overflow-hidden">
-                        <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${progressMap[selectedVolume.id].percentage * 100}%` }} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Right Panel: Metadata & Chapters TOC list */}
-                <div className="flex flex-col gap-5">
-                  {/* Synopsis */}
-                  <div>
-                    <h4 className="font-bold text-[10px] uppercase tracking-widest text-emerald-400 mb-1.5">Synopsis</h4>
-                    <p className="text-sm text-zinc-300 leading-relaxed font-serif bg-emerald-950/10 border border-emerald-950/30 p-4 rounded-xl">{selectedVolume.synopsis}</p>
-                  </div>
-
-                  {/* Key Dates */}
-                  {!selectedVolume.inProgress && (
-                    <div className="grid grid-cols-2 gap-4 text-xs bg-black/35 p-4 rounded-xl border border-emerald-950/20">
-                      <div>
-                        <span className="text-emerald-400/60 font-bold block mb-1 uppercase tracking-wider text-[9px] font-mono">JP Release Date</span>
-                        <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateJP}</span>
-                      </div>
-                      <div>
-                        <span className="text-emerald-400/60 font-bold block mb-1 uppercase tracking-wider text-[9px] font-mono">EN Release Date</span>
-                        <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateEN}</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Chapters Section */}
-                  {!selectedVolume.inProgress && (
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center justify-between border-b border-emerald-900/20 pb-2">
-                        <h4 className="font-bold text-[10px] uppercase tracking-widest text-emerald-400">Chapters Index</h4>
-                        
-                        {/* Grid / List View Toggle for Chapters */}
-                        <div className="flex bg-black/30 border border-emerald-900/30 p-0.5 rounded-lg text-xs">
-                          <button
-                            onClick={() => setChaptersViewMode("grid")}
-                            className={`px-2 py-1 rounded transition-colors flex items-center gap-1 ${chaptersViewMode === "grid" ? "bg-emerald-900/40 text-white" : "text-zinc-500 hover:text-zinc-300"}`}
-                            title="Grid View"
-                          >
-                            <LayoutGrid className="w-3.5 h-3.5" />
-                          </button>
-                          <button
-                            onClick={() => setChaptersViewMode("detailed")}
-                            className={`px-2 py-1 rounded transition-colors flex items-center gap-1 ${chaptersViewMode === "detailed" ? "bg-emerald-900/40 text-white" : "text-zinc-500 hover:text-zinc-300"}`}
-                            title="Detailed List View"
-                          >
-                            <List className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      </div>
-
-                      <AnimatePresence mode="wait">
-                        {chaptersViewMode === "grid" ? (
-                          <motion.div
-                            key="chapters-grid"
-                            initial={{ opacity: 0, y: 5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -5 }}
-                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 max-h-[350px] md:max-h-[220px] overflow-y-auto pr-1"
-                          >
-                            {selectedVolume.chapters.map((chap, i) => {
-                              const label = getCompactChapterLabel(chap, i + 1);
-                              return (
-                                <a key={i} href={`/mushoku-tensei/read/${selectedVolume.id}/${i + 1}`}>
-                                  <div className="flex items-center justify-center p-3 text-center rounded-lg border border-emerald-950/30 bg-black/35 hover:bg-emerald-900/20 hover:border-emerald-500/30 text-xs font-serif text-zinc-200 hover:text-emerald-250 transition-all cursor-pointer truncate active:scale-95">
-                                    {label}
-                                  </div>
-                                </a>
-                              );
-                            })}
-                          </motion.div>
-                        ) : (
-                          <motion.ul
-                            key="chapters-list"
-                            initial={{ opacity: 0, y: 5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -5 }}
-                            className="text-sm text-zinc-400 space-y-1.5 max-h-[350px] md:max-h-[220px] overflow-y-auto pr-2 border-l border-emerald-950 pl-3.5"
-                          >
-                            {selectedVolume.chapters.map((chap, i) => (
-                              <li key={i} className="flex justify-between items-center py-1.5 border-b border-emerald-950/20 last:border-b-0">
-                                <span className="font-serif text-zinc-300 pr-4">{chap}</span>
-                                <a href={`/mushoku-tensei/read/${selectedVolume.id}/${i + 1}`}>
-                                  <span className="text-[10px] text-emerald-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">Read →</span>
-                                </a>
-                              </li>
-                            ))}
-                          </motion.ul>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
       </motion.div>
 
-      {/* Floating Toggle Button (Volumes View Compact vs Detailed) */}
-      <div className="fixed bottom-8 right-8 z-[100] hidden sm:block">
-        <Button
-          onClick={() => setViewMode(prev => prev === "detailed" ? "compact" : "detailed")}
-          className="rounded-full w-14 h-14 bg-emerald-750 hover:bg-emerald-650 text-white shadow-[0_0_20px_rgba(16,185,129,0.5)] border border-emerald-500/20 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={viewMode}
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {viewMode === "detailed" ? <LayoutGrid className="w-6 h-6" /> : <List className="w-6 h-6" />}
-            </motion.div>
-          </AnimatePresence>
-        </Button>
-      </div>
+
 
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
       <ProfileModal isOpen={profileModalOpen} onClose={() => setProfileModalOpen(false)} />

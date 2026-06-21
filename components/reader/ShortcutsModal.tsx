@@ -26,12 +26,12 @@ export function ShortcutsModal({ isOpen, onClose }: ShortcutsModalProps) {
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                <div className="fixed inset-0 z-[60] overflow-y-auto flex items-center justify-center p-4">
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                        className="fixed inset-0 bg-black/80 backdrop-blur-sm"
                         onClick={onClose}
                     />
 
@@ -39,9 +39,9 @@ export function ShortcutsModal({ isOpen, onClose }: ShortcutsModalProps) {
                         initial={{ opacity: 0, scale: 0.95, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                        className="relative w-full max-w-lg bg-[#14151b] border border-gray-800 rounded-xl shadow-2xl overflow-hidden"
+                        className="relative w-full max-w-lg bg-[#14151b] border border-gray-800 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] my-auto z-10"
                     >
-                        <div className="flex items-center justify-between p-4 border-b border-gray-800 bg-white/5">
+                        <div className="flex items-center justify-between p-4 border-b border-gray-800 bg-white/5 flex-shrink-0">
                             <h2 className="text-lg font-serif font-bold text-white flex items-center gap-2">
                                 <Keyboard className="w-5 h-5 text-gray-400" />
                                 Keyboard Shortcuts
@@ -51,7 +51,7 @@ export function ShortcutsModal({ isOpen, onClose }: ShortcutsModalProps) {
                             </Button>
                         </div>
 
-                        <div className="p-2 grid gap-1 max-h-[70vh] overflow-y-auto">
+                        <div className="p-2 grid gap-1 overflow-y-auto flex-1">
                             {shortcuts.map((item, i) => (
                                 <div key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors group">
                                     <span className="text-sm text-gray-300 font-medium group-hover:text-white transition-colors">
@@ -75,7 +75,7 @@ export function ShortcutsModal({ isOpen, onClose }: ShortcutsModalProps) {
                             ))}
                         </div>
 
-                        <div className="p-3 bg-white/5 border-t border-gray-800 text-center">
+                        <div className="p-3 bg-white/5 border-t border-gray-800 text-center flex-shrink-0">
                             <p className="text-xs text-gray-500">
                                 Press <kbd className="bg-gray-800 px-1 rounded text-gray-400 font-mono">Ctrl</kbd> + <kbd className="bg-gray-800 px-1 rounded text-gray-400 font-mono">/</kbd> anytime to toggle this menu.
                             </p>

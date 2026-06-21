@@ -64,7 +64,7 @@ export default async function BunnyGirlReadPage({
   }
 
   const chapterTitle = volume.chapters[index - 1] || `Chapter ${index}`;
-  const htmlContent = `<div class="theme-bunny-girl font-serif select-text relative w-full"><h1>${chapterTitle}</h1>\n${contentBody}</div>`;
+  const htmlContent = `<div class="theme-bunny-girl select-text relative w-full">\n${contentBody}</div>`;
   const totalChapters = volume.chapters.length;
 
   let nextVolumeLink = undefined;
@@ -118,8 +118,8 @@ export default async function BunnyGirlReadPage({
         }))}
         volumeTitle={volume.title}
         epubSource={undefined}
-        detailsLink="/bunny-girl/select"
-        returnLink="/bunny-girl/select"
+        detailsLink={`/bunny-girl/select/${volumeId}`}
+        returnLink={`/bunny-girl/select/${volumeId}`}
         currentSpineIndex={index}
         nextVolumeLink={nextVolumeLink}
         nextVolumeTitle={nextVolumeTitleVal}

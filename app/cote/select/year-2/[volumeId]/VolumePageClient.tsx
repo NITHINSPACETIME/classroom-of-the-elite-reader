@@ -1,7 +1,7 @@
 "use client"
 
 import { volumes, shortStories } from "@/data/year2";
-import { getSpineIndex } from "@/lib/chapter-mappings";
+import { getSpineIndex, chapterMappings } from "@/lib/chapter-mappings";
 import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { use, useState, useEffect } from "react";
+import { MarqueeText } from "@/components/MarqueeText";
 
-import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
 import { UserMenu } from "@/components/auth/UserMenu";
 import { AuthModal } from "@/components/auth/AuthModal";
@@ -32,49 +32,93 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
     const [hasStarted, setHasStarted] = useState(false);
     const [authModalOpen, setAuthModalOpen] = useState(false);
     const [profileModalOpen, setProfileModalOpen] = useState(false);
-
     const [savedChapterIndex, setSavedChapterIndex] = useState<number>(0);
+    const [savedScrollPercentage, setSavedScrollPercentage] = useState<number>(0);
+    const [readChapters, setReadChapters] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
-        if (!user || !volume) return;
-        const volumeId = volume.id;
-        const userId = user.id;
-
-        async function checkProgress() {
-            const { data } = await supabase
-                .from('reading_progress')
-                .select('percentage, chapter_index')
-                .eq('user_id', userId)
-                .eq('volume_id', volumeId)
-                .maybeSingle();
-
-            if (data) {
-                setHasStarted(true);
-                setSavedChapterIndex(data.chapter_index);
+        const readKey = "cote-read-chapters";
+        const readData = localStorage.getItem(readKey);
+        if (readData) {
+            try {
+                setReadChapters(JSON.parse(readData));
+            } catch (e) {
+                console.error(e);
             }
         }
 
-        checkProgress();
+        const volId = volume.id;
+        const savedMeta = localStorage.getItem(`cote-progress-meta-${volId}`);
+        const savedProgress = localStorage.getItem(`cote-progress-${volId}`);
+        let spineIndex = 0;
+        let scrollPct = 0;
+        if (savedMeta) {
+            try {
+                const meta = JSON.parse(savedMeta);
+                spineIndex = meta.chapterIndex || 0;
+                scrollPct = meta.scrollPercentage || 0;
+            } catch (e) {}
+        } else if (savedProgress) {
+            spineIndex = parseInt(savedProgress) || 0;
+        }
 
-        const channel = supabase
-            .channel(`progress:${volumeId}`)
-            .on('postgres_changes', {
-                event: '*',
-                schema: 'public',
-                table: 'reading_progress',
-                filter: `volume_id=eq.${volumeId}`
-            }, (payload) => {
-                if (payload.new && (payload.new as any).user_id === userId) {
-                    setHasStarted(true);
-                    setSavedChapterIndex((payload.new as any).chapter_index);
-                }
-            })
-            .subscribe();
+        if (spineIndex > 0) {
+            const mapping = chapterMappings[volume.id];
+            const logicalIndex = mapping ? mapping.indexOf(spineIndex) : -1;
+            setHasStarted(true);
+            setSavedChapterIndex(logicalIndex >= 0 ? logicalIndex : 0);
+            setSavedScrollPercentage(scrollPct);
+        } else {
+            setHasStarted(false);
+            setSavedChapterIndex(0);
+            setSavedScrollPercentage(0);
+        }
+    }, [volume]);
 
-        return () => {
-            supabase.removeChannel(channel);
-        };
-    }, [user, volume]);
+    const handleResetVolume = () => {
+        const volId = volume.id;
+        localStorage.removeItem(`cote-progress-meta-${volId}`);
+        localStorage.removeItem(`cote-progress-${volId}`);
+        
+        const readKey = "cote-read-chapters";
+        const readData = localStorage.getItem(readKey);
+        if (readData) {
+            try {
+                const readMap = JSON.parse(readData);
+                const prefix = `${volId}-`;
+                const updated = Object.keys(readMap).reduce((acc, key) => {
+                    if (!key.startsWith(prefix)) {
+                        acc[key] = readMap[key];
+                    }
+                    return acc;
+                }, {} as Record<string, boolean>);
+                localStorage.setItem(readKey, JSON.stringify(updated));
+                setReadChapters(updated);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        setHasStarted(false);
+        setSavedChapterIndex(0);
+    };
+
+    const handleResetChapter = (chapIndex: number) => {
+        const volId = volume.id;
+        const readKey = "cote-read-chapters";
+        const readData = localStorage.getItem(readKey);
+        if (readData) {
+            try {
+                const readMap = JSON.parse(readData);
+                const targetKey = `${volId}-${getSpineIndex(volume.id, chapIndex)}`;
+                delete readMap[targetKey];
+                localStorage.setItem(readKey, JSON.stringify(readMap));
+                setReadChapters({ ...readMap });
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    };
 
 
     const [downloadMenuOpen, setDownloadMenuOpen] = useState(false);
@@ -198,6 +242,20 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
         setDownloadMenuOpen(false);
     };
 
+    const getContinueChapterIndex = () => {
+        let idx = savedChapterIndex;
+        if (hasStarted && savedScrollPercentage < 85) {
+            return idx;
+        }
+        while (idx < volume.chapters.length && readChapters[`${volume.id}-${getSpineIndex(volume.id, idx)}`]) {
+            idx++;
+        }
+        if (idx >= volume.chapters.length) {
+            return volume.chapters.length - 1;
+        }
+        return idx;
+    };
+
     return (
         <div className="min-h-screen w-full bg-[#0a0a0a] text-white selection:bg-blue-900/50">
 
@@ -298,12 +356,41 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                             </div>
                         </div>
 
-                        <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, hasStarted ? savedChapterIndex : 0)}`} className="w-full">
-                            <Button className="w-full h-14 text-lg bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:scale-[1.02]">
+                        <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, hasStarted ? getContinueChapterIndex() : 0)}`} className="w-full">
+                            <Button className="w-full h-14 text-lg bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-900/20 transition-all duration-300 hover:scale-[1.02] rounded-full">
                                 <BookOpen className="mr-2 w-5 h-5" />
                                 {hasStarted ? "Continue Reading" : "Start Reading"}
                             </Button>
                         </a>
+                        {hasStarted && (
+                            <Button
+                                variant="outline"
+                                onClick={() => {
+                                    if (confirm(`Are you sure you want to reset all reading progress for Classroom of the Elite: ${volume.title}?`)) {
+                                        handleResetVolume();
+                                    }
+                                }}
+                                className="w-full h-10 bg-red-600 hover:bg-red-700 text-white font-bold tracking-wide transition-all cursor-pointer rounded-full border-none"
+                            >
+                                Reset Volume Progress
+                            </Button>
+                        )}
+                        {hasStarted && (
+                            <div className="w-full bg-red-950/10 border border-red-900/20 rounded-xl p-3 text-center animate-fadeIn">
+                                <div className="text-[10px] text-red-400 font-bold tracking-wider uppercase mb-1">Last Read</div>
+                                <div className="text-xs text-zinc-200 font-medium truncate mb-1.5">
+                                    {volume.chapters[savedChapterIndex] ? getChapterDisplay(volume.chapters[savedChapterIndex], savedChapterIndex).full : `Chapter ${savedChapterIndex + 1}`}
+                                </div>
+                                <div className="w-full bg-black/40 rounded-full h-1 overflow-hidden">
+                                    <div 
+                                        className="bg-red-500 h-full rounded-full" 
+                                        style={{ 
+                                            width: `${Math.min(100, Math.max(0, ((savedChapterIndex + 1) / volume.chapters.length) * 100))}%` 
+                                        }} 
+                                    />
+                                </div>
+                            </div>
+                        )}
 
 
                         <div className="grid grid-cols-2 gap-3">
@@ -394,28 +481,49 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: 0.1 + (originalIndex * 0.03) }}
                                             >
-                                                <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
-                                                    <div className={`group flex items-start justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 cursor-pointer gap-3 ${isCurrent ? 'bg-blue-900/10 border-blue-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'}`}>
-                                                        <div className="flex items-start gap-3 flex-1">
-                                                            <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')}`}>
-                                                                {type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
-                                                            </span>
-                                                            <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-blue-200' : 'text-gray-300 group-hover:text-white'}`}>
-                                                                {isSideStory && full.includes(" : ") ? (() => {
-                                                                    const [narrator, title] = full.split(" : ");
-                                                                    return (
-                                                                        <span className="flex flex-col md:block">
-                                                                            <span className="font-bold text-blue-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
-                                                                            <span className="text-gray-300">{title}</span>
-                                                                        </span>
-                                                                    );
-                                                                })() : full}
-                                                                {isCurrent && <span className="ml-2 text-xs text-blue-400 font-normal animate-pulse">(Current)</span>}
-                                                            </span>
-                                                        </div>
-                                                        <ArrowLeft className="shrink-0 w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
+                                                <div className={`group flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 gap-3 ${isCurrent ? 'bg-blue-900/10 border-blue-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'} ${readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && !isCurrent ? 'opacity-55 hover:opacity-100 transition-opacity' : ''}`}>
+                                                    <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`} className="flex items-start gap-3 flex-1">
+                                                        <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')}`}>
+                                                            {type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
+                                                        </span>
+                                                        <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-blue-200' : 'text-gray-300 group-hover:text-white'}`}>
+                                                            {isSideStory && full.includes(" : ") ? (() => {
+                                                                const [narrator, title] = full.split(" : ");
+                                                                return (
+                                                                    <span className="flex flex-col md:block">
+                                                                        <span className="font-bold text-blue-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
+                                                                        <span className="text-gray-300">{title}</span>
+                                                                    </span>
+                                                                );
+                                                            })() : full}
+                                                            {isCurrent && <span className="ml-2 text-xs text-blue-400 font-normal animate-pulse">(Current)</span>}
+                                                        </span>
+                                                    </Link>
+                                                    <div className="flex items-center gap-3 shrink-0">
+                                                        {readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && (
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="text-[10px] bg-green-500/20 text-green-400 border border-green-500/30 px-2.5 py-0.5 rounded-full font-mono font-medium flex items-center gap-1">
+                                                                    ✓ Read
+                                                                </span>
+                                                                <button
+                                                                    onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        e.stopPropagation();
+                                                                        if (confirm(`Reset reading progress for ${chapter}?`)) {
+                                                                            handleResetChapter(originalIndex);
+                                                                        }
+                                                                    }}
+                                                                    className="text-[10px] bg-red-600 text-white px-2.5 py-0.5 rounded-full font-mono font-medium flex items-center gap-1 hover:bg-red-700 transition-all duration-200 active:scale-95 cursor-pointer border-none"
+                                                                >
+                                                                    Reset
+                                                                </button>
+                                                            </div>
+                                                        )}
+                                                        <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
+                                                            <ArrowLeft className="w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
+                                                        </Link>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </motion.div>
                                         )
                                     })
@@ -436,14 +544,17 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     className="fixed bottom-6 left-0 right-0 z-50 flex justify-center pointer-events-none"
                 >
-                    <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, savedChapterIndex)}`} className="pointer-events-auto">
-                        <Button className="h-14 px-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white font-medium shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:bg-white/20 hover:scale-105 transition-all duration-300 group">
-                            <BookOpen className="mr-2 w-5 h-5 text-blue-400 group-hover:text-blue-300" />
-                            <span className="flex flex-col items-start leading-none gap-1">
+                    <a href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, getContinueChapterIndex())}`} className="pointer-events-auto">
+                        <Button className="h-14 px-5 md:px-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white font-medium shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:bg-white/20 hover:scale-105 transition-all duration-300 group max-w-[calc(100vw-9.5rem)] md:max-w-md">
+                            <BookOpen className="mr-2 w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0" />
+                            <span className="flex flex-col items-start leading-none gap-1 min-w-0 flex-1">
                                 <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Continue Reading</span>
-                                <span className="text-sm">Chapter {savedChapterIndex + 1}</span>
+                                <MarqueeText 
+                                    text={volume.chapters[getContinueChapterIndex()] ? getChapterDisplay(volume.chapters[getContinueChapterIndex()], getContinueChapterIndex()).full : `Chapter ${getContinueChapterIndex() + 1}`}
+                                    className="text-sm text-left font-medium text-white"
+                                />
                             </span>
-                            <ArrowRight className="ml-4 w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight className="ml-4 w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform shrink-0" />
                         </Button>
                     </a>
                 </motion.div>

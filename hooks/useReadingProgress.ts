@@ -1,103 +1,145 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
-import { useAuth } from '@/context/AuthContext'
+import { chapterMappings } from '@/lib/chapter-mappings'
 
 interface ReadingProgress {
     volumeId: string
     chapterIndex: number
     scrollPercentage: number
     lastRead: string
+    chapterId?: string
 }
 
-export function useReadingProgress(volumeId: string, chapterIndex: number) {
-    const { user } = useAuth()
+export function useReadingProgress(
+    volumeId: string,
+    chapterIndex: number,
+    novelSlug?: string,
+    totalChapters?: number,
+    chapterTitle?: string,
+    chapterId?: string
+) {
     const [progress, setProgress] = useState<ReadingProgress | null>(null)
     const [loading, setLoading] = useState(true)
     const lastSavedRef = useRef<{ chapter: number; scroll: number }>({ chapter: 0, scroll: 0 })
     const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+    // Mark current chapter as read immediately on mount/load
+    useEffect(() => {
+        if (novelSlug && chapterIndex) {
+            try {
+                const readKey = `${novelSlug}-read-chapters`;
+                const readData = localStorage.getItem(readKey);
+                const readChapters = readData ? JSON.parse(readData) : {};
+                const chapterKey = `${volumeId}-${chapterIndex}`;
+                if (!readChapters[chapterKey]) {
+                    readChapters[chapterKey] = true;
+                    localStorage.setItem(readKey, JSON.stringify(readChapters));
+                }
+            } catch (e) {
+                console.error('Error marking chapter as read on mount:', e);
+            }
+        }
+    }, [novelSlug, volumeId, chapterIndex]);
+
     // Load progress on mount
     useEffect(() => {
         async function loadProgress() {
-            if (!user || volumeId.startsWith('orv')) {
-                setLoading(false)
-                return
-            }
-
-            try {
-                const { data } = await supabase
-                    .from('reading_progress')
-                    .select('*')
-                    .eq('user_id', user.id)
-                    .eq('volume_id', volumeId)
-                    .maybeSingle()
-
-                if (data) {
-                    setProgress({
-                        volumeId: data.volume_id,
-                        chapterIndex: data.chapter_index,
-                        scrollPercentage: data.scroll_percentage || 0,
-                        lastRead: data.last_read
-                    })
-                    lastSavedRef.current = {
-                        chapter: data.chapter_index,
-                        scroll: data.scroll_percentage || 0
+            // Try loading from localStorage first
+            if (novelSlug) {
+                try {
+                    const localMetaStr = localStorage.getItem(`${novelSlug}-progress-meta-${volumeId}`);
+                    const localProgressStr = localStorage.getItem(`${novelSlug}-progress-${volumeId}`);
+                    
+                    if (localMetaStr) {
+                        const meta = JSON.parse(localMetaStr);
+                        setProgress({
+                            volumeId,
+                            chapterIndex: meta.chapterIndex || 1,
+                            scrollPercentage: meta.scrollPercentage || 0,
+                            lastRead: meta.lastRead || new Date().toISOString(),
+                            chapterId: meta.chapterId
+                        });
+                        lastSavedRef.current = {
+                            chapter: meta.chapterIndex || 1,
+                            scroll: meta.scrollPercentage || 0
+                        };
+                    } else if (localProgressStr) {
+                        const chapterIndexVal = parseInt(localProgressStr) || 1;
+                        setProgress({
+                            volumeId,
+                            chapterIndex: chapterIndexVal,
+                            scrollPercentage: 0,
+                            lastRead: new Date().toISOString()
+                        });
+                        lastSavedRef.current = {
+                            chapter: chapterIndexVal,
+                            scroll: 0
+                        };
                     }
+                } catch (e) {
+                    console.error('Error loading local reading progress:', e);
                 }
-            } catch (error) {
-                console.error('Error loading reading progress:', error)
-            } finally {
-                setLoading(false)
             }
+            setLoading(false)
         }
 
         loadProgress()
-    }, [user, volumeId])
+    }, [volumeId, novelSlug])
 
     // Save progress function 
     const saveProgress = useCallback(async (newChapterIndex: number, scrollPercentage: number = 0) => {
-        if (!user || volumeId.startsWith('orv')) return
-
-
         const hasChapterChanged = newChapterIndex !== lastSavedRef.current.chapter
         const hasScrollChanged = Math.abs(scrollPercentage - lastSavedRef.current.scroll) > 1
 
         if (!hasChapterChanged && !hasScrollChanged) return
 
-        try {
-            const progressData = {
-                user_id: user.id,
-                volume_id: volumeId,
-                chapter_index: newChapterIndex,
-                scroll_percentage: Math.round(scrollPercentage),
-                last_read: new Date().toISOString(),
-                percentage: Math.round((newChapterIndex / 50) * 100)
+        // 1. Save to localStorage for ALL novels
+        if (novelSlug) {
+            try {
+                const total = totalChapters || 50;
+                let logicalIdx = newChapterIndex;
+                if (novelSlug === 'cote') {
+                    const mapping = chapterMappings[volumeId];
+                    const foundIdx = mapping ? mapping.indexOf(newChapterIndex) : -1;
+                    logicalIdx = foundIdx >= 0 ? foundIdx + 1 : newChapterIndex;
+                }
+                const percentage = Math.min(1, Math.max(0, logicalIdx / total));
+                const metaData = {
+                    percentage,
+                    chapterTitle: chapterTitle || `Chapter ${newChapterIndex}`,
+                    chapterIndex: newChapterIndex,
+                    chapterId: chapterId,
+                    scrollPercentage: Math.round(scrollPercentage),
+                    lastRead: new Date().toISOString()
+                };
+                localStorage.setItem(`${novelSlug}-progress-meta-${volumeId}`, JSON.stringify(metaData));
+                localStorage.setItem(`${novelSlug}-progress-${volumeId}`, String(newChapterIndex));
+
+                // Mark as read in localStorage
+                const readKey = `${novelSlug}-read-chapters`;
+                const readData = localStorage.getItem(readKey);
+                const readChapters = readData ? JSON.parse(readData) : {};
+                const chapterKey = `${volumeId}-${newChapterIndex}`;
+                if (!readChapters[chapterKey]) {
+                    readChapters[chapterKey] = true;
+                    localStorage.setItem(readKey, JSON.stringify(readChapters));
+                }
+            } catch (e) {
+                console.error('Error saving local progress:', e);
             }
-
-
-            const { error: upsertError } = await supabase
-                .from('reading_progress')
-                .upsert(progressData, { onConflict: 'user_id,volume_id' })
-
-            if (upsertError) {
-                console.error("Failed to save progress:", upsertError)
-            }
-
-            lastSavedRef.current = { chapter: newChapterIndex, scroll: scrollPercentage }
-
-            setProgress({
-                volumeId,
-                chapterIndex: newChapterIndex,
-                scrollPercentage,
-                lastRead: new Date().toISOString()
-            })
-        } catch (error) {
-            console.error('Error saving reading progress:', error)
         }
-    }, [user, volumeId])
 
+        // Update local state
+        setProgress({
+            volumeId,
+            chapterIndex: newChapterIndex,
+            scrollPercentage,
+            lastRead: new Date().toISOString(),
+            chapterId: chapterId
+        })
+        lastSavedRef.current = { chapter: newChapterIndex, scroll: scrollPercentage }
+    }, [volumeId, novelSlug, totalChapters, chapterTitle, chapterId])
 
     const saveOnChapterChange = useCallback((newChapterIndex: number) => {
         saveProgress(newChapterIndex, 0)
@@ -105,7 +147,6 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
 
     // Save scroll position 
     const saveScrollPosition = useCallback((scrollPercentage: number) => {
-        if (volumeId.startsWith('orv')) return
         if (saveTimeoutRef.current) {
             clearTimeout(saveTimeoutRef.current)
         }
@@ -115,7 +156,6 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
         }, 3000)
     }, [saveProgress, chapterIndex])
 
-
     useEffect(() => {
         return () => {
             if (saveTimeoutRef.current) {
@@ -124,8 +164,15 @@ export function useReadingProgress(volumeId: string, chapterIndex: number) {
         }
     }, [])
 
-
-
+    // Save progress immediately on navigation/load if the chapter changed
+    useEffect(() => {
+        if (!loading && novelSlug && chapterIndex) {
+            const currentSavedChapter = lastSavedRef.current.chapter;
+            if (chapterIndex !== currentSavedChapter) {
+                saveProgress(chapterIndex, 0);
+            }
+        }
+    }, [loading, chapterIndex, novelSlug, saveProgress]);
 
     return {
         progress,

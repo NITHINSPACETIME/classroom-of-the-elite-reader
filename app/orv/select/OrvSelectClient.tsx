@@ -64,8 +64,9 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
   useEffect(() => {
     setActiveCategory(categoryParam);
   }, [categoryParam]);
-  const [selectedVolume, setSelectedVolume] = useState<OrvVolumeData | null>(null);
-  const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string; chapterIndex: number }>>({});
+
+  const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string; chapterIndex: number; chapterId?: string }>>({});
+  const [readChapters, setReadChapters] = useState<Record<string, boolean>>({});
   
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [profileModalOpen, setProfileModalOpen] = useState(false);
@@ -75,13 +76,50 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
   const [chaptersViewMode, setChaptersViewMode] = useState<"grid" | "detailed">("grid");
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-      setViewMode("detailed");
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("global-view-mode") as "detailed" | "compact" | null;
+      if (saved === "detailed" || saved === "compact") {
+        setViewMode(saved);
+      } else if (window.innerWidth >= 768) {
+        setViewMode("detailed");
+      } else {
+        setViewMode("compact");
+      }
     }
 
-    const progress: Record<string, { percentage: number; chapterTitle: string; chapterIndex: number }> = {};
-    // Reading progress tracking disabled for ORV
+    const progress: Record<string, { percentage: number; chapterTitle: string; chapterIndex: number; chapterId?: string }> = {};
+    volumes.forEach(vol => {
+      const savedMeta = localStorage.getItem(`orv-progress-meta-${vol.id}`);
+      if (savedMeta) {
+        try {
+          progress[vol.id] = JSON.parse(savedMeta);
+        } catch {}
+      } else {
+        const savedCfi = localStorage.getItem(`orv-progress-${vol.id}`);
+        if (savedCfi) {
+          progress[vol.id] = { percentage: 0, chapterTitle: "Continue Reading", chapterIndex: parseInt(savedCfi) || 1 };
+        }
+      }
+    });
     setProgressMap(progress);
+
+    const readData = localStorage.getItem("orv-read-chapters");
+    if (readData) {
+      try {
+        setReadChapters(JSON.parse(readData));
+      } catch {}
+    }
+
+    const handleViewModeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<"detailed" | "compact">;
+      if (customEvent.detail === "detailed" || customEvent.detail === "compact") {
+        setViewMode(customEvent.detail);
+      }
+    };
+    window.addEventListener('change-view-mode', handleViewModeChange);
+    return () => {
+      window.removeEventListener('change-view-mode', handleViewModeChange);
+    };
   }, [volumes]);
 
   // Sync range tab selection when category changes
@@ -95,16 +133,82 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
     }
   }, [activeCategory]);
 
-  useEffect(() => {
-    if (selectedVolume) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+
+
+  const handleResetVolume = (volId: string) => {
+    localStorage.removeItem(`orv-progress-meta-${volId}`);
+    localStorage.removeItem(`orv-progress-${volId}`);
+    
+    const readKey = "orv-read-chapters";
+    const readData = localStorage.getItem(readKey);
+    if (readData) {
+      try {
+        const readMap = JSON.parse(readData);
+        const prefix = `${volId}-`;
+        const updated = Object.keys(readMap).reduce((acc, key) => {
+          if (!key.startsWith(prefix)) {
+            acc[key] = readMap[key];
+          }
+          return acc;
+        }, {} as Record<string, boolean>);
+        localStorage.setItem(readKey, JSON.stringify(updated));
+        setReadChapters(updated);
+      } catch (e) {
+        console.error(e);
+      }
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [selectedVolume]);
+
+    import("@/lib/supabase").then(({ supabase }) => {
+      supabase.auth.getUser().then(({ data: { user } }) => {
+        if (user) {
+          supabase
+            .from('reading_progress')
+            .delete()
+            .eq('user_id', user.id)
+            .eq('volume_id', volId)
+            .then(({ error }) => {
+              if (error) console.error("Failed to delete progress from Supabase:", error);
+            });
+        }
+      });
+    });
+
+    setProgressMap(prev => {
+      const copy = { ...prev };
+      delete copy[volId];
+      return copy;
+    });
+  };
+
+
+
+  const handleResetAll = () => {
+    if (confirm("Are you sure you want to reset all reading progress for Omniscient Reader's Viewpoint?")) {
+      volumes.forEach(vol => {
+        localStorage.removeItem(`orv-progress-meta-${vol.id}`);
+        localStorage.removeItem(`orv-progress-${vol.id}`);
+      });
+      localStorage.removeItem("orv-read-chapters");
+      setProgressMap({});
+      setReadChapters({});
+
+      import("@/lib/supabase").then(({ supabase }) => {
+        supabase.auth.getUser().then(({ data: { user } }) => {
+          if (user) {
+            const volIds = volumes.map(v => v.id);
+            supabase
+              .from('reading_progress')
+              .delete()
+              .eq('user_id', user.id)
+              .in('volume_id', volIds)
+              .then(({ error }) => {
+                if (error) console.error("Failed to delete progress from Supabase:", error);
+              });
+          }
+        });
+      });
+    }
+  };
 
   const handleDownloadCover = (vol: OrvVolumeData, e: React.MouseEvent) => {
     e.preventDefault();
@@ -221,12 +325,22 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
 
         {/* Top Header */}
         <div className="w-full z-50 p-6 flex items-center justify-between border-b border-cyan-950/20 backdrop-blur-sm bg-black/10">
-          <Link href="/orv">
-            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-cyan-400 hover:bg-cyan-950/20 rounded-full transition-all">
-              <ArrowLeft className="w-6 h-6" />
-            </Button>
-          </Link>
-          <h1 className="text-xl font-cinzel font-bold text-white tracking-widest uppercase">Omniscient Reader&apos;s Viewpoint</h1>
+          <div className="flex items-center">
+            <Link href="/orv">
+              <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-cyan-400 hover:bg-cyan-950/20 rounded-full transition-all">
+                <ArrowLeft className="w-6 h-6" />
+              </Button>
+            </Link>
+            <h1 className="text-xl font-cinzel font-bold text-white tracking-widest uppercase ml-4">Omniscient Reader&apos;s Viewpoint</h1>
+            {Object.keys(progressMap).length > 0 && (
+              <button
+                onClick={handleResetAll}
+                className="text-[10px] text-white bg-red-600 hover:bg-red-700 font-mono tracking-widest uppercase ml-4 px-3 py-1.5 rounded-full cursor-pointer transition-all active:scale-95 flex-shrink-0"
+              >
+                Reset All
+              </button>
+            )}
+          </div>
           <UserMenu
             onSignIn={() => setAuthModalOpen(true)}
             onProfile={() => setProfileModalOpen(true)}
@@ -323,6 +437,14 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
           </button>
           <h1 className="ml-4 text-2xl font-cinzel font-bold text-white tracking-widest hidden sm:block uppercase">Omniscient Reader&apos;s Viewpoint{activeCategoryLabel}</h1>
           <h1 className="ml-4 text-xl font-cinzel font-bold text-white tracking-widest sm:hidden uppercase">ORV{activeCategoryLabel}</h1>
+          {Object.keys(progressMap).length > 0 && (
+            <button
+              onClick={handleResetAll}
+              className="text-[10px] text-white bg-red-600 hover:bg-red-700 font-mono tracking-widest uppercase ml-4 px-3 py-1.5 rounded-full cursor-pointer transition-all active:scale-95 flex-shrink-0"
+            >
+              Reset All
+            </button>
+          )}
         </div>
 
         <UserMenu
@@ -424,7 +546,7 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
 
                         <div className="w-full flex gap-3 mt-4">
                           <Button 
-                            onClick={() => setSelectedVolume(vol)}
+                            onClick={() => router.push(`/orv/select/${vol.id}`)}
                             className="bg-cyan-950/40 hover:bg-cyan-900/40 text-cyan-400 border border-cyan-500/30 font-mono font-bold text-xs tracking-wider cursor-pointer"
                           >
                             EXPAND CHAPTERS
@@ -435,22 +557,50 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                       {/* Cover Card (Right) */}
                       <div className="relative group flex flex-col items-center justify-center p-6 md:pl-8 bg-transparent">
                         <div 
-                          className="relative w-full max-w-[150px] aspect-[2/3] shadow-2xl rounded-lg border border-cyan-950/20 overflow-hidden cursor-pointer transform group-hover:scale-[1.03] transition-transform duration-300"
-                          onClick={() => setSelectedVolume(vol)}
+                          className="hover-3d relative cursor-pointer w-full max-w-[150px]"
+                          onClick={() => router.push(`/orv/select/${vol.id}`)}
                         >
-                          <Image
-                            src={vol.coverImage}
-                            alt={vol.title}
-                            fill
-                            className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                            sizes="150px"
-                            priority={volIdx === 0}
-                          />
+                          <div className="relative w-full aspect-[2/3] shadow-2xl rounded-lg border border-cyan-950/20 overflow-hidden">
+                            <Image
+                              src={vol.coverImage}
+                              alt={vol.title}
+                              fill
+                              className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                              sizes="150px"
+                              priority={volIdx === 0}
+                            />
+                            {progressMap[vol.id] && (
+                              <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                                <span className="text-[9px] font-mono font-bold" style={{ color: 'var(--primary-color, #22d3ee)' }}>
+                                  {Math.round(progressMap[vol.id].percentage * 100)}%
+                                </span>
+                                <svg className="absolute w-8 h-8 transform -rotate-90 text-cyan-500" viewBox="0 0 36 36" style={{ color: 'var(--primary-color, #22d3ee)' }}>
+                                  <path
+                                    className="text-zinc-800"
+                                    strokeWidth="3.5"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  />
+                                  <path
+                                    className="text-primary transition-all duration-300"
+                                    strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
+                                    strokeWidth="3.5"
+                                    strokeLinecap="round"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+                          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                         </div>
 
                         <div className="w-full mt-4 flex flex-col gap-2">
                           {progressMap[vol.id] ? (
-                            <Link href={`/orv/read?c=${progressMap[vol.id].chapterIndex}`} className="w-full">
+                            <Link href={`/orv/read?c=${progressMap[vol.id].chapterId || progressMap[vol.id].chapterIndex}`} className="w-full">
                               <Button className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold text-xs tracking-widest uppercase cursor-pointer rounded-xl py-6 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all">
                                 CONTINUE READING
                               </Button>
@@ -461,6 +611,20 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                                 BEGIN READING
                               </Button>
                             </Link>
+                          )}
+                          {progressMap[vol.id] && (
+                            <Button
+                              variant="destructive"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (confirm(`Reset progress for Volume ${vol.volumeNumber}?`)) {
+                                  handleResetVolume(vol.id);
+                                }
+                              }}
+                              className="w-full bg-red-600 hover:bg-red-700 text-white border-none font-bold text-[10px] tracking-wider py-1.5 cursor-pointer rounded-xl transition-all shadow-md"
+                            >
+                              RESET PROGRESS
+                            </Button>
                           )}
                           <Button
                             variant="ghost"
@@ -475,17 +639,45 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                   ) : (
                     <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                       <div
-                        onClick={() => setSelectedVolume(vol)}
+                        onClick={() => router.push(`/orv/select/${vol.id}`)}
                         className="flex flex-col gap-2 group cursor-pointer relative"
                       >
-                        <div className="w-full aspect-[2/3] rounded-lg overflow-hidden shadow-lg border border-cyan-950/20 relative">
-                          <Image
-                            src={vol.coverImage}
-                            alt={vol.title}
-                            fill
-                            className="object-cover transition-all duration-300 group-hover:scale-[1.03] opacity-90 group-hover:opacity-100"
-                            sizes="(max-width: 768px) 50vw, 150px"
-                          />
+                        <div className="hover-3d relative cursor-pointer w-full">
+                          <div className="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-lg border border-cyan-950/20">
+                            <Image
+                              src={vol.coverImage}
+                              alt={vol.title}
+                              fill
+                              className="object-cover transition-all duration-300 opacity-90 group-hover:opacity-100"
+                              sizes="(max-width: 768px) 50vw, 150px"
+                            />
+                            {progressMap[vol.id] && (
+                              <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                                <span className="text-[9px] font-mono font-bold" style={{ color: 'var(--primary-color, #22d3ee)' }}>
+                                  {Math.round(progressMap[vol.id].percentage * 100)}%
+                                </span>
+                                <svg className="absolute w-8 h-8 transform -rotate-90 text-cyan-500" viewBox="0 0 36 36" style={{ color: 'var(--primary-color, #22d3ee)' }}>
+                                  <path
+                                    className="text-zinc-800"
+                                    strokeWidth="3.5"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  />
+                                  <path
+                                    className="text-primary transition-all duration-300"
+                                    strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
+                                    strokeWidth="3.5"
+                                    strokeLinecap="round"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+                          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                         </div>
                         <div className="text-center mt-1 px-1">
                           <div className="font-bold text-zinc-100 text-xs group-hover:text-cyan-400 transition-colors truncate">
@@ -589,6 +781,8 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
               }>
                 {filteredChapters.map((ch) => {
                   const isSide = ch.type === "side";
+                  const chapterIndex = allChapters.findIndex(item => item.id === ch.id) + 1;
+                  const isRead = readChapters[`${ch.volId}-${chapterIndex}`];
                   
                   if (chaptersViewMode === "grid") {
                     let displayLabel = ch.id;
@@ -599,10 +793,10 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                       <Link
                         key={ch.id}
                         href={`/orv/read?c=${ch.id}`}
-                        className={`flex flex-col items-center justify-center p-3 transition-all text-center select-none active:scale-95 group shadow-sm rounded-lg border border-cyan-950/20 bg-black/40 hover:bg-cyan-950/10 hover:border-cyan-500/30`}
+                        className={`flex flex-col items-center justify-center p-3 transition-all text-center select-none active:scale-95 group shadow-sm rounded-lg border ${isRead ? 'border-amber-600/30 bg-amber-950/10' : 'border-cyan-950/20 bg-black/40 hover:bg-cyan-950/10 hover:border-cyan-500/30'}`}
                       >
-                        <span className="font-mono text-sm font-bold text-zinc-300 group-hover:text-cyan-400 transition-colors">
-                          {displayLabel}
+                        <span className={`font-mono text-sm font-bold ${isRead ? 'text-amber-500/70' : 'text-zinc-300 group-hover:text-cyan-400'} transition-colors`}>
+                          {displayLabel} {isRead && "✓"}
                         </span>
                       </Link>
                     );
@@ -612,10 +806,11 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                     <Link
                       key={ch.id}
                       href={`/orv/read?c=${ch.id}`}
-                      className={`flex flex-col items-center justify-center p-4 transition-all text-center select-none active:scale-95 group shadow-md ${isSide ? "rounded-2xl border border-white/10 bg-zinc-950/30 hover:border-cyan-400/80 hover:bg-cyan-950/10 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)]" : "rounded-xl border border-cyan-950/20 bg-black/40 hover:bg-cyan-950/10 hover:border-cyan-500/30"}`}
+                      className={`flex flex-col items-center justify-center p-4 transition-all text-center select-none active:scale-95 group shadow-md ${isRead ? 'opacity-60 hover:opacity-100 transition-opacity border-amber-600/20 bg-amber-950/5' : (isSide ? "rounded-2xl border border-white/10 bg-zinc-950/30 hover:border-cyan-400/80 hover:bg-cyan-950/10 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)]" : "rounded-xl border border-cyan-950/20 bg-black/40 hover:bg-cyan-950/10 hover:border-cyan-500/30")}`}
                     >
-                      <span className={`text-zinc-300 group-hover:text-cyan-400 transition-colors ${isSide ? "font-sans text-xs md:text-sm font-medium tracking-wide" : "font-mono text-sm font-bold"}`}>
+                      <span className={`transition-colors ${isRead ? 'text-zinc-500 text-xs' : (isSide ? "text-zinc-300 group-hover:text-cyan-400 font-sans text-xs md:text-sm font-medium tracking-wide" : "text-zinc-300 group-hover:text-cyan-400 font-mono text-sm font-bold")}`}>
                         {ch.title}
+                        {isRead && <span className="ml-2 text-[8px] font-mono text-emerald-500 font-bold border border-emerald-500/30 bg-emerald-950/25 px-1.5 py-0.5 rounded">✓ Read</span>}
                       </span>
                       {!isSide && (
                         <span className="text-[10px] text-zinc-650 mt-1 font-mono uppercase group-hover:text-cyan-500/50 transition-colors">
@@ -633,132 +828,6 @@ export default function OrvSelectClient({ volumes, summary }: OrvSelectClientPro
                 )}
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Drawer Modal for Specific Volume Expansion */}
-        <AnimatePresence>
-          {selectedVolume && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="relative w-full max-w-3xl max-h-[85vh] bg-[#020204] border border-cyan-900/30 rounded-[36px] shadow-2xl overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-zinc-100 select-text"
-              >
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedVolume(null)}
-                  className="absolute top-4 right-4 text-zinc-500 hover:text-cyan-400 hover:bg-cyan-950/20 rounded-full w-10 h-10 flex items-center justify-center z-50 text-xl font-bold cursor-pointer font-mono"
-                >
-                  ✕
-                </button>
-
-                {/* Header Section (Title & Subtitle) */}
-                <div className="col-span-full flex flex-col gap-4">
-                  <div className="pr-8">
-                    <h3 className="font-serif text-xl md:text-2xl font-bold text-white leading-tight">
-                      {selectedVolume.title}
-                    </h3>
-                    <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase mt-1 block">
-                      {selectedVolume.partName}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Left: Cover Art Details */}
-                <div className="flex flex-col items-center gap-4 border-b md:border-b-0 md:border-r border-cyan-950/15 pb-6 md:pb-0 md:pr-6">
-                  <div className="relative w-full max-w-[155px] aspect-[2/3] shadow-2xl border border-cyan-950/20 rounded-lg overflow-hidden">
-                    <Image
-                      src={selectedVolume.coverImage}
-                      alt={selectedVolume.title}
-                      fill
-                      className="object-cover"
-                      sizes="155px"
-                    />
-                  </div>
-
-                  <div className="w-full flex flex-col gap-2">
-                    {progressMap[selectedVolume.id] ? (
-                      <Link href={`/orv/read?c=${progressMap[selectedVolume.id].chapterIndex}`} className="w-full">
-                        <Button className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold py-3 text-xs tracking-widest uppercase cursor-pointer">
-                          CONTINUE
-                        </Button>
-                      </Link>
-                    ) : (
-                      <Link href={`/orv/read?c=${selectedVolume.startChapter}`} className="w-full">
-                        <Button className="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold py-3 text-xs tracking-widest uppercase cursor-pointer">
-                          START READ
-                        </Button>
-                      </Link>
-                    )}
-                    <Button
-                      variant="outline"
-                      onClick={(e) => handleDownloadCover(selectedVolume, e)}
-                      className="w-full border-cyan-950/30 hover:bg-cyan-950/10 text-zinc-400 text-xs font-mono cursor-pointer"
-                    >
-                      Save Cover Art
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Right: Chapters Index Scroll List & About Details */}
-                <div className="flex flex-col overflow-hidden min-h-[300px]">
-                  {/* Synopsis / Info */}
-                  <div className="flex flex-col gap-4 mb-4">
-                    <h4 className="font-bold text-[10px] uppercase tracking-widest text-cyan-400">Synopsis</h4>
-                    <p className="text-sm text-zinc-300 leading-relaxed font-sans bg-cyan-950/5 border border-cyan-950/15 p-4 rounded-xl">
-                      {selectedVolume.synopsis}
-                    </p>
-                    <div className="grid grid-cols-2 gap-4 text-xs bg-black/35 p-4 rounded-xl border border-cyan-950/20">
-                      <div>
-                        <span className="text-cyan-500/60 font-bold block mb-1 uppercase tracking-wider text-[9px] font-mono">Chapters Included</span>
-                        <span className="text-zinc-300 font-serif">{selectedVolume.chaptersRange}</span>
-                      </div>
-                      <div>
-                        <span className="text-cyan-500/60 font-bold block mb-1 uppercase tracking-wider text-[9px] font-mono">Release Date</span>
-                        <span className="text-zinc-300 font-serif">{selectedVolume.releaseDate}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 overflow-y-auto space-y-1.5 pr-2 max-h-[45vh]">
-                    <h4 className="font-bold text-[10px] uppercase tracking-widest text-cyan-400 mb-2 border-b border-cyan-950/20 pb-1">Chapters Index</h4>
-                    {allChapters
-                      .filter(ch => ch.volId === selectedVolume.id)
-                      .map((ch) => {
-                        const isSideStory = selectedVolume.id === "orv-side";
-                        if (isSideStory) {
-                          return (
-                            <Link
-                              key={ch.id}
-                              href={`/orv/read?c=${ch.id}`}
-                              className="flex items-center p-4 rounded-2xl border border-white/10 bg-zinc-950/30 hover:bg-cyan-950/10 hover:border-cyan-400/80 hover:shadow-[0_0_20px_rgba(6,182,212,0.25)] transition-all duration-300 w-full group mb-2.5 last:mb-0"
-                            >
-                              <span className="text-sm md:text-base text-zinc-200 group-hover:text-cyan-400 transition-colors font-sans font-medium tracking-wide">
-                                {ch.title}
-                              </span>
-                            </Link>
-                          );
-                        }
-                        
-                        return (
-                          <Link
-                            key={ch.id}
-                            href={`/orv/read?c=${ch.id}`}
-                            className="flex items-center justify-between p-3 rounded-lg border border-cyan-950/10 bg-black/30 hover:bg-cyan-950/10 hover:border-cyan-500/25 transition-all group"
-                          >
-                            <span className="text-sm text-zinc-300 group-hover:text-cyan-400 transition-colors font-medium">
-                              {ch.title}
-                            </span>
-                            <span className="text-[10px] text-zinc-550 font-mono">READ →</span>
-                          </Link>
-                        );
-                      })}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
           )}
         </AnimatePresence>
 

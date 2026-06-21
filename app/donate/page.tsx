@@ -4,12 +4,13 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowLeft, Bitcoin, Check, Copy, Coffee, Gem, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 export default function DonatePage() {
+
     return (
-        <div className="min-h-screen w-full bg-[#050505] text-white relative flex flex-col items-center justify-start md:justify-center pt-24 md:pt-0 p-6 overflow-x-hidden">
+        <div className="min-h-screen w-full bg-[#050505] text-white relative flex flex-col items-center justify-start pt-24 pb-16 p-6 overflow-x-hidden">
 
             {/* Background Effects */}
             <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_-20%,#3b0764,transparent_50%)] opacity-30" />
@@ -45,7 +46,7 @@ export default function DonatePage() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full mb-8">
                     <CryptoCard
                         name="Bitcoin"
                         symbol="BTC"
@@ -74,6 +75,34 @@ export default function DonatePage() {
                         delay={0.3}
                     />
                 </div>
+
+                {/* Buy Me a Coffee Option */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="w-full max-w-md mx-auto mb-12"
+                >
+                    <div className="bg-[#0a0a0a] border border-white/5 hover:border-white/10 rounded-2xl p-6 flex flex-col items-center text-center shadow-2xl relative overflow-hidden group transition-all duration-300">
+                        {/* Glow effect */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none" />
+                        
+                        <h3 className="text-lg font-bold mb-2 text-white font-serif tracking-wide uppercase">Support Project</h3>
+                        <p className="text-sm text-neutral-400 mb-6 max-w-sm leading-relaxed">
+                            This is my own personal project, so maintaining server costs and development is difficult without ads. Please consider supporting the project:
+                        </p>
+                        
+                        <a 
+                            href="https://www.buymeacoffee.com/NITHINSPACETIME" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#FFDD00] hover:bg-[#ffea30] text-black font-extrabold rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(255,221,0,0.2)] hover:shadow-[0_4px_30px_rgba(255,221,0,0.4)] hover:scale-105 active:scale-95 z-10"
+                        >
+                            <span className="text-xl">☕</span>
+                            <span className="font-sans text-sm tracking-wide">Buy me a coffee</span>
+                        </a>
+                    </div>
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0 }}

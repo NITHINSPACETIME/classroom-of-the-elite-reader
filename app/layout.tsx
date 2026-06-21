@@ -102,9 +102,9 @@ export const viewport: Viewport = {
 
 import { AuthProvider } from "@/context/AuthContext";
 import { GlobalContinueReading } from "@/components/GlobalContinueReading";
-import { GlobalFullscreenToggle } from "@/components/GlobalFullscreenToggle";
 import { GuestbookPopup } from "@/components/GuestbookPopup";
 import RedirectPagesDev from "@/components/RedirectPagesDev";
+import { DynamicAccentProvider } from "@/components/DynamicAccentProvider";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -112,7 +112,7 @@ const jsonLd = {
   name: "COTE Reader",
   alternateName: ["Classroom of the Elite Reader", "You-Zitsu Reader"],
   url: "https://cote-reader.me",
-  description: "Read Classroom of the Elite (COTE) light novel series online. Enjoy a premium, ad-free, and immersive reading experience for all volumes and chapters.",
+  description: "Read Classroom of the Elite (COTE) light novel series online. Enjoy a premium, ad-free, and immersive reading experience for all volumes and chapters of You-Zitsu / Youkoso Jitsuryoku.",
   author: {
     "@type": "Person",
     name: "Shōgo Kinugasa",
@@ -143,7 +143,7 @@ export default function RootLayout({
         <RedirectPagesDev />
         <AuthProvider>
           <GlobalContinueReading />
-          <GlobalFullscreenToggle />
+          <DynamicAccentProvider />
           <GuestbookPopup />
           <script
             type="application/ld+json"

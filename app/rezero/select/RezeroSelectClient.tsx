@@ -3,12 +3,12 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { List, Download, ArrowLeft, LayoutGrid, Sparkles } from "lucide-react";
+import { Download, ArrowLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { useSearchParams, useRouter } from "next/navigation";
+
 
 import { RezeroVolumeData } from "@/data/rezero";
 import { UserMenu } from "@/components/auth/UserMenu";
@@ -279,11 +279,12 @@ const readingOrderItems = [
 export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSelectClientProps) {
     const [viewMode, setViewMode] = useState<"detailed" | "compact">("compact");
     const searchParams = useSearchParams();
+    const router = useRouter();
     const initialContentType = searchParams.get("contentType") as "volumes" | "guide" | null;
     const [contentType, setContentType] = useState<"volumes" | "guide">(initialContentType === "guide" ? "guide" : "volumes");
 
-    const [selectedVolume, setSelectedVolume] = useState<RezeroVolumeData | null>(null);
-    const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string }>>({});
+    const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string; chapterIndex?: number }>>({});
+    const [readChapters, setReadChapters] = useState<Record<string, boolean>>({});
 
     
     const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -297,11 +298,18 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
     }, [searchParams]);
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-            setViewMode("detailed");
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem("global-view-mode") as "detailed" | "compact" | null;
+            if (saved === "detailed" || saved === "compact") {
+                setViewMode(saved);
+            } else if (window.innerWidth >= 768) {
+                setViewMode("detailed");
+            } else {
+                setViewMode("compact");
+            }
         }
 
-        const progress: Record<string, { percentage: number; chapterTitle: string }> = {};
+        const progress: Record<string, { percentage: number; chapterTitle: string; chapterIndex?: number }> = {};
         lightVolumes.forEach(vol => {
             const savedMeta = localStorage.getItem(`rezero-progress-meta-${vol.id}`);
             if (savedMeta) {
@@ -311,23 +319,75 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
             } else {
                 const savedCfi = localStorage.getItem(`rezero-progress-${vol.id}`);
                 if (savedCfi) {
-                    progress[vol.id] = { percentage: 0, chapterTitle: "Continue Reading" };
+                    progress[vol.id] = { percentage: 0, chapterTitle: "Continue Reading", chapterIndex: parseInt(savedCfi) || 1 };
                 }
             }
         });
+        const readData = localStorage.getItem("rezero-read-chapters");
+        if (readData) {
+            try {
+                setReadChapters(JSON.parse(readData));
+            } catch {}
+        }
         setProgressMap(progress);
+
+        const handleViewModeChange = (e: Event) => {
+            const customEvent = e as CustomEvent<"detailed" | "compact">;
+            if (customEvent.detail === "detailed" || customEvent.detail === "compact") {
+                setViewMode(customEvent.detail);
+            }
+        };
+        window.addEventListener('change-view-mode', handleViewModeChange);
+        return () => {
+            window.removeEventListener('change-view-mode', handleViewModeChange);
+        };
     }, [lightVolumes]);
 
-    useEffect(() => {
-        if (selectedVolume) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
+
+
+    const handleResetVolume = (volId: string) => {
+        localStorage.removeItem(`rezero-progress-meta-${volId}`);
+        localStorage.removeItem(`rezero-progress-${volId}`);
+        
+        const readKey = "rezero-read-chapters";
+        const readData = localStorage.getItem(readKey);
+        if (readData) {
+            try {
+                const readMap = JSON.parse(readData);
+                const prefix = `${volId}-`;
+                const updated = Object.keys(readMap).reduce((acc, key) => {
+                    if (!key.startsWith(prefix)) {
+                        acc[key] = readMap[key];
+                    }
+                    return acc;
+                }, {} as Record<string, boolean>);
+                localStorage.setItem(readKey, JSON.stringify(updated));
+                setReadChapters(updated);
+            } catch (e) {
+                console.error(e);
+            }
         }
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [selectedVolume]);
+
+        setProgressMap(prev => {
+            const copy = { ...prev };
+            delete copy[volId];
+            return copy;
+        });
+    };
+
+
+
+    const handleResetAll = () => {
+        if (confirm("Are you sure you want to reset all reading progress for Re:Zero?")) {
+            lightVolumes.forEach(vol => {
+                localStorage.removeItem(`rezero-progress-meta-${vol.id}`);
+                localStorage.removeItem(`rezero-progress-${vol.id}`);
+            });
+            localStorage.removeItem("rezero-read-chapters");
+            setProgressMap({});
+            setReadChapters({});
+        }
+    };
 
     const handleDownloadCover = (vol: RezeroVolumeData, e: React.MouseEvent) => {
         e.preventDefault();
@@ -340,21 +400,20 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
         document.body.removeChild(link);
     };
 
-    const handleTimelineItemClick = (item: any) => {
+    const handleTimelineItemClick = (item: { step: string; type: string; title: string; description: string; badge: string; badgeColor: string; volumeId?: string; arcId?: string }) => {
         setContentType("volumes");
 
         if (item.volumeId) {
             const vol = lightVolumes.find(v => v.id === item.volumeId);
-            if (vol) {
-                setTimeout(() => {
-                    setSelectedVolume(vol);
-                }, 100);
+            if (vol && !vol.inProgress) {
+                router.push(`/rezero/select/${item.volumeId}`);
             }
         }
 
-        if (item.arcId) {
+        const arcId = item.arcId;
+        if (arcId) {
             setTimeout(() => {
-                const element = document.getElementById(item.arcId);
+                const element = document.getElementById(arcId);
                 if (element) {
                     element.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
@@ -389,10 +448,19 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                     <h1 className="ml-4 text-xl font-serif font-bold text-white tracking-widest sm:hidden">Archive</h1>
                 </div>
 
-                <UserMenu
-                    onSignIn={() => setAuthModalOpen(true)}
-                    onProfile={() => setProfileModalOpen(true)}
-                />
+                <div className="flex items-center gap-3">
+                    <Button
+                        variant="destructive"
+                        onClick={handleResetAll}
+                        className="text-xs font-serif font-bold text-white bg-red-600 hover:bg-red-700 rounded-full px-4 h-9 border-none transition-all active:scale-95 shadow-md"
+                    >
+                        Reset All
+                    </Button>
+                    <UserMenu
+                        onSignIn={() => setAuthModalOpen(true)}
+                        onProfile={() => setProfileModalOpen(true)}
+                    />
+                </div>
             </div>
 
             <motion.div
@@ -508,32 +576,61 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                                                             {/* Cover Card Action (Right) */}
                                                             <div className="relative group flex flex-col items-center justify-center p-6 bg-violet-950/5">
                                                                 <div 
-                                                                    className="relative w-full max-w-[150px] aspect-[2/3] shadow-2xl rounded border border-violet-900/30 overflow-hidden cursor-pointer transform group-hover:scale-[1.03] transition-transform duration-300"
-                                                                    onClick={() => setSelectedVolume(vol)}
+                                                                    className="hover-3d relative cursor-pointer w-full max-w-[150px]"
+                                                                    onClick={() => !vol.inProgress && router.push(`/rezero/select/${vol.id}`)}
                                                                 >
-                                                                    <Image
-                                                                        src={vol.coverImage}
-                                                                        alt={vol.title}
-                                                                        fill
-                                                                        className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                                                                        sizes="150px"
-                                                                        priority={arcIdx === 0 && index === 0}
-                                                                    />
-                                                                    {vol.inProgress && (
-                                                                        <div className="absolute inset-0 bg-black/75 flex flex-col items-center justify-center border-t border-violet-500/30">
-                                                                            <span className="text-violet-400 font-bold text-xs uppercase tracking-widest animate-pulse">In Progress</span>
-                                                                        </div>
-                                                                    )}
+                                                                    <div className="relative w-full aspect-[2/3] shadow-2xl rounded border border-violet-900/30 overflow-hidden">
+                                                                        <Image
+                                                                            src={vol.coverImage}
+                                                                            alt={vol.title}
+                                                                            fill
+                                                                            className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                                                                            sizes="150px"
+                                                                            priority={arcIdx === 0 && index === 0}
+                                                                        />
+                                                                        {vol.inProgress && (
+                                                                            <div className="absolute inset-0 bg-black/75 flex flex-col items-center justify-center border-t border-violet-500/30">
+                                                                                <span className="text-violet-400 font-bold text-xs uppercase tracking-widest animate-pulse">In Progress</span>
+                                                                            </div>
+                                                                        )}
+                                                                        {progressMap[vol.id] && (
+                                                                            <div className="absolute bottom-0 left-0 right-0 bg-black/75 backdrop-blur-sm px-2 py-1 border-t border-violet-900/30 text-center pointer-events-none z-10">
+                                                                                <div className="text-[10px] font-bold text-violet-300 truncate">
+                                                                                    {progressMap[vol.id].chapterTitle}
+                                                                                </div>
+                                                                                <div className="text-[9px] text-zinc-400 mt-0.5">
+                                                                                    {Math.round(progressMap[vol.id].percentage * 100)}% read
+                                                                                </div>
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
+                                                                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                                                                 </div>
 
                                                                 {/* Volume Actions */}
                                                                 <div className="w-full mt-4 flex flex-col gap-2">
                                                                     <Button 
-                                                                        onClick={() => setSelectedVolume(vol)}
+                                                                        onClick={() => !vol.inProgress && router.push(`/rezero/select/${vol.id}`)}
                                                                         className="w-full bg-violet-900/40 hover:bg-violet-800/60 text-violet-200 border border-violet-800/40 font-serif font-bold text-xs tracking-wider"
+                                                                        disabled={vol.inProgress}
                                                                     >
-                                                                        READ VOLUME
+                                                                        {vol.inProgress ? "IN PROGRESS" : "READ VOLUME"}
                                                                     </Button>
+
+                                                                    {progressMap[vol.id] && (
+                                                                         <Button
+                                                                            variant="destructive"
+                                                                            onClick={(e) => {
+                                                                                e.stopPropagation();
+                                                                                if (confirm(`Reset progress for Volume ${vol.volumeNumber}?`)) {
+                                                                                    handleResetVolume(vol.id);
+                                                                                }
+                                                                            }}
+                                                                            className="w-full bg-red-600 hover:bg-red-700 text-white border-none font-bold text-[10px] tracking-wider py-1.5 cursor-pointer rounded-xl transition-all shadow-md"
+                                                                        >
+                                                                            RESET PROGRESS
+                                                                        </Button>
+                                                                    )}
 
                                                                     {vol.epubSource && (
                                                                         <Button
@@ -545,18 +642,6 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                                                                         </Button>
                                                                     )}
                                                                 </div>
-
-                                                                {/* Reading Progress Indicator */}
-                                                                {progressMap[vol.id] && (
-                                                                    <div className="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded border border-violet-900/30 text-center pointer-events-none">
-                                                                        <div className="text-[10px] font-bold text-violet-300 truncate">
-                                                                            {progressMap[vol.id].chapterTitle}
-                                                                        </div>
-                                                                        <div className="text-[9px] text-zinc-400 mt-0.5">
-                                                                            {Math.round(progressMap[vol.id].percentage * 100)}% read
-                                                                        </div>
-                                                                    </div>
-                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -567,32 +652,61 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                                                 {arcVols.map((vol) => (
                                                     <div
                                                         key={vol.id}
-                                                        onClick={() => setSelectedVolume(vol)}
+                                                        onClick={() => !vol.inProgress && router.push(`/rezero/select/${vol.id}`)}
                                                         className="flex flex-col gap-2 group cursor-pointer relative"
                                                     >
-                                                        <div className="w-full aspect-[2/3] rounded overflow-hidden shadow-lg border border-violet-900/20 relative">
-                                                            <Image
-                                                                src={vol.coverImage}
-                                                                alt={vol.title}
-                                                                fill
-                                                                className="object-cover transition-all duration-300 group-hover:scale-[1.03] opacity-90 group-hover:opacity-100"
-                                                                sizes="(max-width: 768px) 50vw, 150px"
-                                                            />
-                                                            
-                                                            {vol.inProgress && (
-                                                                <div className="absolute inset-0 bg-black/85 flex items-center justify-center text-center p-2 z-10">
-                                                                    <span className="text-violet-400 font-bold text-[10px] tracking-widest uppercase animate-pulse">Coming Soon</span>
+                                                        <div className="hover-3d relative cursor-pointer w-full">
+                                                            <div className="relative w-full aspect-[2/3] rounded overflow-hidden shadow-lg border border-violet-900/20">
+                                                                <Image
+                                                                    src={vol.coverImage}
+                                                                    alt={vol.title}
+                                                                    fill
+                                                                    className="object-cover transition-all duration-300 opacity-90 group-hover:opacity-100"
+                                                                    sizes="(max-width: 768px) 50vw, 150px"
+                                                                />
+                                                                
+                                                                {vol.inProgress && (
+                                                                    <div className="absolute inset-0 bg-black/80 flex items-center justify-center text-center p-2 z-20">
+                                                                        <span className="text-violet-400 font-mono font-bold text-[9px] tracking-widest uppercase animate-pulse">Coming Soon</span>
+                                                                    </div>
+                                                                )}
+                                                                {progressMap[vol.id] && (
+                                                                    <>
+                                                                        <div className="absolute top-2 left-2 bg-violet-950/80 backdrop-blur-sm px-2 py-0.5 rounded border border-violet-500/30 text-[9px] font-bold text-violet-300 z-20 pointer-events-none">
+                                                                            RESUME
+                                                                        </div>
+                                                                        <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                                                                            <span className="text-[9px] font-mono font-bold" style={{ color: 'var(--primary-color, #8b5cf6)' }}>
+                                                                                {Math.round(progressMap[vol.id].percentage * 100)}%
+                                                                            </span>
+                                                                            <svg className="absolute w-8 h-8 transform -rotate-90 text-violet-500" viewBox="0 0 36 36" style={{ color: 'var(--primary-color, #8b5cf6)' }}>
+                                                                                <path
+                                                                                    className="text-zinc-800"
+                                                                                    strokeWidth="3.5"
+                                                                                    stroke="currentColor"
+                                                                                    fill="none"
+                                                                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                                />
+                                                                                <path
+                                                                                    className="text-primary transition-all duration-300"
+                                                                                    strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
+                                                                                    strokeWidth="3.5"
+                                                                                    strokeLinecap="round"
+                                                                                    stroke="currentColor"
+                                                                                    fill="none"
+                                                                                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                                />
+                                                                            </svg>
+                                                                        </div>
+                                                                    </>
+                                                                )}
+                                                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-20 flex items-end justify-center pb-3 pointer-events-none">
+                                                                    <span className="bg-violet-600/90 text-white text-[9px] font-bold font-mono tracking-widest px-2.5 py-0.5 rounded-full shadow-md">
+                                                                        EXPAND
+                                                                    </span>
                                                                 </div>
-                                                            )}
-
-                                                            {progressMap[vol.id] && (
-                                                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-violet-950/40 z-20 pointer-events-none">
-                                                                    <div
-                                                                        className="h-full bg-violet-500 shadow-[0_0_8px_#8b5cf6]"
-                                                                        style={{ width: `${Math.min(100, Math.max(0, progressMap[vol.id].percentage * 100))}%` }}
-                                                                    />
-                                                                </div>
-                                                            )}
+                                                            </div>
+                                                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                                                         </div>
                                                         <div className="text-center mt-1 px-1">
                                                             <div className="font-bold text-zinc-100 text-xs group-hover:text-violet-400 transition-colors truncate">
@@ -659,151 +773,9 @@ export default function RezeroSelectClient({ volumes: lightVolumes }: RezeroSele
                         </motion.div>
                     )}
                 </AnimatePresence>
-
-                {/* Details Drawer / Overlay Modal */}
-        <AnimatePresence>
-            {selectedVolume && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        className="relative w-full max-w-3xl max-h-[85vh] bg-[#0c0817] border border-violet-900/40 rounded-[36px] shadow-2xl overflow-y-auto p-6 md:p-8 flex flex-col md:grid md:grid-cols-[200px_1fr] gap-6 text-zinc-100 select-text"
-                    >
-                        {/* Close Button */}
-                        <button
-                            onClick={() => setSelectedVolume(null)}
-                            className="absolute top-4 right-4 text-zinc-400 hover:text-white hover:bg-violet-950/30 rounded-full p-2 w-10 h-10 flex items-center justify-center z-50 text-xl font-bold cursor-pointer"
-                        >
-                            ✕
-                        </button>
-
-                        {/* Header Section (Title & Subtitle) */}
-                        <div className="col-span-full flex flex-col gap-4">
-                            <div className="pr-8">
-                                <h3 className="font-serif text-2xl md:text-3xl font-bold text-white tracking-wide border-b border-violet-900/20 pb-2">
-                                    {selectedVolume.title}
-                                </h3>
-                                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-violet-400 mt-2 font-mono uppercase tracking-wider">
-                                    <span>Volume {selectedVolume.volumeNumber}</span>
-                                    <span className="text-zinc-650">|</span>
-                                    <span>Arc: {selectedVolume.arcId.replace('arc-', 'Arc ')}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Cover Column */}
-                        <div className="flex flex-col items-center gap-4">
-                            <div className="relative w-full max-w-[180px] aspect-[2/3] shadow-2xl border border-violet-900/30 rounded overflow-hidden">
-                                <Image
-                                    src={selectedVolume.coverImage}
-                                    alt={selectedVolume.title}
-                                    fill
-                                    className="object-cover"
-                                    sizes="180px"
-                                />
-                            </div>
-
-                            {/* Action Buttons */}
-                            <div className="w-full flex flex-col gap-2">
-                                {selectedVolume.inProgress ? (
-                                    <Button disabled className="w-full bg-zinc-900 text-zinc-500 border border-zinc-800 font-bold uppercase tracking-wider text-xs py-3 cursor-not-allowed">
-                                        IN PROGRESS
-                                    </Button>
-                                ) : (
-                                    <a href={`/rezero/read/${selectedVolume.id}/1`} className="w-full">
-                                        <Button className="w-full bg-violet-700 hover:bg-violet-600 text-white font-bold font-serif py-3 tracking-widest text-xs uppercase shadow-[0_0_15px_rgba(139,92,246,0.3)]">
-                                            BEGIN READING
-                                        </Button>
-                                    </a>
-                                )}
-                                
-                                <Button
-                                    variant="outline"
-                                    onClick={(e) => handleDownloadCover(selectedVolume, e)}
-                                    className="w-full border-violet-900/30 hover:bg-violet-950/20 text-zinc-400 hover:text-white text-xs"
-                                >
-                                    Save Cover Art
-                                </Button>
-                            </div>
-                        </div>
-
-                        {/* Metadata Details Column */}
-                        <div className="flex flex-col gap-4">
-                            {/* Archival Synopsis */}
-                            <div>
-                                <h4 className="font-bold text-xs uppercase tracking-widest text-violet-400 mb-1.5">Volume Synopsis</h4>
-                                <p className="text-sm text-zinc-300 leading-relaxed font-serif bg-violet-950/10 border border-violet-950/30 p-4 rounded">{selectedVolume.synopsis}</p>
-                            </div>
-
-                            {/* Key Details */}
-                            <div className="grid grid-cols-2 gap-4 text-xs bg-black/35 p-3 rounded border border-violet-950/20">
-                                <div>
-                                    <span className="text-zinc-500 font-bold block mb-1">JP Publication Date</span>
-                                    <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateJP}</span>
-                                </div>
-                                <div>
-                                    <span className="text-zinc-500 font-bold block mb-1">EN Publication Date</span>
-                                    <span className="text-zinc-300 font-serif">{selectedVolume.releaseDateEN}</span>
-                                </div>
-                                <div className="border-t border-violet-950/20 pt-2">
-                                    <span className="text-zinc-500 font-bold block mb-1">ISBN JP Identifier</span>
-                                    <span className="text-zinc-400 font-mono">{selectedVolume.isbnJP}</span>
-                                </div>
-                                <div className="border-t border-violet-950/20 pt-2">
-                                    <span className="text-zinc-500 font-bold block mb-1">ISBN EN Identifier</span>
-                                    <span className="text-zinc-400 font-mono">{selectedVolume.isbnEN}</span>
-                                </div>
-                            </div>
-
-                            {/* Chapters TOC inside details modal */}
-                            <div>
-                                <h4 className="font-bold text-xs uppercase tracking-widest text-violet-400 mb-2">Chapters List</h4>
-                                <ul className="text-sm text-zinc-400 space-y-1.5 max-h-[300px] md:max-h-[180px] overflow-y-auto pr-2 border-l-2 border-violet-950/50 pl-3">
-                                    {selectedVolume.chapters.map((chap, i) => (
-                                        <li key={i} className="flex justify-between items-center py-0.5 border-b border-violet-950/10 last:border-b-0">
-                                            <span className="font-serif text-zinc-300 pr-4">{chap}</span>
-                                            {selectedVolume.chapterUrls && selectedVolume.chapterUrls[i] ? (
-                                                <a href={selectedVolume.chapterUrls[i]} target="_blank" rel="noopener noreferrer" className="text-[10px] text-violet-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">
-                                                    Translate ↗
-                                                </a>
-                                            ) : !selectedVolume.inProgress ? (
-                                                <a href={`/rezero/read/${selectedVolume.id}/${i + 1}`}>
-                                                    <span className="text-[10px] text-violet-400 font-bold tracking-widest uppercase hover:underline cursor-pointer flex-shrink-0">Read →</span>
-                                                </a>
-                                            ) : null}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            )}
-        </AnimatePresence>
             </motion.div>
 
-            {/* Toggle Button for Grid / Detailed View Modes */}
-            {contentType === "volumes" && (
-                <div className="fixed bottom-8 right-8 z-[100]">
-                    <Button
-                        onClick={() => setViewMode(prev => prev === "detailed" ? "compact" : "detailed")}
-                        className="rounded-full w-14 h-14 bg-violet-700 hover:bg-violet-600 text-white shadow-[0_0_20px_rgba(139,92,246,0.5)] border border-violet-500/20 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-                    >
-                        <AnimatePresence mode="wait" initial={false}>
-                            <motion.div
-                                key={viewMode}
-                                initial={{ rotate: -90, opacity: 0 }}
-                                animate={{ rotate: 0, opacity: 1 }}
-                                exit={{ rotate: 90, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                {viewMode === "detailed" ? <LayoutGrid className="w-6 h-6" /> : <List className="w-6 h-6" />}
-                            </motion.div>
-                        </AnimatePresence>
-                    </Button>
-                </div>
-            )}
+
 
             <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
             <ProfileModal isOpen={profileModalOpen} onClose={() => setProfileModalOpen(false)} />

@@ -100,7 +100,7 @@ export default async function RezeroReadPage({
         .map((line: string) => `<p class="mb-6 leading-relaxed text-gray-200/90 text-lg selection:bg-violet-900/60 selection:text-white">${line}</p>`)
         .join("");
 
-  const htmlContent = `<div class="theme-rezero font-serif select-text relative w-full"><h1>${chapterTitle}</h1>\n${formattedContent}</div>`;
+  const htmlContent = `<div class="theme-rezero select-text relative w-full">\n${formattedContent}</div>`;
 
   const totalChapters = volume.chapters ? volume.chapters.length : 0;
 
@@ -136,8 +136,8 @@ export default async function RezeroReadPage({
         }))}
         volumeTitle={volume.title}
         epubSource={undefined}
-        detailsLink="/rezero/select"
-        returnLink="/rezero/select"
+        detailsLink={`/rezero/select/${volumeId}`}
+        returnLink={`/rezero/select/${volumeId}`}
         currentSpineIndex={index}
         nextVolumeLink={undefined}
         nextVolumeTitle={undefined}

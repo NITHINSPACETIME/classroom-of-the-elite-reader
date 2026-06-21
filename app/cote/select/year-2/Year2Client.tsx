@@ -36,6 +36,53 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
 
     const displayItems = contentType === "volumes" ? volumes : shortStories;
     const [downloadMenuOpen, setDownloadMenuOpen] = useState<string | null>(null);
+    const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string }>>({});
+    const [authModalOpen, setAuthModalOpen] = useState(false);
+    const [profileModalOpen, setProfileModalOpen] = useState(false);
+
+    const handleResetVolume = (volId: string) => {
+        localStorage.removeItem(`cote-progress-meta-${volId}`);
+        localStorage.removeItem(`cote-progress-${volId}`);
+        
+        const readKey = "cote-read-chapters";
+        const readData = localStorage.getItem(readKey);
+        if (readData) {
+            try {
+                const readMap = JSON.parse(readData);
+                const prefix = `${volId}-`;
+                const updated = Object.keys(readMap).reduce((acc, key) => {
+                    if (!key.startsWith(prefix)) {
+                        acc[key] = readMap[key];
+                    }
+                    return acc;
+                }, {} as Record<string, boolean>);
+                localStorage.setItem(readKey, JSON.stringify(updated));
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        import("@/lib/supabase").then(({ supabase }) => {
+            supabase.auth.getUser().then(({ data: { user } }) => {
+                if (user) {
+                    supabase
+                        .from('reading_progress')
+                        .delete()
+                        .eq('user_id', user.id)
+                        .eq('volume_id', volId)
+                        .then(({ error }) => {
+                            if (error) console.error("Failed to delete progress from Supabase:", error);
+                        });
+                }
+            });
+        });
+
+        setProgressMap(prev => {
+            const copy = { ...prev };
+            delete copy[volId];
+            return copy;
+        });
+    };
 
     const handleDownloadEpub = (vol: any) => {
         if (!vol.epubSource) return;
@@ -74,10 +121,44 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
     };
 
     useEffect(() => {
-
-        if (window.innerWidth < 768) {
-            setViewMode("compact");
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem("global-view-mode") as "detailed" | "compact" | null;
+            if (saved === "detailed" || saved === "compact") {
+                setViewMode(saved);
+            } else if (window.innerWidth < 768) {
+                setViewMode("compact");
+            } else {
+                setViewMode("detailed");
+            }
         }
+
+        const progress: Record<string, any> = {};
+        [...volumes, ...shortStories].forEach(vol => {
+            const savedMeta = localStorage.getItem(`cote-progress-meta-${vol.id}`);
+            if (savedMeta) {
+                try {
+                    progress[vol.id] = JSON.parse(savedMeta);
+                } catch (e) {
+                }
+            } else {
+                const savedCfi = localStorage.getItem(`cote-progress-${vol.id}`);
+                if (savedCfi) {
+                    progress[vol.id] = { percentage: 0, chapterTitle: "Continue Reading" };
+                }
+            }
+        });
+        setProgressMap(progress);
+    }, []);
+
+    useEffect(() => {
+        const handleViewModeChange = (e: Event) => {
+            const customEvent = e as CustomEvent<"detailed" | "compact">;
+            if (customEvent.detail === "detailed" || customEvent.detail === "compact") {
+                setViewMode(customEvent.detail);
+            }
+        };
+        window.addEventListener("change-view-mode", handleViewModeChange);
+        return () => window.removeEventListener("change-view-mode", handleViewModeChange);
     }, []);
 
     return (
@@ -95,13 +176,71 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
             <div className="absolute inset-0 z-0 opacity-10 bg-[url('/assets/grid.svg')] mix-blend-overlay fixed pointer-events-none z-20" />
 
             {/* Top Bar */}
-            <div className="sticky top-0 left-0 w-full z-50 p-6 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm flex items-center">
-                <Link href="/cote/select">
-                    <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
-                        <ArrowLeft className="w-6 h-6" />
-                    </Button>
-                </Link>
-                <h1 className="ml-4 text-2xl font-serif font-bold text-white tracking-widest">Year 2 Arc</h1>
+            <div className="sticky top-0 left-0 w-full z-50 p-6 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm flex items-center justify-between">
+                <div className="flex items-center">
+                    <Link href="/cote/select">
+                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
+                            <ArrowLeft className="w-6 h-6" />
+                        </Button>
+                    </Link>
+                    <h1 className="ml-4 text-2xl font-serif font-bold text-white tracking-widest hidden sm:block">Year 2 Arc</h1>
+                    <h1 className="ml-4 text-xl font-serif font-bold text-white tracking-widest sm:hidden">Year 2</h1>
+                    {Object.keys(progressMap).length > 0 && (
+                        <button
+                            onClick={() => {
+                                if (confirm("Are you sure you want to reset all progress for Year 2?")) {
+                                    [...volumes, ...shortStories].forEach(vol => {
+                                        localStorage.removeItem(`cote-progress-meta-${vol.id}`);
+                                        localStorage.removeItem(`cote-progress-${vol.id}`);
+                                    });
+                                    const readKey = "cote-read-chapters";
+                                    const readData = localStorage.getItem(readKey);
+                                    if (readData) {
+                                        try {
+                                            const readMap = JSON.parse(readData);
+                                            const volIds = [...volumes, ...shortStories].map(v => v.id);
+                                            const updated = Object.keys(readMap).reduce((acc, key) => {
+                                                const hasMatch = volIds.some(vid => key.startsWith(`${vid}-`));
+                                                if (!hasMatch) {
+                                                    acc[key] = readMap[key];
+                                                }
+                                                return acc;
+                                            }, {} as Record<string, boolean>);
+                                            localStorage.setItem(readKey, JSON.stringify(updated));
+                                        } catch (e) {
+                                            console.error(e);
+                                        }
+                                    }
+                                    setProgressMap({});
+                                    
+                                    import("@/lib/supabase").then(({ supabase }) => {
+                                        supabase.auth.getUser().then(({ data: { user } }) => {
+                                            if (user) {
+                                                const volIds = [...volumes, ...shortStories].map(v => v.id);
+                                                supabase
+                                                    .from('reading_progress')
+                                                    .delete()
+                                                    .eq('user_id', user.id)
+                                                    .in('volume_id', volIds)
+                                                    .then(({ error }) => {
+                                                        if (error) console.error("Failed to delete progress from Supabase:", error);
+                                                    });
+                                            }
+                                        });
+                                    });
+                                }
+                            }}
+                            className="text-[10px] text-white bg-red-600 hover:bg-red-700 font-mono tracking-widest uppercase ml-4 border-none px-3 py-1.5 rounded-full cursor-pointer transition-all active:scale-95 flex-shrink-0 shadow-md"
+                        >
+                            Reset All
+                        </button>
+                    )}
+                </div>
+
+                <UserMenu
+                    onSignIn={() => setAuthModalOpen(true)}
+                    onProfile={() => setProfileModalOpen(true)}
+                />
             </div>
 
             <motion.div
@@ -232,15 +371,18 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                                     onClick={(e) => vol.inProgress && e.preventDefault()}
                                                 >
                                                     {vol.coverImage ? (
-                                                        <div className="relative w-full aspect-[2/3] shadow-2xl transition-transform duration-500 cursor-pointer">
-                                                            <Image
-                                                                src={vol.coverImage}
-                                                                alt={vol.title}
-                                                                fill
-                                                                priority={index < 3}
-                                                                className="object-cover rounded-sm shadow-black opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                                                                sizes="(max-width: 768px) 300px, 240px"
-                                                            />
+                                                        <div className="hover-3d relative cursor-pointer w-full max-w-[240px]">
+                                                            <div className="relative w-full aspect-[2/3] shadow-2xl overflow-hidden rounded-sm border border-white/10">
+                                                                <Image
+                                                                    src={vol.coverImage}
+                                                                    alt={vol.title}
+                                                                    fill
+                                                                    priority={index < 3}
+                                                                    className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                                                                    sizes="(max-width: 768px) 300px, 240px"
+                                                                />
+                                                            </div>
+                                                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                                                         </div>
                                                     ) : (
                                                         <div className="w-full max-w-[240px] aspect-[2/3] bg-neutral-800 flex items-center justify-center border border-white/10 cursor-pointer">
@@ -268,6 +410,33 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                                                 VIEW DETAILS
                                                             </Button>
                                                         </Link>
+                                                    )}
+
+                                                    {/* Progress Info */}
+                                                    {progressMap[vol.id] && (
+                                                        <>
+                                                            <div className="bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 w-full text-center">
+                                                                <div className="text-xs font-bold text-white mb-0.5 truncate">
+                                                                    {progressMap[vol.id].chapterTitle || "Chapter Unknown"}
+                                                                </div>
+                                                                <div className="text-[10px] text-gray-300">
+                                                                    {Math.round(progressMap[vol.id].percentage * 100)}% Complete
+                                                                </div>
+                                                            </div>
+                                                            <Button
+                                                                variant="outline"
+                                                                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold tracking-wide transition-all duration-300 text-xs py-2 mt-2 cursor-pointer border-none rounded"
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    e.stopPropagation();
+                                                                    if (confirm(`Reset progress for ${vol.title}?`)) {
+                                                                        handleResetVolume(vol.id);
+                                                                    }
+                                                                }}
+                                                            >
+                                                                Reset Progress
+                                                            </Button>
+                                                        </>
                                                     )}
 
                                                     {/* Download Button */}
@@ -329,32 +498,66 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                                     className={`flex flex-col gap-2 group relative ${vol.inProgress ? "cursor-not-allowed" : "cursor-pointer"}`}
                                     onClick={(e) => vol.inProgress && e.preventDefault()}
                                 >
-                                    <div className="w-full aspect-[2/3] rounded-md overflow-hidden shadow-lg border border-white/10 relative z-0">
-                                        {vol.coverImage ? (
-                                            <div className="relative w-full h-full">
-                                                <Image
-                                                    src={vol.coverImage}
-                                                    alt={vol.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                                                    priority={index < 6}
-                                                />
-                                            </div>
-                                        ) : (
-                                            <div className="w-full h-full bg-neutral-800 flex items-center justify-center">
-                                                <span className="text-white/20 font-serif text-4xl font-bold">?</span>
-                                            </div>
-                                        )}
-
-                                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                                        {vol.inProgress && (
-                                            <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/80 backdrop-blur-sm border-t border-red-500/50 py-1.5 pointer-events-none">
-                                                <div className="text-red-400 font-black text-xs text-center tracking-widest uppercase animate-pulse">
-                                                    IN PROGRESS
+                                    <div className="hover-3d relative cursor-pointer w-full">
+                                        <div className="w-full aspect-[2/3] rounded-md overflow-hidden shadow-lg border border-white/10 relative z-10">
+                                            {vol.coverImage ? (
+                                                <div className="relative w-full h-full">
+                                                    <Image
+                                                        src={vol.coverImage}
+                                                        alt={vol.title}
+                                                        fill
+                                                        className="object-cover opacity-90 group-hover:opacity-100"
+                                                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                                                        priority={index < 6}
+                                                    />
                                                 </div>
+                                            ) : (
+                                                <div className="w-full h-full bg-neutral-800 flex items-center justify-center">
+                                                    <span className="text-white/20 font-serif text-4xl font-bold">?</span>
+                                                </div>
+                                            )}
+
+                                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-20">
+                                                {progressMap[vol.id] && (
+                                                    <span className="bg-red-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md">
+                                                        RESUME
+                                                    </span>
+                                                )}
                                             </div>
-                                        )}
+                                            {vol.inProgress && (
+                                                <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/80 backdrop-blur-sm border-t border-red-500/50 py-1.5 pointer-events-none">
+                                                    <div className="text-red-400 font-black text-xs text-center tracking-widest uppercase animate-pulse">
+                                                        IN PROGRESS
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {progressMap[vol.id] && (
+                                                 <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                                                     <span className="text-[9px] font-mono font-bold" style={{ color: 'var(--primary-color, #ef4444)' }}>
+                                                         {Math.round(progressMap[vol.id].percentage * 100)}%
+                                                     </span>
+                                                     <svg className="absolute w-8 h-8 transform -rotate-90 text-red-500" viewBox="0 0 36 36" style={{ color: 'var(--primary-color, #ef4444)' }}>
+                                                         <path
+                                                             className="text-zinc-800"
+                                                             strokeWidth="3.5"
+                                                             stroke="currentColor"
+                                                             fill="none"
+                                                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                         />
+                                                         <path
+                                                             className="text-primary transition-all duration-300"
+                                                             strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
+                                                             strokeWidth="3.5"
+                                                             strokeLinecap="round"
+                                                             stroke="currentColor"
+                                                             fill="none"
+                                                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                         />
+                                                     </svg>
+                                                 </div>
+                                             )}
+                                        </div>
+                                        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                                     </div>
 
                                     {/* Chapter Count Badge */}
@@ -415,25 +618,8 @@ export default function Year2Client({ volumes, shortStories }: Year2ClientProps)
                 </AnimatePresence>
             </motion.div>
 
-           
-            <div className="fixed bottom-8 right-8 z-[100]">
-                <Button
-                    onClick={() => setViewMode(prev => prev === "detailed" ? "compact" : "detailed")}
-                    className="rounded-full w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white shadow-[0_0_20px_rgba(37,99,235,0.5)] border border-blue-400/20 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
-                >
-                    <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                            key={viewMode}
-                            initial={{ rotate: -90, opacity: 0 }}
-                            animate={{ rotate: 0, opacity: 1 }}
-                            exit={{ rotate: 90, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            {viewMode === "detailed" ? <LayoutGrid className="w-6 h-6" /> : <List className="w-6 h-6" />}
-                        </motion.div>
-                    </AnimatePresence>
-                </Button>
-            </div>
+            <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
+            <ProfileModal isOpen={profileModalOpen} onClose={() => setProfileModalOpen(false)} />
         </div>
     );
 }
