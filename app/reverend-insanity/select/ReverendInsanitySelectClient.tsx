@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, BookOpen, LayoutGrid, List, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { ReverendInsanityVolumeData } from "@/data/reverend-insanity";
@@ -123,6 +123,17 @@ export default function ReverendInsanitySelectClient({ volumes }: ReverendInsani
       } catch {}
     }
   }, [volumes]);
+
+  const getVolumeProgress = useCallback((volId: string, volChaptersLength: number) => {
+    if (volChaptersLength === 0) return 0;
+    let readCount = 0;
+    for (let i = 1; i <= volChaptersLength; i++) {
+      if (readChapters[`${volId}-${i}`]) {
+        readCount++;
+      }
+    }
+    return Math.round((readCount / volChaptersLength) * 100);
+  }, [readChapters]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -355,31 +366,34 @@ export default function ReverendInsanitySelectClient({ volumes }: ReverendInsani
                                 priority={volIdx === 0}
                               />
                               
-                              {progressMap[vol.id] && (
-                                <div className="absolute bottom-2 right-2 bg-black/80 backdrop-blur-sm border border-red-950/30 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md">
-                                  <span className="text-[9px] font-mono font-bold text-red-500">
-                                    {Math.round(progressMap[vol.id].percentage * 100)}%
-                                  </span>
-                                  <svg className="absolute w-8 h-8 transform -rotate-90 text-red-600">
-                                    <path
-                                      className="text-zinc-900"
-                                      strokeWidth="3.5"
-                                      stroke="currentColor"
-                                      fill="none"
-                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                    />
-                                    <path
-                                      className="text-red-500 transition-all duration-300"
-                                      strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
-                                      strokeWidth="3.5"
-                                      strokeLinecap="round"
-                                      stroke="currentColor"
-                                      fill="none"
-                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                    />
-                                  </svg>
-                                </div>
-                              )}
+                              {progressMap[vol.id] && (() => {
+                                const volProgress = getVolumeProgress(vol.id, vol.chapters.length);
+                                return (
+                                  <div className="absolute bottom-2 right-2 bg-black/80 backdrop-blur-sm border border-red-950/30 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md">
+                                    <span className="text-[9px] font-mono font-bold text-red-500">
+                                      {volProgress}%
+                                    </span>
+                                    <svg className="absolute w-8 h-8 transform -rotate-90 text-red-600" viewBox="0 0 36 36">
+                                      <path
+                                        className="text-zinc-900"
+                                        strokeWidth="3.5"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      />
+                                      <path
+                                        className="text-red-500 transition-all duration-300"
+                                        strokeDasharray={`${volProgress}, 100`}
+                                        strokeWidth="3.5"
+                                        strokeLinecap="round"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      />
+                                    </svg>
+                                  </div>
+                                );
+                              })()}
                             </div>
                             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                           </Link>
@@ -438,36 +452,39 @@ export default function ReverendInsanitySelectClient({ volumes }: ReverendInsani
                               className="object-cover transition-transform duration-500 scale-[1.01] group-hover:scale-105 opacity-90 group-hover:opacity-100"
                               sizes="(max-width: 768px) 50vw, 180px"
                             />
-                            {progressMap[vol.id] && (
-                              <>
-                                <div className="absolute top-2.5 right-2.5 bg-red-950/80 backdrop-blur-sm px-2 py-0.5 rounded-lg border border-red-500/30 text-[9px] font-mono font-bold text-red-400 z-20 pointer-events-none shadow-md">
-                                  RESUME
-                                </div>
-                                <div className="absolute bottom-2.5 right-2.5 bg-black/80 backdrop-blur-sm border border-red-950/30 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
-                                  <span className="text-[9px] font-mono font-bold text-red-500">
-                                    {Math.round(progressMap[vol.id].percentage * 100)}%
-                                  </span>
-                                  <svg className="absolute w-8 h-8 transform -rotate-90 text-red-600" viewBox="0 0 36 36">
-                                    <path
-                                      className="text-zinc-950"
-                                      strokeWidth="3.5"
-                                      stroke="currentColor"
-                                      fill="none"
-                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                    />
-                                    <path
-                                      className="text-red-500 transition-all duration-300"
-                                      strokeDasharray={`${Math.round(progressMap[vol.id].percentage * 100)}, 100`}
-                                      strokeWidth="3.5"
-                                      strokeLinecap="round"
-                                      stroke="currentColor"
-                                      fill="none"
-                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                                    />
-                                  </svg>
-                                </div>
-                              </>
-                            )}
+                            {progressMap[vol.id] && (() => {
+                              const volProgress = getVolumeProgress(vol.id, vol.chapters.length);
+                              return (
+                                <>
+                                  <div className="absolute top-2.5 right-2.5 bg-red-950/80 backdrop-blur-sm px-2 py-0.5 rounded-lg border border-red-500/30 text-[9px] font-mono font-bold text-red-400 z-20 pointer-events-none shadow-md">
+                                    RESUME
+                                  </div>
+                                  <div className="absolute bottom-2.5 right-2.5 bg-black/80 backdrop-blur-sm border border-red-950/30 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
+                                    <span className="text-[9px] font-mono font-bold text-red-500">
+                                      {volProgress}%
+                                    </span>
+                                    <svg className="absolute w-8 h-8 transform -rotate-90 text-red-600" viewBox="0 0 36 36">
+                                      <path
+                                        className="text-zinc-950"
+                                        strokeWidth="3.5"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      />
+                                      <path
+                                        className="text-red-500 transition-all duration-300"
+                                        strokeDasharray={`${volProgress}, 100`}
+                                        strokeWidth="3.5"
+                                        strokeLinecap="round"
+                                        stroke="currentColor"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      />
+                                    </svg>
+                                  </div>
+                                </>
+                              );
+                            })()}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end justify-center pb-4 pointer-events-none">
                               <span className="bg-red-650/90 text-white text-[10px] font-bold font-mono tracking-widest px-3.5 py-1 rounded-full shadow-lg border border-red-500/20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                 EXPAND

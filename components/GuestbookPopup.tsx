@@ -59,6 +59,15 @@ function getTheme(path: string): ThemeConfig {
             badgeBgClass: "bg-purple-600 border border-purple-500/30"
         }
     }
+    if (path.includes("/apothecary-diaries")) {
+        return {
+            hoverBorderClass: "hover:border-pink-500/50",
+            hoverShadowClass: "hover:shadow-[0_0_25px_rgba(236,72,153,0.4)]",
+            iconColorClass: "text-pink-400 group-hover:text-pink-300",
+            activeBgClass: "bg-[#2d0e20]/80 text-pink-400 border border-pink-500/40 shadow-[0_0_15px_rgba(236,72,153,0.25)]",
+            badgeBgClass: "bg-pink-600 border border-pink-500/30"
+        }
+    }
     if (path.includes("/mushoku-tensei")) {
         return {
             hoverBorderClass: "hover:border-emerald-500/50",
@@ -299,7 +308,7 @@ export function GuestbookPopup() {
         window.dispatchEvent(new CustomEvent("change-view-mode", { detail: mode }))
     }
 
-    const visible = pathname === '/' || pathname.includes('/cote') || pathname.includes('/rezero') || pathname.includes('/orv') || pathname.includes('/bunny-girl') || pathname.includes('/mushoku-tensei') || pathname.includes('/lotm') || pathname.includes('/reverend-insanity')
+    const visible = pathname === '/' || pathname.includes('/cote') || pathname.includes('/rezero') || pathname.includes('/orv') || pathname.includes('/bunny-girl') || pathname.includes('/mushoku-tensei') || pathname.includes('/lotm') || pathname.includes('/reverend-insanity') || pathname.includes('/apothecary-diaries')
 
     const fetchEntries = async () => {
         if (fetched) return
@@ -401,6 +410,9 @@ export function GuestbookPopup() {
         } else if (pathname.includes("/bunny-girl")) {
             homeLink = "/bunny-girl/select"
             homeLabel = "Bunny Girl Select"
+        } else if (pathname.includes("/apothecary-diaries")) {
+            homeLink = "/apothecary-diaries/select"
+            homeLabel = "Apothecary Select"
         } else if (pathname.includes("/mushoku-tensei")) {
             homeLink = "/mushoku-tensei/select"
             homeLabel = "Mushoku Select"

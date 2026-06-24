@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | "lotm" | "reverend-insanity" | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | "lotm" | "reverend-insanity" | "apothecary-diaries" | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [guestbookCount, setGuestbookCount] = useState(0);
 
@@ -71,6 +71,10 @@ export default function Home() {
         {/* Reverend Insanity Crimson/Dark Red Glow */}
         <div className={`absolute top-1/2 left-[15%] -translate-y-1/2 w-[500px] h-[500px] bg-red-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
           hoveredCard === "reverend-insanity" ? "opacity-95 scale-110 bg-red-950/35" : "opacity-0"
+        }`} />
+        {/* Apothecary Diaries Peony Pink Glow */}
+        <div className={`absolute top-1/2 right-[25%] -translate-y-1/2 w-[500px] h-[500px] bg-pink-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
+          hoveredCard === "apothecary-diaries" ? "opacity-95 scale-110 bg-pink-900/20" : "opacity-0"
         }`} />
         {/* Center Subtler Ambient Light */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-950/30 via-transparent to-transparent opacity-60" />
@@ -185,11 +189,11 @@ export default function Home() {
                   alt="Classroom of the Elite Cover"
                   fill
                   priority
-                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 380px"
                 />
                 {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
               </div>
 
               {/* Squircle Window Content */}
@@ -228,11 +232,11 @@ export default function Home() {
                   alt="Re:Zero Cover"
                   fill
                   priority
-                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 380px"
                 />
                 {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
               </div>
 
               {/* Squircle Window Content */}
@@ -271,11 +275,11 @@ export default function Home() {
                   alt="Omniscient Reader's Viewpoint Cover"
                   fill
                   priority
-                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 380px"
                 />
                 {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020204] via-[#020204]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020204]/70 via-[#020204]/10 to-transparent" />
               </div>
 
               {/* Squircle Window Content */}
@@ -314,11 +318,11 @@ export default function Home() {
                   alt="Rascal Does Not Dream Cover"
                   fill
                   priority
-                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 380px"
                 />
                 {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/45 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
               </div>
 
               {/* Squircle Window Content */}
@@ -357,11 +361,11 @@ export default function Home() {
                   alt="Mushoku Tensei Cover"
                   fill
                   priority
-                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 380px"
                 />
                 {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206] via-[#030206]/45 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
               </div>
 
               {/* Squircle Window Content */}
@@ -400,11 +404,11 @@ export default function Home() {
                   alt="Lord of the Mysteries Cover"
                   fill
                   priority
-                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 380px"
                 />
                 {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020204] via-[#020204]/45 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020204]/70 via-[#020204]/10 to-transparent" />
               </div>
 
               {/* Squircle Window Content */}
@@ -442,11 +446,11 @@ export default function Home() {
                   src="/assets/images/reverend-insanity/nj.jpg"
                   alt="Reverend Insanity Cover"
                   fill
-                  className="object-cover opacity-75 transition-all duration-1000 group-hover:scale-[1.03] group-hover:opacity-90"
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 380px"
                 />
                 {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020204] via-[#020204]/45 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020204]/70 via-[#020204]/10 to-transparent" />
               </div>
 
               {/* Squircle Window Content */}
@@ -456,6 +460,48 @@ export default function Home() {
                 </h3>
                 <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
                   &ldquo;A demon&apos;s nature never has regret even in death.&rdquo;
+                </p>
+              </div>
+            </div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          </motion.div>
+        </Link>
+
+        {/* The Apothecary Diaries Squircle Window */}
+        <Link 
+          href="/apothecary-diaries" 
+          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+          onMouseEnter={() => setHoveredCard("apothecary-diaries")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-pink-600 to-emerald-500 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="hover-3d relative cursor-pointer w-full"
+          >
+            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-pink-500/40 group-hover:shadow-[0_0_50px_rgba(236,72,153,0.35)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
+              {/* Background cover image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/images/apothecary-diaries/ad1/cover.jpg"
+                  alt="The Apothecary Diaries Cover"
+                  fill
+                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+                {/* Fade Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b050d]/70 via-[#0b050d]/10 to-transparent" />
+              </div>
+
+              {/* Squircle Window Content */}
+              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-pink-200 transition-colors duration-300">
+                  The Apothecary Diaries
+                </h3>
+                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
+                  &ldquo;A little poison can be a cure. A little knowledge can be deadly.&rdquo;
                 </p>
               </div>
             </div>
