@@ -13,6 +13,18 @@ const getLogicalChapterNumber = (novelSlug: string, volumeId: string, chapterInd
         const logicalIndex = mapping ? mapping.indexOf(chapterIndex) : -1;
         return logicalIndex >= 0 ? logicalIndex + 1 : chapterIndex;
     }
+    if (novelSlug === 'reverend-insanity') {
+        const startChapters: Record<string, number> = {
+            ri1: 1,
+            ri2: 200,
+            ri3: 406,
+            ri4: 650,
+            ri5: 1022,
+            ri6: 1967
+        };
+        const start = startChapters[volumeId] || 1;
+        return start + chapterIndex - 1;
+    }
     return chapterIndex;
 };
 
@@ -25,6 +37,7 @@ import { rezeroVolumes } from "@/data/rezero"
 import { bunnyGirlVolumes, bunnyGirlSideStories } from "@/data/bunny-girl"
 import { mushokuTenseiVolumes, mushokuTenseiSideStories, mushokuTenseiRedundancy } from "@/data/mushoku-tensei"
 import { orvVolumes } from "@/data/orv"
+import { reverendInsanityVolumes } from "@/data/reverend-insanity"
 
 const novelVolumesMap: Record<string, { id: string; title: string; coverImage: string; chapters?: { title: string }[] | string[] }[]> = {
     cote: [...y1v, ...y1s, ...y2v, ...y2s, ...y3v, ...y3s],
@@ -32,7 +45,8 @@ const novelVolumesMap: Record<string, { id: string; title: string; coverImage: s
     rezero: rezeroVolumes,
     "bunny-girl": [...bunnyGirlVolumes, ...bunnyGirlSideStories],
     "mushoku-tensei": [...mushokuTenseiVolumes, ...mushokuTenseiSideStories, ...mushokuTenseiRedundancy],
-    orv: orvVolumes
+    orv: orvVolumes,
+    "reverend-insanity": reverendInsanityVolumes
 };
 
 interface LastRead {
@@ -58,6 +72,13 @@ const themeStyles: Record<string, {
         border: "border-red-500/25",
         glow: "shadow-[0_8px_32px_0_rgba(239,68,68,0.25)]",
         badgeBg: "bg-red-500/15"
+    },
+    "reverend-insanity": {
+        text: "text-red-500 dark:text-red-400",
+        bg: "bg-red-950/50 backdrop-blur-2xl",
+        border: "border-red-900/40",
+        glow: "shadow-[0_8px_32px_0_rgba(185,28,28,0.35)]",
+        badgeBg: "bg-red-950/30"
     },
     lotm: {
         text: "text-amber-500",
@@ -124,7 +145,8 @@ export function GlobalContinueReading() {
         (pathname.startsWith('/rezero/select/') && pathParts.length > 3) ||
         (pathname.startsWith('/orv/select/') && pathParts.length > 3) ||
         (pathname.startsWith('/bunny-girl/select/') && pathParts.length > 3) ||
-        (pathname.startsWith('/mushoku-tensei/select/') && pathParts.length > 3);
+        (pathname.startsWith('/mushoku-tensei/select/') && pathParts.length > 3) ||
+        (pathname.startsWith('/reverend-insanity/select/') && pathParts.length > 3);
 
     const isHidden =
         pathname === '/' ||
@@ -135,6 +157,7 @@ export function GlobalContinueReading() {
         pathname.startsWith('/bunny-girl/read') ||
         pathname.startsWith('/mushoku-tensei/read') ||
         pathname.startsWith('/lotm/read') ||
+        pathname.startsWith('/reverend-insanity/read') ||
         pathname.startsWith('/auth') ||
         isModalOpen ||
         isVolumeDetailsPage;
@@ -149,7 +172,7 @@ export function GlobalContinueReading() {
                 
                 const parts = pathname.split("/");
                 const currentNovelSlug = parts[1];
-                const novelSlugs = ['cote', 'lotm', 'rezero', 'bunny-girl', 'mushoku-tensei', 'orv'];
+                const novelSlugs = ['cote', 'lotm', 'rezero', 'bunny-girl', 'mushoku-tensei', 'orv', 'reverend-insanity'];
                 
                 // If browsing a specific novel select page, filter progress check to that novel
                 const targetSlugs = novelSlugs.includes(currentNovelSlug) 

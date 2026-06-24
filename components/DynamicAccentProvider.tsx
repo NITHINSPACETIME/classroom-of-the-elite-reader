@@ -11,6 +11,7 @@ const defaultColors: Record<string, string> = {
     "bunny-girl": "#d946ef",
     "mushoku-tensei": "#10b981",
     orv: "#06b6d4",
+    "reverend-insanity": "#ef4444",
 }
 
 function parseHex(hex: string) {

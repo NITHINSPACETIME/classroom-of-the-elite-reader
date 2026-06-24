@@ -68,6 +68,15 @@ function getTheme(path: string): ThemeConfig {
             badgeBgClass: "bg-emerald-600 border border-emerald-500/30"
         }
     }
+    if (path.includes("/reverend-insanity")) {
+        return {
+            hoverBorderClass: "hover:border-red-500/50",
+            hoverShadowClass: "hover:shadow-[0_0_25px_rgba(185,28,28,0.4)]",
+            iconColorClass: "text-red-400 group-hover:text-red-300",
+            activeBgClass: "bg-red-950/80 text-red-400 border border-red-500/40 shadow-[0_0_15px_rgba(185,28,28,0.25)]",
+            badgeBgClass: "bg-red-600 border border-red-500/30"
+        }
+    }
     if (path.includes("/lotm")) {
         return {
             hoverBorderClass: "hover:border-indigo-500/50",
@@ -259,7 +268,8 @@ export function GuestbookPopup() {
     useEffect(() => {
         let initialMode: "detailed" | "compact" = "detailed"
         if (typeof window !== "undefined") {
-            const saved = localStorage.getItem("global-view-mode") as "detailed" | "compact" | null
+            const key = pathname.includes("/reverend-insanity") ? "reverend-insanity-view-mode" : "global-view-mode";
+            const saved = localStorage.getItem(key) as "detailed" | "compact" | null
             if (saved === "detailed" || saved === "compact") {
                 initialMode = saved
             } else if (window.innerWidth < 768) {
@@ -283,12 +293,13 @@ export function GuestbookPopup() {
 
     const toggleViewMode = (mode: "detailed" | "compact") => {
         if (typeof window !== "undefined") {
-            localStorage.setItem("global-view-mode", mode)
+            const key = pathname.includes("/reverend-insanity") ? "reverend-insanity-view-mode" : "global-view-mode";
+            localStorage.setItem(key, mode)
         }
         window.dispatchEvent(new CustomEvent("change-view-mode", { detail: mode }))
     }
 
-    const visible = pathname === '/' || pathname.includes('/cote') || pathname.includes('/rezero') || pathname.includes('/orv') || pathname.includes('/bunny-girl') || pathname.includes('/mushoku-tensei') || pathname.includes('/lotm')
+    const visible = pathname === '/' || pathname.includes('/cote') || pathname.includes('/rezero') || pathname.includes('/orv') || pathname.includes('/bunny-girl') || pathname.includes('/mushoku-tensei') || pathname.includes('/lotm') || pathname.includes('/reverend-insanity')
 
     const fetchEntries = async () => {
         if (fetched) return
@@ -396,6 +407,9 @@ export function GuestbookPopup() {
         } else if (pathname.includes("/lotm")) {
             homeLink = "/lotm/select"
             homeLabel = "LOTM Select"
+        } else if (pathname.includes("/reverend-insanity")) {
+            homeLink = "/reverend-insanity/select"
+            homeLabel = "Reverend Insanity Select"
         }
     } else if (pathname.includes("/select")) {
         homeLink = "/"

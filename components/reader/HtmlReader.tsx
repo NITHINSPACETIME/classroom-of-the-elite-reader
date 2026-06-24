@@ -89,7 +89,8 @@ const defaultColors: Record<string, string> = {
     rezero: "#8b5cf6",
     "bunny-girl": "#d946ef",
     "mushoku-tensei": "#10b981",
-    orv: "#06b6d4"
+    orv: "#06b6d4",
+    "reverend-insanity": "#ef4444"
 };
 
 export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId, chapterIndex, toc, volumeTitle, epubSource, detailsLink = "/select", returnLink, currentSpineIndex, nextVolumeLink, nextVolumeTitle, debugInfo }: ReaderProps) {
@@ -110,7 +111,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const isBunnyGirl = detailsLink?.startsWith('/bunny-girl');
     const isMushokuTensei = detailsLink?.startsWith('/mushoku-tensei');
     const isLotm = detailsLink?.startsWith('/lotm');
-    const isCote = !isRezero && !isOrv && !isBunnyGirl && !isMushokuTensei && !isLotm;
+    const isReverendInsanity = detailsLink?.startsWith('/reverend-insanity') || volumeId.startsWith('ri');
+    const isCote = !isRezero && !isOrv && !isBunnyGirl && !isMushokuTensei && !isLotm && !isReverendInsanity;
     const baseReadPath = isOrv 
         ? `/orv/read` 
         : (isRezero 
@@ -121,13 +123,16 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     ? `/mushoku-tensei/read` 
                     : (isLotm 
                         ? `/lotm/read` 
-                        : `/cote/read`
+                        : (isReverendInsanity
+                            ? `/reverend-insanity/read`
+                            : `/cote/read`
+                          )
                       )
                   )
               )
           );
 
-    const novelSlug = isOrv ? 'orv' : (isRezero ? 'rezero' : (isBunnyGirl ? 'bunny-girl' : (isMushokuTensei ? 'mushoku-tensei' : (isLotm ? 'lotm' : 'cote'))));
+    const novelSlug = isOrv ? 'orv' : (isRezero ? 'rezero' : (isBunnyGirl ? 'bunny-girl' : (isMushokuTensei ? 'mushoku-tensei' : (isLotm ? 'lotm' : (isReverendInsanity ? 'reverend-insanity' : 'cote')))));
 
     const [theme, setTheme] = useState<ReaderTheme>('dark');
     const [fontSize, setFontSize] = useState(18);
@@ -156,6 +161,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     // Reading Timer State
     const [readingTime, setReadingTime] = useState<number>(0);
+    const [chapterElapsed, setChapterElapsed] = useState<number>(0);
 
     // Page turning 3D transitions & bottom reading progress percentage
     const [pageTurnClass, setPageTurnClass] = useState<'page-turn-next' | 'page-turn-prev' | ''>('');
@@ -913,15 +919,17 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
     // Cumulative Reading Timer tick
     useEffect(() => {
+        setChapterElapsed(0);
         const interval = setInterval(() => {
             setReadingTime(prev => {
                 const next = prev + 1;
                 localStorage.setItem(`${novelSlug}-reading-time`, String(next));
                 return next;
             });
+            setChapterElapsed(prev => prev + 1);
         }, 1000);
         return () => clearInterval(interval);
-    }, [novelSlug]);
+    }, [novelSlug, volumeId, chapterIndex]);
 
     const formatReadingTime = (seconds: number) => {
         const h = Math.floor(seconds / 3600);
@@ -931,6 +939,19 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
         if (h > 0) return `${h}h ${pad(m)}m ${pad(s)}s`;
         return `${m}m ${pad(s)}s`;
     };
+
+    const wordCount = useMemo(() => {
+        if (!content) return 0;
+        const cleanText = content.replace(/<[^>]*>/g, ' ');
+        const words = cleanText.trim().split(/\s+/).filter(Boolean);
+        return words.length;
+    }, [content]);
+
+    const estimatedTotalSeconds = useMemo(() => {
+        return Math.max(60, Math.ceil((wordCount / 200) * 60));
+    }, [wordCount]);
+
+    const remainingReadingTime = Math.max(0, estimatedTotalSeconds - chapterElapsed);
 
     // Deterministic rating / likes seed
     const seededLikes = useMemo(() => {
@@ -1131,12 +1152,13 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const chapterHeader = useMemo(() => {
         const { line1, line2 } = getSplitTitle(title);
         const isLotmOrCoi = isLotm || volumeId.startsWith('coi') || volumeId.startsWith('lotm');
+        const isRi = isReverendInsanity || volumeId.startsWith('ri');
         return (
             <div className="text-center mt-6 mb-12 font-serif select-none">
                 {line1 && (
                     <div className={cn(
                         "text-xs uppercase tracking-[0.22em] font-medium mb-3",
-                        isLotmOrCoi ? "text-amber-500" : "text-indigo-400"
+                        isRi ? "text-red-500" : isLotmOrCoi ? "text-amber-500" : "text-indigo-400"
                     )}>
                         {line1}
                     </div>
@@ -1146,31 +1168,34 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 </h1>
                 <div className={cn(
                     "w-20 h-[1.5px] mx-auto mt-8 mb-4",
-                    isLotmOrCoi 
-                        ? "bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" 
-                        : "bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"
+                    isRi
+                        ? "bg-gradient-to-r from-transparent via-red-600/40 to-transparent"
+                        : isLotmOrCoi 
+                            ? "bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" 
+                            : "bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"
                 )} />
             </div>
         );
-    }, [title, isLotm, volumeId]);
+    }, [title, isLotm, volumeId, isReverendInsanity]);
 
     const chapterHeaderHtml = useMemo(() => {
         const { line1, line2 } = getSplitTitle(title);
         const isLotmOrCoi = isLotm || volumeId.startsWith('coi') || volumeId.startsWith('lotm');
+        const isRi = isReverendInsanity || volumeId.startsWith('ri');
         return `
             <div class="text-center mt-6 mb-12 font-serif select-none reader-chapter-header">
                 ${line1 ? `
-                    <div class="text-xs uppercase tracking-[0.22em] font-medium mb-3 ${isLotmOrCoi ? 'text-amber-500' : 'text-indigo-400'}">
+                    <div class="text-xs uppercase tracking-[0.22em] font-medium mb-3 ${isRi ? 'text-red-500' : isLotmOrCoi ? 'text-amber-500' : 'text-indigo-400'}">
                         ${line1}
                     </div>
                 ` : ''}
                 <h1 class="text-2xl md:text-3xl font-bold uppercase tracking-wide max-w-2xl mx-auto leading-tight">
                     ${line2}
                 </h1>
-                <div class="w-20 h-[1.5px] mx-auto mt-8 mb-4 ${isLotmOrCoi ? 'bg-gradient-to-r from-transparent via-amber-500/40 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent'}"></div>
+                <div class="w-20 h-[1.5px] mx-auto mt-8 mb-4 ${isRi ? 'bg-gradient-to-r from-transparent via-red-600/40 to-transparent' : isLotmOrCoi ? 'bg-gradient-to-r from-transparent via-amber-500/40 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent'}"></div>
             </div>
         `;
-    }, [title, isLotm, volumeId]);
+    }, [title, isLotm, volumeId, isReverendInsanity]);
 
 
 
@@ -1451,19 +1476,43 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 <label className={cn("text-xs font-semibold uppercase tracking-wide", isThemeLight(theme) ? "text-gray-600" : "text-gray-300")}>Font Size</label>
                                 <span className={cn("text-xs font-mono font-bold tabular-nums", isThemeLight(theme) ? "text-gray-800" : "text-gray-200")}>{fontSize}px</span>
                             </div>
-                            <input
-                                type="range"
-                                min={12}
-                                max={32}
-                                step={1}
-                                value={fontSize}
-                                onChange={(e) => setFontSize(parseInt(e.target.value))}
-                                className="w-full h-1.5 rounded-full appearance-none cursor-pointer accent-[var(--primary-color)]"
-                                style={{
-                                    background: `linear-gradient(to right, var(--primary-color) ${((fontSize - 12) / (32 - 12)) * 100}%, ${isThemeLight(theme) ? '#e5e7eb' : '#374151'} ${((fontSize - 12) / (32 - 12)) * 100}%)`
-                                }}
-                            />
-                            <div className={cn("flex justify-between text-[10px] tabular-nums", isThemeLight(theme) ? "text-gray-400" : "text-gray-500")}>
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => setFontSize(prev => Math.max(12, prev - 1))}
+                                    disabled={fontSize <= 12}
+                                    className={cn(
+                                        "p-1 rounded-md hover:bg-black/10 dark:hover:bg-white/10 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed border flex items-center justify-center cursor-pointer",
+                                        isThemeLight(theme) ? "border-gray-200 text-gray-700" : "border-zinc-700 text-gray-300"
+                                    )}
+                                    title="Decrease Font Size"
+                                >
+                                    <Minus className="w-3.5 h-3.5" />
+                                </button>
+                                <input
+                                    type="range"
+                                    min={12}
+                                    max={32}
+                                    step={1}
+                                    value={fontSize}
+                                    onChange={(e) => setFontSize(parseInt(e.target.value))}
+                                    className="flex-1 h-1.5 rounded-full appearance-none cursor-pointer accent-[var(--primary-color)]"
+                                    style={{
+                                        background: `linear-gradient(to right, var(--primary-color) ${((fontSize - 12) / (32 - 12)) * 100}%, ${isThemeLight(theme) ? '#e5e7eb' : '#374151'} ${((fontSize - 12) / (32 - 12)) * 100}%)`
+                                    }}
+                                />
+                                <button
+                                    onClick={() => setFontSize(prev => Math.min(32, prev + 1))}
+                                    disabled={fontSize >= 32}
+                                    className={cn(
+                                        "p-1 rounded-md hover:bg-black/10 dark:hover:bg-white/10 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed border flex items-center justify-center cursor-pointer",
+                                        isThemeLight(theme) ? "border-gray-200 text-gray-700" : "border-zinc-700 text-gray-300"
+                                    )}
+                                    title="Increase Font Size"
+                                >
+                                    <Plus className="w-3.5 h-3.5" />
+                                </button>
+                            </div>
+                            <div className={cn("flex justify-between text-[10px] tabular-nums px-7", isThemeLight(theme) ? "text-gray-400" : "text-gray-500")}>
                                 <span>12px</span>
                                 <span>32px</span>
                             </div>
@@ -1658,7 +1707,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
             {/* Footer */}
             <div className="mt-5 pt-3 flex flex-col gap-2.5" style={{ borderTop: `1px solid ${isThemeLight(theme) ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)'}` }}>
                 <div className="text-[10px] opacity-50 text-center font-mono uppercase tracking-widest">
-                    Reading Time: {formatReadingTime(readingTime)}
+                    Time Remaining: {formatReadingTime(remainingReadingTime)}
                 </div>
                 <button
                     onClick={resetSettings}
@@ -1769,8 +1818,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     </div>
 
                     {/* Right: Settings, 3-dots, and User Profile Menu */}
-                    <div className="flex items-center gap-1 shrink-0">
-                        <div className="relative" ref={settingsRef}>
+                    <div className="flex items-center gap-1 shrink-0 relative">
+                        <div className="" ref={settingsRef}>
                             <Button 
                                 variant="ghost" 
                                 size="icon" 
@@ -2844,7 +2893,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     )}
                 >
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>{formatReadingTime(readingTime)}</span>
+                    <span>{formatReadingTime(remainingReadingTime)}</span>
                 </div>
             )}
 
