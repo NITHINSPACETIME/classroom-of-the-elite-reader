@@ -91,7 +91,8 @@ const defaultColors: Record<string, string> = {
     "mushoku-tensei": "#10b981",
     orv: "#06b6d4",
     "reverend-insanity": "#ef4444",
-    "apothecary-diaries": "#ec4899"
+    "apothecary-diaries": "#ec4899",
+    tensura: "#0ea5e9"
 };
 
 export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId, chapterIndex, toc, volumeTitle, epubSource, detailsLink = "/select", returnLink, currentSpineIndex, nextVolumeLink, nextVolumeTitle, debugInfo }: ReaderProps) {
@@ -114,7 +115,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const isLotm = detailsLink?.startsWith('/lotm');
     const isReverendInsanity = detailsLink?.startsWith('/reverend-insanity') || volumeId.startsWith('ri');
     const isApothecaryDiaries = detailsLink?.startsWith('/apothecary-diaries') || volumeId.startsWith('ad');
-    const isCote = !isRezero && !isOrv && !isBunnyGirl && !isMushokuTensei && !isLotm && !isReverendInsanity && !isApothecaryDiaries;
+    const isTensura = detailsLink?.startsWith('/tensura');
+    const isCote = !isRezero && !isOrv && !isBunnyGirl && !isMushokuTensei && !isLotm && !isReverendInsanity && !isApothecaryDiaries && !isTensura;
     const baseReadPath = isOrv 
         ? `/orv/read` 
         : (isRezero 
@@ -129,7 +131,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             ? `/reverend-insanity/read`
                             : (isApothecaryDiaries
                                 ? `/apothecary-diaries/read`
-                                : `/cote/read`
+                                : (isTensura
+                                    ? `/tensura/read`
+                                    : `/cote/read`
+                                  )
                               )
                           )
                       )
@@ -137,7 +142,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
               )
           );
 
-    const novelSlug = isOrv ? 'orv' : (isRezero ? 'rezero' : (isBunnyGirl ? 'bunny-girl' : (isMushokuTensei ? 'mushoku-tensei' : (isLotm ? 'lotm' : (isReverendInsanity ? 'reverend-insanity' : (isApothecaryDiaries ? 'apothecary-diaries' : 'cote'))))));
+    const novelSlug = isOrv ? 'orv' : (isRezero ? 'rezero' : (isBunnyGirl ? 'bunny-girl' : (isMushokuTensei ? 'mushoku-tensei' : (isLotm ? 'lotm' : (isReverendInsanity ? 'reverend-insanity' : (isApothecaryDiaries ? 'apothecary-diaries' : (isTensura ? 'tensura' : 'cote')))))));
 
     const [theme, setTheme] = useState<ReaderTheme>('dark');
     const [fontSize, setFontSize] = useState(18);
@@ -1165,8 +1170,18 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     <div className={cn(
                         isAd 
                             ? "text-lg md:text-xl text-pink-500 font-serif mb-2 tracking-[0.15em] flex items-center justify-center gap-2 font-medium"
-                            : "text-xs uppercase tracking-[0.22em] font-medium mb-3",
-                        !isAd && (isRi ? "text-red-500" : isLotmOrCoi ? "text-amber-500" : "text-indigo-400")
+                            : "text-lg md:text-xl uppercase tracking-[0.18em] font-bold mb-3",
+                        !isAd && (
+                            isRi 
+                                ? "text-red-500" 
+                                : isLotmOrCoi 
+                                    ? "text-amber-500" 
+                                    : isTensura 
+                                        ? "text-cyan-400" 
+                                        : isCote 
+                                            ? "text-red-500" 
+                                            : "text-indigo-400"
+                        )
                     )}>
                         {isAd ? (
                             <>
@@ -1188,31 +1203,62 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             ? "bg-gradient-to-r from-transparent via-red-600/40 to-transparent"
                             : isLotmOrCoi 
                                 ? "bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" 
-                                : "bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"
+                                : isTensura
+                                    ? "bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"
+                                    : isCote
+                                        ? "bg-gradient-to-r from-transparent via-red-500/40 to-transparent"
+                                        : "bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"
                 )} />
             </div>
         );
-    }, [title, isLotm, volumeId, isReverendInsanity]);
+    }, [title, isLotm, volumeId, isReverendInsanity, isTensura, isCote]);
 
     const chapterHeaderHtml = useMemo(() => {
         const { line1, line2 } = getSplitTitle(title);
         const isLotmOrCoi = isLotm || volumeId.startsWith('coi') || volumeId.startsWith('lotm');
         const isRi = isReverendInsanity || volumeId.startsWith('ri');
         const isAd = volumeId.startsWith('ad');
+        
+        const subtitleClass = isAd 
+            ? 'text-lg md:text-xl text-pink-500 font-serif mb-2 tracking-[0.15em] flex items-center justify-center gap-2 font-medium' 
+            : `text-lg md:text-xl uppercase tracking-[0.18em] font-bold mb-3 ${
+                isRi 
+                    ? 'text-red-500' 
+                    : isLotmOrCoi 
+                        ? 'text-amber-500' 
+                        : isTensura 
+                            ? 'text-cyan-400' 
+                            : isCote 
+                                ? 'text-red-500' 
+                                : 'text-indigo-400'
+            }`;
+            
+        const dividerClass = isAd 
+            ? 'bg-gradient-to-r from-transparent via-pink-500/40 to-transparent' 
+            : isRi 
+                ? 'bg-gradient-to-r from-transparent via-red-600/40 to-transparent' 
+                : isLotmOrCoi 
+                    ? 'bg-gradient-to-r from-transparent via-amber-500/40 to-transparent' 
+                    : isTensura
+                        ? 'bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent'
+                        : isCote
+                            ? 'bg-gradient-to-r from-transparent via-red-500/40 to-transparent'
+                            : 'bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent';
+
         return `
             <div class="text-center mt-6 mb-12 font-serif select-none reader-chapter-header">
                 ${line1 ? `
-                    <div class="${isAd ? 'text-lg md:text-xl text-pink-500 font-serif mb-2 tracking-[0.15em] flex items-center justify-center gap-2 font-medium' : `text-xs uppercase tracking-[0.22em] font-medium mb-3 ${isRi ? 'text-red-500' : isLotmOrCoi ? 'text-amber-500' : 'text-indigo-400'}`}">
+                    <div class="${subtitleClass}">
                         ${isAd ? `<span>🌸</span> <span>${line1}</span> <span>🌸</span>` : line1}
                     </div>
                 ` : ''}
                 <h1 class="text-2xl md:text-3xl font-bold uppercase tracking-wide max-w-2xl mx-auto leading-tight">
                     ${line2}
                 </h1>
-                <div class="w-20 h-[1.5px] mx-auto mt-8 mb-4 ${isAd ? 'bg-gradient-to-r from-transparent via-pink-500/40 to-transparent' : isRi ? 'bg-gradient-to-r from-transparent via-red-600/40 to-transparent' : isLotmOrCoi ? 'bg-gradient-to-r from-transparent via-amber-500/40 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent'}"></div>
+                <div class="w-20 h-[1.5px] mx-auto mt-8 mb-4 ${dividerClass}"></div>
             </div>
         `;
-    }, [title, isLotm, volumeId, isReverendInsanity]);
+    }, [title, isLotm, volumeId, isReverendInsanity, isTensura, isCote]);
 
 
 
@@ -2596,6 +2642,22 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 font-family: var(--font-serif) !important;
                                 text-shadow: 0 0 15px rgba(236, 72, 153, 0.45) !important;
                                 border-bottom: 1px solid rgba(236, 72, 153, 0.2) !important;
+                                padding-bottom: 1.5rem !important;
+                            }
+
+                            /* Tensura Chapter Titles */
+                            .theme-tensura h1,
+                            .reader-content.theme-tensura h1 {
+                                text-align: center !important;
+                                font-size: clamp(2.0em, 6vw, 2.6em) !important;
+                                line-height: 1.3 !important;
+                                margin-top: 3.5rem !important;
+                                margin-bottom: 3.5rem !important;
+                                font-weight: 700 !important;
+                                color: #ffffff !important;
+                                font-family: var(--font-serif) !important;
+                                text-shadow: 0 0 15px rgba(34, 211, 238, 0.45) !important;
+                                border-bottom: 1px solid rgba(34, 211, 238, 0.2) !important;
                                 padding-bottom: 1.5rem !important;
                             }
                         ` }} />

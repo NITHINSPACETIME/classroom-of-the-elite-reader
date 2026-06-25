@@ -39,6 +39,7 @@ import { mushokuTenseiVolumes, mushokuTenseiSideStories, mushokuTenseiRedundancy
 import { orvVolumes } from "@/data/orv"
 import { reverendInsanityVolumes } from "@/data/reverend-insanity"
 import { apothecaryDiariesVolumes } from "@/data/apothecary-diaries"
+import { tensuraVolumes, tensuraSideStories } from "@/data/tensura"
 
 const novelVolumesMap: Record<string, { id: string; title: string; coverImage: string; chapters?: { title: string }[] | string[] }[]> = {
     cote: [...y1v, ...y1s, ...y2v, ...y2s, ...y3v, ...y3s],
@@ -48,7 +49,8 @@ const novelVolumesMap: Record<string, { id: string; title: string; coverImage: s
     "mushoku-tensei": [...mushokuTenseiVolumes, ...mushokuTenseiSideStories, ...mushokuTenseiRedundancy],
     orv: orvVolumes,
     "reverend-insanity": reverendInsanityVolumes,
-    "apothecary-diaries": apothecaryDiariesVolumes
+    "apothecary-diaries": apothecaryDiariesVolumes,
+    tensura: [...tensuraVolumes, ...tensuraSideStories]
 };
 
 interface LastRead {
@@ -124,6 +126,13 @@ const themeStyles: Record<string, {
         glow: "shadow-[0_8px_32px_0_rgba(236,72,153,0.25)]",
         badgeBg: "bg-pink-500/15"
     },
+    tensura: {
+        text: "text-sky-500 dark:text-sky-400",
+        bg: "bg-sky-950/40 backdrop-blur-xl",
+        border: "border-sky-500/25",
+        glow: "shadow-[0_8px_32px_0_rgba(14,165,233,0.25)]",
+        badgeBg: "bg-sky-500/15"
+    },
 };
 export function GlobalContinueReading() {
     const pathname = usePathname()
@@ -156,7 +165,8 @@ export function GlobalContinueReading() {
         (pathname.startsWith('/bunny-girl/select/') && pathParts.length > 3) ||
         (pathname.startsWith('/mushoku-tensei/select/') && pathParts.length > 3) ||
         (pathname.startsWith('/reverend-insanity/select/') && pathParts.length > 3) ||
-        (pathname.startsWith('/apothecary-diaries/select/') && pathParts.length > 3);
+        (pathname.startsWith('/apothecary-diaries/select/') && pathParts.length > 3) ||
+        (pathname.startsWith('/tensura/select/') && pathParts.length > 3);
 
     const isHidden =
         pathname === '/' ||
@@ -169,6 +179,7 @@ export function GlobalContinueReading() {
         pathname.startsWith('/lotm/read') ||
         pathname.startsWith('/reverend-insanity/read') ||
         pathname.startsWith('/apothecary-diaries/read') ||
+        pathname.startsWith('/tensura/read') ||
         pathname.startsWith('/auth') ||
         isModalOpen ||
         isVolumeDetailsPage;
@@ -183,7 +194,7 @@ export function GlobalContinueReading() {
                 
                 const parts = pathname.split("/");
                 const currentNovelSlug = parts[1];
-                const novelSlugs = ['cote', 'lotm', 'rezero', 'bunny-girl', 'mushoku-tensei', 'orv', 'reverend-insanity', 'apothecary-diaries'];
+                const novelSlugs = ['cote', 'lotm', 'rezero', 'bunny-girl', 'mushoku-tensei', 'orv', 'reverend-insanity', 'apothecary-diaries', 'tensura'];
                 
                 // If browsing a specific novel select page, filter progress check to that novel
                 const targetSlugs = novelSlugs.includes(currentNovelSlug) 

@@ -12,6 +12,8 @@ const defaultColors: Record<string, string> = {
     "mushoku-tensei": "#10b981",
     orv: "#06b6d4",
     "reverend-insanity": "#ef4444",
+    tensura: "#0ea5e9",
+    "apothecary-diaries": "#ec4899",
 }
 
 function parseHex(hex: string) {
