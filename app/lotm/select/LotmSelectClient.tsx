@@ -10,6 +10,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { LotmVolumeData, lotmSideStories } from "@/data/lotm";
 import { UserMenu } from "@/components/auth/UserMenu";
 import { BackgroundSlideshow } from "@/components/landing/BackgroundSlideshow";
+import { SupportAuthorCard } from "@/components/ui/SupportAuthorCard";
 import dynamic from "next/dynamic";
 
 const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
@@ -1284,6 +1285,13 @@ export default function LotmSelectClient({ volumes, coiVolumes = [] }: LotmSelec
           >
             Back to Volumes
           </Button>
+
+          <SupportAuthorCard 
+            novelSlug="lotm" 
+            volumeId={selectedVolFilter === "all" ? "v1" : selectedVolFilter} 
+            volumeTitle={activeVolume?.title} 
+            className="mt-6 border-amber-500/10 bg-amber-950/5 text-zinc-300"
+          />
         </div>
       </aside>
 

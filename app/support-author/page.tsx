@@ -50,7 +50,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Tappei Nagatsuki",
         coverImage: "/assets/images/rezero/v1/cover.jpg",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-starting-life-in-another-world",
+        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world",
         paperbackUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-violet-500/20 hover:border-violet-500/50 shadow-violet-950/10 text-violet-400 hover:bg-violet-500/5 focus:ring-violet-500/30"
@@ -94,7 +94,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "sing N song",
         coverImage: "/assets/orv/covers/orv.webp",
         publisherName: "Ize Press",
-        publisherUrl: "https://yenpress.com/series/omniscient-reader-s-viewpoint-novel",
+        publisherUrl: "https://yenpress.com/series/omniscient-readers-viewpoint-novel",
         paperbackUrl: "https://www.amazon.com/s?k=Omniscient+Reader%27s+Viewpoint+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Omniscient+Reader%27s+Viewpoint+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-sky-500/20 hover:border-sky-500/50 shadow-sky-950/10 text-sky-400 hover:bg-sky-500/5 focus:ring-sky-500/30"
@@ -116,9 +116,9 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Gu Zhen Ren",
         coverImage: "/assets/images/reverend-insanity/cover.jpg",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_7996858406002505",
-        paperbackUrl: "https://www.amazon.com/s?k=Reverend+Insanity+Vol.+1+paperback+light+novel&tag=supportauthor-21",
-        kindleUrl: "https://www.amazon.com/s?k=Reverend+Insanity+Vol.+1+kindle+light+novel&tag=supportauthor-21",
+        publisherUrl: "https://reverend-insanity.fandom.com/wiki/Reverend_Insanity_Wiki",
+        isSuspended: true,
+        suspensionText: "Reverend Insanity is on indefinite suspension due to censorship. Official digital/print editions are unavailable. You can visit the community Fandom Wiki.",
         colorTheme: "border-red-500/20 hover:border-red-500/50 shadow-red-950/10 text-red-400 hover:bg-red-500/5 focus:ring-red-500/30"
     }
 ];
