@@ -22,6 +22,7 @@ scripts/debug*
 # production
 /build
 /public/images/books/
+/public/books/
 /lib/chapter-mappings.ts
 
 
@@ -66,3 +67,11 @@ next-env.d.ts
 !/scripts/clean-build.ts
 !/scripts/extract-images.ts
 !/scripts/scrape-y3v4.ts
+
+# temporary and test files
+/temp_ch1.html
+/test-check.js
+/test-img.js
+/test-parse.js
+/test-*.js
+/test-*.ts

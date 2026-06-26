@@ -38,7 +38,7 @@ export default function AdBanner() {
         style={{ border: 'none', overflow: 'hidden' }}
         scrolling="no"
         title="Advertisement"
-        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+        sandbox="allow-scripts allow-same-origin allow-forms"
       />
     </div>
   );
