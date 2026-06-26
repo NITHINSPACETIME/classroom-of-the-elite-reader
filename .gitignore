@@ -50,14 +50,9 @@ next-env.d.ts
 
 # scraped caches & assets
 /data/*-cache/
-/public/assets/covers/rezero/
-/public/assets/images/rezero/
-/public/assets/rezero_bg_*.png
-/public/assets/rezero_logo_transparent.png
-/public/assets/re.png
-/public/assets/test.webp
-/public/assets/wiki_y3v4/
-/public/assets/y3v4_ch7_1_old_color.webp
+/public/assets/
+!/public/assets/grid.svg
+/public/content/
 
 
 
