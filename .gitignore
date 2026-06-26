@@ -49,7 +49,7 @@ next-env.d.ts
 /scratch
 
 # scraped caches & assets
-/data/rezero-cache/
+/data/*-cache/
 /public/assets/covers/rezero/
 /public/assets/images/rezero/
 /public/assets/rezero_bg_*.png
