@@ -50,7 +50,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Tappei Nagatsuki",
         coverImage: "/assets/images/rezero/v1/cover.jpg",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world",
+        publisherUrl: "https://yenpress.com/series/re-starting-life-in-another-world",
         paperbackUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-violet-500/20 hover:border-violet-500/50 shadow-violet-950/10 text-violet-400 hover:bg-violet-500/5 focus:ring-violet-500/30"

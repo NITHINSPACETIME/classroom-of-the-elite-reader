@@ -36,7 +36,7 @@ const SERIES_METADATA: Record<string, {
     "rezero": {
         searchName: "Re:Zero -Starting Life in Another World-",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world",
+        publisherUrl: "https://yenpress.com/series/re-starting-life-in-another-world",
         accentClass: "text-violet-500 dark:text-violet-400 border-violet-500/20 hover:border-violet-500/60 focus:ring-violet-500/30",
         bgHoverClass: "hover:bg-violet-500/5 dark:hover:bg-violet-500/10"
     },
