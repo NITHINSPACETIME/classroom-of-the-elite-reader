@@ -94,6 +94,18 @@ export default function Home() {
       >
         {/* Badges Container */}
         <div className="flex flex-wrap gap-2 sm:gap-3 items-center justify-center mb-2">
+          <Link
+            href="/support-author"
+            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-zinc-800 bg-zinc-900/30 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-xs font-medium text-zinc-400 hover:text-white hover:border-pink-500/40 hover:bg-pink-500/10 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_25px_rgba(236,72,153,0.25)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm group"
+          >
+            <span className="relative flex h-1.5 w-1.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-pink-500"></span>
+            </span>
+            <span className="hidden sm:inline">Support the Authors</span>
+            <span className="inline sm:hidden">Support</span>
+          </Link>
+
           <a
             href="https://discord.gg/3zAsapzwmv"
             target="_blank"
@@ -605,10 +617,19 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/donate"
-            className="p-3 rounded-2xl bg-zinc-950/40 border border-zinc-800/80 text-zinc-400 hover:text-red-400 hover:border-red-500/40 hover:bg-red-500/10 hover:shadow-[0_0_20px_rgba(239,68,68,0.15)] transition-all duration-300 hover:scale-110 group"
+            href="/support-author"
+            className="p-3 rounded-2xl bg-zinc-950/40 border border-zinc-800/80 text-zinc-400 hover:text-pink-400 hover:border-pink-500/40 hover:bg-pink-500/10 hover:shadow-[0_0_20px_rgba(236,72,153,0.15)] transition-all duration-300 hover:scale-110 group"
+            title="Support the Official Authors"
           >
-            <Heart className="w-5 h-5 text-white/80 group-hover:text-red-500 group-hover:fill-red-500/20 transition-all duration-300" />
+            <Heart className="w-5 h-5 text-white/80 group-hover:text-pink-500 group-hover:fill-pink-500/20 transition-all duration-300" />
+          </Link>
+
+          <Link
+            href="/donate"
+            className="p-3 rounded-2xl bg-zinc-950/40 border border-zinc-800/80 text-zinc-400 hover:text-amber-400 hover:border-amber-500/40 hover:bg-amber-500/10 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300 hover:scale-110 group flex items-center justify-center"
+            title="Donate to Server Costs"
+          >
+            <span className="text-white/80 group-hover:text-amber-400 transition-colors font-bold text-sm">☕</span>
           </Link>
         </div>
 

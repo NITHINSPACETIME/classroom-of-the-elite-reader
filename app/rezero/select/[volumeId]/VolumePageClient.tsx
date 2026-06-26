@@ -14,6 +14,7 @@ import { useAuth } from "@/context/AuthContext";
 import { UserMenu } from "@/components/auth/UserMenu";
 import dynamic from "next/dynamic";
 import { BackgroundSlideshow } from "@/components/landing/BackgroundSlideshow";
+import { SupportAuthorCard } from "@/components/ui/SupportAuthorCard";
 
 const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
 const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
@@ -319,6 +320,13 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                 {volume.synopsis}
                             </p>
                         </div>
+
+                        <SupportAuthorCard 
+                            novelSlug="rezero" 
+                            volumeId={volumeId} 
+                            volumeTitle={volume.title} 
+                            className="my-2"
+                        />
 
                         <div>
                             <div className="mb-4 flex gap-4">

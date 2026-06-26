@@ -14,6 +14,7 @@ import { MarqueeText } from "@/components/MarqueeText";
 import { useAuth } from "@/context/AuthContext";
 import { UserMenu } from "@/components/auth/UserMenu";
 import dynamic from "next/dynamic";
+import { SupportAuthorCard } from "@/components/ui/SupportAuthorCard";
 
 const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
 const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
@@ -414,6 +415,13 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                             </div>
                         </div>
 
+
+                        <SupportAuthorCard 
+                            novelSlug="cote" 
+                            volumeId={volumeId} 
+                            volumeTitle={volume.title} 
+                            className="mb-4"
+                        />
 
                         <div>
                             {isSideStory && (

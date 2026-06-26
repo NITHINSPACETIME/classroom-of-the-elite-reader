@@ -14,6 +14,7 @@ import { useAuth } from "@/context/AuthContext";
 import { UserMenu } from "@/components/auth/UserMenu";
 import dynamic from "next/dynamic";
 import { BackgroundSlideshow } from "@/components/landing/BackgroundSlideshow";
+import { SupportAuthorCard } from "@/components/ui/SupportAuthorCard";
 
 const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
 const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
@@ -376,6 +377,13 @@ export function VolumePageClient({ volumeId, summary }: VolumePageClientProps) {
                             </div>
                         </div>
 
+                        <SupportAuthorCard 
+                            novelSlug="orv" 
+                            volumeId={volumeId} 
+                            volumeTitle={volume.title} 
+                            className="my-2"
+                        />
+
                         {/* Search & Chapters List */}
                         <div className="space-y-4">
                             <div className="flex flex-col sm:flex-row gap-3 items-center justify-between border-b border-cyan-950/10 pb-4">
@@ -450,7 +458,7 @@ export function VolumePageClient({ volumeId, summary }: VolumePageClientProps) {
 
                                 {sortedChapters.length === 0 && (
                                     <div className="text-center py-12 text-zinc-550 border border-dashed border-cyan-950/20 rounded-2xl">
-                                        No chapters found matching "{searchQuery}"
+                                        No chapters found matching &quot;{searchQuery}&quot;
                                     </div>
                                 )}
                             </div>

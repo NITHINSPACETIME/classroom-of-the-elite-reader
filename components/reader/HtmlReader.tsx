@@ -18,6 +18,7 @@ import { ShortcutsModal } from "./ShortcutsModal"
 import { useReadingProgress } from "@/hooks/useReadingProgress"
 import AdBanner from "@/components/AdBanner"
 import { MarqueeText } from "@/components/MarqueeText"
+import { SupportAuthorCard } from "@/components/ui/SupportAuthorCard"
 
 export type ReaderTheme = 'dark' | 'light' | 'sepia' | 'slatedark' | 'midnight' | 'forest' | 'oled' | 'espresso' | 'gray' | 'sunset' | 'cupcake' | 'bumblebee' | 'emerald' | 'corporate' | 'synthwave' | 'retro' | 'cyberpunk' | 'valentine' | 'halloween' | 'garden' | 'aqua' | 'lofi' | 'pastel' | 'fantasy' | 'wireframe' | 'black' | 'luxury' | 'dracula' | 'cmyk' | 'autumn' | 'business' | 'acid' | 'lemonade' | 'night' | 'coffee' | 'winter' | 'dim' | 'nord';
 export type ReaderFontFamily = 'serif' | 'sans' | 'merriweather' | 'roboto' | 'lora' | 'alegreya' | 'bookerly' | 'monospace' | 'ebgaramond' | 'crimsonpro' | 'georgia' | 'verdana' | 'arial' | 'timesnewroman' | 'helvetica' | 'tahoma' | 'systemui' | 'trebuchetms' | 'couriernew';
@@ -2691,6 +2692,15 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     readingMode={readingMode}
                                     chapterHeaderHtml={chapterHeaderHtml}
                                  />
+                                 
+                                 <div className="mt-12 mb-8 print:hidden max-w-3xl mx-auto">
+                                     <SupportAuthorCard 
+                                         novelSlug={novelSlug} 
+                                         volumeId={volumeId} 
+                                         volumeTitle={volumeTitle}
+                                         theme={theme}
+                                     />
+                                 </div>
                                  {pageTurnClass && (
                                      <div className={cn(
                                          "absolute inset-y-0 w-16 pointer-events-none z-50 transition-all duration-400 ease-out",

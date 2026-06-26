@@ -15,6 +15,7 @@ import { useAuth } from "@/context/AuthContext";
 import { UserMenu } from "@/components/auth/UserMenu";
 import { AuthModal } from "@/components/auth/AuthModal";
 import { ProfileModal } from "@/components/auth/ProfileModal";
+import { SupportAuthorCard } from "@/components/ui/SupportAuthorCard";
 
 
 
@@ -393,6 +394,13 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                 ))}
                             </div>
                         </div>
+
+                        <SupportAuthorCard 
+                            novelSlug="cote" 
+                            volumeId={volumeId} 
+                            volumeTitle={volume.title} 
+                            className="mb-4"
+                        />
 
                         {/* Chapter List */}
                         <div>
