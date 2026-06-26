@@ -50,7 +50,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Tappei Nagatsuki",
         coverImage: "/assets/images/rezero/v1/cover.jpg",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world",
+        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world-light-novel",
         paperbackUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-violet-500/20 hover:border-violet-500/50 shadow-violet-950/10 text-violet-400 hover:bg-violet-500/5 focus:ring-violet-500/30"
@@ -94,7 +94,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "sing N song",
         coverImage: "/assets/orv/covers/orv.webp",
         publisherName: "Ize Press",
-        publisherUrl: "https://yenpress.com/series/omniscient-readers-viewpoint-novel",
+        publisherUrl: "https://yenpress.com/series/omniscient-reader-s-viewpoint-novel",
         paperbackUrl: "https://www.amazon.com/s?k=Omniscient+Reader%27s+Viewpoint+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Omniscient+Reader%27s+Viewpoint+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-sky-500/20 hover:border-sky-500/50 shadow-sky-950/10 text-sky-400 hover:bg-sky-500/5 focus:ring-sky-500/30"
@@ -105,7 +105,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Cuttlefish That Loves Diving",
         coverImage: "/assets/images/lotm/web-lotm-cover.jpg",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/lord-of-mysteries_11022733006234505",
+        publisherUrl: "https://www.webnovel.com/book/lord-of-mysteries_11022733006236305",
         paperbackUrl: "https://www.amazon.com/s?k=Lord+of+the+Mysteries+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Lord+of+the+Mysteries+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-amber-500/20 hover:border-amber-500/50 shadow-amber-950/10 text-amber-400 hover:bg-amber-500/5 focus:ring-amber-500/30"
@@ -116,9 +116,11 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Gu Zhen Ren",
         coverImage: "/assets/images/reverend-insanity/cover.jpg",
         publisherName: "Webnovel",
-        publisherUrl: "https://reverend-insanity.fandom.com/wiki/Reverend_Insanity_Wiki",
+        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_10475266806001005",
+        paperbackUrl: "https://www.amazon.com/s?k=Reverend+Insanity+Vol.+1+paperback+light+novel&tag=supportauthor-21",
+        kindleUrl: "https://www.amazon.com/s?k=Reverend+Insanity+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         isSuspended: true,
-        suspensionText: "Reverend Insanity is on indefinite suspension due to censorship. Official digital/print editions are unavailable. You can visit the community Fandom Wiki.",
+        suspensionText: "Reverend Insanity is on indefinite suspension due to censorship. Official digital/print editions are unavailable. Search links point to community/unofficial listings.",
         colorTheme: "border-red-500/20 hover:border-red-500/50 shadow-red-950/10 text-red-400 hover:bg-red-500/5 focus:ring-red-500/30"
     }
 ];
@@ -201,55 +203,68 @@ export default function SupportAuthorPage() {
 
                             {/* Info or Action Buttons */}
                             <div className="flex flex-col gap-2.5 mt-auto">
-                                {novel.isSuspended ? (
-                                    <p className="text-[10px] leading-relaxed text-zinc-500 italic text-left bg-black/40 border border-white/5 p-3 rounded-xl min-h-[72px]">
+                                {novel.isSuspended && (
+                                    <p className="text-[10px] leading-relaxed text-zinc-500 italic text-left bg-black/40 border border-white/5 p-3 rounded-xl">
                                         {novel.suspensionText}
                                     </p>
-                                ) : (
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <a
-                                            href={novel.paperbackUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={cn(
-                                                "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
-                                                novel.colorTheme.split(" ")[3],
-                                                novel.colorTheme.split(" ")[4]
-                                            )}
-                                        >
-                                            <ShoppingBag className="w-3.5 h-3.5" />
-                                            <span>Paperback</span>
-                                        </a>
-                                        <a
-                                            href={novel.kindleUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={cn(
-                                                "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
-                                                novel.colorTheme.split(" ")[3],
-                                                novel.colorTheme.split(" ")[4]
-                                            )}
-                                        >
-                                            <BookOpen className="w-3.5 h-3.5" />
-                                            <span>Kindle</span>
-                                        </a>
-                                    </div>
                                 )}
 
-                                <a
-                                    href={novel.publisherUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={cn(
-                                        "flex items-center justify-center gap-1.5 py-2.5 px-4 text-xs font-semibold rounded-xl border transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
-                                        novel.isSuspended 
-                                            ? "border-red-500/20 text-red-400 hover:bg-red-500/5" 
-                                            : "border-white/10 text-white hover:bg-white/5"
+                                <div className="grid grid-cols-2 gap-2">
+                                    <a
+                                        href={novel.paperbackUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={cn(
+                                            "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
+                                            novel.colorTheme.split(" ")[3],
+                                            novel.colorTheme.split(" ")[4]
+                                        )}
+                                    >
+                                        <ShoppingBag className="w-3.5 h-3.5" />
+                                        <span>Paperback</span>
+                                    </a>
+                                    <a
+                                        href={novel.kindleUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={cn(
+                                            "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
+                                            novel.colorTheme.split(" ")[3],
+                                            novel.colorTheme.split(" ")[4]
+                                        )}
+                                    >
+                                        <BookOpen className="w-3.5 h-3.5" />
+                                        <span>Kindle</span>
+                                    </a>
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <a
+                                        href={novel.publisherUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={cn(
+                                            "flex items-center justify-center gap-1.5 py-2.5 px-4 text-xs font-semibold rounded-xl border transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
+                                            novel.isSuspended 
+                                                ? "border-red-500/20 text-red-400 hover:bg-red-500/5" 
+                                                : "border-white/10 text-white hover:bg-white/5"
+                                        )}
+                                    >
+                                        <ExternalLink className="w-3.5 h-3.5" />
+                                        <span>{novel.isSuspended ? "Visit Official Publisher" : "Visit Official Publisher"}</span>
+                                    </a>
+                                    {novel.id === "reverend-insanity" && (
+                                        <a
+                                            href="https://reverend-insanity.fandom.com/wiki/Reverend_Insanity_Wiki"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center justify-center gap-1.5 py-2.5 px-4 text-xs font-semibold rounded-xl border border-white/10 text-white hover:bg-white/5 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                                        >
+                                            <ExternalLink className="w-3.5 h-3.5" />
+                                            <span>Visit Fandom Wiki</span>
+                                        </a>
                                     )}
-                                >
-                                    <ExternalLink className="w-3.5 h-3.5" />
-                                    <span>{novel.isSuspended ? "Visit Fandom Wiki" : "Visit Official Publisher"}</span>
-                                </a>
+                                </div>
                             </div>
                         </motion.div>
                     ))}

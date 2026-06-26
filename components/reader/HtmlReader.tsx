@@ -2008,7 +2008,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
 
 
-            <div className="flex flex-1 relative overflow-hidden">
+            <div className={cn(
+                "flex flex-1 relative",
+                readingMode === 'horizontal' ? "overflow-hidden h-[100dvh]" : "overflow-visible"
+            )}>
                 <aside className={cn(
                     "fixed inset-y-0 left-0 z-40 w-80 transform transition-transform duration-300 ease-in-out border-r shadow-2xl overflow-y-auto pt-16 pb-4 px-4 flex flex-col print:hidden will-change-transform transform-gpu",
                     sidebarOpen ? "translate-x-0" : "-translate-x-full",
@@ -2236,10 +2239,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 <main
                     className={cn(
                         "flex-1 relative print:overflow-visible print:h-auto print:block",
-                        readingMode === 'horizontal' ? "overflow-hidden" : "overflow-y-auto scroll-smooth",
+                        readingMode === 'horizontal' ? "overflow-hidden h-full" : "overflow-visible",
                         sidebarOpen && "md:ml-80 transition-[margin] duration-300 print:ml-0"
                     )}
-                    style={{ WebkitOverflowScrolling: 'touch' }}
                     onClick={handleContentClickInternal}
                 >
                     <div className={cn(

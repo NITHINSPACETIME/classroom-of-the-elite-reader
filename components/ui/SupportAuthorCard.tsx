@@ -36,7 +36,7 @@ const SERIES_METADATA: Record<string, {
     "rezero": {
         searchName: "Re:Zero -Starting Life in Another World-",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world",
+        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world-light-novel",
         accentClass: "text-violet-500 dark:text-violet-400 border-violet-500/20 hover:border-violet-500/60 focus:ring-violet-500/30",
         bgHoverClass: "hover:bg-violet-500/5 dark:hover:bg-violet-500/10"
     },
@@ -64,21 +64,21 @@ const SERIES_METADATA: Record<string, {
     "orv": {
         searchName: "Omniscient Reader's Viewpoint",
         publisherName: "Ize Press",
-        publisherUrl: "https://yenpress.com/series/omniscient-readers-viewpoint-novel",
+        publisherUrl: "https://yenpress.com/series/omniscient-reader-s-viewpoint-novel",
         accentClass: "text-sky-500 dark:text-sky-400 border-sky-500/20 hover:border-sky-500/60 focus:ring-sky-500/30",
         bgHoverClass: "hover:bg-sky-500/5 dark:hover:bg-sky-500/10"
     },
     "lotm": {
         searchName: "Lord of the Mysteries",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/lord-of-mysteries_11022733006234505",
+        publisherUrl: "https://www.webnovel.com/book/lord-of-mysteries_11022733006236305",
         accentClass: "text-amber-500 dark:text-amber-400 border-amber-500/20 hover:border-amber-500/60 focus:ring-amber-500/30",
         bgHoverClass: "hover:bg-amber-500/5 dark:hover:bg-amber-500/10"
     },
     "reverend-insanity": {
         searchName: "Reverend Insanity",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_7996858406002505",
+        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_10475266806001005",
         accentClass: "text-red-500 dark:text-red-400 border-red-500/20 hover:border-red-500/60 focus:ring-red-500/30",
         bgHoverClass: "hover:bg-red-500/5 dark:hover:bg-red-500/10"
     }
@@ -167,7 +167,7 @@ export function SupportAuthorCard({ novelSlug, volumeId, volumeTitle, theme = "d
         if (volumeId.startsWith("coi") || (volumeTitle && volumeTitle.toLowerCase().includes("inevitable"))) {
             publisherUrl = "https://www.webnovel.com/book/lord-of-mysteries-2-circle-of-inevitability_25759730405792805";
         } else {
-            publisherUrl = "https://www.webnovel.com/book/lord-of-mysteries_11022733006234505";
+            publisherUrl = "https://www.webnovel.com/book/lord-of-mysteries_11022733006236305";
         }
     }
 
@@ -202,45 +202,41 @@ export function SupportAuthorCard({ novelSlug, volumeId, volumeTitle, theme = "d
                 
                 <div className="flex flex-wrap items-center gap-3 shrink-0 select-none">
                     {/* Amazon Paperback */}
-                    {novelSlug !== "reverend-insanity" && (
-                        <a
-                            href={amazonUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={cn(
-                                "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 shadow-sm focus:outline-none focus:ring-2",
-                                meta.accentClass,
-                                meta.bgHoverClass,
-                                isLightBackground ? "bg-white" : "bg-zinc-900/40"
-                            )}
-                            title="Search for physical paperback on Amazon"
-                        >
-                            <ShoppingBag className="w-3.5 h-3.5" />
-                            <span>Buy Physical</span>
-                        </a>
-                    )}
+                    <a
+                        href={amazonUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(
+                            "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 shadow-sm focus:outline-none focus:ring-2",
+                            meta.accentClass,
+                            meta.bgHoverClass,
+                            isLightBackground ? "bg-white" : "bg-zinc-900/40"
+                        )}
+                        title="Search for physical paperback on Amazon"
+                    >
+                        <ShoppingBag className="w-3.5 h-3.5" />
+                        <span>Buy Physical</span>
+                    </a>
 
                     {/* Kindle / Digital */}
-                    {novelSlug !== "reverend-insanity" && (
-                        <a
-                            href={kindleUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={cn(
-                                "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 shadow-sm focus:outline-none focus:ring-2",
-                                meta.accentClass,
-                                meta.bgHoverClass,
-                                isLightBackground ? "bg-white" : "bg-zinc-900/40"
-                            )}
-                            title="Search for Kindle ebook on Amazon"
-                        >
-                            <BookOpen className="w-3.5 h-3.5" />
-                            <span>Kindle Ebook</span>
-                        </a>
-                    )}
+                    <a
+                        href={kindleUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(
+                            "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 shadow-sm focus:outline-none focus:ring-2",
+                            meta.accentClass,
+                            meta.bgHoverClass,
+                            isLightBackground ? "bg-white" : "bg-zinc-900/40"
+                        )}
+                        title="Search for Kindle ebook on Amazon"
+                    >
+                        <BookOpen className="w-3.5 h-3.5" />
+                        <span>Kindle Ebook</span>
+                    </a>
 
                     {/* Official Publisher */}
-                    {publisherUrl && novelSlug !== "reverend-insanity" && (
+                    {publisherUrl && (
                         <a
                             href={publisherUrl}
                             target="_blank"
