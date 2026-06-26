@@ -2915,6 +2915,21 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     </Button>
                                 </Link>
 
+                                <Link href="/support-author">
+                                    <Button
+                                        variant="outline"
+                                        className={cn(
+                                            "rounded-full gap-2 pl-4 pr-6 h-10 transition-all duration-300 group hover:scale-105 shadow-sm",
+                                            isThemeLight(theme)
+                                                ? "bg-white border-pink-100 hover:border-pink-300 text-pink-600 hover:text-pink-700 hover:bg-pink-50/20"
+                                                : "bg-white/5 border-pink-500/30 hover:border-pink-400 hover:bg-pink-500/10 text-pink-400 hover:text-pink-300"
+                                        )}
+                                    >
+                                        <Heart className="w-4 h-4 fill-pink-500/10 group-hover:fill-pink-500/20 text-pink-500" />
+                                        <span className="font-serif">Support Authors</span>
+                                    </Button>
+                                </Link>
+
                                 <a
                                     href="https://github.com/NITHINSPACETIME/novels-reader"
                                     target="_blank"
