@@ -181,6 +181,10 @@ export function GlobalContinueReading() {
         pathname.startsWith('/apothecary-diaries/read') ||
         pathname.startsWith('/tensura/read') ||
         pathname.startsWith('/auth') ||
+        pathname.startsWith('/support-author') ||
+        pathname.startsWith('/donate') ||
+        pathname.startsWith('/guestbook') ||
+        pathname.startsWith('/characters') ||
         isModalOpen ||
         isVolumeDetailsPage;
 
