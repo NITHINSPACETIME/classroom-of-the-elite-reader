@@ -36,7 +36,7 @@ const SERIES_METADATA: Record<string, {
     "rezero": {
         searchName: "Re:Zero -Starting Life in Another World-",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world-light-novel",
+        publisherUrl: "https://yenpress.com/series/re-zero",
         accentClass: "text-violet-500 dark:text-violet-400 border-violet-500/20 hover:border-violet-500/60 focus:ring-violet-500/30",
         bgHoverClass: "hover:bg-violet-500/5 dark:hover:bg-violet-500/10"
     },
@@ -71,7 +71,7 @@ const SERIES_METADATA: Record<string, {
     "lotm": {
         searchName: "Lord of the Mysteries",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/lord-of-mysteries_11022733006236305",
+        publisherUrl: "https://www.webnovel.com/book/lord-of-the-mysteries_11022733006234505",
         accentClass: "text-amber-500 dark:text-amber-400 border-amber-500/20 hover:border-amber-500/60 focus:ring-amber-500/30",
         bgHoverClass: "hover:bg-amber-500/5 dark:hover:bg-amber-500/10"
     },
@@ -159,15 +159,20 @@ export function SupportAuthorCard({ novelSlug, volumeId, volumeTitle, theme = "d
 
     const escapedQuery = encodeURIComponent(searchQuery);
     
-    const amazonUrl = `https://www.amazon.com/s?k=${escapedQuery}+paperback+light+novel&tag=${affiliateTag}`;
-    const kindleUrl = `https://www.amazon.com/s?k=${escapedQuery}+kindle+light+novel&tag=${affiliateTag}`;
+    let amazonUrl = `https://www.amazon.com/s?k=${escapedQuery}+paperback+light+novel&tag=${affiliateTag}`;
+    let kindleUrl = `https://www.amazon.com/s?k=${escapedQuery}+kindle+light+novel&tag=${affiliateTag}`;
+    
+    if (novelSlug === "reverend-insanity") {
+        amazonUrl = `https://www.amazon.com/s?k=Reverend+Insanity&tag=${affiliateTag}`;
+        kindleUrl = `https://www.amazon.com/s?k=Reverend+Insanity+kindle&tag=${affiliateTag}`;
+    }
 
     let publisherUrl = meta.publisherUrl;
     if (novelSlug === "lotm") {
         if (volumeId.startsWith("coi") || (volumeTitle && volumeTitle.toLowerCase().includes("inevitable"))) {
-            publisherUrl = "https://www.webnovel.com/book/lord-of-mysteries-2-circle-of-inevitability_25759730405792805";
+            publisherUrl = "https://www.webnovel.com/book/lord-of-mysteries-2-circle-of-inevitability_26042456406980505";
         } else {
-            publisherUrl = "https://www.webnovel.com/book/lord-of-mysteries_11022733006236305";
+            publisherUrl = "https://www.webnovel.com/book/lord-of-the-mysteries_11022733006234505";
         }
     }
 

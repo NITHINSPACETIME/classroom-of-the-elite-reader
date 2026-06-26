@@ -50,7 +50,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Tappei Nagatsuki",
         coverImage: "/assets/images/rezero/v1/cover.jpg",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world-light-novel",
+        publisherUrl: "https://yenpress.com/series/re-zero",
         paperbackUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-violet-500/20 hover:border-violet-500/50 shadow-violet-950/10 text-violet-400 hover:bg-violet-500/5 focus:ring-violet-500/30"
@@ -105,7 +105,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Cuttlefish That Loves Diving",
         coverImage: "/assets/images/lotm/web-lotm-cover.jpg",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/lord-of-mysteries_11022733006236305",
+        publisherUrl: "https://www.webnovel.com/book/lord-of-the-mysteries_11022733006234505",
         paperbackUrl: "https://www.amazon.com/s?k=Lord+of+the+Mysteries+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Lord+of+the+Mysteries+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-amber-500/20 hover:border-amber-500/50 shadow-amber-950/10 text-amber-400 hover:bg-amber-500/5 focus:ring-amber-500/30"
@@ -117,8 +117,8 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         coverImage: "/assets/images/reverend-insanity/cover.jpg",
         publisherName: "Webnovel",
         publisherUrl: "https://www.webnovel.com/book/reverend-insanity_10475266806001005",
-        paperbackUrl: "https://www.amazon.com/s?k=Reverend+Insanity+Vol.+1+paperback+light+novel&tag=supportauthor-21",
-        kindleUrl: "https://www.amazon.com/s?k=Reverend+Insanity+Vol.+1+kindle+light+novel&tag=supportauthor-21",
+        paperbackUrl: "https://www.amazon.com/s?k=Reverend+Insanity&tag=supportauthor-21",
+        kindleUrl: "https://www.amazon.com/s?k=Reverend+Insanity+kindle&tag=supportauthor-21",
         isSuspended: true,
         suspensionText: "Reverend Insanity is on indefinite suspension due to censorship. Official digital/print editions are unavailable. Search links point to community/unofficial listings.",
         colorTheme: "border-red-500/20 hover:border-red-500/50 shadow-red-950/10 text-red-400 hover:bg-red-500/5 focus:ring-red-500/30"
