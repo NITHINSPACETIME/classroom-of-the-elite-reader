@@ -36,7 +36,7 @@ const SERIES_METADATA: Record<string, {
     "rezero": {
         searchName: "Re:Zero -Starting Life in Another World-",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero",
+        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world",
         accentClass: "text-violet-500 dark:text-violet-400 border-violet-500/20 hover:border-violet-500/60 focus:ring-violet-500/30",
         bgHoverClass: "hover:bg-violet-500/5 dark:hover:bg-violet-500/10"
     },
@@ -78,7 +78,7 @@ const SERIES_METADATA: Record<string, {
     "reverend-insanity": {
         searchName: "Reverend Insanity",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_10475266806001005",
+        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_7996858406002505",
         accentClass: "text-red-500 dark:text-red-400 border-red-500/20 hover:border-red-500/60 focus:ring-red-500/30",
         bgHoverClass: "hover:bg-red-500/5 dark:hover:bg-red-500/10"
     }
@@ -163,8 +163,8 @@ export function SupportAuthorCard({ novelSlug, volumeId, volumeTitle, theme = "d
     let kindleUrl = `https://www.amazon.com/s?k=${escapedQuery}+kindle+light+novel&tag=${affiliateTag}`;
     
     if (novelSlug === "reverend-insanity") {
-        amazonUrl = `https://www.amazon.com/s?k=Reverend+Insanity&tag=${affiliateTag}`;
-        kindleUrl = `https://www.amazon.com/s?k=Reverend+Insanity+kindle&tag=${affiliateTag}`;
+        amazonUrl = `https://www.amazon.com/Zhen-Ren-REVEREND-INSANITY-Book/dp/B0D6LRRKYG?dib=eyJ2IjoiMSJ9.xvgQ0uTOvKztTb83u0VCGnGTUhltLmm--uSAlGkOfYbxpIu1EsQvVWxQagzyzowoTHB8bMdUZF2q4HxXTp0obspYxIN7cd0Mrb8Z6FzlKtw.KLUsrIUfSbBW3HnBU0f5pAKXfvd4DBiyhltiWcloHuo&dib_tag=se&keywords=Reverend+Insanity&qid=1782505062&sr=8-5&tag=${affiliateTag}`;
+        kindleUrl = "";
     }
 
     let publisherUrl = meta.publisherUrl;
@@ -224,21 +224,23 @@ export function SupportAuthorCard({ novelSlug, volumeId, volumeTitle, theme = "d
                     </a>
 
                     {/* Kindle / Digital */}
-                    <a
-                        href={kindleUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={cn(
-                            "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 shadow-sm focus:outline-none focus:ring-2",
-                            meta.accentClass,
-                            meta.bgHoverClass,
-                            isLightBackground ? "bg-white" : "bg-zinc-900/40"
-                        )}
-                        title="Search for Kindle ebook on Amazon"
-                    >
-                        <BookOpen className="w-3.5 h-3.5" />
-                        <span>Kindle Ebook</span>
-                    </a>
+                    {novelSlug !== "reverend-insanity" && (
+                        <a
+                            href={kindleUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cn(
+                                "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 shadow-sm focus:outline-none focus:ring-2",
+                                meta.accentClass,
+                                meta.bgHoverClass,
+                                isLightBackground ? "bg-white" : "bg-zinc-900/40"
+                            )}
+                            title="Search for Kindle ebook on Amazon"
+                        >
+                            <BookOpen className="w-3.5 h-3.5" />
+                            <span>Kindle Ebook</span>
+                        </a>
+                    )}
 
                     {/* Official Publisher */}
                     {publisherUrl && (
@@ -256,24 +258,6 @@ export function SupportAuthorCard({ novelSlug, volumeId, volumeTitle, theme = "d
                         >
                             <ExternalLink className="w-3.5 h-3.5" />
                             <span>Publisher</span>
-                        </a>
-                    )}
-
-                    {novelSlug === "reverend-insanity" && (
-                        <a
-                            href="https://reverend-insanity.fandom.com/wiki/Reverend_Insanity_Wiki"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={cn(
-                                "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg border transition-all duration-200 shadow-sm focus:outline-none focus:ring-2",
-                                meta.accentClass,
-                                meta.bgHoverClass,
-                                isLightBackground ? "bg-white" : "bg-zinc-900/40"
-                            )}
-                            title="Visit the community Fandom Wiki"
-                        >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>Fandom Wiki</span>
                         </a>
                     )}
                 </div>

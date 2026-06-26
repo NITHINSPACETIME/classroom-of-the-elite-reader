@@ -50,7 +50,7 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Tappei Nagatsuki",
         coverImage: "/assets/images/rezero/v1/cover.jpg",
         publisherName: "Yen Press",
-        publisherUrl: "https://yenpress.com/series/re-zero",
+        publisherUrl: "https://yenpress.com/series/re-zero-starting-life-in-another-world",
         paperbackUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+paperback+light+novel&tag=supportauthor-21",
         kindleUrl: "https://www.amazon.com/s?k=Re%3AZero+-Starting+Life+in+Another+World-+Vol.+1+kindle+light+novel&tag=supportauthor-21",
         colorTheme: "border-violet-500/20 hover:border-violet-500/50 shadow-violet-950/10 text-violet-400 hover:bg-violet-500/5 focus:ring-violet-500/30"
@@ -116,11 +116,10 @@ const SUPPORT_NOVELS: NovelSupportData[] = [
         author: "Gu Zhen Ren",
         coverImage: "/assets/images/reverend-insanity/cover.jpg",
         publisherName: "Webnovel",
-        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_10475266806001005",
-        paperbackUrl: "https://www.amazon.com/s?k=Reverend+Insanity&tag=supportauthor-21",
-        kindleUrl: "https://www.amazon.com/s?k=Reverend+Insanity+kindle&tag=supportauthor-21",
+        publisherUrl: "https://www.webnovel.com/book/reverend-insanity_7996858406002505",
+        paperbackUrl: "https://www.amazon.com/Zhen-Ren-REVEREND-INSANITY-Book/dp/B0D6LRRKYG?dib=eyJ2IjoiMSJ9.xvgQ0uTOvKztTb83u0VCGnGTUhltLmm--uSAlGkOfYbxpIu1EsQvVWxQagzyzowoTHB8bMdUZF2q4HxXTp0obspYxIN7cd0Mrb8Z6FzlKtw.KLUsrIUfSbBW3HnBU0f5pAKXfvd4DBiyhltiWcloHuo&dib_tag=se&keywords=Reverend+Insanity&qid=1782505062&sr=8-5&tag=supportauthor-21",
         isSuspended: true,
-        suspensionText: "Reverend Insanity is on indefinite suspension due to censorship. Official digital/print editions are unavailable. Search links point to community/unofficial listings.",
+        suspensionText: "Reverend Insanity is on indefinite suspension due to censorship. Official digital/print editions are unavailable. Paperback link points to an unofficial/fan print listing.",
         colorTheme: "border-red-500/20 hover:border-red-500/50 shadow-red-950/10 text-red-400 hover:bg-red-500/5 focus:ring-red-500/30"
     }
 ];
@@ -209,33 +208,40 @@ export default function SupportAuthorPage() {
                                     </p>
                                 )}
 
-                                <div className="grid grid-cols-2 gap-2">
-                                    <a
-                                        href={novel.paperbackUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={cn(
-                                            "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
-                                            novel.colorTheme.split(" ")[3],
-                                            novel.colorTheme.split(" ")[4]
-                                        )}
-                                    >
-                                        <ShoppingBag className="w-3.5 h-3.5" />
-                                        <span>Paperback</span>
-                                    </a>
-                                    <a
-                                        href={novel.kindleUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={cn(
-                                            "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
-                                            novel.colorTheme.split(" ")[3],
-                                            novel.colorTheme.split(" ")[4]
-                                        )}
-                                    >
-                                        <BookOpen className="w-3.5 h-3.5" />
-                                        <span>Kindle</span>
-                                    </a>
+                                <div className={cn(
+                                    "grid gap-2",
+                                    novel.paperbackUrl && novel.kindleUrl ? "grid-cols-2" : "grid-cols-1"
+                                )}>
+                                    {novel.paperbackUrl && (
+                                        <a
+                                            href={novel.paperbackUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={cn(
+                                                "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
+                                                novel.colorTheme.split(" ")[3],
+                                                novel.colorTheme.split(" ")[4]
+                                            )}
+                                        >
+                                            <ShoppingBag className="w-3.5 h-3.5" />
+                                            <span>Paperback</span>
+                                        </a>
+                                    )}
+                                    {novel.kindleUrl && (
+                                        <a
+                                            href={novel.kindleUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={cn(
+                                                "flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold rounded-xl border bg-zinc-900/30 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
+                                                novel.colorTheme.split(" ")[3],
+                                                novel.colorTheme.split(" ")[4]
+                                            )}
+                                        >
+                                            <BookOpen className="w-3.5 h-3.5" />
+                                            <span>Kindle</span>
+                                        </a>
+                                    )}
                                 </div>
 
                                 <div className="flex flex-col gap-2">
@@ -253,17 +259,7 @@ export default function SupportAuthorPage() {
                                         <ExternalLink className="w-3.5 h-3.5" />
                                         <span>{novel.isSuspended ? "Visit Official Publisher" : "Visit Official Publisher"}</span>
                                     </a>
-                                    {novel.id === "reverend-insanity" && (
-                                        <a
-                                            href="https://reverend-insanity.fandom.com/wiki/Reverend_Insanity_Wiki"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center gap-1.5 py-2.5 px-4 text-xs font-semibold rounded-xl border border-white/10 text-white hover:bg-white/5 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                                        >
-                                            <ExternalLink className="w-3.5 h-3.5" />
-                                            <span>Visit Fandom Wiki</span>
-                                        </a>
-                                    )}
+
                                 </div>
                             </div>
                         </motion.div>
