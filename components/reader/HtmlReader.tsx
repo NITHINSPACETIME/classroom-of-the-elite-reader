@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowLeft, ArrowRight, Settings, Home, Menu, Minimize, Maximize, X, Search, Download, Printer, FileDown, Plus, Minus, RotateCcw, MoreVertical, ArrowUp, ArrowDown, Heart, MessageCircle, Keyboard, Github } from "lucide-react"
+import { ArrowLeft, ArrowRight, Settings, Home, Menu, Minimize, Maximize, X, Search, Download, Printer, FileDown, Plus, Minus, RotateCcw, MoreVertical, ArrowUp, ArrowDown, Heart, MessageCircle, Keyboard, Github, Coffee } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CustomComments } from "@/components/comments/CustomComments"
 import { UserMenu } from "@/components/auth/UserMenu"
@@ -2910,8 +2910,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                                 : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 text-gray-300 hover:text-cyan-400" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-red-500/10 text-gray-300 hover:text-red-400")
                                         )}
                                     >
-                                        <Heart className="w-4 h-4 transition-colors group-hover:fill-current" />
-                                        <span className="font-serif">Donate</span>
+                                        <Coffee className="w-4 h-4 transition-colors group-hover:fill-current" />
+                                        <span className="font-serif">Buy me a coffee</span>
                                     </Button>
                                 </Link>
 
