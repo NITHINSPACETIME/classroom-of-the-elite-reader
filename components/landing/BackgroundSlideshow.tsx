@@ -17,7 +17,7 @@ interface BackgroundSlideshowProps {
     imageOpacity?: number;
 }
 
-export function BackgroundSlideshow({ images = backgroundImages, interval = 6000, imageOpacity = 0.6 }: BackgroundSlideshowProps) {
+export function BackgroundSlideshow({ images = backgroundImages, interval = 6000, imageOpacity = 0.85 }: BackgroundSlideshowProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
@@ -54,9 +54,9 @@ export function BackgroundSlideshow({ images = backgroundImages, interval = 6000
             </AnimatePresence>
 
 
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-transparent z-10" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-background/40 to-background opacity-90 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/45 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-transparent z-10" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-background/30 to-background opacity-75 z-10" />
             <div className="absolute inset-0 bg-[url('/assets/grid.svg')] opacity-5 z-10" />
         </div>
     )

@@ -81,6 +81,13 @@ const SERIES_METADATA: Record<string, {
         publisherUrl: "https://www.webnovel.com/book/reverend-insanity_7996858406002505",
         accentClass: "text-red-500 dark:text-red-400 border-red-500/20 hover:border-red-500/60 focus:ring-red-500/30",
         bgHoverClass: "hover:bg-red-500/5 dark:hover:bg-red-500/10"
+    },
+    "tbate": {
+        searchName: "The Beginning After The End",
+        publisherName: "Tapas",
+        publisherUrl: "https://tapas.io/series/tbate-novel/info",
+        accentClass: "text-amber-500 dark:text-amber-400 border-amber-500/20 hover:border-amber-500/60 focus:ring-amber-500/30",
+        bgHoverClass: "hover:bg-amber-500/5 dark:hover:bg-amber-500/10"
     }
 };
 

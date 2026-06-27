@@ -129,6 +129,13 @@
     --accent-foreground: 195 100% 85%;
   }
 
+  .theme-tbate {
+    --primary: 43 96% 56%; /* gold/amber */
+    --ring: 43 96% 56%;
+    --accent: 43 30% 12%;
+    --accent-foreground: 43 96% 85%;
+  }
+
   * {
     @apply border-border;
   }

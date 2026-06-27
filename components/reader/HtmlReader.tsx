@@ -117,7 +117,8 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     const isReverendInsanity = detailsLink?.startsWith('/reverend-insanity') || volumeId.startsWith('ri');
     const isApothecaryDiaries = detailsLink?.startsWith('/apothecary-diaries') || volumeId.startsWith('ad');
     const isTensura = detailsLink?.startsWith('/tensura');
-    const isCote = !isRezero && !isOrv && !isBunnyGirl && !isMushokuTensei && !isLotm && !isReverendInsanity && !isApothecaryDiaries && !isTensura;
+    const isTbate = detailsLink?.startsWith('/tbate');
+    const isCote = !isRezero && !isOrv && !isBunnyGirl && !isMushokuTensei && !isLotm && !isReverendInsanity && !isApothecaryDiaries && !isTensura && !isTbate;
     const baseReadPath = isOrv 
         ? `/orv/read` 
         : (isRezero 
@@ -134,7 +135,10 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                 ? `/apothecary-diaries/read`
                                 : (isTensura
                                     ? `/tensura/read`
-                                    : `/cote/read`
+                                    : (isTbate
+                                        ? `/tbate/read`
+                                        : `/cote/read`
+                                      )
                                   )
                               )
                           )
@@ -143,7 +147,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
               )
           );
 
-    const novelSlug = isOrv ? 'orv' : (isRezero ? 'rezero' : (isBunnyGirl ? 'bunny-girl' : (isMushokuTensei ? 'mushoku-tensei' : (isLotm ? 'lotm' : (isReverendInsanity ? 'reverend-insanity' : (isApothecaryDiaries ? 'apothecary-diaries' : (isTensura ? 'tensura' : 'cote')))))));
+    const novelSlug = isOrv ? 'orv' : (isRezero ? 'rezero' : (isBunnyGirl ? 'bunny-girl' : (isMushokuTensei ? 'mushoku-tensei' : (isLotm ? 'lotm' : (isReverendInsanity ? 'reverend-insanity' : (isApothecaryDiaries ? 'apothecary-diaries' : (isTensura ? 'tensura' : (isTbate ? 'tbate' : 'cote'))))))));
 
     const [theme, setTheme] = useState<ReaderTheme>('dark');
     const [fontSize, setFontSize] = useState(18);
@@ -738,7 +742,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     }, [toc, searchQuery]);
 
     const themeMap = {
-        dark: isOrv ? "bg-[#020204] text-[#e2e8f0]" : (isRezero ? "bg-[#05030a] text-[#f4f4f5]" : (isBunnyGirl ? "bg-[#0b0816] text-[#ece2f9]" : (isApothecaryDiaries ? "bg-[#0b0610] text-[#f9eaf3]" : "bg-[#14151b] text-[#b6bccc]"))),
+        dark: isTbate ? "bg-[#070503] text-[#fffbeb]" : (isOrv ? "bg-[#020204] text-[#e2e8f0]" : (isRezero ? "bg-[#05030a] text-[#f4f4f5]" : (isBunnyGirl ? "bg-[#0b0816] text-[#ece2f9]" : (isApothecaryDiaries ? "bg-[#0b0610] text-[#f9eaf3]" : "bg-[#14151b] text-[#b6bccc]")))),
         light: "bg-white text-gray-900",
         sepia: "bg-[#f4ecd8] text-[#5b4636]",
         slatedark: "bg-[#0d1117] text-[#c9d1d9]",
@@ -1335,10 +1339,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         ? "border-indigo-500 bg-indigo-500/10 text-white" 
                         : (isApothecaryDiaries
                             ? "border-pink-500 bg-pink-500/10 text-white"
-                            : "border-red-500 bg-red-500/10 text-white")))));
+                            : (isTbate
+                                ? "border-amber-500 bg-amber-500/10 text-white"
+                                : "border-red-500 bg-red-500/10 text-white"))))));
 
     const themeBgColors = {
-        dark: isOrv ? "#020204" : (isRezero ? "#05030a" : (isBunnyGirl ? "#0b0816" : (isApothecaryDiaries ? "#0b0610" : "#14151b"))),
+        dark: isTbate ? "#070503" : (isOrv ? "#020204" : (isRezero ? "#05030a" : (isBunnyGirl ? "#0b0816" : (isApothecaryDiaries ? "#0b0610" : "#14151b")))),
         light: "#ffffff",
         sepia: "#f4ecd8",
         slatedark: "#0d1117",
@@ -1350,7 +1356,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
     };
 
     const themeTextColors = {
-        dark: isOrv ? "#e2e8f0" : (isRezero ? "#f4f4f5" : (isBunnyGirl ? "#ece2f9" : (isApothecaryDiaries ? "#f9eaf3" : "#b6bccc"))),
+        dark: isTbate ? "#fffbeb" : (isOrv ? "#e2e8f0" : (isRezero ? "#f4f4f5" : (isBunnyGirl ? "#ece2f9" : (isApothecaryDiaries ? "#f9eaf3" : "#b6bccc")))),
         light: "#111827",
         sepia: "#5b4636",
         slatedark: "#c9d1d9",
@@ -2081,7 +2087,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                         className={cn(
                                             "w-full rounded-md border text-sm pl-8 pr-3 py-2 outline-none focus:ring-1 transition-all",
-                                            isOrv ? "focus:ring-cyan-500" : isBunnyGirl ? "focus:ring-purple-400" : isRezero ? "focus:ring-violet-500" : isMushokuTensei ? "focus:ring-emerald-500" : isLotm ? "focus:ring-indigo-500" : isApothecaryDiaries ? "focus:ring-pink-500" : "focus:ring-red-500",
+                                            isOrv ? "focus:ring-cyan-500" : isBunnyGirl ? "focus:ring-purple-400" : isRezero ? "focus:ring-violet-500" : isMushokuTensei ? "focus:ring-emerald-500" : isLotm ? "focus:ring-indigo-500" : isApothecaryDiaries ? "focus:ring-pink-500" : isTbate ? "focus:ring-amber-500" : "focus:ring-red-500",
                                             isThemeLight(theme)
                                                 ? "bg-white border-gray-300 text-black placeholder:text-gray-400"
                                                 : "bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:bg-white/10"
@@ -2113,7 +2119,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                                                         ? "bg-indigo-500/10 text-indigo-400 font-medium animate-pulse" 
                                                                         : isApothecaryDiaries
                                                                             ? "bg-pink-500/10 text-pink-400 font-medium animate-pulse"
-                                                                            : "bg-red-500/10 text-red-500 font-medium animate-pulse")
+                                                                            : isTbate
+                                                                                ? "bg-amber-500/10 text-amber-400 font-medium animate-pulse"
+                                                                                : "bg-red-500/10 text-red-500 font-medium animate-pulse")
                                                     : isThemeLight(theme) ? "hover:bg-gray-200/50" : "hover:bg-white/5 opacity-80 hover:opacity-100",
 
                                                 volumeId === 'v0' && item.label.startsWith('Part ') && "pl-8 border-l-2 border-transparent hover:border-white/10 ml-2"
@@ -2689,6 +2697,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     volumeId={volumeId} 
                                     isRezero={isRezero} 
                                     isBunnyGirl={isBunnyGirl} 
+                                    isTbate={isTbate}
                                     bookmarks={bookmarks}
                                     chapterIndex={chapterIndex}
                                     readingMode={readingMode}
@@ -2781,12 +2790,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     <div className={cn(
                                         "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group",
                                         isThemeLight(theme) 
-                                            ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isBunnyGirl ? "bg-white border-gray-200 hover:border-purple-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : isMushokuTensei ? "bg-white border-gray-200 hover:border-emerald-300 hover:shadow-md" : isLotm ? "bg-white border-gray-200 hover:border-indigo-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
-                                            : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isBunnyGirl ? "bg-[#100b1e] border-purple-950/40 hover:border-purple-500/50 hover:bg-purple-950/20" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : isMushokuTensei ? "bg-white/5 border-white/10 hover:border-emerald-500/50 hover:bg-white/10" : isLotm ? "bg-white/5 border-white/10 hover:border-indigo-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
+                                            ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isBunnyGirl ? "bg-white border-gray-200 hover:border-purple-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : isMushokuTensei ? "bg-white border-gray-200 hover:border-emerald-300 hover:shadow-md" : isLotm ? "bg-white border-gray-200 hover:border-indigo-300 hover:shadow-md" : isTbate ? "bg-white border-gray-200 hover:border-amber-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                            : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isBunnyGirl ? "bg-[#100b1e] border-purple-950/40 hover:border-purple-500/50 hover:bg-purple-950/20" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : isMushokuTensei ? "bg-white/5 border-white/10 hover:border-emerald-500/50 hover:bg-white/10" : isLotm ? "bg-white/5 border-white/10 hover:border-indigo-500/50 hover:bg-white/10" : isTbate ? "bg-white/5 border-white/10 hover:border-amber-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                     )}>
                                         <div className={cn(
                                             "flex items-center gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
-                                            isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isBunnyGirl ? "text-purple-400 group-hover:text-purple-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : isMushokuTensei ? "text-emerald-400 group-hover:text-emerald-300" : isLotm ? "text-indigo-400 group-hover:text-indigo-300" : "text-red-500 group-hover:text-red-400"
+                                            isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isBunnyGirl ? "text-purple-400 group-hover:text-purple-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : isMushokuTensei ? "text-emerald-400 group-hover:text-emerald-300" : isLotm ? "text-indigo-400 group-hover:text-indigo-300" : isTbate ? "text-amber-400 group-hover:text-amber-300" : "text-red-500 group-hover:text-red-400"
                                         )}>
                                             <ArrowLeft className="w-3 h-3" /> Previous Chapter
                                         </div>
@@ -2804,12 +2813,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                     <div className={cn(
                                         "flex flex-col gap-1 p-4 rounded-xl border transition-all cursor-pointer group text-left sm:text-right",
                                         isThemeLight(theme) 
-                                            ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isBunnyGirl ? "bg-white border-gray-200 hover:border-purple-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : isMushokuTensei ? "bg-white border-gray-200 hover:border-emerald-300 hover:shadow-md" : isLotm ? "bg-white border-gray-200 hover:border-indigo-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
-                                            : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isBunnyGirl ? "bg-[#100b1e] border-purple-950/40 hover:border-purple-500/50 hover:bg-purple-950/20" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : isMushokuTensei ? "bg-white/5 border-white/10 hover:border-emerald-500/50 hover:bg-white/10" : isLotm ? "bg-white/5 border-white/10 hover:border-indigo-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
+                                            ? (isOrv ? "bg-white border-gray-200 hover:border-cyan-300 hover:shadow-md" : isBunnyGirl ? "bg-white border-gray-200 hover:border-purple-300 hover:shadow-md" : isRezero ? "bg-white border-gray-200 hover:border-violet-300 hover:shadow-md" : isMushokuTensei ? "bg-white border-gray-200 hover:border-emerald-300 hover:shadow-md" : isLotm ? "bg-white border-gray-200 hover:border-indigo-300 hover:shadow-md" : isTbate ? "bg-white border-gray-200 hover:border-amber-300 hover:shadow-md" : "bg-white border-gray-200 hover:border-red-300 hover:shadow-md")
+                                            : (isOrv ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-white/10" : isBunnyGirl ? "bg-[#100b1e] border-purple-950/40 hover:border-purple-500/50 hover:bg-purple-950/20" : isRezero ? "bg-white/5 border-white/10 hover:border-violet-500/50 hover:bg-white/10" : isMushokuTensei ? "bg-white/5 border-white/10 hover:border-emerald-500/50 hover:bg-white/10" : isLotm ? "bg-white/5 border-white/10 hover:border-indigo-500/50 hover:bg-white/10" : isTbate ? "bg-white/5 border-white/10 hover:border-amber-500/50 hover:bg-white/10" : "bg-white/5 border-white/10 hover:border-red-500/50 hover:bg-white/10")
                                     )}>
                                         <div className={cn(
                                             "flex items-center justify-start sm:justify-end gap-2 text-xs uppercase tracking-wider opacity-60 font-semibold group-hover:text-opacity-100",
-                                            isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isBunnyGirl ? "text-purple-400 group-hover:text-purple-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : isMushokuTensei ? "text-emerald-400 group-hover:text-emerald-300" : isLotm ? "text-indigo-400 group-hover:text-indigo-300" : "text-red-500 group-hover:text-red-400"
+                                            isOrv ? "text-cyan-400 group-hover:text-cyan-300" : isBunnyGirl ? "text-purple-400 group-hover:text-purple-300" : isRezero ? "text-violet-400 group-hover:text-violet-300" : isMushokuTensei ? "text-emerald-400 group-hover:text-emerald-300" : isLotm ? "text-indigo-400 group-hover:text-indigo-300" : isTbate ? "text-amber-400 group-hover:text-amber-300" : "text-red-500 group-hover:text-red-400"
                                         )}>
                                             Next Chapter <ArrowRight className="h-3 w-3" />
                                         </div>
@@ -2832,7 +2841,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                                             ? "bg-gradient-to-br from-violet-50 to-white border-violet-200 text-violet-900 shadow-sm hover:shadow-md hover:border-violet-300"
                                                             : isApothecaryDiaries
                                                                 ? "bg-gradient-to-br from-pink-50 to-white border-pink-200 text-pink-900 shadow-sm hover:shadow-md hover:border-pink-300"
-                                                                : "bg-gradient-to-br from-red-50 to-white border-red-200 text-red-900 shadow-sm hover:shadow-md hover:border-red-300"
+                                                                : isTbate
+                                                                    ? "bg-gradient-to-br from-amber-50 to-white border-amber-200 text-amber-900 shadow-sm hover:shadow-md hover:border-amber-300"
+                                                                    : "bg-gradient-to-br from-red-50 to-white border-red-200 text-red-900 shadow-sm hover:shadow-md hover:border-red-300"
                                                    )
                                                 : (isOrv
                                                     ? "bg-gradient-to-br from-cyan-950/20 to-cyan-950/10 border-cyan-500/30 text-cyan-100 hover:border-cyan-500/50 hover:from-cyan-950/30 hover:to-cyan-950/20"
@@ -2842,13 +2853,15 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                                             ? "bg-gradient-to-br from-violet-950/20 to-violet-950/10 border-violet-500/30 text-violet-100 hover:border-violet-500/50 hover:from-violet-950/30 hover:to-violet-950/20"
                                                             : isApothecaryDiaries
                                                                 ? "bg-gradient-to-br from-[#2e1022]/30 to-[#2e1022]/10 border-pink-500/30 text-pink-100 hover:border-pink-500/50 hover:from-[#2e1022]/40 hover:to-[#2e1022]/20"
-                                                                : "bg-gradient-to-br from-red-900/20 to-red-900/10 border-red-500/30 text-red-100 hover:border-red-500/50 hover:from-red-900/30 hover:to-red-900/20"
+                                                                : isTbate
+                                                                    ? "bg-gradient-to-br from-amber-950/20 to-amber-950/10 border-amber-500/30 text-amber-100 hover:border-amber-500/50 hover:from-amber-950/30 hover:to-amber-950/20"
+                                                                    : "bg-gradient-to-br from-red-900/20 to-red-900/10 border-red-500/30 text-red-100 hover:border-red-500/50 hover:from-red-900/30 hover:to-red-900/20"
                                                    )
                                         )}>
 
                                             <div className={cn(
                                                 "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                                                isOrv ? "bg-cyan-500/5" : isBunnyGirl ? "bg-purple-500/5" : isRezero ? "bg-violet-500/5" : isApothecaryDiaries ? "bg-pink-500/5" : "bg-red-500/5"
+                                                isOrv ? "bg-cyan-500/5" : isBunnyGirl ? "bg-purple-500/5" : isRezero ? "bg-violet-500/5" : isApothecaryDiaries ? "bg-pink-500/5" : isTbate ? "bg-amber-500/5" : "bg-red-500/5"
                                             )} />
 
                                             <div className="relative z-10 flex flex-col items-center gap-1">
@@ -2864,12 +2877,12 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                                         <div className={cn(
                                             "flex flex-col items-center justify-center gap-1 p-4 rounded-xl border transition-all cursor-pointer hover:scale-[1.02]",
                                             isThemeLight(theme) 
-                                                ? (isOrv ? "bg-cyan-50 border-cyan-200 text-cyan-800" : isBunnyGirl ? "bg-purple-50 border-purple-200 text-purple-800" : isRezero ? "bg-violet-50 border-violet-200 text-violet-800" : isApothecaryDiaries ? "bg-pink-50 border-pink-200 text-pink-850" : "bg-red-50 border-red-200 text-red-800") 
-                                                : (isOrv ? "bg-cyan-950/20 border-cyan-500/50 text-cyan-200" : isBunnyGirl ? "bg-[#1b102e] border-purple-500/30 text-purple-200" : isRezero ? "bg-violet-950/20 border-violet-500/30 text-violet-200" : isApothecaryDiaries ? "bg-[#2d1222] border-pink-500/30 text-pink-200" : "bg-red-900/20 border-red-500/50 text-red-200")
+                                                ? (isOrv ? "bg-cyan-50 border-cyan-200 text-cyan-800" : isBunnyGirl ? "bg-purple-50 border-purple-200 text-purple-800" : isRezero ? "bg-violet-50 border-violet-200 text-violet-800" : isApothecaryDiaries ? "bg-pink-50 border-pink-200 text-pink-850" : isTbate ? "bg-amber-50 border-amber-200 text-amber-800" : "bg-red-50 border-red-200 text-red-800") 
+                                                : (isOrv ? "bg-cyan-950/20 border-cyan-500/50 text-cyan-200" : isBunnyGirl ? "bg-[#1b102e] border-purple-500/30 text-purple-200" : isRezero ? "bg-violet-950/20 border-violet-500/30 text-violet-200" : isApothecaryDiaries ? "bg-[#2d1222] border-pink-500/30 text-pink-200" : isTbate ? "bg-amber-950/20 border-amber-500/30 text-amber-200" : "bg-red-900/20 border-red-500/50 text-red-200")
                                         )}>
                                             <span className="font-serif font-bold">Return to Library</span>
                                             <span className="text-xs opacity-70">
-                                                {isOrv ? "Select Scenario" : (isRezero || isBunnyGirl || isApothecaryDiaries) ? "Select Volume" : "Select Year"}
+                                                {isOrv ? "Select Scenario" : (isRezero || isBunnyGirl || isApothecaryDiaries || isTbate) ? "Select Volume" : "Select Year"}
                                             </span>
                                         </div>
                                     </SmartLink>
@@ -3154,6 +3167,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         : isRezero ? "bg-violet-500/30"
                         : isMushokuTensei ? "bg-emerald-500/30"
                         : isLotm ? "bg-amber-500/30"
+                        : isTbate ? "bg-amber-500/30"
                         : "bg-red-500/30"
                 )}
             >
@@ -3166,6 +3180,7 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                             : isRezero ? "bg-violet-400 shadow-[0_0_8px_#a78bfa]"
                             : isMushokuTensei ? "bg-emerald-400 shadow-[0_0_8px_#34d399]"
                             : isLotm ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
+                            : isTbate ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
                             : "bg-red-500 shadow-[0_0_8px_#ef4444]"
                     )}
                     style={{ width: '0%' }}
@@ -3197,13 +3212,14 @@ interface ReaderContentProps {
     volumeId: string;
     isRezero?: boolean;
     isBunnyGirl?: boolean;
+    isTbate?: boolean;
     bookmarks?: any[];
     chapterIndex: number;
     readingMode?: string;
     chapterHeaderHtml?: string;
 }
 
-const ReaderContent = React.memo(React.forwardRef<HTMLDivElement, ReaderContentProps>(({ content, volumeId, isRezero, isBunnyGirl, bookmarks = [], chapterIndex, readingMode, chapterHeaderHtml }, ref) => {
+const ReaderContent = React.memo(React.forwardRef<HTMLDivElement, ReaderContentProps>(({ content, volumeId, isRezero, isBunnyGirl, isTbate, bookmarks = [], chapterIndex, readingMode, chapterHeaderHtml }, ref) => {
     const isOrv = volumeId.startsWith('orv-');
     const isApothecaryDiaries = volumeId.startsWith('ad');
     const highlightedContent = React.useMemo(() => {
@@ -3265,7 +3281,9 @@ const ReaderContent = React.memo(React.forwardRef<HTMLDivElement, ReaderContentP
                             ? "prose-a:text-violet-400 dark:prose-a:text-violet-400" 
                             : isApothecaryDiaries
                                 ? "prose-a:text-pink-400 dark:prose-a:text-pink-400"
-                                : "prose-a:text-red-600 dark:prose-a:text-red-400",
+                                : isTbate
+                                    ? "prose-a:text-amber-500 dark:prose-a:text-amber-400"
+                                    : "prose-a:text-red-600 dark:prose-a:text-red-400",
                 readingMode === 'horizontal' && "page-mode no-scrollbar"
             )}
             dangerouslySetInnerHTML={{ __html: highlightedContent }}

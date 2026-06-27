@@ -104,6 +104,15 @@ function getTheme(path: string): ThemeConfig {
             badgeBgClass: "bg-cyan-600 border border-cyan-500/30"
         }
     }
+    if (path.includes("/tbate")) {
+        return {
+            hoverBorderClass: "hover:border-amber-500/50",
+            hoverShadowClass: "hover:shadow-[0_0_25px_rgba(245,158,11,0.4)]",
+            iconColorClass: "text-amber-400 group-hover:text-amber-300",
+            activeBgClass: "bg-amber-950/80 text-amber-400 border border-amber-500/40 shadow-[0_0_15px_rgba(245,158,11,0.25)]",
+            badgeBgClass: "bg-amber-600 border border-amber-500/30"
+        }
+    }
     return {
         hoverBorderClass: "hover:border-amber-500/50",
         hoverShadowClass: "hover:shadow-[0_0_25px_rgba(245,158,11,0.4)]",
@@ -317,7 +326,7 @@ export function GuestbookPopup() {
         window.dispatchEvent(new CustomEvent("change-view-mode", { detail: mode }))
     }
 
-    const visible = pathname === '/' || pathname.includes('/cote') || pathname.includes('/rezero') || pathname.includes('/orv') || pathname.includes('/bunny-girl') || pathname.includes('/mushoku-tensei') || pathname.includes('/lotm') || pathname.includes('/reverend-insanity') || pathname.includes('/apothecary-diaries') || pathname.includes('/tensura')
+    const visible = pathname === '/' || pathname.includes('/cote') || pathname.includes('/rezero') || pathname.includes('/orv') || pathname.includes('/bunny-girl') || pathname.includes('/mushoku-tensei') || pathname.includes('/lotm') || pathname.includes('/reverend-insanity') || pathname.includes('/apothecary-diaries') || pathname.includes('/tensura') || pathname.includes('/tbate')
 
     const fetchEntries = async () => {
         if (fetched) return
@@ -434,6 +443,9 @@ export function GuestbookPopup() {
         } else if (pathname.includes("/tensura")) {
             homeLink = "/tensura/select"
             homeLabel = "Tensura Select"
+        } else if (pathname.includes("/tbate")) {
+            homeLink = "/tbate/select"
+            homeLabel = "TBATE Select"
         }
     } else if (pathname.includes("/select")) {
         homeLink = "/"

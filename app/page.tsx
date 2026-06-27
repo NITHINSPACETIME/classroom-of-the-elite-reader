@@ -1,27 +1,179 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Heart, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+
+interface NovelItem {
+  id: "cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | "lotm" | "reverend-insanity" | "apothecary-diaries" | "tensura" | "tbate";
+  title: string;
+  href: string;
+  cover: string;
+  desc: string;
+  glow: string;
+  hoverBorder: string;
+  hoverShadow: string;
+  textColor: string;
+  fadeBg?: string;
+  delay: number;
+  descIsItalic?: boolean;
+  titleClass?: string;
+  searchTags: string[];
+}
+
+const novelsList: NovelItem[] = [
+  {
+    id: "cote",
+    title: "Classroom of the Elite",
+    href: "/cote",
+    cover: "/assets/landing-bg-2.jpg",
+    desc: "Follow Kiyotaka Ayanokōji through Years 1, 2, and 3 at the Advanced Nurturing High School.",
+    glow: "from-red-700 to-orange-600",
+    hoverBorder: "group-hover:border-red-500/30",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(239,68,68,0.2)]",
+    textColor: "group-hover:text-red-200",
+    delay: 0.1,
+    searchTags: ["cote", "classroom of the elite", "ayanokoji", "kiyotaka", "horikita", "kei", "yōkoso jitsuryoku shijō shugi no kyōshitsu e", "youkoso"]
+  },
+  {
+    id: "rezero",
+    title: "Re:Zero",
+    href: "/rezero",
+    cover: "/assets/rezero_v1_cover.png",
+    desc: "Subaru Natsuki is summoned to a dark fantasy world to face death and loop with memory intact.",
+    glow: "from-violet-700 to-fuchsia-600",
+    hoverBorder: "group-hover:border-violet-500/30",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(139,92,246,0.2)]",
+    textColor: "group-hover:text-violet-200",
+    delay: 0.2,
+    searchTags: ["rezero", "re:zero", "re zero", "subaru", "emilia", "rem", "ram", "re:kara hajimeru isekai seikatsu", "starting life in another world"]
+  },
+  {
+    id: "orv",
+    title: "Omniscient Reader",
+    href: "/orv",
+    cover: "/assets/orv/covers/orv.webp",
+    desc: "Follow Kim Dokja as he navigates the scenario challenges of a webnovel turned reality.",
+    glow: "from-cyan-700 to-blue-650",
+    hoverBorder: "group-hover:border-cyan-500/30",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(6,182,212,0.2)]",
+    textColor: "group-hover:text-cyan-200",
+    fadeBg: "from-[#020204]/70 via-[#020204]/10 to-transparent",
+    delay: 0.3,
+    searchTags: ["orv", "omniscient reader", "dokja", "kim dokja", "joonghyuk", "han sooyoung", "omniscient reader's viewpoint"]
+  },
+  {
+    id: "bunny-girl",
+    title: "Rascal Does Not Dream Of Bunny Girl Senpai",
+    href: "/bunny-girl",
+    cover: "/assets/images/bunny-girl/v1/cover.jpg",
+    desc: "Follow Sakuta Azusagawa as he resolves supernatural cases of the mysterious Adolescence Syndrome.",
+    glow: "from-purple-700 to-indigo-650",
+    hoverBorder: "group-hover:border-purple-500/30",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(168,85,247,0.2)]",
+    textColor: "group-hover:text-purple-200",
+    titleClass: "text-lg sm:text-xl xl:text-[22px] leading-tight",
+    delay: 0.4,
+    searchTags: ["bunny girl", "bunny girl senpai", "aobuta", "sakuta", "mai", "shoko", "seishun buta yarou", "rascal does not dream"]
+  },
+  {
+    id: "mushoku-tensei",
+    title: "Mushoku Tensei",
+    href: "/mushoku-tensei",
+    cover: "/assets/images/mushoku-tensei/v1/CoverDesign.jpg",
+    desc: "“One who obtains the wings of freedom loses both legs in exchange.”",
+    glow: "from-emerald-700 to-teal-650",
+    hoverBorder: "group-hover:border-emerald-500/30",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(16,185,129,0.25)]",
+    textColor: "group-hover:text-emerald-250",
+    descIsItalic: true,
+    delay: 0.5,
+    searchTags: ["mt", "mushoku tensei", "rudeus", "eris", "sylphy", "roxy", "jobless reincarnation"]
+  },
+  {
+    id: "lotm",
+    title: "Lord of the Mysteries",
+    href: "/lotm",
+    cover: "/assets/images/lotm/v1/ff.jpg",
+    desc: "“We are guardians, but also a bunch of miserable wretches that are constantly fighting against danger and madness.”",
+    glow: "from-indigo-750 to-indigo-600",
+    hoverBorder: "group-hover:border-indigo-500/30",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(99,102,241,0.25)]",
+    textColor: "group-hover:text-indigo-250",
+    fadeBg: "from-[#020204]/70 via-[#020204]/10 to-transparent",
+    descIsItalic: true,
+    delay: 0.6,
+    searchTags: ["lotm", "lord of mysteries", "klein", "klein moretti", "fool", "tiancan", "lord of the mysteries"]
+  },
+  {
+    id: "reverend-insanity",
+    title: "Reverend Insanity",
+    href: "/reverend-insanity",
+    cover: "/assets/images/reverend-insanity/nj.jpg",
+    desc: "“A demon's nature never has regret even in death.”",
+    glow: "from-red-800 to-red-650",
+    hoverBorder: "group-hover:border-red-500/30",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(220,38,38,0.25)]",
+    textColor: "group-hover:text-red-250",
+    fadeBg: "from-[#020204]/70 via-[#020204]/10 to-transparent",
+    descIsItalic: true,
+    delay: 0.7,
+    searchTags: ["ri", "reverend insanity", "fang yuan", "gu", "gu world"]
+  },
+  {
+    id: "apothecary-diaries",
+    title: "The Apothecary Diaries",
+    href: "/apothecary-diaries",
+    cover: "/assets/images/apothecary-diaries/ad1/cover.jpg",
+    desc: "“A little poison can be a cure. A little knowledge can be deadly.”",
+    glow: "from-pink-600 to-emerald-500",
+    hoverBorder: "group-hover:border-pink-500/40",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(236,72,153,0.35)]",
+    textColor: "group-hover:text-pink-200",
+    fadeBg: "from-[#0b050d]/70 via-[#0b050d]/10 to-transparent",
+    descIsItalic: true,
+    delay: 0.8,
+    searchTags: ["kusuriya", "apothecary diaries", "maomao", "jinshi", "kusuriya no hitorigoto"]
+  },
+  {
+    id: "tensura",
+    title: "That Time I Got Reincarnated as a Slime",
+    href: "/tensura",
+    cover: "/assets/images/tensura/v1/cover.jpg",
+    desc: "“I'm not a bad slime, you know!”",
+    glow: "from-sky-650 to-teal-500",
+    hoverBorder: "group-hover:border-sky-500/40",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(14,165,233,0.35)]",
+    textColor: "group-hover:text-sky-200",
+    fadeBg: "from-[#040912]/70 via-[#040912]/10 to-transparent",
+    descIsItalic: true,
+    delay: 0.9,
+    searchTags: ["tensura", "slime", "rimuru", "rimuru tempest", "reincarnated as a slime", "tensei shitara slime datta ken"]
+  },
+  {
+    id: "tbate",
+    title: "The Beginning After The End",
+    href: "/tbate",
+    cover: "/assets/images/tbate/v7/volume-7-cover-final-1.jpg",
+    desc: "“Correcting the mistakes of his past will not be his only challenge...”",
+    glow: "from-amber-700 to-yellow-500",
+    hoverBorder: "group-hover:border-amber-500/40",
+    hoverShadow: "group-hover:shadow-[0_0_50px_rgba(245,158,11,0.35)]",
+    textColor: "group-hover:text-amber-200",
+    fadeBg: "from-[#040912]/70 via-[#040912]/10 to-transparent",
+    descIsItalic: true,
+    delay: 1.0,
+    searchTags: ["tbate", "the beginning after the end", "arthur", "arthur leywin", "tessia", "tessia eralith", "sylvie"]
+  }
+];
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | "lotm" | "reverend-insanity" | "apothecary-diaries" | "tensura" | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<"cote" | "rezero" | "orv" | "bunny-girl" | "mushoku-tensei" | "lotm" | "reverend-insanity" | "apothecary-diaries" | "tensura" | "tbate" | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [guestbookCount, setGuestbookCount] = useState(0);
-
-  useEffect(() => {
-    async function fetchCount() {
-      const { count } = await supabase
-        .from('guestbook')
-        .select('*', { count: 'exact', head: true });
-      if (count !== null) setGuestbookCount(count);
-    }
-    fetchCount();
-  }, []);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -39,6 +191,16 @@ export default function Home() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  const filteredNovels = novelsList.filter(novel => {
+    const query = searchQuery.toLowerCase().trim();
+    if (!query) return true;
+    return (
+      novel.title.toLowerCase().includes(query) ||
+      novel.desc.toLowerCase().includes(query) ||
+      novel.searchTags.some(tag => tag.toLowerCase().includes(query))
+    );
+  });
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen w-screen overflow-hidden bg-[#030206] text-white px-4 py-12">
@@ -80,6 +242,10 @@ export default function Home() {
         <div className={`absolute top-1/2 right-[15%] -translate-y-1/2 w-[500px] h-[500px] bg-sky-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
           hoveredCard === "tensura" ? "opacity-95 scale-110 bg-sky-900/25" : "opacity-0"
         }`} />
+        {/* TBATE Gold/Amber Glow */}
+        <div className={`absolute top-1/2 right-[5%] -translate-y-1/2 w-[500px] h-[500px] bg-amber-950/15 rounded-full blur-[150px] transition-all duration-1000 ${
+          hoveredCard === "tbate" ? "opacity-95 scale-110 bg-amber-900/25" : "opacity-0"
+        }`} />
         {/* Center Subtler Ambient Light */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-950/30 via-transparent to-transparent opacity-60" />
       </div>
@@ -90,7 +256,7 @@ export default function Home() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="z-10 flex flex-col items-center gap-4 mb-8 md:mb-12 text-center"
+        className="z-10 flex flex-col items-center gap-4 mb-6 md:mb-8 text-center"
       >
         {/* Badges Container */}
         <div className="flex flex-wrap gap-2 sm:gap-3 items-center justify-center mb-2">
@@ -166,6 +332,41 @@ export default function Home() {
         </p>
       </motion.div>
 
+      {/* Glassmorphic Search Bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.15 }}
+        className="z-10 w-full max-w-md px-4 mb-8 md:mb-12 relative"
+      >
+        <div className="relative">
+          <svg
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-zinc-400 pointer-events-none transition-colors"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search novels by title or description..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-zinc-950/40 border border-zinc-800/80 rounded-full pl-11 pr-12 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-amber-500/50 focus:border-amber-500/50 hover:border-zinc-700 transition-all duration-300 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.2)] font-sans"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white transition-colors cursor-pointer text-xs uppercase tracking-wider font-mono select-none"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+      </motion.div>
+
       {/* Portal Windows Wrapper */}
       <div className="relative w-full z-10 flex items-center justify-center">
         {/* Left Arrow Button */}
@@ -182,391 +383,73 @@ export default function Home() {
           ref={scrollContainerRef}
           className="flex flex-row overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 w-full px-[7vw] sm:px-4 pb-6 sm:pb-0 sm:grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 sm:gap-6 lg:gap-8 sm:justify-items-center sm:w-full sm:max-w-7xl xl:max-w-[1450px] 2xl:max-w-[1650px]"
         >
-        
-        {/* COTE Squircle Window */}
-        <Link 
-          href="/cote" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("cote")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-red-700 to-orange-600 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-red-500/30 group-hover:shadow-[0_0_50px_rgba(239,68,68,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/landing-bg-2.jpg"
-                  alt="Classroom of the Elite Cover"
-                  fill
-                  priority
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
-              </div>
+          <AnimatePresence mode="popLayout">
+            {filteredNovels.map((novel) => {
+              const glowClass = `absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r ${novel.glow} opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none`;
+              const containerClass = `relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 ${novel.hoverBorder} ${novel.hoverShadow} flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8`;
+              const titleClass = `font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 ${novel.textColor} transition-colors duration-300 ${novel.titleClass || ""}`;
+              const descClass = `text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide ${novel.descIsItalic ? "italic" : ""}`;
+              const fadeBg = novel.fadeBg || "from-[#030206]/70 via-[#030206]/10 to-transparent";
 
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-red-200 transition-colors duration-300">
-                  Classroom of the Elite
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                  Follow Kiyotaka Ayanokōji through Years 1, 2, and 3 at the Advanced Nurturing High School.
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
+              return (
+                <motion.div
+                  key={novel.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
+                  className="w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
+                >
+                  <Link 
+                    href={novel.href} 
+                    className="group block relative w-full h-full"
+                    onMouseEnter={() => setHoveredCard(novel.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <div className={glowClass} />
+                    <div className="hover-3d relative cursor-pointer w-full">
+                      <div className={containerClass}>
+                        {/* Background cover image */}
+                        <div className="absolute inset-0 z-0">
+                          <Image
+                            src={novel.cover}
+                            alt={`${novel.title} Cover`}
+                            fill
+                            priority={novel.delay <= 0.3}
+                            className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
+                            sizes="(max-width: 768px) 100vw, 380px"
+                          />
+                          {/* Fade Overlay */}
+                          <div className={`absolute inset-0 bg-gradient-to-t ${fadeBg}`} />
+                        </div>
 
-        {/* Re:Zero Squircle Window */}
-        <Link 
-          href="/rezero" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("rezero")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-violet-700 to-fuchsia-600 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-violet-500/30 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/rezero_v1_cover.png"
-                  alt="Re:Zero Cover"
-                  fill
-                  priority
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
-              </div>
+                        {/* Squircle Window Content */}
+                        <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
+                          <h3 className={titleClass}>
+                            {novel.title}
+                          </h3>
+                          <p className={descClass}>
+                            {novel.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
 
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-violet-200 transition-colors duration-300">
-                  Re:Zero
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                  Subaru Natsuki is summoned to a dark fantasy world to face death and loop with memory intact.
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
-        {/* ORV Squircle Window */}
-        <Link 
-          href="/orv" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("orv")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-cyan-700 to-blue-650 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-cyan-500/30 group-hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/orv/covers/orv.webp"
-                  alt="Omniscient Reader's Viewpoint Cover"
-                  fill
-                  priority
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020204]/70 via-[#020204]/10 to-transparent" />
-              </div>
-
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-cyan-200 transition-colors duration-300">
-                  Omniscient Reader
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                  Follow Kim Dokja as he navigates the scenario challenges of a webnovel turned reality.
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
-        {/* Bunny Girl Squircle Window */}
-        <Link 
-          href="/bunny-girl" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("bunny-girl")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-purple-700 to-indigo-650 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-purple-500/30 group-hover:shadow-[0_0_50px_rgba(168,85,247,0.2)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/images/bunny-girl/v1/cover.jpg"
-                  alt="Rascal Does Not Dream Cover"
-                  fill
-                  priority
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
-              </div>
-
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-lg sm:text-xl xl:text-[22px] font-semibold tracking-wide text-zinc-150 group-hover:text-purple-200 transition-colors duration-300 leading-tight">
-                  Rascal Does Not Dream Of Bunny Girl Senpai
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide">
-                  Follow Sakuta Azusagawa as he resolves supernatural cases of the mysterious Adolescence Syndrome.
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
-        {/* Mushoku Tensei Squircle Window */}
-        <Link 
-          href="/mushoku-tensei" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("mushoku-tensei")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-emerald-700 to-teal-650 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-emerald-500/30 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/images/mushoku-tensei/v1/CoverDesign.jpg"
-                  alt="Mushoku Tensei Cover"
-                  fill
-                  priority
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030206]/70 via-[#030206]/10 to-transparent" />
-              </div>
-
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-emerald-250 transition-colors duration-300">
-                  Mushoku Tensei
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
-                  &ldquo;One who obtains the wings of freedom loses both legs in exchange.&rdquo;
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
-        {/* Lord of the Mysteries Squircle Window */}
-        <Link 
-          href="/lotm" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("lotm")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-indigo-750 to-indigo-600 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_50px_rgba(99,102,241,0.25)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/images/lotm/v1/ff.jpg"
-                  alt="Lord of the Mysteries Cover"
-                  fill
-                  priority
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020204]/70 via-[#020204]/10 to-transparent" />
-              </div>
-
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-indigo-250 transition-colors duration-300">
-                  Lord of the Mysteries
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
-                  &ldquo;We are guardians, but also a bunch of miserable wretches that are constantly fighting against danger and madness.&rdquo;
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
-        {/* Reverend Insanity Squircle Window */}
-        <Link 
-          href="/reverend-insanity" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("reverend-insanity")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-red-800 to-red-650 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-red-500/30 group-hover:shadow-[0_0_50px_rgba(220,38,38,0.25)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/images/reverend-insanity/nj.jpg"
-                  alt="Reverend Insanity Cover"
-                  fill
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020204]/70 via-[#020204]/10 to-transparent" />
-              </div>
-
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-red-250 transition-colors duration-300">
-                  Reverend Insanity
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
-                  &ldquo;A demon&apos;s nature never has regret even in death.&rdquo;
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
-        {/* The Apothecary Diaries Squircle Window */}
-        <Link 
-          href="/apothecary-diaries" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("apothecary-diaries")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-pink-600 to-emerald-500 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-pink-500/40 group-hover:shadow-[0_0_50px_rgba(236,72,153,0.35)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/images/apothecary-diaries/ad1/cover.jpg"
-                  alt="The Apothecary Diaries Cover"
-                  fill
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b050d]/70 via-[#0b050d]/10 to-transparent" />
-              </div>
-
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-pink-200 transition-colors duration-300">
-                  The Apothecary Diaries
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
-                  &ldquo;A little poison can be a cure. A little knowledge can be deadly.&rdquo;
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
-        {/* Tensura Squircle Window */}
-        <Link 
-          href="/tensura" 
-          className="group w-[86vw] max-w-[360px] shrink-0 snap-center sm:w-full sm:max-w-[340px] lg:max-w-[380px] relative"
-          onMouseEnter={() => setHoveredCard("tensura")}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
-          <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-sky-650 to-teal-500 opacity-0 blur-2xl group-hover:opacity-20 group-hover:blur-3xl transition-all duration-700 pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="hover-3d relative cursor-pointer w-full"
-          >
-            <div className="relative aspect-[3/4] w-full rounded-[2.5rem] overflow-hidden border border-zinc-800/40 bg-zinc-950/40 backdrop-blur-md shadow-2xl transition-all duration-500 group-hover:border-sky-500/40 group-hover:shadow-[0_0_50px_rgba(14,165,233,0.35)] flex flex-col justify-end p-5 sm:p-6 xl:p-7 2xl:p-8">
-              {/* Background cover image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/assets/images/tensura/v1/cover.jpg"
-                  alt="That Time I Got Reincarnated as a Slime Cover"
-                  fill
-                  className="object-cover opacity-90 transition-all duration-1000 group-hover:scale-[1.02] group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, 380px"
-                />
-                {/* Fade Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#040912]/70 via-[#040912]/10 to-transparent" />
-              </div>
-
-              {/* Squircle Window Content */}
-              <div className="relative z-10 flex flex-col gap-2 pointer-events-none">
-                <h3 className="font-serif text-xl sm:text-2xl xl:text-[26px] font-semibold tracking-wide text-zinc-150 group-hover:text-sky-200 transition-colors duration-300">
-                  That Time I Got Reincarnated as a Slime
-                </h3>
-                <p className="text-xs text-zinc-450 group-hover:text-zinc-200/90 transition-colors duration-300 leading-relaxed font-sans font-light tracking-wide italic">
-                  &ldquo;I&apos;m not a bad slime, you know!&rdquo;
-                </p>
-              </div>
-            </div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          </motion.div>
-        </Link>
-
+          {filteredNovels.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="col-span-full py-16 text-center text-zinc-500 select-none font-sans w-full"
+            >
+              No novels found matching &ldquo;{searchQuery}&rdquo;
+            </motion.div>
+          )}
         </div>
 
         {/* Right Arrow Button */}
@@ -581,9 +464,9 @@ export default function Home() {
 
       {/* Crawlable Structured SEO Elements (Invisible to UI, fully crawlable by Googlebot) */}
       <div className="sr-only">
-        <h1>Read Classroom of the Elite, Re:Zero, Omniscient Reader, Rascal Does Not Dream, Mushoku Tensei, Lord of the Mysteries, Reverend Insanity, The Apothecary Diaries, and That Time I Got Reincarnated as a Slime Light Novels Online</h1>
+        <h1>Read Classroom of the Elite, Re:Zero, Omniscient Reader, Rascal Does Not Dream, Mushoku Tensei, Lord of the Mysteries, Reverend Insanity, The Apothecary Diaries, That Time I Got Reincarnated as a Slime, and The Beginning After The End Light Novels Online</h1>
         <p>
-          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE), Re:Zero - Starting Life in Another World, Omniscient Reader&apos;s Viewpoint (ORV), Rascal Does Not Dream (Aobuta), Mushoku Tensei: Jobless Reincarnation, Lord of the Mysteries, Reverend Insanity, The Apothecary Diaries, and That Time I Got Reincarnated as a Slime (Tensura) online.
+          Welcome to the Portal. Read all volumes of Classroom of the Elite (COTE), Re:Zero - Starting Life in Another World, Omniscient Reader&apos;s Viewpoint (ORV), Rascal Does Not Dream (Aobuta), Mushoku Tensei: Jobless Reincarnation, Lord of the Mysteries, Reverend Insanity, The Apothecary Diaries, That Time I Got Reincarnated as a Slime (Tensura), and The Beginning After The End (TBATE) online.
           Immersive reading experience, complete translations, and ad-free interfaces.
         </p>
       </div>
@@ -645,7 +528,7 @@ export default function Home() {
               NITHINSPACETIME
             </a>
           </p>
-          <p className="text-xs text-zinc-500/70">Not affiliated with the official Classroom of the Elite, Re:Zero, Seishun Buta Yarou, Mushoku Tensei, Lord of the Mysteries, or That Time I Got Reincarnated as a Slime franchises.</p>
+          <p className="text-xs text-zinc-500/70">Not affiliated with the official Classroom of the Elite, Re:Zero, Seishun Buta Yarou, Mushoku Tensei, Lord of the Mysteries, That Time I Got Reincarnated as a Slime, or The Beginning After The End franchises.</p>
         </div>
       </footer>
     </main>

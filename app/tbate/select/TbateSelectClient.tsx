@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 
-import { TensuraVolumeData } from "@/data/tensura";
+import { TbateVolumeData } from "@/data/tbate";
 import { UserMenu } from "@/components/auth/UserMenu";
 import { BackgroundSlideshow } from "@/components/landing/BackgroundSlideshow";
 import dynamic from "next/dynamic";
@@ -15,20 +15,21 @@ import dynamic from "next/dynamic";
 const AuthModal = dynamic(() => import("@/components/auth/AuthModal").then(mod => mod.AuthModal), { ssr: false });
 const ProfileModal = dynamic(() => import("@/components/auth/ProfileModal").then(mod => mod.ProfileModal), { ssr: false });
 
-interface TensuraSelectClientProps {
-  volumes: TensuraVolumeData[];
-  sideStories: TensuraVolumeData[];
+interface TbateSelectClientProps {
+  volumes: TbateVolumeData[];
+  sideStories: TbateVolumeData[];
 }
 
-const tensuraBackgrounds = [
-  "/assets/images/tensura/v1/cover.jpg",
-  "/assets/images/tensura/v10/cover.jpg",
-  "/assets/images/tensura/v15/cover.jpg",
-  "/assets/images/tensura/v20/cover.jpg",
-  "/assets/images/tensura/v23/cover.jpg"
+const tbateBackgrounds = [
+  "/assets/images/tbate/v1/volume-1-v3.jpg",
+  "/assets/images/tbate/v7/volume-7-cover-final-1.jpg",
+  "/assets/images/tbate/v8/tbate_volume-8_cover.jpg",
+  "/assets/images/tbate/v9/edited-background-1.png",
+  "/assets/images/tbate/v10/cover00440.jpeg",
+  "/assets/images/tbate/v12/cover.jpeg"
 ];
 
-export default function TensuraSelectClient({ volumes, sideStories }: TensuraSelectClientProps) {
+export default function TbateSelectClient({ volumes, sideStories }: TbateSelectClientProps) {
   const [viewMode, setViewMode] = useState<"detailed" | "compact">("compact");
   const [progressMap, setProgressMap] = useState<Record<string, { percentage: number; chapterTitle: string; chapterIndex?: number }>>({});
   const [activeTab, setActiveTab] = useState<"main" | "side">("main");
@@ -55,18 +56,19 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
     const progress: Record<string, { percentage: number; chapterTitle: string; chapterIndex?: number }> = {};
     const allVols = [...volumes, ...sideStories];
     allVols.forEach(vol => {
-      const savedMeta = localStorage.getItem(`tensura-progress-meta-${vol.id}`);
+      const savedMeta = localStorage.getItem(`tbate-progress-meta-${vol.id}`);
       if (savedMeta) {
         try {
           progress[vol.id] = JSON.parse(savedMeta);
         } catch {}
       } else {
-        const savedCfi = localStorage.getItem(`tensura-progress-${vol.id}`);
+        const savedCfi = localStorage.getItem(`tbate-progress-${vol.id}`);
         if (savedCfi) {
           progress[vol.id] = { percentage: 0, chapterTitle: "Continue Reading", chapterIndex: parseInt(savedCfi) || 1 };
         }
       }
     });
+
     setTimeout(() => {
       setProgressMap(progress);
     }, 0);
@@ -84,10 +86,10 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
   }, [volumes, sideStories]);
 
   const handleResetVolume = (volId: string) => {
-    localStorage.removeItem(`tensura-progress-meta-${volId}`);
-    localStorage.removeItem(`tensura-progress-${volId}`);
+    localStorage.removeItem(`tbate-progress-meta-${volId}`);
+    localStorage.removeItem(`tbate-progress-${volId}`);
     
-    const readKey = "tensura-read-chapters";
+    const readKey = "tbate-read-chapters";
     const readData = localStorage.getItem(readKey);
     if (readData) {
       try {
@@ -125,21 +127,20 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
   }, [volumes, sideStories, activeTab, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#05060f] text-[#ece2f9] flex flex-col relative overflow-x-hidden">
-      <div className="absolute inset-0 bg-[#05060f]/60 z-0 pointer-events-none" />
-      <BackgroundSlideshow images={tensuraBackgrounds} imageOpacity={0.8} />
+    <div className="min-h-screen bg-[#070503] text-[#fffbeb] flex flex-col relative overflow-x-hidden">
+      <div className="absolute inset-0 bg-[#070503]/55 z-0 pointer-events-none" />
+      <BackgroundSlideshow images={tbateBackgrounds} imageOpacity={0.8} />
 
-      <header className="sticky top-0 left-0 w-full z-50 p-6 bg-[#05060f]/80 backdrop-blur-md flex items-center justify-between border-b border-cyan-950/25">
+      <header className="sticky top-0 left-0 w-full z-50 p-6 bg-[#070503]/80 backdrop-blur-md flex items-center justify-between border-b border-amber-950/25">
         <div className="flex items-center">
-          <Link href="/tensura">
-            <Button variant="ghost" size="icon" className="text-cyan-300 hover:text-white hover:bg-cyan-950/40 rounded-full transition-all cursor-pointer">
+          <Link href="/tbate">
+            <Button variant="ghost" size="icon" className="text-amber-300 hover:text-white hover:bg-amber-950/40 rounded-full transition-all cursor-pointer">
               <ArrowLeft className="w-6 h-6" />
             </Button>
           </Link>
           <div className="ml-4 flex items-center gap-2">
-            <span className="text-xl text-cyan-400 select-none animate-pulse">💧</span>
             <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-serif font-extralight tracking-[0.15em] uppercase text-zinc-100 truncate max-w-[200px] sm:max-w-none">
-              Tensura
+              The Beginning After the End
             </h1>
           </div>
         </div>
@@ -152,11 +153,11 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
         {/* Top bar controls */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-10 select-none">
           <div className="flex flex-col gap-1.5">
-            <h1 className="text-3xl font-bold font-serif bg-gradient-to-r from-cyan-300 via-sky-200 to-teal-400 bg-clip-text text-transparent tracking-wide">
+            <h1 className="text-3xl font-bold font-serif bg-gradient-to-r from-amber-300 via-yellow-250 to-amber-500 bg-clip-text text-transparent tracking-wide">
               Volume Select
             </h1>
-            <p className="text-xs text-zinc-500 font-mono tracking-wider uppercase">
-              That Time I Got Reincarnated as a Slime
+            <p className="text-xs text-zinc-550 font-mono tracking-wider uppercase">
+              The Beginning After The End
             </p>
           </div>
 
@@ -169,7 +170,7 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-zinc-950/60 border border-zinc-800/80 rounded-full text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
+                className="w-full pl-9 pr-4 py-2 bg-zinc-950/60 border border-zinc-800/80 rounded-full text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500/50 transition-colors"
               />
             </div>
 
@@ -178,7 +179,7 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
               <button
                 onClick={() => setActiveTab("main")}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
-                  activeTab === "main" ? "bg-cyan-600/30 border border-cyan-500/30 text-white" : "text-zinc-500 hover:text-zinc-300"
+                  activeTab === "main" ? "bg-amber-600/30 border border-amber-500/30 text-white" : "text-zinc-500 hover:text-zinc-300"
                 }`}
               >
                 Volumes
@@ -186,7 +187,7 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
               <button
                 onClick={() => setActiveTab("side")}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
-                  activeTab === "side" ? "bg-cyan-600/30 border border-cyan-500/30 text-white" : "text-zinc-500 hover:text-zinc-300"
+                  activeTab === "side" ? "bg-amber-600/30 border border-amber-500/30 text-white" : "text-zinc-500 hover:text-zinc-300"
                 }`}
               >
                 Specials
@@ -228,9 +229,9 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                 return (
                   <div
                     key={vol.id}
-                    className="relative border border-zinc-800/80 bg-zinc-950/40 hover:border-cyan-500/25 rounded-2xl p-4 flex gap-5 hover:bg-zinc-950/60 hover:shadow-[0_0_30px_rgba(34,211,238,0.06)] transition-all duration-300 group"
+                    className="relative border border-zinc-800/80 bg-zinc-950/40 hover:border-amber-500/25 rounded-2xl p-4 flex gap-5 hover:bg-zinc-950/60 hover:shadow-[0_0_30px_rgba(245,158,11,0.06)] transition-all duration-300 group"
                   >
-                    <Link href={`/tensura/select/${vol.id}`} className="block shrink-0 relative aspect-[2/3] w-[110px] sm:w-[130px] rounded-xl overflow-hidden shadow-2xl border border-zinc-900">
+                    <Link href={`/tbate/select/${vol.id}`} className="block shrink-0 relative aspect-[2/3] w-[110px] sm:w-[130px] rounded-xl overflow-hidden shadow-2xl border border-zinc-900">
                       <Image
                         src={vol.coverImage}
                         alt={vol.title}
@@ -243,8 +244,8 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                     <div className="flex-1 flex flex-col justify-between py-1">
                       <div className="flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono tracking-widest text-cyan-400 font-bold uppercase">
-                            {activeTab === "side" ? `Special Volume ${vol.id === "sp1" ? "1" : "2"}` : `Volume ${vol.volumeNumber}`}
+                          <span className="text-[10px] font-mono tracking-widest text-amber-400 font-bold uppercase">
+                            {activeTab === "side" ? "Special Volume 8.5" : `Volume ${vol.volumeNumber}`}
                           </span>
                           <div className="flex items-center gap-2">
                             {isStarted && (
@@ -261,11 +262,9 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                           </div>
                         </div>
 
-                        <Link href={`/tensura/select/${vol.id}`} className="hover:text-cyan-300 transition-colors">
+                        <Link href={`/tbate/select/${vol.id}`} className="hover:text-amber-300 transition-colors">
                           <h2 className="text-lg font-serif font-bold text-white leading-snug">
-                            {activeTab === "side" 
-                              ? (vol.id === "sp1" ? "Special Volume 1" : "Special Volume 2") 
-                              : vol.title.replace("That Time I Got Reincarnated as a Slime, ", "")}
+                            {vol.title}
                           </h2>
                         </Link>
 
@@ -279,27 +278,27 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                         {isStarted && (
                           <div className="flex flex-col gap-1.5">
                             <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500">
-                              <span className="truncate max-w-[200px] text-cyan-400/80">
+                              <span className="truncate max-w-[200px] text-amber-400/80">
                                 {progress.chapterTitle}
                               </span>
                               <span>{Math.round(progress.percentage * 100)}% completed</span>
                             </div>
                             <div className="w-full h-1 bg-zinc-900 rounded-full overflow-hidden">
                               <div
-                                className="h-full bg-gradient-to-r from-cyan-600 to-teal-400 rounded-full"
-                                style={{ width: `${Math.round(progress.percentage * 100)}%` }}
+                                  className="h-full bg-gradient-to-r from-amber-600 to-yellow-500 rounded-full"
+                                  style={{ width: `${Math.round(progress.percentage * 100)}%` }}
                               />
                             </div>
                           </div>
                         )}
 
                         <div className="flex items-center gap-2.5 select-none">
-                          <Link href={`/tensura/read/${vol.id}/${isStarted ? (progress.chapterIndex || 1) : 1}`}>
-                            <Button size="sm" className="rounded-full bg-cyan-700/20 border border-cyan-500/35 hover:bg-cyan-600/40 hover:border-cyan-500/60 text-white font-semibold text-[10px] tracking-wider uppercase px-4 cursor-pointer">
+                          <Link href={`/tbate/read/${vol.id}/${isStarted ? (progress.chapterIndex || 1) : 1}`}>
+                            <Button size="sm" className="rounded-full bg-amber-700/20 border border-amber-500/35 hover:bg-amber-600/40 hover:border-amber-500/60 text-white font-semibold text-[10px] tracking-wider uppercase px-4 cursor-pointer">
                               {isStarted ? "Continue" : "Start"}
                             </Button>
                           </Link>
-                          <Link href={`/tensura/select/${vol.id}`}>
+                          <Link href={`/tbate/select/${vol.id}`}>
                             <Button size="sm" variant="ghost" className="rounded-full text-zinc-400 hover:text-white text-[10px] tracking-wider uppercase px-3 cursor-pointer">
                               Chapters
                             </Button>
@@ -314,7 +313,7 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
               // Compact view
               return (
                 <div key={vol.id} className="relative group flex flex-col gap-2">
-                  <Link href={`/tensura/select/${vol.id}`} className="block relative aspect-[2/3] w-full rounded-xl overflow-hidden shadow-xl border border-zinc-900 hover-scale duration-300">
+                  <Link href={`/tbate/select/${vol.id}`} className="block relative aspect-[2/3] w-full rounded-xl overflow-hidden shadow-xl border border-zinc-900 hover-scale duration-300">
                     <Image
                       src={vol.coverImage}
                       alt={vol.title}
@@ -326,14 +325,14 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                     {/* Progress indicator overlays */}
                     {isStarted && (
                       <>
-                        <div className="absolute top-2 left-2 bg-cyan-950/80 backdrop-blur-sm px-2 py-0.5 rounded border border-cyan-500/30 text-[9px] font-mono font-bold text-cyan-300 z-20 pointer-events-none">
+                        <div className="absolute top-2 left-2 bg-amber-950/80 backdrop-blur-sm px-2 py-0.5 rounded border border-amber-500/30 text-[9px] font-mono font-bold text-amber-300 z-20 pointer-events-none">
                           RESUME
                         </div>
                         <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm border border-white/10 w-9 h-9 rounded-full flex items-center justify-center z-20 shadow-md pointer-events-none">
-                          <span className="text-[9px] font-mono font-bold text-cyan-400">
+                          <span className="text-[9px] font-mono font-bold text-amber-400">
                             {Math.round(progress.percentage * 100)}%
                           </span>
-                          <svg className="absolute w-8 h-8 transform -rotate-90 text-cyan-500" viewBox="0 0 36 36">
+                          <svg className="absolute w-8 h-8 transform -rotate-90 text-amber-500" viewBox="0 0 36 36">
                             <path
                               className="text-zinc-800"
                               strokeWidth="3.5"
@@ -342,7 +341,7 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                               d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                             />
                             <path
-                              className="text-cyan-400 transition-all duration-300"
+                              className="text-amber-400 transition-all duration-300"
                               strokeDasharray={`${Math.round(progress.percentage * 100)}, 100`}
                               strokeWidth="3.5"
                               strokeLinecap="round"
@@ -357,16 +356,12 @@ export default function TensuraSelectClient({ volumes, sideStories }: TensuraSel
                   </Link>
 
                   <div className="flex flex-col px-1 select-none">
-                    <span className="text-[8px] font-mono font-bold text-cyan-400 tracking-widest uppercase">
-                      {activeTab === "side"
-                        ? `Special Vol. ${vol.id === "sp1" ? "1" : "2"}`
-                        : `Vol. ${vol.volumeNumber}`}
+                    <span className="text-[8px] font-mono font-bold text-amber-400 tracking-widest uppercase">
+                      {activeTab === "side" ? "Special Vol. 8.5" : `Vol. ${vol.volumeNumber}`}
                     </span>
-                    <Link href={`/tensura/select/${vol.id}`} className="hover:text-cyan-300 transition-colors">
+                    <Link href={`/tbate/select/${vol.id}`} className="hover:text-amber-300 transition-colors">
                       <h4 className="text-xs font-serif font-bold text-white truncate leading-tight mt-0.5">
-                        {activeTab === "side"
-                          ? (vol.id === "sp1" ? "Special Volume 1" : "Special Volume 2")
-                          : vol.title.replace("That Time I Got Reincarnated as a Slime, ", "")}
+                        {vol.title}
                       </h4>
                     </Link>
                   </div>
