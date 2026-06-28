@@ -523,6 +523,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                                         </span>
                                                                     );
                                                                 })() : full}
+                                                                <span className="ml-2.5 text-[10px] text-amber-500/80 bg-amber-500/10 border border-amber-500/20 px-1.5 py-0.5 rounded font-mono font-medium inline-block select-none align-middle transform -translate-y-0.5">In Progress</span>
                                                             </span>
                                                         </div>
                                                     ) : (
