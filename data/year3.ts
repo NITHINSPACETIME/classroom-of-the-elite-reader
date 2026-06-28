@@ -467,9 +467,10 @@ export const shortStories: VolumeData[] = [
         chapters: [
             "Kushida Kikyou : Though Suspicious",
             "Ichinose Honami : Linked Thoughts",
-            "Nanase Tsubasa & Amasawa Ichika : Though We Are Connected"
+            "Nanase Tsubasa & Amasawa Ichika : Though We Are Connected",
+            "Sae Chabashira and Chie Hoshinomiya : The Anniversary Celebration Party"
         ],
-        characters: ["Kushida Kikyou", "Kiyotaka Ayanokōji", "Honami Ichinose", "Suzune Horikita", "Tsubasa Nanase", "Ichika Amasawa"],
+        characters: ["Kushida Kikyou", "Kiyotaka Ayanokōji", "Honami Ichinose", "Suzune Horikita", "Tsubasa Nanase", "Ichika Amasawa", "Sae Chabashira", "Chie Hoshinomiya"],
         coverImage: "/assets/y3v4.jpg",
         inProgress: false,
         customChapters: {
@@ -579,7 +580,78 @@ export const shortStories: VolumeData[] = [
 <p>"I do not have feelings for anyone. Now, if you'll excuse me."</p>
 <p>Nanase left the private pool as if she were running away.</p>
 <p>"She's got a much cuter side to her than I thought."</p>
-<p>Seeing Nanase look slightly flustered brought a small sense of delight to Amasawa.</p>`
+<p>Seeing Nanase look slightly flustered brought a small sense of delight to Amasawa.</p>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Anniversary Celebration Party</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Sae Chabashira and Chie Hoshinomiya SS — 3rd Year Volume 4</p>
+
+<p>The hall opened before them in a sweep of light and splendor, so vast and glittering that it seemed to fill the entirety of their vision.</p>
+<p>Standing beside Chabashira, Hoshinomiya let out a soft, “Wow,” her eyes practically sparkling at the sight.</p>
+<p>“Considering it's a gathering of the financial elite, they really poured money into this, huh, Sae-chan?”</p>
+<p>“It would appear so.”</p>
+<p>“Hey, Isn't that a celebrity over there? And over there, too! Wait, are those politicians?”</p>
+<p>“That has nothing to do with us,” Chabashira replied.</p>
+<p>“It's not completely unrelated, is it?” Hoshinomiya countered. “It's a party to commemorate the school's founding, and we teachers are indispensable to the school. That practically makes us the main characters! Okay, maybe that's an exaggeration, but we're at least the supporting leads, right?”</p>
+<p>Hoshinomiya's gaze darted excitedly around the room, the gleam in her eyes growing brighter by the second.</p>
+<p>“You couldn't be more wrong. We are strictly background characters,” Chabashira said, only to turn and find her attention elsewhere. “Are you even listening to me?”</p>
+<p>“I'm listening, I'm listening,” Hoshinomiya replied. “But forget that, why don't we hunt for some good men? We might just meet our soulmates today and marry into money!”</p>
+<p>“Don't be ridiculous.”</p>
+<p>“Who cares if it's ridiculous? A girl's gotta have a little fun, right~?” Hoshinomiya said breezily, her gaze already drifting across the hall. “Oh, hey, check out the dandy older guy with the eyepatch over there, isn't he totally hot? He looks super chummy with the Prime Minister, too. His age is also just barely in my strike zone.”</p>
+<p>Chabashira, resigning herself to the conversation, followed Hoshinomiya’s gaze across the hall.</p>
+<p>The man she found there was, as Hoshinomiya had said, clearly older than them. Yet, even from a distance, his dignified posture radiated an intense, elegant aura that easily matched that of the Prime Minister beside him.</p>
+<p>“If you ask me, that's one incredibly impressive gentleman,” Hoshinomiya declared. “Definitely hyper-competent at his job. Check, check.”</p>
+<p>“Hyper-competent? Well, he may indeed be a remarkable person, but you truly have no shame, do you? As long as a man is impressive, are his age and social standing merely secondary concerns?”</p>
+<p>Chabashira couldn't help but point out her friend's completely skewed priorities.</p>
+<p>“Of course they're secondary!” Hoshinomiya said, waving the objection aside. “Let me turn that around on you; are you saying you avoid romance because you're too hung up on age and social standing, Sae-chan? Normally, those are exactly the things people look for, right?”</p>
+<p>“That's—” Chabashira faltered. “Well, maybe so, but…”</p>
+<p>“If you want something a bit more normal, why not try a workplace romance?” Hoshinomiya suggested. “What about Mashima-kun?”</p>
+<p>“Absolutely not,” Chabashira replied immediately.</p>
+<p>“Wow, that was fast…” Hoshinomiya said at that immediate rejection. “Now I almost feel bad for even bringing his name up.”</p>
+<p>“No, of course Mashima... Mashima-sensei is an upstanding man,” Chabashira said, correcting herself. “But for better or worse, I see him in the exact same light as I see you, strictly as a friend. Nothing more, nothing less.”</p>
+<p>“Then is there really no one you're interested in? You're at a good age for it, you know, Sae-chan.”</p>
+<p>“There is no one,” Chabashira replied flatly.</p>
+<p>“Really?” Hoshinomiya asked. “Then, do you not even remember that person?”</p>
+<p>Those words were a deliberate probe on Hoshinomiya's part, a quiet little test.</p>
+<p>A devil's whisper, spoken not out of genuine concern for her friend's love life, but purely to coax out a reaction; to see her composure crack.</p>
+<p>However, unlike in the past, the mere suggestion of that person was no longer enough to disturb her heart.</p>
+<p>“...Hmm,” Hoshinomiya continued. “Okay, then let's say every single human in the world disappeared except for you, Sae-chan. But wait— one man was actually left behind! Who would you want that person to be?”</p>
+<p>“What kind of nonsensical question is that?”</p>
+<p>“It's fine, just go with it. Try to imagine it in your head. Humanity has vanished, and only Adam and Eve remain. Who is the Adam to your Eve, Sae-chan?”</p>
+<p>How ridiculous. With that thought and an exasperated sigh, Chabashira flatly refused to entertain the hypothetical.</p>
+<p>“You're stiff as always, Sae-chan.”</p>
+<p>“Leave me alone.”</p>
+<p>Though Chabashira had completely brushed off the question, the brief silence that followed allowed the thought to slip through the cracks of her mind.</p>
+<p>And so, she tried thinking about it.</p>
+<p>A simple ‘what if’ scenario. If she had to choose a single partner in this world, right at this very moment.</p>
+<p>It was the sort of idle fantasy one could entertain precisely because such an unreasonable situation would never come to pass.</p>
+<p>She had assumed, naturally, that no one would come to mind. But then, unbidden, the image of a certain male surfaced in her thoughts.</p>
+<p>“No, that can’t be…”</p>
+<p>It wasn't as if she was actually attracted to him. Surely not.</p>
+<p>And yet, a certain student— one with an eerily mature and mysterious aura, a full twelve years younger than her— suddenly flashed across her mind.</p>
+<p>But she immediately banished that thought from her head.</p>
+<p>“As a teacher, that would be unacceptable…”</p>
+<p>Realizing she had muttered that last part aloud, Chabashira gasped. If Hoshinomiya, who was standing beside her, had heard her, she would jump to all sorts of bizarre, unwarranted conclusions.</p>
+<p>And so, Chabashira braced herself for the teasing, but received only silence in return.</p>
+<p>“Chie...?”</p>
+<p>In the brief moment Chabashira had taken her eyes off her, Hoshinomiya, who was supposed to be standing right next to her, had completely vanished from her side.</p>
+<p>Don't tell me... Letting her gaze wander across the room, she quickly spotted her friend near the distant guest seating, happily chatting up the man with the eyepatch.</p>
+<p>“When did she...?” Chabashira muttered to herself. “I suppose I should learn from that proactive attitude alone― no, actually, I wouldn't want to learn that.”</p>
+<p>Unable to go after her in such a formal setting, Chabashira waited right there, and within a few minutes, Hoshinomiya returned.</p>
+<p>With a noticeable bounce in her step and a beaming smile, she looked like a hunter returning with a prized catch.</p>
+<p>“Don't just run off and do whatever you please, Chie. We are here as teachers, remember?”</p>
+<p>“Today is Saturday, which means I'm officially off the clock and just an ordinary, single woman~!” Hoshinomiya declared, throwing the words back with shameless cheer.</p>
+<p>“...Even on a day off. It is rude to force a conversation on someone.”</p>
+<p>“It was a coincidence! Pure coincidence. We just coincidentally ended up talking, so don't look so mad.”</p>
+<p>“I find that incredibly hard to believe,” Chabashira replied, unconvinced. “Regardless, we need to head to our seats. It's almost time.”</p>
+<p>“Yes, yes, I know.”</p>
+<p>The two of them walked over to the reserved seating area and settled into their chairs.</p>
+<p>“Hey, hey, I managed to get all sorts of juicy info out of that older gentleman!” Hoshinomiya said, turning to Chabashira again the moment they were seated. “Just as I thought, he really is a big deal, you know? His name is Shirogane—”</p>
+<p>Just as Hoshinomiya was about to triumphantly recount her success, the voice of the emcee echoed through the microphone.</p>
+<p>“We will now commence the Advanced Nurturing High School's Founding Commemoration Party.”</p>
+<p>“Our chitchat is over,” Chabashira said firmly.</p>
+<p>“Then you have to listen to me later! He might just be my future husband, you know!”</p>
+<p>“I won't be listening.”</p>
+<p>The students were soon slated to face their uninhabited island exam.</p>
+<p>Meanwhile, amidst the looming trials of the student body, the teachers were already stepping up to fulfill their own duties as adults, engaging in a quiet battlefield of their own.</p>`
         }
     }
 ];

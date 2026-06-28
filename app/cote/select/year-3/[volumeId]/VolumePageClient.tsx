@@ -42,7 +42,10 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
         const readData = localStorage.getItem(readKey);
         if (readData) {
             try {
-                setReadChapters(JSON.parse(readData));
+                const data = JSON.parse(readData);
+                setTimeout(() => {
+                    setReadChapters(data);
+                }, 0);
             } catch (e) {
                 console.error(e);
             }
@@ -128,6 +131,9 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
 
     const getChapterDisplay = (chapter: string, index: number) => {
         if (isSideStory) {
+            if (volume.id === 'ss-y3-v4' && index === 3) {
+                return { type: 'SS', number: 'Special', full: chapter };
+            }
             return { type: 'SS', number: (index + 1).toString(), full: chapter };
         }
         if (chapter === "Illustrations") {
@@ -453,11 +459,13 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 } ${readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && !isCurrent ? 'opacity-55 hover:opacity-100 transition-opacity' : ''}`}>
                                                     <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`} className="flex items-start gap-3 flex-1">
                                                         <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${
-                                                            type === 'CH' 
-                                                                ? (isCurrent ? 'text-emerald-200 bg-emerald-950/40' : 'text-emerald-200 bg-emerald-950/30') 
-                                                                : 'text-emerald-400 bg-emerald-950/50'
+                                                            number === 'Special'
+                                                                ? 'text-amber-400 bg-amber-950/50 border border-amber-500/20'
+                                                                : type === 'CH' 
+                                                                    ? (isCurrent ? 'text-emerald-200 bg-emerald-950/40' : 'text-emerald-200 bg-emerald-950/30') 
+                                                                    : 'text-emerald-400 bg-emerald-950/50'
                                                         }`}>
-                                                            {type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
+                                                            {number === 'Special' ? 'Special' : type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
                                                         </span>
                                                         <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${
                                                             isCurrent 
@@ -506,7 +514,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                     })
                                 ) : (
                                     <div className="text-center text-gray-500 py-10">
-                                        No {isSideStory ? "side stories" : "chapters"} found matching "{searchQuery}"
+                                        No {isSideStory ? "side stories" : "chapters"} found matching &quot;{searchQuery}&quot;
                                     </div>
                                 )}
                             </div>
