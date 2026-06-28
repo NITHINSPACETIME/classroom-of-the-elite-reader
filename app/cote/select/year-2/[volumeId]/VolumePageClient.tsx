@@ -2,7 +2,7 @@
 
 import { volumes, shortStories } from "@/data/year2";
 import { getSpineIndex, chapterMappings } from "@/lib/chapter-mappings";
-import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon, ArrowRight } from "lucide-react";
+import { ArrowLeft, BookOpen, Calendar, Users, Search, ArrowUpDown, Download, Image as ImageIcon, ArrowRight, Lock } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
@@ -492,6 +492,8 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
 
                                         const isCurrent = hasStarted && originalIndex === savedChapterIndex;
 
+                                        const isLocked = volume.customChapters && !volume.customChapters[originalIndex + 1];
+
                                         return (
                                             <motion.div
                                                 key={chapter}
@@ -499,32 +501,57 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: 0.1 + (originalIndex * 0.03) }}
                                             >
-                                                <div className={`group flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 gap-3 ${isCurrent ? 'bg-blue-900/10 border-blue-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'} ${readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && !isCurrent ? 'opacity-55 hover:opacity-100 transition-opacity' : ''}`}>
-                                                    <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`} className="flex items-start gap-3 flex-1">
-                                                        <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${
-                                                            number === 'Special'
-                                                                ? 'text-amber-400 bg-amber-950/50 border border-amber-500/20'
-                                                                : type === 'CH' 
-                                                                    ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') 
-                                                                    : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')
-                                                        }`}>
-                                                            {number === 'Special' ? 'Special' : type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
-                                                        </span>
-                                                        <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-blue-200' : 'text-gray-300 group-hover:text-white'}`}>
-                                                            {isSideStory && full.includes(" : ") ? (() => {
-                                                                const [narrator, title] = full.split(" : ");
-                                                                return (
-                                                                    <span className="flex flex-col md:block">
-                                                                        <span className="font-bold text-blue-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
-                                                                        <span className="text-gray-300">{title}</span>
-                                                                    </span>
-                                                                );
-                                                            })() : full}
-                                                            {isCurrent && <span className="ml-2 text-xs text-blue-400 font-normal animate-pulse">(Current)</span>}
-                                                        </span>
-                                                    </Link>
+                                                <div className={`group flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 gap-3 ${
+                                                    isLocked
+                                                        ? 'bg-black/20 border-white/5 opacity-40 cursor-not-allowed'
+                                                        : isCurrent
+                                                            ? 'bg-blue-900/10 border-blue-900/30'
+                                                            : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'
+                                                } ${readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && !isCurrent ? 'opacity-55 hover:opacity-100 transition-opacity' : ''}`}>
+                                                    {isLocked ? (
+                                                        <div className="flex items-start gap-3 flex-1 select-none">
+                                                            <span className="shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 text-gray-500 bg-black/40">
+                                                                {type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
+                                                            </span>
+                                                            <span className="text-sm md:text-base font-medium leading-tight md:leading-normal text-gray-500">
+                                                                {isSideStory && full.includes(" : ") ? (() => {
+                                                                    const [narrator, title] = full.split(" : ");
+                                                                    return (
+                                                                        <span className="flex flex-col md:block">
+                                                                            <span className="font-bold text-gray-600">{narrator} <span className="text-gray-700 font-normal">:</span> </span>
+                                                                            <span className="text-gray-500">{title}</span>
+                                                                        </span>
+                                                                    );
+                                                                })() : full}
+                                                            </span>
+                                                        </div>
+                                                    ) : (
+                                                        <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`} className="flex items-start gap-3 flex-1">
+                                                            <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${
+                                                                number === 'Special'
+                                                                    ? 'text-amber-400 bg-amber-950/50 border border-amber-500/20'
+                                                                    : type === 'CH' 
+                                                                        ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') 
+                                                                        : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')
+                                                            }`}>
+                                                                {number === 'Special' ? 'Special' : type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
+                                                            </span>
+                                                            <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-blue-200' : 'text-gray-300 group-hover:text-white'}`}>
+                                                                {isSideStory && full.includes(" : ") ? (() => {
+                                                                    const [narrator, title] = full.split(" : ");
+                                                                    return (
+                                                                        <span className="flex flex-col md:block">
+                                                                            <span className="font-bold text-blue-400">{narrator} <span className="text-gray-500 font-normal">:</span> </span>
+                                                                            <span className="text-gray-300">{title}</span>
+                                                                        </span>
+                                                                    );
+                                                                })() : full}
+                                                                {isCurrent && <span className="ml-2 text-xs text-blue-400 font-normal animate-pulse">(Current)</span>}
+                                                            </span>
+                                                        </Link>
+                                                    )}
                                                     <div className="flex items-center gap-3 shrink-0">
-                                                        {readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && (
+                                                        {!isLocked && readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && (
                                                             <div className="flex items-center gap-2">
                                                                 <span className="text-[10px] bg-green-500/20 text-green-400 border border-green-500/30 px-2.5 py-0.5 rounded-full font-mono font-medium flex items-center gap-1">
                                                                     ✓ Read
@@ -543,9 +570,13 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                                                 </button>
                                                             </div>
                                                         )}
-                                                        <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
-                                                            <ArrowLeft className="w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
-                                                        </Link>
+                                                        {isLocked ? (
+                                                            <Lock className="w-4 h-4 text-gray-700 mt-0.5 mr-1" />
+                                                        ) : (
+                                                            <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`}>
+                                                                <ArrowLeft className="w-4 h-4 text-gray-600 group-hover:text-white rotate-180 transition-colors mt-0.5" />
+                                                            </Link>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </motion.div>

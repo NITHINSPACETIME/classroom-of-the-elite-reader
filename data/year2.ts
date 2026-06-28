@@ -2831,42 +2831,155 @@ export const shortStories: VolumeData[] = [
         coverImage: "/assets/y2v9.5.jpg",
         inProgress: false,
         customChapters: {
-            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Because I Hate It</h1>
-<p class="text-center text-sm text-gray-500 mb-12">Masumi Kamuro SS — 2nd Year Volume 9.5</p>
-<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
-    <p>Kamuro meets Ayanokōji at the Keyaki Mall. Hashimoto had pressured her to make contact with him. She complains to Ayanokōji about Hashimoto constantly calling her by her first name "Masumi" without her permission and vents her annoyance at boys who get involved with multiple girls.</p>
-    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
-</div>`,
-            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">What I Want You To Know</h1>
-<p class="text-center text-sm text-gray-500 mb-12">Hiyori Shiina SS — 2nd Year Volume 9.5</p>
-<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
-    <p>Hiyori Shiina reflects on her deep passion for reading and her quiet moments in the library. She thinks about her interactions with Ayanokōji and the warmth of sharing book recommendations, hoping to convey more of her thoughts and feelings to him.</p>
-    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
-</div>`,
             3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Person That Can Find Me</h1>
 <p class="text-center text-sm text-gray-500 mb-12">Miki Yamamura SS — 2nd Year Volume 9.5</p>
-<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
-    <p>Miki Yamamura, known for her exceptionally faint presence, often goes unnoticed by teachers and classmates alike. She observes Ayanokōji and is intrigued by how easily and consistently he spots her in the crowd, leaving her to ponder the nature of his perception.</p>
-    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
-</div>`,
+
+<p>Ryueen-kun, Katsuragi-kun, and Ayanokouji-kun who've been going around the periphery of Keyaki Mall.</p>
+<p>I’d found those three and had secretly tailed them.</p>
+<p>If I could pick up any useful information, I’ll collect that and report it to Sakayanagi-san.</p>
+<p>Since she’s the one who’d look deeper into the contents, I simply jolt them down to memory.</p>
+<p>Hiding behind the vending machine, I held my breath and sharpened my hearing.</p>
+<p>“I'm gonna drop by Keyaki Mall. What are you gonna do? If you wish to have a date whilst holding hands, I don't mind considering it.”</p>
+<p>The bossy(not really), usual Ryueen-kun.</p>
+<p>The contents of the three’s conversations were more dense and mysterious than I’d expected.</p>
+<p>The things found out about the preparation towards the third term’s special exam(?)etc, there were a number of things, but even amongst them, the thing that shocked me was Ayanokouji-kun’s existence, and the two’s conversation who highly evaluate him.</p>
+<p>Looking at how the two highly evaluate him, ever since the school trip, I’d thought that he was an ungraspable person and had wondered just who he is.</p>
+<p>Unfortunately, I don't know about their conversation right after they meet up, but I wonder if they’d also touched upon that.</p>
+<p>“Well, I'll be leaving.” (Ayanokouji)</p>
+<p>“The battle against you is from third year onwards. Don't forget that, alright?”</p>
+<p>Until the moment they parted ways, Ryueen-kun was cautious and recognized Ayanokouji-kun as a strong enemy.</p>
+<p>I do want to collect more information, but I judged this to be the time to stop.</p>
+<p>Having a weak presence is my only skill. However, there's still a limit to that after all.</p>
+<p>But there's no need to worry. I slid towards and occupied a position where I could think that.</p>
+<p>After that, the only thing to do is to kill my presence to the utmost limit.</p>
+<p>From before I came to this school, it was always like that.</p>
+<p>No one could find me. No one would find me.</p>
+<p>Look, just by being silent, no one could find me this time as wel----</p>
+<p>“What are you doing in such a place.”</p>
+<p>Close above my head. There was Ayanokouji-kun, looking down at me with his usual, colorless pupils.</p>
+<p>“Eh!?”</p>
+<p>Someone’s calling out to me?</p>
+<p>Me? There's no way.</p>
+<p>There's no way anyone could see (someone like) me.</p>
+<p>However, I realize immediately after.</p>
+<p>That this person----is someone that could find me.</p>`,
             4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Emotional Control</h1>
 <p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — 2nd Year Volume 9.5</p>
-<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
-    <p>Arisu Sakayanagi contemplates the unusual emotions she has begun experiencing recently. Unused to feelings that defy her logical control, she reflects on her growing fascination with Kiyotaka Ayanokōji and the warmth he brings to her calculated world.</p>
-    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
-</div>`,
+
+<p>Humans are interesting creatures. Admist the snowy scene, I recognise this once again.</p>
+<p>“To think that I put it into words.”</p>
+<p>Being at the mercy of uncontrollable emotions. The shock that there's such a side of me.</p>
+<p>Liking the opposite sex.</p>
+<p>Within my life experience up til now, I'd thought that would happen in the distant future.</p>
+<p>The reason is simple. It's because I’d understood that I’m unable to find inferior existences charming.</p>
+<p>In other words, I don't find 99% of the world charming.</p>
+<p>At the same time, I think once.</p>
+<p>In that case, does that mean I admit that Ayanokouji-kun is an existent that surpasses me?</p>
+<p>“No——is what I want to say, but I suppose I have to recognise his abilities.”</p>
+<p>However, it doesn’t mean I admit defeat if put in the same ring as him.</p>
+<p>He’s an heterogenous individual. Genius or ordinary person. Something that can’t be sorted into only those two categories, a third existence.</p>
+<p>I’ve decided to make such a conclusion as of now.</p>
+<p>The reason why I’ve made such a conclusion is simple. It’s because I realised that I’d come to like him.</p>
+<p>I don’t/won't like 99% of people.</p>
+<p>However, I also think that I don't/won't like the 1% of existence that surpasses me.</p>
+<p>I’ve yet met them, but I probably won't harbour romantic feelings towards that genius of the 1%, but (definitely) jealously.</p>
+<p>It's because I could easily imagine (such a version of) myself that there is meaning to this feeling.</p>
+<p>With the usual ungraspable and black look, he said this.</p>
+<p>“Could you turn that emotion into a strength instead of a weakness?”</p>
+<p>Please be at ease. Right now, even more so than ever, I strongly, strongly, wish to fight you.</p>
+<p>Whilst being thankful that I encountered you as an enemy, I'm able to head toward the battle up ahead.</p>
+<p>Neither a genius nor an ordinary person. Beating a manufactured third existence.</p>
+<p>Even within my long lifetime moving forward, I probably won’t come across such an interesting battle much.</p>
+<p>I’ll defeat Ayanokouji-kun----and prove my talent.</p>
+<p>Moreover, I want to know how I’ll feel about Ayanokouki-kun (when that happens - not exactly but basically).</p>
+<p>Whether I’d completely lose interest, or realize that this feeling is real.</p>
+<p>Or maybe I'll end up harboring a different new feeling that I don't currently understand.</p>
+<p>Being at the mercy of uncontrollable emotions is fun.</p>
+<p>I'm sure Ayanokouji-kun is also entrusting himself to the same emotions through his current quasi-romance.</p>
+<p>Amidst the snowy dark night, I smiled whilst hugging the hot welling-up thing to my chest.</p>`,
             5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">An Adult-ish Special Lesson</h1>
 <p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — 2nd Year Volume 9.5</p>
-<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
-    <p>Ayanokōji visits a newly opened casino-themed amusement zone in Keyaki Mall. He meets Sae Chabashira, who is reluctantly wearing a bunny girl costume as part of a school financial risk lesson. Ayanokōji wins a game of poker against her and captures a photograph of her in the outfit as his prize.</p>
-    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
-</div>`,
-            6: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The First Discordant Sounds of the New Year</h1>
-<p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — Year 2 Volume 9.75</p>
-<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
-    <p>Ayanokōji reflects on the arrival of the New Year, the changing dynamics within the school, and the initial, subtle signs of discord and preparation as the third term approaches.</p>
-    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
-</div>`
+
+<p>On a certain holiday. We, students, received a certain message from the school. It's about an amusement facility that had been constructed in the basement of Keyaki Mall. It apparently is a combination of an arcade and a casino. Having been selected from the lottery, I went to participate in the opening of the facility right away.</p>
+<p>Whilst there were only a few, the figures of students who'd accepted the invitation could be seen here and there.</p>
+<p>But amidst such a scene, I discovered my homeroom teacher who was being surreptitious to remain inconspicuous but couldn’t help but stand out due to the eccentric outfit she was wearing.</p>
+<p>“Did you perhaps resign as a teacher and land a new occupation or something?”</p>
+<p>“A-Ayanokouji!?"</p>
+<p>Chabashira-sensei was shocked to the point of almost falling backwards. She was cladded in her usual suit——or rather, a bunny girl custom.</p>
+<p>“May I inquire what this is about?"</p>
+<p>“...This is..work..."</p>
+<p>“Well, I did not think you were wearing a bunny girl costume out of foppery or a bizarre interest..."</p>
+<p>Probably being able to regain some composure due to my being calm, Chabashira-sensei cleared her throat.</p>
+<p>“A casino in the middle of the school. Don't you think it's like water and oil?"</p>
+<p>“Of course, I do think so."</p>
+<p>Looking around, there were pokers and roulettes and such; entertainments that were too stimulating to be letting students play were made available in mass.</p>
+<p>“Right now, the movement of educating how to handle money is taking off in our society. To bring in a more familiar example, it's similar to teaching how stocks work and having students experience buying and selling. This casino too is one of such experiments.”</p>
+<p>“So it is something akin to having us gamble, which would in turn teach us the value of money, I suppose. It would be fine if it goes smoothly, but is there not a concern about it having the opposite effect?”</p>
+<p>“That's exactly why we invited a portion of the students. Seeing that you're also one of those selected, you could think of it as the school having only hand-picked students who could exercise moderation in their participation.”</p>
+<p>Now that she tells me that, that certainly might be the case.</p>
+<p>Many of the participants have high academic ability and possess great qualities. This might be rude, but students like Ike and Honda couldn't be found here.</p>
+<p>“Well then, I will go wander about and look around.”</p>
+<p>Since I was interested, let's try various things.</p>
+<p>That's what I was thinking, but Chabashira-sensei grabbed me by the shoulder(s).</p>
+<p>“What is it?"</p>
+<p>“I was helped by your calmness. Whilst it might not be much of a gratitude, your induction shall be done by me."</p>
+<p>“No, I am fine, thank you."</p>
+<p>I tried brushing her hand(s) off and walking away. However, Chabashri-sensei came circling around me in a panic.</p>
+<p>“My bad, I'll come clean so cooperate with me.”</p>
+<p>“That is what I thought. I can tell you are in a tight spot just by looking. Most likely, things are operating in the form of a teacher accompanying a student whilst giving them a lecture, right?”</p>
+<p>By looking at the other students, a teacher attended to them in a man-to-man fashion, so that conjecture had stood.</p>
+<p>“..You tried running away whilst knowing that?"</p>
+<p>“It was not like I was trying to run away, but I just thought that I did not need Chabashira-sensei to teach me."</p>
+<p>“By all means, I'd like to teach you, Ayanokouji"</p>
+<p>“Is it because being seen in that outfit by other students is embarrassing? It's just a maybe, though.”</p>
+<p>Answering in that manner resulted in me being glared at intensely.</p>
+<p>“Alright, we're going, Ayanokouji."</p>
+<p>Apparently, she has no intentions of talking about this matter in a bunny girl costume any longer and starts walking.</p>
+<p>Since it couldn't be helped, I followed her to which we ended up stopping at the poker table.</p>
+<p>“This seat is available, perfect timing. Are you familiar with the rules of poker?”</p>
+<p>“More or less. I'm familiar with a number of variations."</p>
+<p>“Here, the simple game of closed poker is being played here."</p>
+<p>Receiving a deck of all five cards in the beginning, exchanging an arbitrary number of cards to develop a hand. Players would compete against one another under those rules.</p>
+<p>“I'll have you compete against me."</p>
+<p>“I do not mind, but does one get anything?”</p>
+<p>“Unfortunately, you get nothing. However, there's also no penalties if you lose, so you don't have to be vigilant."</p>
+<p>In that case, I'll simply be enjoying myself, but...</p>
+<p>At Chabashira-sensei's signal, cards were dealt to us by the dealer.</p>
+<p>“Well then, let's confirm our decks."</p>
+<p>“Before that, may I say something?”</p>
+<p>“What is it?"</p>
+<p>“With nothing to gamble with, this is lacking a sense of interest."</p>
+<p>“I won't deny that but: that's the arrangement. At the current stage, the school hasn't decided on the contents of the wagers."</p>
+<p>“If that is the case, would it not be fine if Chabashira-sensei and I simply decide on a wager independently between ourselves?"</p>
+<p>“..Well, that's true, but we're not going to gamble over money."</p>
+<p>“I understand that. In the event that I come out victorious, please allow me to take a picture of Sensei in that bunny girl outfit."</p>
+<p>“W-what!?"</p>
+<p>“If money is not involved, whilst the school shouldn't be able to say anything, a sense of tension could also be engendered from this, right?”</p>
+<p>To Chabashira-sensei who desires to return to her original appearance as soon as possible, it's unavoidable that this battle would become one that she cannot lose.</p>
+<p>“If that's the case, I'll have you dressed in an embarrassing outfit if I win. Are you fine even with that?"</p>
+<p>“Understood. Well then, let us begin.”</p>
+<p>“T-that easily...? Alright!"</p>
+<p>I checked the five cards in my deck in a way that Chabashira-sensei couldn't see them.</p>
+<p>On the other hand, the bunny in front of me...no, Chabashira-sensei also exhibited the same action as me.</p>
+<p>With a slightly unpleasant expression, Chabashira-sensei requested an exchange of three cards.</p>
+<p>On the other hand, I requested for two of my cards to be exchanged.</p>
+<p>“Having something on the line makes it good, doesn't it?"</p>
+<p>With that said, we're just exchanging and turning our hands around on this occasion. We're not dealing with chips in our gamble, so one could say that it simply comes down to the luck of our draw.</p>
+<p>“My hand is--a two pair"</p>
+<p>Saying that, she turned over her hand. It seems that two cards she'd kept were one pair, and she was able to get another pair with the three cards she drew.</p>
+<p>“It was close. My hand is a three card.”</p>
+<p>I was actually aiming for a flush, but in the end, I was able to beat Chabashira-sensei by luckily drawing two cards with the same number.</p>
+<p>Whilst seeing the bunny girl hit the table in frustration in my peripheral vision, I took out my phone.</p>
+<p>“Well then, as promised- you understand, right?”</p>
+<p>“Ku...! Kill me!"</p>
+<p class="text-xs text-neutral-500/60 mt-1">(Note: This is a classic line often seen in media when a female character is defeated.)</p>
+<p>I don't know what Chabashira-sensei was misunderstanding, but I had her—who shut her eyes in indignity—stand at the wall.</p>
+<p>Then, I mercilessly took photo(s) of her figure.</p>
+<p>“This is humiliating... This is humiliating!”</p>
+<p>For a while, Chabashira-sensei continued to mutter that.</p>
+<p>And then, I woke up in my bed.</p>
+<p>“Well, of course that was a dream... it has to be.”</p>
+<p>However, I was horrified later after looking at the photo(s) saved on my phone.</p>`
         }
     },
     {
