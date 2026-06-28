@@ -2829,7 +2829,45 @@ export const shortStories: VolumeData[] = [
         ],
         characters: ["Masumi Kamuro", "Hiyori Shiina", "Miki Yamamura", "Arisu Sakayanagi", "Kiyotaka Ayanokōji"],
         coverImage: "/assets/y2v9.5.jpg",
-        inProgress: true,
+        inProgress: false,
+        customChapters: {
+            1: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Because I Hate It</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Masumi Kamuro SS — 2nd Year Volume 9.5</p>
+<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
+    <p>Kamuro meets Ayanokōji at the Keyaki Mall. Hashimoto had pressured her to make contact with him. She complains to Ayanokōji about Hashimoto constantly calling her by her first name "Masumi" without her permission and vents her annoyance at boys who get involved with multiple girls.</p>
+    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
+</div>`,
+            2: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">What I Want You To Know</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Hiyori Shiina SS — 2nd Year Volume 9.5</p>
+<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
+    <p>Hiyori Shiina reflects on her deep passion for reading and her quiet moments in the library. She thinks about her interactions with Ayanokōji and the warmth of sharing book recommendations, hoping to convey more of her thoughts and feelings to him.</p>
+    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
+</div>`,
+            3: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The Person That Can Find Me</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Miki Yamamura SS — 2nd Year Volume 9.5</p>
+<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
+    <p>Miki Yamamura, known for her exceptionally faint presence, often goes unnoticed by teachers and classmates alike. She observes Ayanokōji and is intrigued by how easily and consistently he spots her in the crowd, leaving her to ponder the nature of his perception.</p>
+    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
+</div>`,
+            4: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Emotional Control</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Arisu Sakayanagi SS — 2nd Year Volume 9.5</p>
+<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
+    <p>Arisu Sakayanagi contemplates the unusual emotions she has begun experiencing recently. Unused to feelings that defy her logical control, she reflects on her growing fascination with Kiyotaka Ayanokōji and the warmth he brings to her calculated world.</p>
+    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
+</div>`,
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">An Adult-ish Special Lesson</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — 2nd Year Volume 9.5</p>
+<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
+    <p>Ayanokōji visits a newly opened casino-themed amusement zone in Keyaki Mall. He meets Sae Chabashira, who is reluctantly wearing a bunny girl costume as part of a school financial risk lesson. Ayanokōji wins a game of poker against her and captures a photograph of her in the outfit as his prize.</p>
+    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
+</div>`,
+            6: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">The First Discordant Sounds of the New Year</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Kiyotaka Ayanokōji SS — Year 2 Volume 9.75</p>
+<div class="max-w-2xl mx-auto space-y-6 text-neutral-300 leading-relaxed font-sans">
+    <p>Ayanokōji reflects on the arrival of the New Year, the changing dynamics within the school, and the initial, subtle signs of discord and preparation as the third term approaches.</p>
+    <p class="text-amber-500/80 font-medium italic mt-8 text-center bg-amber-950/20 border border-amber-500/10 p-4 rounded-xl">Note: Full translation text will be added in a future update.</p>
+</div>`
+        }
     },
     {
         id: "ss-y2-v10",
@@ -3429,9 +3467,10 @@ export const shortStories: VolumeData[] = [
             "Honami Ichinose : The Other Side of the Promise",
             "Miki Yamamura : What is Really Being Observed",
             "Sae Chabashira : How Long Has It Been...",
+            "Horikita Suzune & Ryūen Kakeru : First Contact",
             "Mio Ibuki : Behind the Scenes"
         ],
-        characters: ["Hiyori Shiina", "Honami Ichinose", "Miki Yamamura", "Sae Chabashira", "Mio Ibuki"],
+        characters: ["Hiyori Shiina", "Honami Ichinose", "Miki Yamamura", "Sae Chabashira", "Mio Ibuki", "Horikita Suzune", "Ryūen Kakeru", "Atsuomi Ayanokōji"],
         coverImage: "/assets/y2v12.5.jpg",
         inProgress: false,
         customChapters: {
@@ -3597,7 +3636,86 @@ export const shortStories: VolumeData[] = [
 <p>Considering the Maezono incident, this is an emergency.</p>
 <p>For the class to continue aiming higher, Ayanokouji's presence is indispensable.</p>
 <p>As a teacher, I must attend to his emotional well-being--</p>`,
-            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Behind the Scenes</h1>
+            5: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">First Contact</h1>
+<p class="text-center text-sm text-gray-500 mb-12">Horikita Suzune & Ryūen Kakeru SS — 2nd Year Volume 12.5</p>
+
+<p>It was just past 4:30 PM on April 1st.</p>
+<p>Horikita Suzune, a female student, was waiting in front of the school's entrance.</p>
+<p>She had no particular business at school but came here for one purpose:</p>
+<p>She wanted to see Ayanokōji's family.</p>
+<p>That curiosity drove her to this place.</p>
+<p>"Surely, it's not over yet... right?"</p>
+<p>She opened the schedule on her phone just to double-check. Ayanokōji's three-way interview was scheduled to begin at 4:30 PM.</p>
+<p>Therefore, she assumed he was still in the counseling room, continuing the discussion.</p>
+<p>Since entering the school building required wearing the school uniform, she had dressed accordingly, but she had no plans to venture inside boldly. Her intention was to stage a coincidental encounter and have minimal contact. If Ayanokōji found it too bothersome, she planned to leave immediately.</p>
+<p>Before long, while Horikita was waiting alone, an unexpected male student approached her.</p>
+<p>As she stood quietly, hoping he would just pass by, the male student—Ryūen—stopped near her.</p>
+<p>"...Do you need something from me?"</p>
+<p>"Huh? Not at all."</p>
+<p>"...Then, why are you here? You’re not even wearing the school uniform."</p>
+<p>"Where I go is my business. What about you? What are you doing here? The three-way interviews should have ended by now."</p>
+<p>Information about the interview schedule for other classes wasn't generally public, meaning Ryūen must have obtained this information from someone in his class.</p>
+<p>"I just had something I was curious about."</p>
+<p>Hearing her response, Ryūen closed his eyes and laughed lightly.</p>
+<p>"Well, what a coincidence. I’m here because of curiosity too."</p>
+<p>As he said this, he leaned against the wall next to her, indicating this place was his destination.</p>
+<p>Having business at this time and place—</p>
+<p>That alone was enough for Horikita to realize he was here for the same reason as her.</p>
+<p>"I see. Then it seems I have no right to stop you."</p>
+<p>Horikita also remained in place, folding her arms.</p>
+<p>"It's hard not to be interested. Don’t you want to see the face and methods of the parents who raised that monster? Whether it’s an ordinary environment or something else entirely."</p>
+<p>"True. I couldn’t resist my curiosity either. To be honest, I can’t picture it at all."</p>
+<p>"He might show a side he doesn’t reveal in front of us when he’s with his parents."</p>
+<p>"Not sure. I feel like he’s the same wherever he is and with whoever he’s with..."</p>
+<p>After a while of standing silently shoulder to shoulder, they heard footsteps distinct from indoor slippers—guest slippers.</p>
+<p>Unconsciously, both Horikita and Ryūen braced themselves.</p>
+<p>Before long, two figures came into their view: an adult in a suit they had never seen before, speaking into a phone.</p>
+<p>"Ah, it seems it’ll take a bit longer. Just wait as you are."</p>
+<p>The faint snippets of his conversation reached their ears. Noticing their gazes, the man ended his call.</p>
+<p>Horikita instinctively stepped forward to speak, but his stern expression overwhelmed her, causing her to hesitate.</p>
+<p>His commanding aura allowed no room for objection.</p>
+<p>Though there was no confirmation the man before them was Ayanokōji’s family—</p>
+<p>Horikita and Ryūen both intuitively knew this was undoubtedly Ayanokōji's father.</p>
+<p>However, he wasn’t what Horikita had imagined. She had pictured his parents as emotionless and detached individuals, but that image shattered instantly.</p>
+<p>A strict father. That was the impression anyone would get.</p>
+<p>"Uh... excuse me," Horikita mustered the courage to speak cautiously.</p>
+<p>"—And you are?"</p>
+<p>"I’m a classmate of Kiyotaka Ayanokōji. My name is Horikita. Actually, I was waiting here for him..."</p>
+<p>She began explaining, thinking she’d catch him and his family together.</p>
+<p>"I see. Kiyotaka is still upstairs talking to his homeroom teacher."</p>
+<p>"I see. Are you... Ayanokōji-san’s father?"</p>
+<p>Unable to ignore her question, he nodded.</p>
+<p>His cold and intimidating demeanor unsettled Horikita, but his firm response gave her some relief.</p>
+<p>Of course, she had no way of knowing that this man was a politician. Politicians who were household names on television were rare. In a country with many members of parliament, media-averse figures like Atsuomi Ayanokōji often went unnoticed. Even so, his harsh expression left no doubt about his stern character.</p>
+<p>"Are you also one of Kiyotaka’s classmates?"</p>
+<p>Ayanokōji’s father addressed Ryūen, who had been silently observing him.</p>
+<p>"Nope. I’m neither his classmate nor his friend. You could say I’m his enemy."</p>
+<p>"Hey! Ryūen-kun!"</p>
+<p>Horikita panicked, flustered by Ryūen bluntly calling himself an "enemy" in front of Ayanokōji’s father. Yet, contrary to her expectations, Ayanokōji’s father seemed impressed.</p>
+<p>"An enemy, huh..."</p>
+<p>"He’s given me a lot of trouble over these two years. That guy’s no joke."</p>
+<p>"Ryūen-kun!"</p>
+<p>Though Horikita repeatedly scolded Ryūen for his careless words—</p>
+<p>"It’s fine. It just means my son shows sides of himself to you that he doesn’t show to others."</p>
+<p>Surprisingly, Ayanokōji’s father accepted Ryūen’s words with a calm and pleased demeanor, which left Horikita astonished.</p>
+<p>"I have one thing I’d like to ask. What kind of upbringing leads to someone like him?"</p>
+<p>Even as Horikita glared at Ryūen for his impolite question, Ayanokōji’s father turned to face him directly.</p>
+<p>"Nothing special. He was simply raised with a disciplined lifestyle."</p>
+<p>Though he claimed nothing special was done, he added one more thing:</p>
+<p>"If there’s anything unusual, it’s that we placed no restrictions on the number or cost of tutoring, private lessons, or extracurricular activities he participated in. And the fact he took it seriously resulted in what you see today."</p>
+<p>A privileged upbringing—such were the words of Ayanokōji’s father.</p>
+<p>"I have another appointment, so I’ll take my leave. Please continue to get along with my son."</p>
+<p>With that, Ayanokōji’s father left the scene without lingering.</p>
+<p>Though he had a commanding presence, both Horikita and Ryūen felt a sense of anti-climax.</p>
+<p>Still, a slight doubt lingered in Horikita’s mind.</p>
+<p>"Was Kiyotaka really raised in the kind of environment his father described...?"</p>
+<p>Ryūen seemed to share her skepticism.</p>
+<p>"Exactly. If he was, it’d be one hell of a genetic anomaly. But unless his parents speak the truth, we have no way to know."</p>
+<p>As Ryūen walked off, he turned back briefly:</p>
+<p>"Well, it doesn’t change anything. I’ll just take both you and Ayanokōji down. Be ready for that."</p>
+<p>Horikita quietly listened to Ryūen's declaration of war and saw him off as he walked away</p>
+<p>This marked Horikita Suzune’s first meeting with Atsuomi Ayanokōji. Neither of them could have known they were destined to meet again in the future.</p>`,
+            6: `<h1 class="text-2xl md:text-3xl font-bold text-center mb-8 font-serif">Behind the Scenes</h1>
 <p class="text-center text-sm text-gray-500 mb-12">Mio Ibuki SS — 2nd Year Volume 12.75 (Commemorative)</p>
 
 <p>March 30th.</p>

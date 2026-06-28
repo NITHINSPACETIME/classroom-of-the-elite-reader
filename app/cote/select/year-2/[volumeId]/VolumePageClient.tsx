@@ -42,7 +42,10 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
         const readData = localStorage.getItem(readKey);
         if (readData) {
             try {
-                setReadChapters(JSON.parse(readData));
+                const data = JSON.parse(readData);
+                setTimeout(() => {
+                    setReadChapters(data);
+                }, 0);
             } catch (e) {
                 console.error(e);
             }
@@ -66,13 +69,17 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
         if (spineIndex > 0) {
             const mapping = chapterMappings[volume.id];
             const logicalIndex = mapping ? mapping.indexOf(spineIndex) : -1;
-            setHasStarted(true);
-            setSavedChapterIndex(logicalIndex >= 0 ? logicalIndex : 0);
-            setSavedScrollPercentage(scrollPct);
+            setTimeout(() => {
+                setHasStarted(true);
+                setSavedChapterIndex(logicalIndex >= 0 ? logicalIndex : 0);
+                setSavedScrollPercentage(scrollPct);
+            }, 0);
         } else {
-            setHasStarted(false);
-            setSavedChapterIndex(0);
-            setSavedScrollPercentage(0);
+            setTimeout(() => {
+                setHasStarted(false);
+                setSavedChapterIndex(0);
+                setSavedScrollPercentage(0);
+            }, 0);
         }
     }, [volume]);
 
@@ -129,6 +136,9 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
     const getChapterDisplay = (chapter: string, index: number) => {
 
         if (isSideStory) {
+            if (volume.id === 'ss-y2-v12.5' && index === 5) {
+                return { type: 'SS', number: 'Special', full: chapter };
+            }
             return { type: 'SS', number: (index + 1).toString(), full: chapter };
         }
         if (chapter === "Illustrations") {
@@ -491,8 +501,14 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                             >
                                                 <div className={`group flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all duration-200 gap-3 ${isCurrent ? 'bg-blue-900/10 border-blue-900/30' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'} ${readChapters[`${volume.id}-${getSpineIndex(volume.id, originalIndex)}`] && !isCurrent ? 'opacity-55 hover:opacity-100 transition-opacity' : ''}`}>
                                                     <Link href={`/cote/read/${volume.id}/${getSpineIndex(volume.id, originalIndex)}`} className="flex items-start gap-3 flex-1">
-                                                        <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${type === 'CH' ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')}`}>
-                                                            {type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
+                                                        <span className={`shrink-0 text-[10px] md:text-xs font-mono px-1.5 py-0.5 md:px-2 md:py-1 rounded mt-0.5 ${
+                                                            number === 'Special'
+                                                                ? 'text-amber-400 bg-amber-950/50 border border-amber-500/20'
+                                                                : type === 'CH' 
+                                                                    ? (isCurrent ? 'text-blue-200 bg-blue-950/40' : 'text-gray-600 bg-black/40') 
+                                                                    : (type === 'SS' ? 'text-blue-500 bg-blue-950/50' : 'text-blue-500 bg-blue-950/30')
+                                                        }`}>
+                                                            {number === 'Special' ? 'Special' : type === 'SS' ? `SS ${number}` : `${type} ${number}`.trim()}
                                                         </span>
                                                         <span className={`text-sm md:text-base transition-colors font-medium leading-tight md:leading-normal ${isCurrent ? 'text-blue-200' : 'text-gray-300 group-hover:text-white'}`}>
                                                             {isSideStory && full.includes(" : ") ? (() => {
@@ -537,7 +553,7 @@ export function VolumePageClient({ volumeId }: { volumeId: string }) {
                                     })
                                 ) : (
                                     <div className="text-center text-gray-500 py-10">
-                                        No {isSideStory ? "side stories" : "chapters"} found matching "{searchQuery}"
+                                        No {isSideStory ? "side stories" : "chapters"} found matching &quot;{searchQuery}&quot;
                                     </div>
                                 )}
                             </div>
