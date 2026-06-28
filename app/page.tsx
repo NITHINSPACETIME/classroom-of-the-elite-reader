@@ -531,6 +531,16 @@ export default function Home() {
           <p className="text-xs text-zinc-500/70">Not affiliated with the official Classroom of the Elite, Re:Zero, Seishun Buta Yarou, Mushoku Tensei, Lord of the Mysteries, That Time I Got Reincarnated as a Slime, or The Beginning After The End franchises.</p>
         </div>
       </footer>
+
+      {/* Floating Buy me a coffee Button */}
+      <Link
+        href="/donate"
+        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-3 py-3 sm:px-4 sm:py-3 bg-zinc-950/80 hover:bg-[#FFDD00] text-neutral-200 hover:text-black border border-white/10 hover:border-amber-400/30 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_20px_rgba(255,221,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300 group backdrop-blur-md"
+        title="Support the Project"
+      >
+        <span className="text-lg group-hover:animate-bounce">☕</span>
+        <span className="text-sm font-semibold tracking-wide hidden sm:inline">Buy me a coffee</span>
+      </Link>
     </main>
   );
 }

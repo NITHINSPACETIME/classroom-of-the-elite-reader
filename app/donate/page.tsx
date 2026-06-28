@@ -1,14 +1,38 @@
 "use client"
 
+import { ComponentType } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowLeft, Bitcoin, Check, Copy, Coffee, Gem, Zap } from "lucide-react"
+import { ArrowLeft, Coffee } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
-export default function DonatePage() {
+// Custom SVG Ko-fi Icon to match the official brand coffee mug with heart
+function KofiIcon({ className }: { className?: string }) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+        >
+            {/* Mug Outline */}
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+            {/* Heart in Center */}
+            <path
+                d="M10 12s-1-1-2.5-1C6 11 5 12 5 13.5c0 1.5 2.5 3.5 5 4.5 2.5-1 5-3 5-4.5C15 12 14 11 12.5 11 11 11 10 12 10 12z"
+                fill="currentColor"
+                stroke="none"
+            />
+        </svg>
+    )
+}
 
+export default function DonatePage() {
     return (
         <div className="min-h-screen w-full bg-[#050505] text-white relative flex flex-col items-center justify-start pt-24 pb-16 p-6 overflow-x-hidden">
 
@@ -37,77 +61,51 @@ export default function DonatePage() {
                     <div className="flex items-center justify-center gap-3 md:gap-4 mb-3 md:mb-4">
                         <Coffee className="w-8 h-8 md:w-12 md:h-12 text-amber-400 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]" />
                         <h1 className="text-3xl md:text-5xl font-serif font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70">
-                            Donate Using Crypto
+                            Support the Project
                         </h1>
                     </div>
                     <p className="text-base md:text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed px-4 md:px-0">
-                        Your donations go directly into keeping this site alive, fast, and ad-free.
+                        Your support goes directly into keeping this site alive, fast, and ad-free.
                         <span className="block mt-2 text-neutral-500 text-sm">Every contribution helps me maintain servers and develop new features.</span>
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full mb-8">
-                    <CryptoCard
-                        name="Bitcoin"
-                        symbol="BTC"
-                        address="bc1qp44cn8uy8tgx0lwwm3lwkzvgjq4vhmtazvmxhm"
-                        icon={Bitcoin}
-                        colorClass="text-orange-500 group-hover:text-orange-400"
-                        bgGradient="from-orange-500/10 to-orange-500/0"
+                {/* Donation Cards Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl mb-12">
+                    <DonationCard
+                        name="Buy Me a Coffee"
+                        description="Support the developer with a one-time coffee or become a member to help sustain server costs."
+                        buttonText="☕ Buy me a coffee"
+                        url="https://www.buymeacoffee.com/NITHINSPACETIME"
+                        icon={Coffee}
+                        iconColor="text-yellow-400 group-hover:text-yellow-300"
+                        iconBg="bg-yellow-500/10"
+                        bgGradient="from-yellow-500/10 to-yellow-500/0"
+                        buttonBg="bg-[#FFDD00]"
+                        buttonHoverBg="hover:bg-[#ffea30]"
+                        buttonShadow="shadow-[0_4px_20px_rgba(255,221,0,0.2)] hover:shadow-[0_4px_30px_rgba(255,221,0,0.4)]"
                         delay={0.1}
                     />
-                    <CryptoCard
-                        name="Ethereum"
-                        symbol="ETH"
-                        address="0x5786680d9Db44E7f9eD7F912193900E40FA3866F"
-                        icon={Gem}
-                        colorClass="text-indigo-400 group-hover:text-indigo-300"
-                        bgGradient="from-indigo-500/10 to-indigo-500/0"
+                    <DonationCard
+                        name="Support on Ko-fi"
+                        description="Support directly with 0% platform fees. Safe, quick, and supports various local payment options."
+                        buttonText="❤️ Support on Ko-fi"
+                        url="https://ko-fi.com/nithinspacetime"
+                        icon={KofiIcon}
+                        iconColor="text-[#FF5E5B] group-hover:text-[#ff7471]"
+                        iconBg="bg-[#FF5E5B]/10"
+                        bgGradient="from-red-500/10 to-red-500/0"
+                        buttonBg="bg-[#FF5E5B]"
+                        buttonHoverBg="hover:bg-[#ff7471]"
+                        buttonShadow="shadow-[0_4px_20px_rgba(255,94,91,0.2)] hover:shadow-[0_4px_30px_rgba(255,94,91,0.4)]"
                         delay={0.2}
                     />
-                    <CryptoCard
-                        name="Solana"
-                        symbol="SOL"
-                        address="CCDEcGh984WFPk51tY3mzCx1setaYmveheaa9gsPbzJ2"
-                        icon={Zap}
-                        colorClass="text-emerald-400 group-hover:text-emerald-300"
-                        bgGradient="from-emerald-500/10 to-emerald-500/0"
-                        delay={0.3}
-                    />
                 </div>
-
-                {/* Buy Me a Coffee Option */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    className="w-full max-w-md mx-auto mb-12"
-                >
-                    <div className="bg-[#0a0a0a] border border-white/5 hover:border-white/10 rounded-2xl p-6 flex flex-col items-center text-center shadow-2xl relative overflow-hidden group transition-all duration-300">
-                        {/* Glow effect */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none" />
-                        
-                        <h3 className="text-lg font-bold mb-2 text-white font-serif tracking-wide uppercase">Support Project</h3>
-                        <p className="text-sm text-neutral-400 mb-6 max-w-sm leading-relaxed">
-                            This is my own personal project, so maintaining server costs and development is difficult without ads. Please consider supporting the project:
-                        </p>
-                        
-                        <a 
-                            href="https://www.buymeacoffee.com/NITHINSPACETIME" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#FFDD00] hover:bg-[#ffea30] text-black font-extrabold rounded-xl transition-all duration-300 shadow-[0_4px_20px_rgba(255,221,0,0.2)] hover:shadow-[0_4px_30px_rgba(255,221,0,0.4)] hover:scale-105 active:scale-95 z-10"
-                        >
-                            <span className="text-xl">☕</span>
-                            <span className="font-sans text-sm tracking-wide">Buy me a coffee</span>
-                        </a>
-                    </div>
-                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
+                    transition={{ delay: 0.4, duration: 0.8 }}
                 >
                     <Link href="/">
                         <Button variant="ghost" className="group text-neutral-400 hover:text-white transition-colors">
@@ -121,72 +119,70 @@ export default function DonatePage() {
     )
 }
 
-function CryptoCard({
+function DonationCard({
     name,
-    symbol,
-    address,
+    description,
+    buttonText,
+    url,
     icon: Icon,
-    colorClass,
+    iconColor,
+    iconBg,
     bgGradient,
+    buttonBg,
+    buttonHoverBg,
+    buttonShadow,
     delay
 }: {
     name: string,
-    symbol: string,
-    address: string,
-    icon: any,
-    colorClass: string,
+    description: string,
+    buttonText: string,
+    url: string,
+    icon: ComponentType<{ className?: string }>,
+    iconColor: string,
+    iconBg: string,
     bgGradient: string,
+    buttonBg: string,
+    buttonHoverBg: string,
+    buttonShadow: string,
     delay: number
 }) {
-    const [copied, setCopied] = useState(false);
-
-    const handleCopy = () => {
-        navigator.clipboard.writeText(address);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay }}
-            className="relative group cursor-pointer"
-            onClick={handleCopy}
+            className="relative group w-full flex flex-col"
         >
             <div className={cn(
-                "absolute inset-0 rounded-2xl bg-gradient-to-b opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl",
+                "absolute inset-0 rounded-2xl bg-gradient-to-b opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none",
                 bgGradient
             )} />
 
-            <div className="relative h-full bg-[#0a0a0a] border border-white/5 group-hover:border-white/10 rounded-2xl p-5 md:p-6 flex flex-col items-center text-center transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl">
-
-                <div className={cn("p-4 rounded-full bg-white/5 mb-4 transition-colors", colorClass.replace('text-', 'bg-').replace('500', '500/10').replace('400', '400/10'))}>
-                    <Icon className={cn("w-6 h-6 md:w-8 md:h-8 transition-colors", colorClass)} />
+            <div className="relative h-full flex-1 bg-[#0a0a0a] border border-white/5 group-hover:border-white/10 rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl">
+                <div className={cn("p-4 rounded-full mb-4 transition-colors", iconBg)}>
+                    <Icon className={cn("w-6 h-6 md:w-8 md:h-8 transition-colors", iconColor)} />
                 </div>
 
-                <h3 className="text-lg md:text-xl font-bold mb-1">{name}</h3>
-                <span className="text-xs font-mono text-neutral-500 mb-4 md:mb-6 bg-white/5 px-2 py-1 rounded">{symbol}</span>
+                <h3 className="text-xl font-bold mb-2 font-serif text-white">{name}</h3>
+                <p className="text-sm text-neutral-400 mb-6 leading-relaxed flex-1">
+                    {description}
+                </p>
 
-                <div className="w-full bg-black/50 rounded-lg p-3 border border-white/5 flex items-center justify-between gap-2 md:gap-3 group-hover:border-white/10 transition-colors">
-                    <code className="text-[10px] md:text-xs text-neutral-400 font-mono break-all text-left line-clamp-1">
-                        {address.slice(0, 10)}...{address.slice(-10)}
-                    </code>
-                    <div className="shrink-0 text-neutral-500">
-                        {copied ? (
-                            <Check className="w-3 h-3 md:w-4 md:h-4 text-green-500" />
-                        ) : (
-                            <Copy className="w-3 h-3 md:w-4 md:h-4 group-hover:text-white transition-colors" />
-                        )}
-                    </div>
-                </div>
-
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className={cn("text-[10px] uppercase tracking-wider font-bold py-1 px-2 rounded-full bg-white/5 backdrop-blur-sm", copied ? "text-green-500" : "text-neutral-500")}>
-                        {copied ? "Copied!" : "Click to Copy"}
-                    </span>
-                </div>
+                <a 
+                    href={url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={cn(
+                        "w-full py-3 text-black font-extrabold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-sm tracking-wide z-10",
+                        buttonBg,
+                        buttonHoverBg,
+                        buttonShadow,
+                        "hover:scale-105 active:scale-95"
+                    )}
+                >
+                    <span>{buttonText}</span>
+                </a>
             </div>
         </motion.div>
-    )
+    );
 }
