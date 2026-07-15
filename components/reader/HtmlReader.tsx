@@ -396,10 +396,16 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         if (progressBarRef.current) {
                             progressBarRef.current.style.width = `${progress.scrollPercentage}%`;
                         }
+                        if (progressBarThumbRef.current) {
+                            progressBarThumbRef.current.style.left = `${progress.scrollPercentage}%`;
+                        }
                         setRestoredPosition(true);
                     } else {
                         if (progressBarRef.current) {
                             progressBarRef.current.style.width = '0%';
+                        }
+                        if (progressBarThumbRef.current) {
+                            progressBarThumbRef.current.style.left = '0%';
                         }
                         setRestoredPosition(true);
                     }
@@ -416,10 +422,16 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                         if (progressBarRef.current) {
                             progressBarRef.current.style.width = `${progress.scrollPercentage}%`;
                         }
+                        if (progressBarThumbRef.current) {
+                            progressBarThumbRef.current.style.left = `${progress.scrollPercentage}%`;
+                        }
                     }, 100);
                 } else {
                     if (progressBarRef.current) {
                         progressBarRef.current.style.width = '0%';
+                    }
+                    if (progressBarThumbRef.current) {
+                        progressBarThumbRef.current.style.left = '0%';
                     }
                 }
                 setRestoredPosition(true);
@@ -453,6 +465,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                     if (progressBarRef.current) {
                         progressBarRef.current.style.width = `${clampedPercentage}%`;
                     }
+                    if (progressBarThumbRef.current) {
+                        progressBarThumbRef.current.style.left = `${clampedPercentage}%`;
+                    }
                     saveScrollPosition(clampedPercentage);
                 }
             }
@@ -485,6 +500,9 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
                 const clampedPercentage = Math.min(100, Math.max(0, percentage));
                 if (progressBarRef.current) {
                     progressBarRef.current.style.width = `${clampedPercentage}%`;
+                }
+                if (progressBarThumbRef.current) {
+                    progressBarThumbRef.current.style.left = `${clampedPercentage}%`;
                 }
                 saveScrollPosition(clampedPercentage);
             }
@@ -522,6 +540,51 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
             document.removeEventListener('msfullscreenchange', handleFullscreenChange);
         };
     }, []);
+
+    // Scroll with click with progress bar
+    const [isSeekEnabled, setIsSeekEnabled] = useState<boolean>(false);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const progressBarThumbRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        }
+    }, [])
+
+    const thumbAutoSeekToggle = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+
+        timeoutRef.current = setTimeout(() => {
+            setIsSeekEnabled(false);
+        }, 3000);
+
+        if (!isSeekEnabled) {
+            setIsSeekEnabled(true);
+            return false // disable event for first launch
+        }
+
+        return true; // enable event for subsequent launches
+    }
+
+    const handleProgressBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (!thumbAutoSeekToggle()) {
+            return;
+        }
+
+        const rect = event.currentTarget.getBoundingClientRect();
+        const seekRatio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+        window.scrollTo({
+            top: maxScroll * seekRatio,
+            behavior: 'smooth',
+        });
+    };
 
     const toggleFullscreen = () => {
         if (hasFullscreenSupport) {
@@ -3160,31 +3223,54 @@ export function HtmlReader({ content, title, prevChapter, nextChapter, volumeId,
 
             {/* Bottom Progress Bar */}
             <div 
-                className={cn(
-                    "fixed bottom-0 left-0 right-0 h-1 z-[60] transition-all duration-300 print:hidden",
-                    isOrv ? "bg-cyan-500/30"
-                        : isBunnyGirl ? "bg-purple-500/30"
-                        : isRezero ? "bg-violet-500/30"
-                        : isMushokuTensei ? "bg-emerald-500/30"
-                        : isLotm ? "bg-amber-500/30"
-                        : isTbate ? "bg-amber-500/30"
-                        : "bg-red-500/30"
-                )}
+                className={cn("fixed bottom-0 left-0 right-0 h-6 z-[80] print:hidden cursor-pointer")}
+        	    onClick={(event) => handleProgressBarClick(event)}
+                onMouseEnter={() => thumbAutoSeekToggle()}
             >
                 <div 
-                    ref={progressBarRef}
-                    className={cn(
-                        "h-full transition-all duration-100 ease-out",
-                        isOrv ? "bg-cyan-400 shadow-[0_0_8px_#22d3ee]"
-                            : isBunnyGirl ? "bg-purple-400 shadow-[0_0_8px_#c084fc]"
-                            : isRezero ? "bg-violet-400 shadow-[0_0_8px_#a78bfa]"
-                            : isMushokuTensei ? "bg-emerald-400 shadow-[0_0_8px_#34d399]"
-                            : isLotm ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
-                            : isTbate ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
-                            : "bg-red-500 shadow-[0_0_8px_#ef4444]"
-                    )}
-                    style={{ width: '0%' }}
-                />
+                    className={
+                        cn("h-1 w-full absolute bottom-0 transition-all duration-300 ease-out",
+                	        isOrv ? "bg-cyan-500/30"
+                            : isBunnyGirl ? "bg-purple-500/30"
+                            : isRezero ? "bg-violet-500/30"
+                            : isMushokuTensei ? "bg-emerald-500/30"
+                            : isLotm ? "bg-amber-500/30"
+                            : isTbate ? "bg-amber-500/30"
+                            : "bg-red-500/30",
+			                isSeekEnabled ? "bottom-4" : "bottom-0"
+                        )}
+                >
+                    <div 
+                        ref={progressBarRef}
+                        className={
+                            cn(
+                            "h-full",
+                                isOrv ? "bg-cyan-400 shadow-[0_0_8px_#22d3ee]"
+                                : isBunnyGirl ? "bg-purple-400 shadow-[0_0_8px_#c084fc]"
+                                : isRezero ? "bg-violet-400 shadow-[0_0_8px_#a78bfa]"
+                                : isMushokuTensei ? "bg-emerald-400 shadow-[0_0_8px_#34d399]"
+                                : isLotm ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
+                                : isTbate ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
+                                : "bg-red-500 shadow-[0_0_8px_#ef4444]"
+                            )}
+                    />
+
+                    <div 
+                        ref={progressBarThumbRef}
+                        className={cn(
+                            "absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-4 rounded-full pointer-events-none",
+                            "transition-[opacity,transform] duration-200 ease-out",
+                            isSeekEnabled ? "opacity-100 scale-100" : "opacity-0 scale-0",
+                            isOrv ? "bg-cyan-400 shadow-[0_0_8px_#22d3ee]"
+                                : isBunnyGirl ? "bg-purple-400 shadow-[0_0_8px_#c084fc]"
+                                : isRezero ? "bg-violet-400 shadow-[0_0_8px_#a78bfa]"
+                                : isMushokuTensei ? "bg-emerald-400 shadow-[0_0_8px_#34d399]"
+                                : isLotm ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
+                                : isTbate ? "bg-amber-400 shadow-[0_0_8px_#fbbf24]"
+                                : "bg-red-500 shadow-[0_0_8px_#ef4444]"
+                        )}
+                    />
+                </div>
             </div>
         </div >
     );
